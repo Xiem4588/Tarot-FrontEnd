@@ -132,8 +132,9 @@ export const styles = StyleSheet.create({
     height: '100%',
   },
   resizeModeContain: {
+    flex: 1,
     width: '100%',
-    resizeMode: 'contain',
+    marginVertical: 50,
   },
   iconTabUn: {
     width: 8,

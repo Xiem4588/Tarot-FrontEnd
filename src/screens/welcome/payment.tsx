@@ -13,6 +13,7 @@ import {icon, images} from '../../../assets/constants';
 import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../conponents/wrapBgBox';
 import Icon from 'react-native-vector-icons/AntDesign';
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImageViewer from 'react-native-image-zoom-viewer';
 
 // Props
@@ -64,15 +65,10 @@ const ScreenPayment: FC<BookingScreenProps> = ({
           </TouchableOpacity>
           <View>
             <View style={styles.RowBetween}>
-              <TouchableOpacity onPress={() => navigation.navigate('notify')}>
-                <View style={styles.buttonEllipseSm}>
-                  <Avatar source={icon.iconHeartActive} size={16} />
-                </View>
-              </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.buttonEllipseSm, styles.marginLeft12]}
                 onPress={() => navigation.navigate('setting')}>
-                <Avatar source={icon.iconDownloadWhite} size={16} />
+                <Icon2 name="comment-text-outline" size={16} color="#fff" />
               </TouchableOpacity>
             </View>
           </View>

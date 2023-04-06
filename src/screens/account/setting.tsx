@@ -28,7 +28,10 @@ const SettingScreen = ({navigation}: any) => {
         <View style={[styles.RowBetween, styles.paddingHorizontal18]}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <View style={styles.RowCenterBetween}>
-              <Image source={icon.iconBackWhite} style={styles.iconBack24} />
+              <Avatar
+                source={icon.iconBackWhite}
+                containerStyle={styles.iconBack24}
+              />
               <Text
                 style={[styles.textWhite, styles.fontSize18, styles.fontBold]}>
                 Cài đặt
@@ -89,6 +92,7 @@ const SettingScreen = ({navigation}: any) => {
           <View style={[styles.alignItems, styles.flexBox]}>
             <Avatar
               source={images.imgSettingDecorate}
+              size={150}
               containerStyle={styles.resizeModeContain}
             />
             <TouchableOpacity onPress={() => navigation.goBack()}>
