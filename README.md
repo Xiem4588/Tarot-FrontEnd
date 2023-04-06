@@ -33,7 +33,7 @@ Map project
 *  Link cac thu vien file voi nhau: 'npx react-native-asset'.
 
 //
-*  Ở đây là danh sách các font icon được hỗ trợ trong phiên bản react-native-vector-icons 9.2.0: https://oblador.github.io/react-native-vector-icons/
+*  Ở đây là danh sách các font icon được hỗ trợ trong phiên bản react-native-vector-icons 9.2.0:
       AntDesign
       Entypo
       EvilIcons
@@ -47,4 +47,7 @@ Map project
       Octicons
       SimpleLineIcons
       Zocial
+https://github.com/oblador/react-native-vector-icons#icon-component
+https://oblador.github.io/react-native-vector-icons/
+
 ```
