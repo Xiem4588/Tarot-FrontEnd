@@ -1,11 +1,19 @@
-import React, {FC} from 'react';
-import {View, Text, TouchableOpacity, Clipboard} from 'react-native';
+import React, {FC, useRef, useEffect, useState} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Clipboard,
+  Animated,
+  Modal,
+} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
 import {icon, images} from '../../../assets/constants';
 import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../conponents/wrapBgBox';
 import Icon from 'react-native-vector-icons/AntDesign';
+import ImageViewer from 'react-native-image-zoom-viewer';
 
 // Props
 type BookingScreenProps = {
@@ -18,12 +26,34 @@ const ScreenPayment: FC<BookingScreenProps> = ({
   navigation,
   route,
 }: BookingScreenProps) => {
+  // ID item
   const {id} = route.params;
   console.log('>>> nhan id truyen vao', id);
-  //
+
+  // Copy click icon
   const copyToClipboard = (text: string) => {
     Clipboard.setString(text);
   };
+
+  // Animation icon loading
+  const spinValue = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(spinValue, {
+        toValue: 1,
+        duration: 3000,
+        useNativeDriver: true,
+      }),
+    ).start();
+  });
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
+  // end Animation
+
+  // Image Zoom
+  const [isImageViewVisible, setIsImageViewVisible] = useState(false);
 
   return (
     <WrapBgBox>
@@ -178,22 +208,37 @@ const ScreenPayment: FC<BookingScreenProps> = ({
                     </Text>
                   </TouchableOpacity>
                 </View>
-                <Text>
+                <TouchableOpacity
+                  style={styles.alignCenter}
+                  onPress={() => setIsImageViewVisible(true)}>
                   <Avatar size={64} source={images.imgQrcode} />
-                </Text>
+                  <Text style={styles.fontSize10}>zoom</Text>
+                </TouchableOpacity>
+                <Modal visible={isImageViewVisible} transparent={true}>
+                  <ImageViewer
+                    imageUrls={[
+                      {
+                        url: 'https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Ftomochain.com%2F&chs=180x180&choe=UTF-8&chld=L|2',
+                      },
+                    ]}
+                    enableSwipeDown={true}
+                    onSwipeDown={() => setIsImageViewVisible(false)}
+                  />
+                </Modal>
               </View>
             </View>
             <View style={[styles.RowAlignItems, styles.marginTop10]}>
-              <Avatar source={icon.iconClock} size={14} />
-              <Icon name="clockcircleo" size={14} color="#F78B73" />
               <Text
                 style={[
                   styles.fontBold,
                   styles.colorOrange,
-                  styles.marginLeft5,
+                  styles.marginRight10,
                 ]}>
-                Thanh toán đang chờ xác nhận
+                Thanh toán đang chờ xác nhận!
               </Text>
+              <Animated.View style={{transform: [{rotate: spin}]}}>
+                <Icon name="loading1" size={14} color="#F78B73" />
+              </Animated.View>
             </View>
             <TouchableOpacity
               style={[styles.buttonTmp, styles.marginTop20]}

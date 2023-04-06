@@ -272,11 +272,17 @@ export const styles = StyleSheet.create({
   marginRight5: {
     marginRight: 5,
   },
+  marginRight10: {
+    marginRight: 10,
+  },
   marginLeft12: {
     marginLeft: 12,
   },
   marginLeft5: {
     marginLeft: 5,
+  },
+  marginLeft10: {
+    marginLeft: 10,
   },
   marginTop5: {
     marginTop: 5,
@@ -432,6 +438,7 @@ export const styles = StyleSheet.create({
   },
   boxInfo: {
     flex: 1,
+    paddingVertical: 15,
   },
   nameItem: {
     fontWeight: '600',
@@ -618,6 +625,10 @@ export const styles = StyleSheet.create({
     fontSize: 10,
     fontFamily: 'Montserrat',
   },
+  fontSize6: {
+    fontSize: 6,
+    fontFamily: 'Montserrat',
+  },
   iconSize8Mgr5: {
     width: 8,
     height: 8,
@@ -738,7 +749,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#F2F2F2',
     // padding: 12,
     // paddingRight: 0,
-    marginTop: 20,
+    marginTop: 30,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
   },
