@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
-    top: 0,
+    top: -5,
     position: 'absolute',
   },
   bodyScreenBlack: {
@@ -64,6 +64,7 @@ export const styles = StyleSheet.create({
   textWhite: {
     color: '#FFFFFF',
     lineHeight: 20,
+    fontFamily: 'Montserrat',
   },
   textOrange: {
     color: '#F68B73',
@@ -74,8 +75,17 @@ export const styles = StyleSheet.create({
   lineHeight24: {
     lineHeight: 24,
   },
+  lineHeight22: {
+    lineHeight: 22,
+  },
   flexBox: {
     flex: 1,
+  },
+  flex1: {
+    flex: 1,
+  },
+  flex0: {
+    flex: 0,
   },
   width50: {
     width: '50%',
@@ -83,6 +93,7 @@ export const styles = StyleSheet.create({
   widthFull: {
     width: '100%',
     height: '100%',
+    flex: 1,
   },
   widthFullHW: {
     position: 'absolute',
@@ -118,6 +129,7 @@ export const styles = StyleSheet.create({
   },
   alignCenter: {
     alignItems: 'center',
+    fontFamily: 'Montserrat',
   },
   alignRight: {
     alignItems: 'flex-end',
@@ -208,6 +220,13 @@ export const styles = StyleSheet.create({
     height: 200,
     width: '100%',
   },
+  IconStarBg: {
+    position: 'absolute',
+    bottom: 0,
+    right: 100,
+    height: 26,
+    resizeMode: 'contain',
+  },
   ImgBgBottom: {
     position: 'absolute',
     bottom: -30,
@@ -240,6 +259,11 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: -50,
   },
+  positionAbsoluteTop: {
+    position: 'absolute',
+    // top: 0,
+    zIndex: 2,
+  },
   buttonTmpSm: {
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
     borderRadius: 16,
@@ -261,7 +285,7 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
     overflow: 'hidden',
-    fontWeight: '600',
+    fontWeight: 600,
     fontFamily: 'Montserrat',
   },
   buttonEllipseSm: {
@@ -336,12 +360,18 @@ export const styles = StyleSheet.create({
   },
   fontSize18: {
     fontSize: 18,
+    fontFamily: 'Montserrat',
   },
   fontSize16: {
     fontSize: 16,
+    fontFamily: 'Montserrat',
+  },
+  fontSize14: {
+    fontSize: 14,
+    fontFamily: 'Montserrat',
   },
   fontBold: {
-    fontWeight: '600',
+    fontWeight: 600,
     fontFamily: 'Montserrat',
   },
   fontMontserrat: {
@@ -442,21 +472,21 @@ export const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   nameItem: {
-    fontWeight: '600',
+    fontWeight: 600,
     fontSize: 16,
     marginBottom: 4,
     color: 'rgba(255, 255, 255, 0.87)',
     fontFamily: 'Montserrat',
   },
   nameItemBlack16: {
-    fontWeight: '600',
+    fontWeight: 600,
     fontSize: 16,
     marginBottom: 4,
     color: '#000000',
     fontFamily: 'Montserrat',
   },
   nameItemBlack14: {
-    fontWeight: '600',
+    fontWeight: 600,
     fontSize: 14,
     marginBottom: 4,
     color: '#000000',
@@ -470,7 +500,7 @@ export const styles = StyleSheet.create({
   textSize18BoldWhite: {
     color: '#ffffff',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: 600,
     fontFamily: 'Montserrat',
   },
   dateTime: {
@@ -547,6 +577,27 @@ export const styles = StyleSheet.create({
     width: 60,
     paddingLeft: 25,
   },
+  width40: {
+    width: 40,
+    paddingLeft: 25,
+  },
+  width120: {
+    width: 120,
+    paddingLeft: 10,
+    fontFamily: 'Montserrat',
+  },
+  width80p: {
+    width: '80%',
+  },
+  width70p: {
+    width: '70%',
+  },
+  width20p: {
+    width: '20%',
+  },
+  width30p: {
+    width: '30%',
+  },
   colorWhite: {
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
@@ -574,13 +625,13 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
-    fontWeight: 'bold',
+    fontWeight: 600,
   },
   fonsize20White: {
     fontSize: 20,
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
-    fontWeight: 'bold',
+    fontWeight: 600,
   },
   image: {},
   imageItem: {
@@ -620,6 +671,10 @@ export const styles = StyleSheet.create({
   },
   fontSize12: {
     fontSize: 12,
+    fontFamily: 'Montserrat',
+  },
+  fontSize24: {
+    fontSize: 24,
     fontFamily: 'Montserrat',
   },
   fontSize10: {
@@ -714,7 +769,7 @@ export const styles = StyleSheet.create({
   tabMenu: {
     backgroundColor: 'transparent',
     fontFamily: 'Montserrat',
-    fontWeight: 'bold',
+    fontWeight: 600,
   },
   indicatorSelected: {
     backgroundColor: '#F68B73',
@@ -824,5 +879,41 @@ export const styles = StyleSheet.create({
     paddingVertical: 12,
     marginHorizontal: -20,
     marginBottom: -15,
+  },
+
+  //
+  LaunchStyle: {
+    flex: 1,
+    backgroundColor: colors.lightBlack,
+    paddingHorizontal: 18,
+    paddingVertical: 50,
+    paddingTop: 100,
+  },
+  visualImage: {
+    width: 250,
+    height: 370,
+    resizeMode: 'contain',
+    alignItems: 'center',
+  },
+  BoxButtonNext: {
+    position: 'absolute',
+    bottom: 50,
+    right: 18,
+    zIndex: 3,
+  },
+  buttonNext: {
+    backgroundColor: '#F78B73',
+    minWidth: 120,
+    borderRadius: 56,
+    paddingLeft: 16,
+    paddingVertical: 10,
+    fontFamily: 'Montserrat',
+    fontWeight: 600,
+    fontSize: 14,
+  },
+  IconAbs: {
+    position: 'absolute',
+    right: 15,
+    top: 9,
   },
 });

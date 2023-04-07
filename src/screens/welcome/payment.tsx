@@ -12,8 +12,8 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {icon, images} from '../../../assets/constants';
 import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../conponents/wrapBgBox';
-import Icon from 'react-native-vector-icons/AntDesign';
-import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconLoading from 'react-native-vector-icons/AntDesign';
+import IconComment from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImageViewer from 'react-native-image-zoom-viewer';
 
 // Props
@@ -68,7 +68,11 @@ const ScreenPayment: FC<BookingScreenProps> = ({
               <TouchableOpacity
                 style={[styles.buttonEllipseSm, styles.marginLeft12]}
                 onPress={() => navigation.navigate('setting')}>
-                <Icon2 name="comment-text-outline" size={16} color="#fff" />
+                <IconComment
+                  name="comment-text-outline"
+                  size={16}
+                  color="#fff"
+                />
               </TouchableOpacity>
             </View>
           </View>
@@ -233,7 +237,7 @@ const ScreenPayment: FC<BookingScreenProps> = ({
                 Thanh toán đang chờ xác nhận!
               </Text>
               <Animated.View style={{transform: [{rotate: spin}]}}>
-                <Icon name="loading1" size={14} color="#F78B73" />
+                <IconLoading name="loading1" size={14} color="#F78B73" />
               </Animated.View>
             </View>
             <TouchableOpacity

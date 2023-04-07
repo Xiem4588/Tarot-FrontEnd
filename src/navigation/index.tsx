@@ -15,7 +15,7 @@ import {
   Detail,
   Payment,
   Profile,
-  Today,
+  Game,
   Setting,
   Notify,
 } from '../screens';
@@ -44,7 +44,7 @@ const TabScreenOptions = ({route}: any) => ({
     if (screenName === 'welcome') {
       iconNameActive = `${icon.iconNav1Active}`;
       iconName = `${icon.iconNav1}`;
-    } else if (screenName === 'today') {
+    } else if (screenName === 'game') {
       iconNameActive = `${icon.iconNav2Active}`;
       iconName = `${icon.iconNav2}`;
     } else if (screenName === 'profile') {
@@ -70,11 +70,9 @@ const TabScreenOptions = ({route}: any) => ({
 export const TabNavigator = () => {
   return (
     <>
-      <Tab.Navigator
-        initialRouteName="welcome"
-        screenOptions={TabScreenOptions}>
+      <Tab.Navigator initialRouteName="game" screenOptions={TabScreenOptions}>
         <Tab.Screen name="welcome" component={Welcome} />
-        <Tab.Screen name="today" component={Today} />
+        <Tab.Screen name="game" component={Game} />
         <Tab.Screen name="profile" component={Profile} />
       </Tab.Navigator>
     </>

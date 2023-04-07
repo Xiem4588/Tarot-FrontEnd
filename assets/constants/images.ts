@@ -11,4 +11,8 @@ export default {
   AvatarDemo2: require('../images/avatar-demo-2.png'),
   imgSettingDecorate: require('../images/imgSettingDecorate.png'),
   imgQrcode: require('../images/imgQrcode.png'),
+  hand: require('../images/hand.png'),
+  visualImageSl1: require('../images/visualImageSl1.png'),
+  visualImageSl2: require('../images/visualImageSl2.png'),
+  visualImageSl3: require('../images/visualImageSl3.png'),
 };
