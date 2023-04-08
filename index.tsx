@@ -4,7 +4,7 @@
 
 import React, {useRef, useState} from 'react';
 import {AppRegistry, StatusBar, View} from 'react-native';
-// import App from './src/navigation';
+import App from './src/navigation';
 import {name as GameTarot} from './app.json';
 import Swiper from 'react-native-swiper';
 import {Image, Text} from 'react-native-elements';
@@ -18,7 +18,7 @@ const CustomPagination = (
   total: number /*, context: Swiper*/,
 ) => {
   return (
-    <View style={styles.RowAlignItems}>
+    <View style={[styles.RowAlignItems, styles.LaunchPagination]}>
       {[...Array(total)].map((_, i) => {
         const isActive = i === index;
         return (
@@ -57,7 +57,7 @@ const LaunchPage = () => {
   };
 
   return (
-    <View style={[styles.LaunchStyle]}>
+    <>
       <StatusBar barStyle="light-content" />
       <Swiper
         loop={false}
@@ -65,7 +65,7 @@ const LaunchPage = () => {
         showsPagination={true}
         onIndexChanged={handleIndexChanged}
         renderPagination={CustomPagination}>
-        <View style={styles.widthFull}>
+        <View style={styles.LaunchStyle}>
           <View style={styles.alignCenter}>
             <Image source={images.visualImageSl1} style={styles.visualImage} />
           </View>
@@ -80,7 +80,7 @@ const LaunchPage = () => {
             </Text>
           </View>
         </View>
-        <View style={styles.widthFull}>
+        <View style={styles.LaunchStyle}>
           <View style={styles.alignCenter}>
             <Image source={images.visualImageSl2} style={styles.visualImage} />
           </View>
@@ -95,7 +95,7 @@ const LaunchPage = () => {
             </Text>
           </View>
         </View>
-        <View style={styles.widthFull}>
+        <View style={styles.LaunchStyle}>
           <View style={styles.alignCenter}>
             <Image source={images.visualImageSl3} style={styles.visualImage} />
           </View>
@@ -149,7 +149,7 @@ const LaunchPage = () => {
           </TouchableOpacity>
         </View>
       )}
-    </View>
+    </>
   );
 };
 export default LaunchPage;

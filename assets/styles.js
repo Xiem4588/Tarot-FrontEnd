@@ -901,6 +901,12 @@ export const styles = StyleSheet.create({
     right: 18,
     zIndex: 3,
   },
+  LaunchPagination: {
+    position: 'absolute',
+    bottom: 50,
+    left: 18,
+    zIndex: 3,
+  },
   buttonNext: {
     backgroundColor: '#F78B73',
     minWidth: 120,
