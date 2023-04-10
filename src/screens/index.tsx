@@ -1,4 +1,4 @@
-import Welcome from './welcome';
+import NewsFeed from './welcome/newsfeed';
 import Booking from './welcome/booking';
 import Account from './account';
 import Payment from './welcome/payment';
@@ -10,9 +10,10 @@ import Notify from './account/notify';
 import Setting from './account/setting';
 import Profile from './account/profile';
 import Register from './account/register';
+import Launch from './launch';
 
 export {
-  Welcome,
+  NewsFeed,
   Account,
   Booking,
   Gameplay,
@@ -24,4 +25,5 @@ export {
   Notify,
   Login,
   Register,
+  Launch,
 };

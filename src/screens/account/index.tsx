@@ -4,10 +4,16 @@ import Login from './login';
 import Register from './register';
 import {styles} from '../../../assets/styles';
 
-const AccountScreen = () => {
-  const login = true;
+const AccountScreen = ({navigation}: any) => {
+  const login = false;
   return (
-    <View style={styles.bodyScreen}>{login ? <Login /> : <Register />}</View>
+    <View style={styles.bodyScreen}>
+      {login ? (
+        <Login navigation={navigation} />
+      ) : (
+        <Register navigation={navigation} />
+      )}
+    </View>
   );
 };
 

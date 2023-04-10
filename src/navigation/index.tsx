@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import * as Font from 'expo-font';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -8,7 +8,7 @@ import {Avatar} from 'react-native-elements';
 import WrapBgBox from '../conponents/wrapBgBox';
 import {icon, colors} from '../../assets/constants';
 import {
-  Welcome,
+  NewsFeed,
   Account,
   Booking,
   Gameplay,
@@ -18,6 +18,7 @@ import {
   Game,
   Setting,
   Notify,
+  Launch,
 } from '../screens';
 
 import {styles} from '../../assets/styles';
@@ -41,7 +42,7 @@ const TabScreenOptions = ({route}: any) => ({
     let screenName = route.name;
     let iconName = {};
     let iconNameActive = {};
-    if (screenName === 'welcome') {
+    if (screenName === 'newsfeed') {
       iconNameActive = `${icon.iconNav1Active}`;
       iconName = `${icon.iconNav1}`;
     } else if (screenName === 'game') {
@@ -71,7 +72,7 @@ export const TabNavigator = () => {
   return (
     <>
       <Tab.Navigator initialRouteName="game" screenOptions={TabScreenOptions}>
-        <Tab.Screen name="welcome" component={Welcome} />
+        <Tab.Screen name="newsfeed" component={NewsFeed} />
         <Tab.Screen name="game" component={Game} />
         <Tab.Screen name="profile" component={Profile} />
       </Tab.Navigator>
@@ -123,8 +124,10 @@ const StackScreenOptionsHeaderTransparent = ({navigation}: any) => ({
 });
 
 const App = () => {
+  // check first user
+  const isCheck = true;
   // Add Font Montserrat
-  const [fontLoaded, setFontLoaded] = React.useState(true);
+  const [fontLoaded, setFontLoaded] = useState(true);
   React.useEffect(() => {
     async function loadFont() {
       await Font.loadAsync({
@@ -144,7 +147,8 @@ const App = () => {
     <>
       <WrapBgBox>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="tabNavigator">
+          <Stack.Navigator
+            initialRouteName={isCheck ? 'launch' : 'tabNavigator'}>
             <Stack.Group screenOptions={StackScreenOptions}>
               <Stack.Screen name="account" component={Account} />
               <Stack.Screen name="gameplay" component={Gameplay} />
@@ -152,6 +156,7 @@ const App = () => {
               <Stack.Screen name="payment" component={Payment} />
             </Stack.Group>
             <Stack.Group screenOptions={StackScreenOptionsHeaderTransparent}>
+              <Stack.Screen name="launch" component={Launch} />
               <Stack.Screen name="setting" component={Setting} />
               <Stack.Screen name="notify" component={Notify} />
               <Stack.Screen name="booking" component={Booking} />

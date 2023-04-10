@@ -12,13 +12,14 @@ import {styles} from '../../../assets/styles';
 import {images} from '../../../assets/constants';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Avatar} from 'react-native-elements';
+import WrapBgBox from '../../conponents/wrapBgBox';
 
 const Login = ({navigation}: any) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   return (
-    <>
+    <WrapBgBox>
       <View style={[styles.avatarLogin, styles.alignItems]}>
         <ImageBackground
           source={images.bgHeaderLogin}
@@ -72,7 +73,7 @@ const Login = ({navigation}: any) => {
           <Text style={styles.buttonText}>Đăng nhập</Text>
         </TouchableOpacity>
       </View>
-    </>
+    </WrapBgBox>
   );
 };
 

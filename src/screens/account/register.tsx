@@ -12,12 +12,14 @@ import {styles} from '../../../assets/styles';
 import {images} from '../../../assets/constants';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Avatar} from 'react-native-elements';
+import WrapBgBox from '../../conponents/wrapBgBox';
 
 const Login = ({navigation}: any) => {
   const [username, setUsername] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
   const [password, setPassword] = useState('');
   return (
-    <>
+    <WrapBgBox>
       <View style={[styles.avatarLogin, styles.alignItems]}>
         <ImageBackground
           source={images.bgHeaderLogin}
@@ -55,8 +57,8 @@ const Login = ({navigation}: any) => {
               </Text>
               <TextInput
                 style={styles.input}
-                value={username}
-                onChangeText={setUsername}
+                value={dateOfBirth}
+                onChangeText={setDateOfBirth}
                 placeholder="dd/mm/yy"
               />
             </View>
@@ -82,7 +84,7 @@ const Login = ({navigation}: any) => {
           <Text style={styles.buttonText}>Đăng ký</Text>
         </TouchableOpacity>
       </View>
-    </>
+    </WrapBgBox>
   );
 };
 

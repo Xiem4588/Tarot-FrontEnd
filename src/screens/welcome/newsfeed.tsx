@@ -7,7 +7,7 @@ import ScreenCommunity from './community';
 import ScreenExperts from './experts';
 import {Text} from 'react-native-elements';
 
-const WelcomScreen = ({navigation}: any) => {
+const NewsFeed = ({navigation}: any) => {
   const [index, setIndex] = React.useState(0);
 
   return (
@@ -53,4 +53,4 @@ const WelcomScreen = ({navigation}: any) => {
   );
 };
 
-export default WelcomScreen;
+export default NewsFeed;
