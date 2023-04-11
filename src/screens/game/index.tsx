@@ -31,13 +31,13 @@ const ScreenToday = ({navigation}: any) => {
               rounded
               source={isAvatar ? images.AvatarDemo2 : images.avataDefault}
             />
-            <Text style={[styles.marginLeft10, styles.fontBold]}>
+            <Text style={[styles.marginLeft10, styles.fontBold600]}>
               Hi, Mogwrr Ohnf!
             </Text>
           </View>
           <View style={styles.RowBetween}>
             <View style={[styles.marginTop20, styles.flex1]}>
-              <Text style={[styles.fontSize18, styles.fontBold]}>
+              <Text style={[styles.fontSize18, styles.fontBold600]}>
                 Điều gì sắp tới sẽ đến với bạn?
               </Text>
               <Text style={[styles.fontSize14, styles.marginTop5]}>

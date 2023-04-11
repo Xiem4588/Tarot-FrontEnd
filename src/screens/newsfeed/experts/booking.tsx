@@ -9,9 +9,9 @@ import {
 } from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
-import {icon, images} from '../../../assets/constants';
-import {styles} from '../../../assets/styles';
-import WrapBgBox from '../../conponents/wrapBgBox';
+import {icon, images} from '../../../../assets/constants';
+import {styles} from '../../../../assets/styles';
+import WrapBgBox from '../../../conponents/wrapBgBox';
 import Carousel from 'react-native-snap-carousel';
 import CalendarPicker from 'react-native-calendar-picker';
 
@@ -76,7 +76,7 @@ const Item: FC<ItemProps> = ({id, title, describe, price}) => (
         styles.fontSize16,
         styles.colorOrange,
         styles.marginTopAuto,
-        styles.fontBold,
+        styles.fontBold600,
       ]}>
       {price}
     </Text>

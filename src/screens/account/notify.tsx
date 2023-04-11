@@ -53,14 +53,14 @@ const NotifyScreen = ({navigation}: any) => {
                 containerStyle={styles.iconBack24}
               />
               <Text
-                style={[styles.textWhite, styles.fontSize18, styles.fontBold]}>
+                style={[styles.textWhite, styles.fontSize18, styles.fontBold600]}>
                 Thông báo
               </Text>
             </View>
           </TouchableOpacity>
           <TouchableHighlight onPress={() => navigation.goBack()}>
             <View style={styles.RowCenterBetween}>
-              <Text style={[styles.textGrray, styles.fontSize16]}>
+              <Text style={[styles.textWhiteGrray, styles.fontSize16]}>
                 Đọc tất cả
               </Text>
             </View>

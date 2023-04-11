@@ -69,7 +69,7 @@ const LaunchScreen = ({navigation}: any) => {
           </View>
           <View style={[styles.marginTop30]}>
             <Text
-              style={[styles.fontSize18, styles.fontBold, styles.textWhite]}>
+              style={[styles.fontSize18, styles.fontBold600, styles.textWhite]}>
               Gặp gỡ những chuyên gia hàng đầu
             </Text>
             <Text
@@ -84,7 +84,7 @@ const LaunchScreen = ({navigation}: any) => {
           </View>
           <View style={[styles.marginTop30]}>
             <Text
-              style={[styles.fontSize18, styles.fontBold, styles.textWhite]}>
+              style={[styles.fontSize18, styles.fontBold600, styles.textWhite]}>
               Nội dung các lá bài đa dạng
             </Text>
             <Text
@@ -99,7 +99,7 @@ const LaunchScreen = ({navigation}: any) => {
           </View>
           <View style={[styles.marginTop30]}>
             <Text
-              style={[styles.fontSize18, styles.fontBold, styles.textWhite]}>
+              style={[styles.fontSize18, styles.fontBold600, styles.textWhite]}>
               Nội dung các lá bài đa dạng
             </Text>
             <Text
@@ -117,7 +117,7 @@ const LaunchScreen = ({navigation}: any) => {
               <Text
                 style={[
                   styles.fontMontserrat,
-                  styles.fontBold,
+                  styles.fontBold600,
                   styles.RowAlignItems,
                 ]}>
                 Đăng ký
@@ -135,7 +135,7 @@ const LaunchScreen = ({navigation}: any) => {
               <Text
                 style={[
                   styles.fontMontserrat,
-                  styles.fontBold,
+                  styles.fontBold600,
                   styles.RowAlignItems,
                 ]}>
                 Tiếp theo

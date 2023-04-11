@@ -71,7 +71,9 @@ const TabScreenOptions = ({route}: any) => ({
 export const TabNavigator = () => {
   return (
     <>
-      <Tab.Navigator initialRouteName="game" screenOptions={TabScreenOptions}>
+      <Tab.Navigator
+        initialRouteName="newsfeed"
+        screenOptions={TabScreenOptions}>
         <Tab.Screen name="newsfeed" component={NewsFeed} />
         <Tab.Screen name="game" component={Game} />
         <Tab.Screen name="profile" component={Profile} />
@@ -148,7 +150,7 @@ const App = () => {
       <WrapBgBox>
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName={isCheck ? 'launch' : 'tabNavigator'}>
+            initialRouteName={isCheck ? 'tabNavigator' : 'launch'}>
             <Stack.Group screenOptions={StackScreenOptions}>
               <Stack.Screen name="account" component={Account} />
               <Stack.Screen name="gameplay" component={Gameplay} />

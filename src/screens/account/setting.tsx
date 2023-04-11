@@ -33,7 +33,7 @@ const SettingScreen = ({navigation}: any) => {
                 containerStyle={styles.iconBack24}
               />
               <Text
-                style={[styles.textWhite, styles.fontSize18, styles.fontBold]}>
+                style={[styles.textWhite, styles.fontSize18, styles.fontBold600]}>
                 Cài đặt
               </Text>
             </View>
@@ -41,7 +41,7 @@ const SettingScreen = ({navigation}: any) => {
           <TouchableHighlight onPress={() => navigation.goBack()}>
             <View style={styles.RowCenterBetween}>
               <Text
-                style={[styles.textOrange, styles.fontSize18, styles.fontBold]}>
+                style={[styles.textOrange, styles.fontSize18, styles.fontBold600]}>
                 Lưu
               </Text>
             </View>

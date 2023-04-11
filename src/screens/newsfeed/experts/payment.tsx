@@ -9,9 +9,9 @@ import {
 } from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
-import {icon, images} from '../../../assets/constants';
-import {styles} from '../../../assets/styles';
-import WrapBgBox from '../../conponents/wrapBgBox';
+import {icon, images} from '../../../../assets/constants';
+import {styles} from '../../../../assets/styles';
+import WrapBgBox from '../../../conponents/wrapBgBox';
 import IconLoading from 'react-native-vector-icons/AntDesign';
 import IconComment from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImageViewer from 'react-native-image-zoom-viewer';
@@ -173,28 +173,28 @@ const ScreenPayment: FC<BookingScreenProps> = ({
               ]}>
               <View style={[styles.RowCenterBetween, styles.marginBottom10]}>
                 <Text>Tổng thanh toán</Text>
-                <Text style={[styles.fontBold, styles.colorOrange]}>
+                <Text style={[styles.fontBold600, styles.colorOrange]}>
                   300,000 VND
                 </Text>
               </View>
               <View style={[styles.borderTopDashed]}>
                 <View style={[styles.RowCenterBetween]}>
                   <Text>Tên tài khoản:</Text>
-                  <Text style={[styles.fontBold]}>Hoang Thanh Tung</Text>
+                  <Text style={[styles.fontBold600]}>Hoang Thanh Tung</Text>
                 </View>
                 <View
                   style={[styles.RowCenterBetween, styles.marginVertical10]}>
                   <Text>Số tài khoản:</Text>
                   <TouchableOpacity
                     onPress={() => copyToClipboard('195556488')}>
-                    <Text style={[styles.fontBold]}>
+                    <Text style={[styles.fontBold600]}>
                       <Avatar source={icon.iconCopy} size={14} /> 195556488
                     </Text>
                   </TouchableOpacity>
                 </View>
                 <View style={[styles.RowCenterBetween]}>
                   <Text>Ngân hàng:</Text>
-                  <Text style={[styles.fontBold]}>Techcombank</Text>
+                  <Text style={[styles.fontBold600]}>Techcombank</Text>
                 </View>
               </View>
               <View style={[styles.RowCenterBetween, styles.marginTop30]}>
@@ -202,7 +202,7 @@ const ScreenPayment: FC<BookingScreenProps> = ({
                   <Text>Nội dung chuyển tiền:</Text>
                   <TouchableOpacity
                     onPress={() => copyToClipboard('Thanh toan Tarot 546881')}>
-                    <Text style={styles.fontBold}>
+                    <Text style={styles.fontBold600}>
                       Thanh toan Tarot 546881{' '}
                       <Avatar source={icon.iconCopy} size={14} />
                     </Text>
@@ -230,7 +230,7 @@ const ScreenPayment: FC<BookingScreenProps> = ({
             <View style={[styles.RowAlignItems, styles.marginTop10]}>
               <Text
                 style={[
-                  styles.fontBold,
+                  styles.fontBold600,
                   styles.colorOrange,
                   styles.marginRight10,
                 ]}>

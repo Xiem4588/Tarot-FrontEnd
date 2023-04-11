@@ -25,6 +25,9 @@ export const styles = StyleSheet.create({
   paddingLeft18: {
     paddingLeft: 18,
   },
+  paddingRight30: {
+    paddingLeft: 30,
+  },
   paddingHorizontal9: {
     paddingHorizontal: 9,
   },
@@ -57,6 +60,12 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.lightBlack,
   },
+  backgBlack: {
+    backgroundColor: '#000',
+  },
+  backgWhite: {
+    backgroundColor: '#fff',
+  },
   navigationContainer: {
     flex: 1,
     backgroundColor: colors.transparent,
@@ -69,8 +78,11 @@ export const styles = StyleSheet.create({
   textOrange: {
     color: '#F68B73',
   },
-  textGrray: {
+  textWhiteGrray: {
     color: 'rgba(255, 255, 255, 0.4)',
+  },
+  textBlackGrray: {
+    color: 'rgba(0, 0, 0, 0.4)',
   },
   lineHeight24: {
     lineHeight: 24,
@@ -126,6 +138,9 @@ export const styles = StyleSheet.create({
   },
   paddingBottom10: {
     paddingBottom: 10,
+  },
+  padding18: {
+    padding: 18,
   },
   alignCenter: {
     alignItems: 'center',
@@ -300,6 +315,12 @@ export const styles = StyleSheet.create({
   marginRight10: {
     marginRight: 10,
   },
+  marginRight20: {
+    marginRight: 20,
+  },
+  marginRight30: {
+    marginRight: 30,
+  },
   marginLeft12: {
     marginLeft: 12,
   },
@@ -317,6 +338,12 @@ export const styles = StyleSheet.create({
   },
   marginTop30: {
     marginTop: 30,
+  },
+  marginTop100P: {
+    marginTop: '100%',
+  },
+  marginTop150: {
+    marginTop: 150,
   },
   marginTop20: {
     marginTop: 20,
@@ -341,6 +368,9 @@ export const styles = StyleSheet.create({
   },
   marginHorizontal18: {
     marginHorizontal: 18,
+  },
+  marginHorizontal10: {
+    marginHorizontal: 10,
   },
   marginVertical18: {
     marginVertical: 18,
@@ -370,8 +400,12 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'Montserrat',
   },
-  fontBold: {
+  fontBold600: {
     fontWeight: 600,
+    fontFamily: 'Montserrat',
+  },
+  fontBold700: {
+    fontWeight: 700,
     fontFamily: 'Montserrat',
   },
   fontMontserrat: {
@@ -602,12 +636,21 @@ export const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
   },
+  colorBlack: {
+    color: '#000',
+    fontFamily: 'Montserrat',
+  },
   colorBlue: {
     color: '#366AF0',
     fontFamily: 'Montserrat',
   },
   colorOrange: {
     color: '#F78B73',
+    fontFamily: 'Montserrat',
+  },
+  fonsize10White: {
+    fontSize: 10,
+    color: '#FFFFFF',
     fontFamily: 'Montserrat',
   },
   fonsize12White: {
@@ -879,6 +922,11 @@ export const styles = StyleSheet.create({
     marginHorizontal: -20,
     marginBottom: -15,
   },
+  borderBottom: {
+    paddingBottom: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0, 0, 0, 0.4)',
+  },
 
   //
   LaunchStyle: {
@@ -920,5 +968,71 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     right: 15,
     top: 9,
+  },
+  modalComment: {
+    flex: 1,
+    marginTop: 'auto',
+    backgroundColor: '#F2F2F2',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+  },
+  modalTransparent: {
+    flex: 1,
+    maxHeight: '34%',
+    backgroundColor: 'transparent',
+  },
+  closeModal: {
+    width: 54,
+    height: 4,
+    borderRadius: 4,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  },
+  userAvatarComment: {
+    position: 'absolute',
+    top: 2,
+    left: 0,
+  },
+  boxUserComment: {
+    paddingLeft: 46,
+  },
+  myAvatar: {
+    position: 'absolute',
+    left: 10,
+    top: 10,
+  },
+  btnMicro: {
+    position: 'absolute',
+    right: 40,
+    top: 14,
+  },
+  btnCamera: {
+    position: 'absolute',
+    right: 10,
+    top: 14,
+  },
+  btnSend: {
+    backgroundColor: '#F78B73',
+    borderRadius: 100,
+    height: 50,
+    width: 50,
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  inputTheme2: {
+    height: 50,
+    paddingLeft: 50,
+    paddingRight: 70,
+    borderWidth: 0,
+    borderRadius: 36,
+    backgroundColor: '#f2f2f2',
+  },
+  boxFormComment: {
+    backgroundColor: '#fff',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 10,
   },
 });

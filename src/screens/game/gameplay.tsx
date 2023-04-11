@@ -62,13 +62,13 @@ const ScreenGamePlay = () => {
                   numberOfLines={3}
                   ellipsizeMode="tail"
                   style={styles.textWhite}>
-                  <Text style={[styles.fontBold, styles.colorWhite]}>
+                  <Text style={[styles.fontBold600, styles.colorWhite]}>
                     Lanasmith
                   </Text>{' '}
                   Tại sao lá bài của tôi lại là lá ngược, ngược liệu có mang đến
                   nhiều điều xui xẻo không các...{' '}
                   <TouchableOpacity>
-                    <Text style={[styles.textGrray]}>thêm</Text>
+                    <Text style={[styles.textWhiteGrray]}>thêm</Text>
                   </TouchableOpacity>
                 </Text>
                 <View style={[styles.RowAlignItems, styles.paddingVertical10]}>
@@ -83,7 +83,7 @@ const ScreenGamePlay = () => {
                       numberOfLines={1}
                       ellipsizeMode="tail"
                       style={styles.textWhite}>
-                      <Text style={[styles.textWhite, styles.fontBold]}>
+                      <Text style={[styles.textWhite, styles.fontBold600]}>
                         diana_slown{' '}
                       </Text>
                       This week we discussed all This week we discussed all
@@ -158,13 +158,13 @@ const ScreenGamePlay = () => {
                   numberOfLines={3}
                   ellipsizeMode="tail"
                   style={styles.textWhite}>
-                  <Text style={[styles.fontBold, styles.colorWhite]}>
+                  <Text style={[styles.fontBold600, styles.colorWhite]}>
                     Lanasmith
                   </Text>{' '}
                   Tại sao lá bài của tôi lại là lá ngược, ngược liệu có mang đến
                   nhiều điều xui xẻo không các...{' '}
                   <TouchableOpacity>
-                    <Text style={[styles.textGrray]}>thêm</Text>
+                    <Text style={[styles.textWhiteGrray]}>thêm</Text>
                   </TouchableOpacity>
                 </Text>
                 <View style={[styles.RowAlignItems, styles.paddingVertical10]}>
@@ -179,7 +179,7 @@ const ScreenGamePlay = () => {
                       numberOfLines={1}
                       ellipsizeMode="tail"
                       style={styles.textWhite}>
-                      <Text style={[styles.textWhite, styles.fontBold]}>
+                      <Text style={[styles.textWhite, styles.fontBold600]}>
                         diana_slown{' '}
                       </Text>
                       This week we discussed all This week we discussed all

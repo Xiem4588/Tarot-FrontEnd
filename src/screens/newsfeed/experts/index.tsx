@@ -1,8 +1,8 @@
 import React from 'react';
 import {Avatar, Text} from 'react-native-elements';
 import {TouchableOpacity, View} from 'react-native';
-import {styles} from '../../../assets/styles';
-import {images, icon} from '../../../assets/constants';
+import {styles} from '../../../../assets/styles';
+import {images, icon} from '../../../../assets/constants';
 import {ScrollView} from 'react-native-gesture-handler';
 
 const ScreenExperts = ({navigation}: any) => {

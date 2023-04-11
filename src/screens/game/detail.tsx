@@ -73,7 +73,7 @@ const ScreenDetail = ({navigation}: any) => {
                   styles.lineHeight22,
                   styles.marginBottom15,
                 ]}>
-                <Text style={[styles.fontBold, styles.colorWhite]}>
+                <Text style={[styles.fontBold600, styles.colorWhite]}>
                   Dẫn nhập:
                 </Text>{' '}
                 Bài Wheel of Fortune xuất hiện ngược nghĩa là sẽ có thay đổi
@@ -91,7 +91,7 @@ const ScreenDetail = ({navigation}: any) => {
                   styles.lineHeight22,
                   styles.marginBottom15,
                 ]}>
-                <Text style={[styles.fontBold, styles.colorWhite]}>
+                <Text style={[styles.fontBold600, styles.colorWhite]}>
                   Dẫn nhập:
                 </Text>{' '}
                 Bài Wheel of Fortune xuất hiện ngược nghĩa là sẽ có thay đổi
