@@ -342,8 +342,8 @@ export const styles = StyleSheet.create({
   marginTop100P: {
     marginTop: '100%',
   },
-  marginTop150: {
-    marginTop: 150,
+  marginTop200: {
+    marginTop: 200,
   },
   marginTop20: {
     marginTop: 20,
