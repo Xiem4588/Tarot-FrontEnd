@@ -59,7 +59,7 @@ const ScreenToday = ({navigation}: any) => {
           {DATA.map(item => (
             <TouchableOpacity
               key={item.id}
-              onPress={() => navigation.navigate('detail')}>
+              onPress={() => navigation.navigate('choose')}>
               <View
                 style={[
                   styles.RowCenterBetween,

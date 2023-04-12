@@ -34,7 +34,8 @@ const TarotCardSelector = ({navigation}: any) => {
   const renderCardTarotItem = ({item}: {item: CardTarotItem}) => {
     const isActive = item.id === activeCardId;
     return (
-      <TouchableOpacity onPress={() => setActiveCardId(item.id)}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('detail', setActiveCardId(item.id))}>
         <Image
           key={item.id}
           source={item.tarotimages}
@@ -90,7 +91,7 @@ const TarotCardSelector = ({navigation}: any) => {
               autoplayDelay={500}
               autoplayInterval={3000}
               useScrollView={true}
-              inactiveSlideOpacity={0.6}
+              inactiveSlideOpacity={1}
               inactiveSlideScale={0.8}
               onSnapToItem={index => {
                 console.log(`Item at index ${index} is now active`);
