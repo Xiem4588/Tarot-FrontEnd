@@ -37,7 +37,7 @@ const ScreenExperts = ({navigation}: any) => {
                 index % 2 === 0 && styles.marginTopA50,
               ]}>
               <View key={item.id} style={styles.itemTimeline}>
-                <View style={styles.boxInfo}>
+                <View style={styles.flexBox}>
                   <Text style={styles.nameItemBlack16}>{item.name}</Text>
                   <Text style={[styles.fontSize10, styles.marginBottom10]}>
                     {item.content}

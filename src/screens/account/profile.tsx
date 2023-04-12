@@ -124,7 +124,7 @@ const MyProfile = ({navigation}: any) => {
                     containerStyle={styles.avatarImage}
                   />
                 </View>
-                <View style={styles.boxInfo}>
+                <View style={styles.flexBox}>
                   <Text style={styles.nameItem}>{item.name}</Text>
                   <View style={styles.RowAlignItems}>
                     <Avatar
