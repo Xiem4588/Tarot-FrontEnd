@@ -77,6 +77,17 @@ const ScreenToday = ({navigation}: any) => {
           ))}
         </ScrollView>
       </View>
+      <TouchableOpacity
+        style={[styles.btnTheme2]}
+        onPress={() => navigation.navigate('choose')}>
+        <Image
+          source={icon.iconUniverse}
+          style={{resizeMode: 'contain', height: 38}}
+        />
+        <Text style={(styles.fontSize14, styles.fontBold600)}>
+          Thông điệp {'\n'} ngày hôm nay
+        </Text>
+      </TouchableOpacity>
     </WrapBgBox>
   );
 };

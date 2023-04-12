@@ -115,7 +115,7 @@ export const styles = StyleSheet.create({
   },
   paddingBox: {
     zIndex: 1,
-    paddingHorizontal: 12,
+    paddingHorizontal: 18,
     position: 'relative',
   },
   paddingTop50: {
@@ -145,6 +145,9 @@ export const styles = StyleSheet.create({
   alignCenter: {
     alignItems: 'center',
     fontFamily: 'Montserrat',
+  },
+  textCenter: {
+    textAlign: 'center',
   },
   alignRight: {
     alignItems: 'flex-end',
@@ -1015,8 +1018,8 @@ export const styles = StyleSheet.create({
   btnSend: {
     backgroundColor: '#F78B73',
     borderRadius: 100,
-    height: 50,
-    width: 50,
+    height: 46,
+    width: 46,
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
@@ -1032,7 +1035,26 @@ export const styles = StyleSheet.create({
   boxFormComment: {
     backgroundColor: '#fff',
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
     padding: 10,
+  },
+  btnTheme2: {
+    backgroundColor: '#A9B0F5',
+    height: 50,
+    borderRadius: 100,
+    paddingRight: 18,
+    flexDirection: 'row',
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    right: 18,
+    bottom: 18,
+    zIndex: 5,
+  },
+  spacer: {
+    paddingBottom: 20,
+    backgroundColor: '#FFF',
   },
 });

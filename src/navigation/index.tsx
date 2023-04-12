@@ -11,11 +11,11 @@ import {
   NewsFeed,
   Account,
   Booking,
-  Gameplay,
+  Choose,
   Detail,
   Payment,
   Profile,
-  Game,
+  Tarot,
   Setting,
   Notify,
   Launch,
@@ -45,7 +45,7 @@ const TabScreenOptions = ({route}: any) => ({
     if (screenName === 'newsfeed') {
       iconNameActive = `${icon.iconNav1Active}`;
       iconName = `${icon.iconNav1}`;
-    } else if (screenName === 'game') {
+    } else if (screenName === 'tarot') {
       iconNameActive = `${icon.iconNav2Active}`;
       iconName = `${icon.iconNav2}`;
     } else if (screenName === 'profile') {
@@ -71,11 +71,9 @@ const TabScreenOptions = ({route}: any) => ({
 export const TabNavigator = () => {
   return (
     <>
-      <Tab.Navigator
-        initialRouteName="newsfeed"
-        screenOptions={TabScreenOptions}>
+      <Tab.Navigator initialRouteName="tarot" screenOptions={TabScreenOptions}>
         <Tab.Screen name="newsfeed" component={NewsFeed} />
-        <Tab.Screen name="game" component={Game} />
+        <Tab.Screen name="tarot" component={Tarot} />
         <Tab.Screen name="profile" component={Profile} />
       </Tab.Navigator>
     </>
@@ -127,7 +125,7 @@ const StackScreenOptionsHeaderTransparent = ({navigation}: any) => ({
 
 const App = () => {
   // check first user
-  const isCheck = true;
+  const isCheck = false;
   // Add Font Montserrat
   const [fontLoaded, setFontLoaded] = useState(true);
   React.useEffect(() => {
@@ -153,7 +151,7 @@ const App = () => {
             initialRouteName={isCheck ? 'tabNavigator' : 'launch'}>
             <Stack.Group screenOptions={StackScreenOptions}>
               <Stack.Screen name="account" component={Account} />
-              <Stack.Screen name="gameplay" component={Gameplay} />
+              <Stack.Screen name="choose" component={Choose} />
               <Stack.Screen name="detail" component={Detail} />
               <Stack.Screen name="payment" component={Payment} />
             </Stack.Group>

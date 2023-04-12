@@ -15,4 +15,7 @@ export default {
   visualImageSl1: require('../images/visualImageSl1.png'),
   visualImageSl2: require('../images/visualImageSl2.png'),
   visualImageSl3: require('../images/visualImageSl3.png'),
+  imgArrowUnderChoose: require('../images/imgArrowUnderChoose.png'),
+  imgTarotCard: require('../images/imgTarotCard.png'),
+  imgHandDirection: require('../images/imgHandDirection.png'),
 };

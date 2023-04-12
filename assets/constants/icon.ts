@@ -30,4 +30,5 @@ export default {
   iconCopy: require('../images/iconCopy.png'),
   iconClock: require('../images/iconClock.png'),
   iconStar: require('../images/iconStar.png'),
+  iconUniverse: require('../images/iconUniverse.png'),
 };

@@ -2,9 +2,9 @@ import NewsFeed from './newsfeed';
 import Booking from './newsfeed/experts/booking';
 import Account from './account';
 import Payment from './newsfeed/experts/payment';
-import Game from './game';
-import Gameplay from './game/gameplay';
-import Detail from './game/detail';
+import Tarot from './tarot';
+import Choose from './tarot/choose';
+import Detail from './tarot/detail';
 import Login from './account/login';
 import Notify from './account/notify';
 import Setting from './account/setting';
@@ -16,11 +16,11 @@ export {
   NewsFeed,
   Account,
   Booking,
-  Gameplay,
+  Choose,
   Detail,
   Payment,
   Profile,
-  Game,
+  Tarot,
   Setting,
   Notify,
   Login,
