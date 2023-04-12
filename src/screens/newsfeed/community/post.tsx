@@ -105,10 +105,10 @@ const Post = ({handleScroll, IdAuthor}: ModalCommentProps) => {
               </View>
               <View style={styles.marginLeft10}>
                 <View style={styles.alignCenter}>
-                  <IconsAnt name="hearto" size={20} color={'#fff'} />
+                  <IconsAnt name="hearto" size={18} color={'#fff'} />
                   <Text
                     numberOfLines={1}
-                    style={[styles.fonsize12White, styles.paddingTop5]}>
+                    style={[styles.fonsize10White, styles.paddingTop5]}>
                     {parseInt(item.like).toLocaleString('de-DE', {
                       minimumFractionDigits: 0,
                     })}
@@ -118,10 +118,12 @@ const Post = ({handleScroll, IdAuthor}: ModalCommentProps) => {
                   <View style={[styles.alignCenter, styles.paddingTop10]}>
                     <IconsMateria
                       name="chat-outline"
-                      size={22}
+                      size={20}
                       color={'#fff'}
                     />
-                    <Text numberOfLines={1} style={[styles.fonsize12White]}>
+                    <Text
+                      numberOfLines={1}
+                      style={[styles.fonsize10White, styles.paddingTop2]}>
                       {parseInt(item.comment).toLocaleString('de-DE', {
                         minimumFractionDigits: 0,
                       })}

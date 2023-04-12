@@ -31,6 +31,9 @@ export const styles = StyleSheet.create({
   paddingHorizontal9: {
     paddingHorizontal: 9,
   },
+  paddingTop2: {
+    paddingTop: 2,
+  },
   paddingTop5: {
     paddingTop: 5,
   },
@@ -459,7 +462,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#000000',
-    padding: 16,
+    paddingHorizontal: 16,
     marginBottom: 16,
     borderRadius: 10,
     shadowColor: '#000',

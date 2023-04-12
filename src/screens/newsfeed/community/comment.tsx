@@ -5,7 +5,11 @@ import {styles} from '../../../../assets/styles';
 import {images} from '../../../../assets/constants';
 import IconsAnt from 'react-native-vector-icons/AntDesign';
 
-const CommentComponent = () => {
+interface isProps {
+  focusInput: () => void;
+}
+
+const CommentComponent = ({focusInput}: isProps) => {
   return (
     <View>
       <View style={[styles.boxUserComment, styles.marginTop15]}>
@@ -29,8 +33,8 @@ const CommentComponent = () => {
                 <Text style={[styles.fontSize12, styles.marginLeft5]}>14</Text>
               </View>
               <View style={styles.marginLeft12}>
-                <TouchableOpacity onPress={() => {}}>
-                  <Text style={[styles.fontSize12, styles.colorOrange]}>
+                <TouchableOpacity onPress={focusInput}>
+                  <Text style={[styles.fontSize12, styles.fontBold600]}>
                     Trả lời
                   </Text>
                 </TouchableOpacity>
@@ -63,8 +67,8 @@ const CommentComponent = () => {
                 <Text style={[styles.fontSize12, styles.marginLeft5]}>14</Text>
               </View>
               <View style={styles.marginLeft12}>
-                <TouchableOpacity onPress={() => {}}>
-                  <Text style={[styles.fontSize12, styles.colorOrange]}>
+                <TouchableOpacity onPress={focusInput}>
+                  <Text style={[styles.fontSize12, styles.fontBold600]}>
                     Trả lời
                   </Text>
                 </TouchableOpacity>
@@ -92,8 +96,8 @@ const CommentComponent = () => {
                       </Text>
                     </View>
                     <View style={styles.marginLeft12}>
-                      <TouchableOpacity onPress={() => {}}>
-                        <Text style={[styles.fontSize12, styles.colorOrange]}>
+                      <TouchableOpacity onPress={focusInput}>
+                        <Text style={[styles.fontSize12, styles.fontBold600]}>
                           Trả lời
                         </Text>
                       </TouchableOpacity>
@@ -139,8 +143,8 @@ const CommentComponent = () => {
                 <Text style={[styles.fontSize12, styles.marginLeft5]}>14</Text>
               </View>
               <View style={styles.marginLeft12}>
-                <TouchableOpacity onPress={() => {}}>
-                  <Text style={[styles.fontSize12, styles.colorOrange]}>
+                <TouchableOpacity onPress={focusInput}>
+                  <Text style={[styles.fontSize12, styles.fontBold600]}>
                     Trả lời
                   </Text>
                 </TouchableOpacity>
@@ -168,8 +172,8 @@ const CommentComponent = () => {
                       </Text>
                     </View>
                     <View style={styles.marginLeft12}>
-                      <TouchableOpacity onPress={() => {}}>
-                        <Text style={[styles.fontSize12, styles.colorOrange]}>
+                      <TouchableOpacity onPress={focusInput}>
+                        <Text style={[styles.fontSize12, styles.fontBold600]}>
                           Trả lời
                         </Text>
                       </TouchableOpacity>
@@ -215,8 +219,8 @@ const CommentComponent = () => {
                 <Text style={[styles.fontSize12, styles.marginLeft5]}>14</Text>
               </View>
               <View style={styles.marginLeft12}>
-                <TouchableOpacity onPress={() => {}}>
-                  <Text style={[styles.fontSize12, styles.colorOrange]}>
+                <TouchableOpacity onPress={focusInput}>
+                  <Text style={[styles.fontSize12, styles.fontBold600]}>
                     Trả lời
                   </Text>
                 </TouchableOpacity>
@@ -244,8 +248,8 @@ const CommentComponent = () => {
                       </Text>
                     </View>
                     <View style={styles.marginLeft12}>
-                      <TouchableOpacity onPress={() => {}}>
-                        <Text style={[styles.fontSize12, styles.colorOrange]}>
+                      <TouchableOpacity onPress={focusInput}>
+                        <Text style={[styles.fontSize12, styles.fontBold600]}>
                           Trả lời
                         </Text>
                       </TouchableOpacity>

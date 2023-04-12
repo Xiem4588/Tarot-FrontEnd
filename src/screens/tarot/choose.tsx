@@ -39,7 +39,7 @@ const TarotCardSelector = ({navigation}: any) => {
         <Image
           key={item.id}
           source={item.tarotimages}
-          style={{width: 60, height: 240, marginTop: isActive ? 0 : 0}}
+          style={{width: 60, height: 240, marginTop: isActive ? -30 : 0}}
         />
       </TouchableOpacity>
     );
@@ -91,7 +91,7 @@ const TarotCardSelector = ({navigation}: any) => {
               autoplayDelay={500}
               autoplayInterval={3000}
               useScrollView={true}
-              inactiveSlideOpacity={1}
+              inactiveSlideOpacity={0.6}
               inactiveSlideScale={0.8}
               onSnapToItem={index => {
                 console.log(`Item at index ${index} is now active`);

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {Avatar, Text} from 'react-native-elements';
 import {
   TouchableOpacity,
@@ -31,6 +31,14 @@ const ModalComment = ({isID, isModalVisible, onClick}: ModalCommentProps) => {
   const config = {
     velocityThreshold: 0.3, //ngưỡng tốc độ của sự kiện vuốt
     directionalOffsetThreshold: 80, //khoảng cách tối thiểu (theo đơn vị pixel) mà người dùng phải vuốt để đóng
+  };
+
+  //
+  const inputRef = useRef<TextInput>(null);
+  const focusInput = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
 
   return (
@@ -80,7 +88,7 @@ const ModalComment = ({isID, isModalVisible, onClick}: ModalCommentProps) => {
                       cách nào để vượt qua được nỗi sợ hãi này không ?????
                     </Text>
                   </View>
-                  <CommentComponent />
+                  <CommentComponent focusInput={focusInput} />
                 </ScrollView>
               </View>
             </View>
@@ -88,6 +96,7 @@ const ModalComment = ({isID, isModalVisible, onClick}: ModalCommentProps) => {
           <View style={styles.boxFormComment}>
             <View style={styles.flex1}>
               <TextInput
+                ref={inputRef}
                 style={styles.inputTheme2}
                 placeholder="Thêm bình luận..."
               />
