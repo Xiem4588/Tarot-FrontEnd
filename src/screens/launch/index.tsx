@@ -3,14 +3,14 @@
  */
 
 import React, {useRef, useState} from 'react';
-import {StatusBar, View} from 'react-native';
+import {StatusBar, View, Text} from 'react-native';
 import Swiper from 'react-native-swiper';
-import {Image, Text} from 'react-native-elements';
 import {styles} from '../../../assets/styles';
-import {images} from '../../../assets/constants';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import IconArrowRight from 'react-native-vector-icons/Entypo';
-
+import StepOne from './stepOne';
+import StepTwo from './stepTwo';
+import StepThree from './stepThree';
 const CustomPagination = (
   index: number,
   total: number /*, context: Swiper*/,
@@ -63,51 +63,9 @@ const LaunchScreen = ({navigation}: any) => {
         showsPagination={true}
         onIndexChanged={handleIndexChanged}
         renderPagination={CustomPagination}>
-        <View style={styles.LaunchStyle}>
-          <View style={styles.alignCenter}>
-            <Image source={images.visualImageSl1} style={styles.visualImage} />
-          </View>
-          <View style={[styles.marginTop30]}>
-            <Text
-              style={[styles.fontSize18, styles.fontBold600, styles.textWhite]}>
-              Gặp gỡ những chuyên gia hàng đầu
-            </Text>
-            <Text
-              style={[styles.fontSize14, styles.marginTop5, styles.textWhite]}>
-              Thể hiện mong muốn sâu sắc nhất của bạn. Điều gì sẽ đến với bạn?
-            </Text>
-          </View>
-        </View>
-        <View style={styles.LaunchStyle}>
-          <View style={styles.alignCenter}>
-            <Image source={images.visualImageSl2} style={styles.visualImage} />
-          </View>
-          <View style={[styles.marginTop30]}>
-            <Text
-              style={[styles.fontSize18, styles.fontBold600, styles.textWhite]}>
-              Nội dung các lá bài đa dạng
-            </Text>
-            <Text
-              style={[styles.fontSize14, styles.marginTop5, styles.textWhite]}>
-              Thể hiện mong muốn sâu sắc nhất của bạn. Điều gì sẽ đến với bạn?
-            </Text>
-          </View>
-        </View>
-        <View style={styles.LaunchStyle}>
-          <View style={styles.alignCenter}>
-            <Image source={images.visualImageSl3} style={styles.visualImage} />
-          </View>
-          <View style={[styles.marginTop30]}>
-            <Text
-              style={[styles.fontSize18, styles.fontBold600, styles.textWhite]}>
-              Nội dung các lá bài đa dạng
-            </Text>
-            <Text
-              style={[styles.fontSize14, styles.marginTop5, styles.textWhite]}>
-              Thể hiện mong muốn sâu sắc nhất của bạn. Điều gì sẽ đến với bạn?
-            </Text>
-          </View>
-        </View>
+        <StepOne />
+        <StepTwo />
+        <StepThree />
       </Swiper>
 
       {isLastScreen ? (

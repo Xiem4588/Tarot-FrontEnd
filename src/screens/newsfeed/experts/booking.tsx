@@ -224,10 +224,14 @@ const BookingScreen: FC<BookingScreenProps> = ({
               <CalendarPicker
                 width={width - 40}
                 onDateChange={onDateChange}
-                todayBackgroundColor="#E6E6E6"
-                selectedDayColor="#F68B73"
-                selectedDayTextColor="#FFFFFF"
+                todayBackgroundColor="transparent"
+                todayTextStyle={styles.todayTextStyle}
+                selectedDayColor="transparent"
+                selectedDayTextColor="#4BAE4F"
+                selectedDayStyle={styles.selectedDayTextStyle}
                 headingLevel={1}
+                minDate={new Date()}
+                disabledDates={[new Date(2023, 3, 20), new Date(2023, 3, 21)]}
                 previousComponent={
                   <Avatar
                     source={icon.iconPreviousOrange}

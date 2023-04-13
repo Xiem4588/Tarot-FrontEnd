@@ -71,7 +71,9 @@ const TabScreenOptions = ({route}: any) => ({
 export const TabNavigator = () => {
   return (
     <>
-      <Tab.Navigator initialRouteName="tarot" screenOptions={TabScreenOptions}>
+      <Tab.Navigator
+        initialRouteName="newsfeed"
+        screenOptions={TabScreenOptions}>
         <Tab.Screen name="newsfeed" component={NewsFeed} />
         <Tab.Screen name="tarot" component={Tarot} />
         <Tab.Screen name="profile" component={Profile} />
