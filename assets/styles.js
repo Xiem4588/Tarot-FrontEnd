@@ -179,7 +179,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#F78B73',
   },
   inputContainer: {
-    marginBottom: 10,
+    marginBottom: 5,
     width: '100%',
   },
   label: {
@@ -207,7 +207,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
     marginTop: 'auto',
-    marginBottom: 50,
   },
   buttonText: {
     color: colors.defaultBlack,

@@ -13,7 +13,7 @@ import {icon, images} from '../../../../assets/constants';
 import {styles} from '../../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
 import IconLoading from 'react-native-vector-icons/AntDesign';
-import IconComment from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImageViewer from 'react-native-image-zoom-viewer';
 
 // Props
@@ -68,7 +68,7 @@ const ScreenPayment: FC<BookingScreenProps> = ({
               <TouchableOpacity
                 style={[styles.buttonEllipseSm, styles.marginLeft12]}
                 onPress={() => navigation.navigate('setting')}>
-                <IconComment
+                <IconMateria
                   name="comment-text-outline"
                   size={16}
                   color="#fff"

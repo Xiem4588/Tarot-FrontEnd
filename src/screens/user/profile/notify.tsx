@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {ScrollView, TouchableHighlight} from 'react-native-gesture-handler';
-import {icon} from '../../../assets/constants';
-import {styles} from '../../../assets/styles';
-import WrapBgBox from '../../conponents/wrapBgBox';
+import {icon} from '../../../../assets/constants';
+import {styles} from '../../../../assets/styles';
+import WrapBgBox from '../../../conponents/wrapBgBox';
 
 type DataProps = {
   id: string;

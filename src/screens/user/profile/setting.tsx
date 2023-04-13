@@ -2,9 +2,9 @@ import React from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {ScrollView, TouchableHighlight} from 'react-native-gesture-handler';
-import {images, icon} from '../../../assets/constants';
-import {styles} from '../../../assets/styles';
-import WrapBgBox from '../../conponents/wrapBgBox';
+import {images, icon} from '../../../../assets/constants';
+import {styles} from '../../../../assets/styles';
+import WrapBgBox from '../../../conponents/wrapBgBox';
 
 type DataProps = {
   id: string;
@@ -33,7 +33,11 @@ const SettingScreen = ({navigation}: any) => {
                 containerStyle={styles.iconBack24}
               />
               <Text
-                style={[styles.textWhite, styles.fontSize18, styles.fontBold600]}>
+                style={[
+                  styles.textWhite,
+                  styles.fontSize18,
+                  styles.fontBold600,
+                ]}>
                 Cài đặt
               </Text>
             </View>
@@ -41,7 +45,11 @@ const SettingScreen = ({navigation}: any) => {
           <TouchableHighlight onPress={() => navigation.goBack()}>
             <View style={styles.RowCenterBetween}>
               <Text
-                style={[styles.textOrange, styles.fontSize18, styles.fontBold600]}>
+                style={[
+                  styles.textOrange,
+                  styles.fontSize18,
+                  styles.fontBold600,
+                ]}>
                 Lưu
               </Text>
             </View>

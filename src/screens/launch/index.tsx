@@ -11,6 +11,7 @@ import IconArrowRight from 'react-native-vector-icons/Entypo';
 import StepOne from './stepOne';
 import StepTwo from './stepTwo';
 import StepThree from './stepThree';
+
 const CustomPagination = (
   index: number,
   total: number /*, context: Swiper*/,
@@ -70,7 +71,7 @@ const LaunchScreen = ({navigation}: any) => {
 
       {isLastScreen ? (
         <View style={styles.BoxButtonNext}>
-          <TouchableOpacity onPress={() => navigation.navigate('account')}>
+          <TouchableOpacity onPress={() => navigation.navigate('MainNav')}>
             <View style={styles.buttonNext}>
               <Text
                 style={[

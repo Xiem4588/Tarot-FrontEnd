@@ -9,12 +9,11 @@ import WrapBgBox from '../conponents/wrapBgBox';
 import {icon, colors} from '../../assets/constants';
 import {
   NewsFeed,
-  Account,
+  User,
   Booking,
   Choose,
   Detail,
   Payment,
-  Profile,
   Tarot,
   Setting,
   Notify,
@@ -48,7 +47,7 @@ const TabScreenOptions = ({route}: any) => ({
     } else if (screenName === 'tarot') {
       iconNameActive = `${icon.iconNav2Active}`;
       iconName = `${icon.iconNav2}`;
-    } else if (screenName === 'profile') {
+    } else if (screenName === 'user') {
       iconNameActive = `${icon.iconNav3Active}`;
       iconName = `${icon.iconNav3}`;
     }
@@ -68,15 +67,13 @@ const TabScreenOptions = ({route}: any) => ({
 });
 
 // Navigator
-export const TabNavigator = () => {
+export const MainNav = () => {
   return (
     <>
-      <Tab.Navigator
-        initialRouteName="newsfeed"
-        screenOptions={TabScreenOptions}>
+      <Tab.Navigator initialRouteName="user" screenOptions={TabScreenOptions}>
         <Tab.Screen name="newsfeed" component={NewsFeed} />
         <Tab.Screen name="tarot" component={Tarot} />
-        <Tab.Screen name="profile" component={Profile} />
+        <Stack.Screen name="user" component={User} />
       </Tab.Navigator>
     </>
   );
@@ -149,10 +146,8 @@ const App = () => {
     <>
       <WrapBgBox>
         <NavigationContainer>
-          <Stack.Navigator
-            initialRouteName={isCheck ? 'tabNavigator' : 'launch'}>
+          <Stack.Navigator initialRouteName={isCheck ? 'MainNav' : 'launch'}>
             <Stack.Group screenOptions={StackScreenOptions}>
-              <Stack.Screen name="account" component={Account} />
               <Stack.Screen name="choose" component={Choose} />
               <Stack.Screen name="detail" component={Detail} />
               <Stack.Screen name="payment" component={Payment} />
@@ -167,8 +162,8 @@ const App = () => {
               options={{
                 headerShown: false,
               }}
-              name="tabNavigator"
-              component={TabNavigator}
+              name="MainNav"
+              component={MainNav}
             />
           </Stack.Navigator>
         </NavigationContainer>

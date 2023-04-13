@@ -3,9 +3,9 @@ import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
 import moment from 'moment';
 import {Avatar, LinearProgress} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
-import {images, icon} from '../../../assets/constants';
-import {styles} from '../../../assets/styles';
-import WrapBgBox from '../../conponents/wrapBgBox';
+import {images, icon} from '../../../../assets/constants';
+import {styles} from '../../../../assets/styles';
+import WrapBgBox from '../../../conponents/wrapBgBox';
 
 const MyProfile = ({navigation}: any) => {
   const isAvatar = true;
