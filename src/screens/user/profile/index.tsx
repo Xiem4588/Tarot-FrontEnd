@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  ImageBackground,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import moment from 'moment';
 import {Avatar, LinearProgress} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -172,6 +178,17 @@ const MyProfile = ({navigation}: any) => {
           ))}
         </ScrollView>
       </View>
+      <TouchableOpacity
+        style={[styles.btnTheme2]}
+        onPress={() => navigation.navigate('choose')}>
+        <Image
+          source={icon.iconUniverse}
+          style={{resizeMode: 'contain', height: 38}}
+        />
+        <Text style={(styles.fontSize14, styles.fontBold600)}>
+          Nâng cấp lên{'\n'}gói cao cấp
+        </Text>
+      </TouchableOpacity>
     </WrapBgBox>
   );
 };

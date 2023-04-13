@@ -16,18 +16,18 @@ import WrapBgBox from '../../conponents/wrapBgBox';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface LoginProps {
-  navigation: any;
-  handleRegister: () => void;
+  handleInputUser: () => void;
+  handleLogin: (id: string) => void;
 }
 
-const Login = ({navigation, handleRegister}: LoginProps) => {
+const Login = ({handleInputUser, handleLogin}: LoginProps) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   //
-  // const [isRegister, setRegister] = useState(handleRegister);
+  // const [isRegister, setRegister] = useState(handleInputUser);
   // useEffect(() => {
-  //   setRegister(handleRegister);
-  // }, [handleRegister]);
+  //   setRegister(handleInputUser);
+  // }, [handleInputUser]);
 
   return (
     <WrapBgBox>
@@ -80,7 +80,7 @@ const Login = ({navigation, handleRegister}: LoginProps) => {
       <View style={[styles.paddingHorizontal18, styles.alignRight]}>
         <TouchableOpacity
           style={styles.buttonTmp}
-          onPress={() => navigation.navigate('MainNav')}>
+          onPress={() => handleLogin('1')}>
           <Text style={styles.buttonText}>Đăng nhập</Text>
         </TouchableOpacity>
         <View
@@ -93,7 +93,7 @@ const Login = ({navigation, handleRegister}: LoginProps) => {
             Chưa có tài khoản
           </Text>
           <TouchableOpacity
-            onPress={handleRegister}
+            onPress={handleInputUser}
             style={styles.RowAlignItems}>
             <Text
               style={[

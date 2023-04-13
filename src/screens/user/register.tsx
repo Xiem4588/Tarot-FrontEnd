@@ -17,10 +17,10 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface RegisterProps {
   navigation: any;
-  handleLogin: () => void;
+  handleInputUser: () => void;
 }
 
-const Login = ({navigation, handleLogin}: RegisterProps) => {
+const Login = ({navigation, handleInputUser}: RegisterProps) => {
   const [username, setUsername] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [password, setPassword] = useState('');
@@ -99,7 +99,9 @@ const Login = ({navigation, handleLogin}: RegisterProps) => {
           <Text style={[styles.colorWhite, styles.fontSize12]}>
             Đã có tài khoản
           </Text>
-          <TouchableOpacity onPress={handleLogin} style={styles.RowAlignItems}>
+          <TouchableOpacity
+            onPress={handleInputUser}
+            style={styles.RowAlignItems}>
             <Text
               style={[
                 styles.colorOrange,

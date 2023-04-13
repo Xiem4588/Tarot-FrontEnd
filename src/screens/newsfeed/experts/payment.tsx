@@ -241,7 +241,11 @@ const ScreenPayment: FC<BookingScreenProps> = ({
               </Animated.View>
             </View>
             <TouchableOpacity
-              style={[styles.buttonTmp, styles.marginTop20]}
+              style={[
+                styles.buttonTmp,
+                styles.marginTop20,
+                styles.marginBottom50,
+              ]}
               onPress={() => navigation.goBack()}>
               <Text style={styles.buttonText}>Quay lại</Text>
             </TouchableOpacity>

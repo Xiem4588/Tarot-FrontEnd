@@ -368,6 +368,9 @@ export const styles = StyleSheet.create({
   marginBottom30: {
     marginBottom: 30,
   },
+  marginBottom50: {
+    marginBottom: 50,
+  },
   marginHorizontalA9: {
     marginHorizontal: -9,
   },

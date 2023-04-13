@@ -308,9 +308,9 @@ const BookingScreen: FC<BookingScreenProps> = ({
                 </Text>
               </View>
               <TouchableOpacity
-                style={styles.buttonTmp}
+                style={[styles.buttonTmp, styles.marginBottom50]}
                 onPress={() => navigation.navigate('payment', {id: id})}>
-                <Text style={styles.buttonText}>Đặt lịch</Text>
+                <Text style={[styles.buttonText]}>Đặt lịch</Text>
               </TouchableOpacity>
             </View>
           </View>
