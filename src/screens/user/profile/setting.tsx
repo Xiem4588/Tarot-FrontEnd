@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, Image, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {Avatar} from 'react-native-elements';
-import {ScrollView, TouchableHighlight} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 import {images, icon} from '../../../../assets/constants';
 import {styles} from '../../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
+import Header from '../../../conponents/header';
 
 type DataProps = {
   id: string;
@@ -24,91 +25,60 @@ const DATA: DataProps = {
 const SettingScreen = ({navigation}: any) => {
   return (
     <WrapBgBox>
-      <View style={styles.paddingTop50Ios15Adroid}>
-        <View style={[styles.RowBetween, styles.paddingHorizontal18]}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <View style={styles.RowCenterBetween}>
-              <Avatar
-                source={icon.iconBackWhite}
-                containerStyle={styles.iconBack24}
-              />
-              <Text
-                style={[
-                  styles.textWhite,
-                  styles.fontSize18,
-                  styles.fontBold600,
-                ]}>
-                Cài đặt
-              </Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableHighlight onPress={() => navigation.goBack()}>
-            <View style={styles.RowCenterBetween}>
-              <Text
-                style={[
-                  styles.textOrange,
-                  styles.fontSize18,
-                  styles.fontBold600,
-                ]}>
-                Lưu
-              </Text>
-            </View>
-          </TouchableHighlight>
+      <Header navigation={navigation} title="Cài đặt" name="setting" />
+      <ScrollView>
+        <View style={[styles.alignItems, styles.paddingVertical30]}>
+          <View style={[styles.avataProfileEllipse]}>
+            <Avatar size={80} source={images.AvatarDemo1} />
+          </View>
         </View>
-        <ScrollView>
-          <View style={[styles.alignItems, styles.paddingVertical30]}>
-            <View style={[styles.avataProfileEllipse]}>
-              <Avatar size={80} source={images.AvatarDemo1} />
-            </View>
-          </View>
-          <View style={styles.paddingHorizontal18}>
-            <Text style={styles.titleBox}>Lịch đã đặt</Text>
-            <View style={[styles.RowBetween, styles.paddingVertical10]}>
-              <Text style={styles.textSize16}>Tên</Text>
-              <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Text style={styles.textSize16}>{DATA.name}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={[styles.RowBetween, styles.paddingVertical10]}>
-              <Text style={styles.textSize16}>Ngày sinh</Text>
-              <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Text style={styles.textSize16}>{DATA.dateOfBirth}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={[styles.RowBetween, styles.paddingVertical10]}>
-              <Text style={styles.textSize16}>Mô tả</Text>
-              <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Text style={styles.textSize16}>{DATA.describe}</Text>
-              </TouchableOpacity>
-            </View>
-            <Text style={[styles.titleBox, styles.paddingTop30]}>
-              Cài đặt khác
-            </Text>
-            <View style={[styles.RowBetween, styles.paddingVertical10]}>
-              <Text style={styles.textSize16}>Ngôn ngữ</Text>
-              <TouchableOpacity
-                style={styles.RowAlignItems}
-                onPress={() => navigation.goBack()}>
-                <Text style={styles.textSize16}>{DATA.language}</Text>
-                <Avatar
-                  source={icon.iconArrowRight}
-                  containerStyle={styles.iconSize16}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={[styles.alignItems, styles.flexBox]}>
-            <Avatar
-              source={images.imgSettingDecorate}
-              size={150}
-              containerStyle={styles.resizeModeContain}
-            />
+        <View style={styles.paddingHorizontal18}>
+          <Text style={styles.titleBox}>Lịch đã đặt</Text>
+          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+            <Text style={styles.textSize16}>Tên</Text>
             <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Text style={styles.buttonTmpSmWhite05}>Đăng xuất</Text>
+              <Text style={styles.textSize16}>{DATA.name}</Text>
             </TouchableOpacity>
           </View>
-        </ScrollView>
-      </View>
+          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+            <Text style={styles.textSize16}>Ngày sinh</Text>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Text style={styles.textSize16}>{DATA.dateOfBirth}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+            <Text style={styles.textSize16}>Mô tả</Text>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Text style={styles.textSize16}>{DATA.describe}</Text>
+            </TouchableOpacity>
+          </View>
+          <Text style={[styles.titleBox, styles.paddingTop30]}>
+            Cài đặt khác
+          </Text>
+          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+            <Text style={styles.textSize16}>Ngôn ngữ</Text>
+            <TouchableOpacity
+              style={styles.RowAlignItems}
+              onPress={() => navigation.goBack()}>
+              <Text style={styles.textSize16}>{DATA.language}</Text>
+              <Avatar
+                source={icon.iconArrowRight}
+                containerStyle={styles.iconSize16}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={[styles.alignItems, styles.flexBox]}>
+          <Avatar
+            source={images.imgSettingDecorate}
+            size={150}
+            containerStyle={styles.resizeModeContain}
+          />
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Text style={styles.buttonTmpSmWhite05}>Đăng xuất</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </WrapBgBox>
   );
 };

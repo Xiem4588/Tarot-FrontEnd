@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -65,7 +65,8 @@ type ItemProps = {
   describe: string;
   price: string;
 };
-const Item: FC<ItemProps> = ({id, title, describe, price}) => (
+
+const Item = ({id, title, describe, price}: ItemProps) => (
   <View key={id} style={styles.itemCarousel}>
     <View>
       <Text style={styles.nameItemBlack16}>{title}</Text>
@@ -90,10 +91,7 @@ type BookingScreenProps = {
   customHeader?: React.ReactNode;
 }; //
 
-const BookingScreen: FC<BookingScreenProps> = ({
-  navigation,
-  route,
-}: BookingScreenProps) => {
+const BookingScreen = ({navigation, route}: BookingScreenProps) => {
   // lay id truyen vao tu url
   const {id} = route.params;
   console.log('Id duoc lay tu url', id);

@@ -228,7 +228,7 @@ export const styles = StyleSheet.create({
     marginBottom: 100,
   },
   avatarProfile: {
-    paddingTop: Platform.OS === 'ios' ? 50 : 15,
+    paddingTop: Platform.OS === 'ios' ? 40 : 15,
     backgroundColor: '#A9B0F5',
     position: 'relative',
     paddingBottom: 20,

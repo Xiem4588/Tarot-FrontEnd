@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, Dimensions} from 'react-native';
-import {Avatar, Image} from 'react-native-elements';
-import {icon, images} from '../../../assets/constants';
+import {Image} from 'react-native-elements';
+import {images} from '../../../assets/constants';
 import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../conponents/wrapBgBox';
-import Swiper from 'react-native-swiper';
-import {FlatList} from 'react-native-gesture-handler';
+// import Swiper from 'react-native-swiper';
+// import {FlatList} from 'react-native-gesture-handler';
 import Carousel from 'react-native-snap-carousel';
+import Header from '../../conponents/header';
+import moment from 'moment';
 
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 type CardTarotItem = {
   id: any;
@@ -44,24 +46,14 @@ const TarotCardSelector = ({navigation}: any) => {
       </TouchableOpacity>
     );
   };
+
   return (
     <WrapBgBox>
-      <View style={styles.paddingTop50Ios15Adroid}>
-        <View style={[styles.RowBetween, styles.paddingHorizontal18]}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <View style={styles.RowCenterBetween}>
-              <Avatar
-                source={icon.iconBackWhite}
-                containerStyle={styles.iconBack24}
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Header navigation={navigation} name="nothing" />
       <View style={[styles.flexBox]}>
         <View style={[styles.flexBox, styles.alignItems, styles.padding18]}>
           <Text style={[styles.colorOrange, styles.marginBottom15]}>
-            23 Tháng 2, 2023
+            {moment(Date()).format('DD [tháng] M, YYYY')}
           </Text>
           <Text
             style={[styles.colorWhite, styles.fontSize18, styles.textCenter]}>

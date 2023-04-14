@@ -12,6 +12,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {images, icon} from '../../../../assets/constants';
 import {styles} from '../../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
+import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const MyProfile = ({navigation}: any) => {
   const isAvatar = true;
@@ -30,12 +31,14 @@ const MyProfile = ({navigation}: any) => {
         />
         <View style={[styles.paddingBox]}>
           <View style={styles.RowCenterBetween}>
-            <TouchableOpacity>
-              <Text style={styles.buttonTmpSm}>Nâng cấp</Text>
+            <TouchableOpacity
+              style={[styles.buttonEllipseSm]}
+              onPress={() => navigation.navigate('setting')}>
+              <IconMateria name="cog-outline" size={18} color="#ffffff" />
             </TouchableOpacity>
-            <View style={styles.avataProfileEllipse}>
+            <View>
               <Avatar
-                size={80}
+                size={66}
                 rounded
                 source={isAvatar ? images.AvatarDemo2 : images.avataDefault}
                 onPress={() => console.log('Works!')}
@@ -46,20 +49,13 @@ const MyProfile = ({navigation}: any) => {
               <View style={styles.RowBetween}>
                 <TouchableOpacity onPress={() => navigation.navigate('notify')}>
                   <View style={styles.buttonEllipseSm}>
-                    <Avatar
-                      source={icon.iconNotify}
-                      containerStyle={styles.iconSize16}
+                    <IconMateria
+                      name="bell-outline"
+                      size={18}
+                      color="#ffffff"
                     />
                     <View style={styles.notifyNew} />
                   </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={[styles.buttonEllipseSm, styles.marginLeft12]}
-                  onPress={() => navigation.navigate('setting')}>
-                  <Avatar
-                    source={icon.iconSetting}
-                    containerStyle={styles.iconSize16}
-                  />
                 </TouchableOpacity>
               </View>
             </View>
@@ -122,7 +118,7 @@ const MyProfile = ({navigation}: any) => {
         <Text style={styles.titleBox}>Lịch đã đặt</Text>
         <ScrollView>
           {DATA.map(item => (
-            <TouchableOpacity key={item.id} onPress={() => navigation.goBack()}>
+            <TouchableOpacity key={item.id} onPress={() => {}}>
               <View style={styles.item}>
                 <View style={styles.avatarItem}>
                   <Avatar

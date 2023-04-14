@@ -1,14 +1,10 @@
 import React from 'react';
 import {Avatar, Text} from 'react-native-elements';
-import {
-  Dimensions,
-  ImageBackground,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Dimensions, ImageBackground, View} from 'react-native';
 import {styles} from '../../../assets/styles';
 import {images, icon} from '../../../assets/constants';
 import {ScrollView} from 'react-native-gesture-handler';
+import Header from '../../conponents/header';
 
 const ScreenDetail = ({navigation}: any) => {
   const {width, height} = Dimensions.get('window');
@@ -20,13 +16,8 @@ const ScreenDetail = ({navigation}: any) => {
         resizeMode="contain"
         style={styles.ImageBackgroundCommunity}
       />
-      <View
-        style={[styles.paddingTop50Ios15Adroid, styles.positionAbsoluteTop]}>
-        <View style={[styles.RowBetween, styles.paddingHorizontal18]}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Avatar source={icon.iconBackWhite} size={24} />
-          </TouchableOpacity>
-        </View>
+      <View style={styles.positionAbsoluteTop}>
+        <Header navigation={navigation} name="nothing" />
       </View>
       <ScrollView>
         <View style={{minHeight: height, minWidth: width}}>
