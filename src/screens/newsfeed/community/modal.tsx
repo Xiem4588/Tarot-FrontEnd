@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import {styles} from '../../../../assets/styles';
 import {ScrollView} from 'react-native-gesture-handler';
-import IconsEvi from 'react-native-vector-icons/EvilIcons';
 import CommentComponent from './comment';
 import {images} from '../../../../assets/constants';
 import IconsMateria from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -71,13 +70,17 @@ const ModalComment = ({isID, isModalVisible, onClick}: ModalCommentProps) => {
                         {isID} Lanasmith
                       </Text>
                       <View style={[styles.RowAlignItems, styles.marginLeft10]}>
-                        <IconsEvi
-                          name="clock"
-                          size={16}
+                        <IconsMateria
+                          name="clock-outline"
+                          size={14}
                           color="rgba(0, 0, 0, 0.4)"
                         />
                         <Text
-                          style={[styles.textBlackGrray, styles.fontSize10]}>
+                          style={[
+                            styles.textBlackGrray,
+                            styles.fontSize10,
+                            styles.marginLeft5,
+                          ]}>
                           3h trước
                         </Text>
                       </View>

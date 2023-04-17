@@ -14,7 +14,8 @@ import {styles} from '../../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
 import Carousel from 'react-native-snap-carousel';
 import CalendarPicker from 'react-native-calendar-picker';
-
+import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
+import Header from '../../../conponents/header';
 import moment from 'moment';
 
 const {width} = Dimensions.get('window');
@@ -126,28 +127,7 @@ const BookingScreen = ({navigation, route}: BookingScreenProps) => {
 
   return (
     <WrapBgBox>
-      <View style={styles.paddingTop50Ios15Adroid}>
-        <View style={[styles.RowBetween, styles.paddingHorizontal18]}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Avatar source={icon.iconBackWhite} size={24} />
-          </TouchableOpacity>
-          <View>
-            <View style={styles.RowBetween}>
-              <TouchableOpacity onPress={() => navigation.navigate('notify')}>
-                <View style={styles.buttonEllipseSm}>
-                  <Avatar source={icon.iconHeartActive} size={16} />
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.buttonEllipseSm, styles.marginLeft12]}
-                onPress={() => navigation.navigate('setting')}>
-                <Avatar source={icon.iconDownloadWhite} size={16} />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </View>
-
+      <Header navigation={navigation} name="booking" />
       <View style={[styles.detailUserBooking]}>
         <View
           style={[
@@ -169,18 +149,16 @@ const BookingScreen = ({navigation, route}: BookingScreenProps) => {
             </Text>
             <View style={styles.RowAlignItems}>
               <View style={styles.RowAlignItems}>
-                <Avatar
-                  source={icon.iconHeartActive}
-                  containerStyle={styles.iconSize12Mgr5}
-                />
-                <Text style={styles.fontSize12}>14,087</Text>
+                <IconMateria name="heart" size={16} color={'red'} />
+                <Text style={[styles.fontSize12, styles.marginLeft5]}>
+                  14,087
+                </Text>
               </View>
               <View style={[styles.RowAlignItems, styles.marginLeft12]}>
-                <Avatar
-                  source={icon.iconViewBlack}
-                  containerStyle={styles.iconSize12Mgr5}
-                />
-                <Text style={styles.fontSize12}>25,635</Text>
+                <IconMateria name="eye-outline" size={16} color={'#000'} />
+                <Text style={[styles.fontSize12, styles.marginLeft5]}>
+                  25,635
+                </Text>
               </View>
               <View style={[styles.RowAlignItems, styles.marginLeft12]}>
                 <Avatar
@@ -231,15 +209,17 @@ const BookingScreen = ({navigation, route}: BookingScreenProps) => {
                 minDate={new Date()}
                 disabledDates={[new Date(2023, 3, 20), new Date(2023, 3, 21)]}
                 previousComponent={
-                  <Avatar
-                    source={icon.iconPreviousOrange}
-                    containerStyle={styles.iconSize10}
+                  <IconMateria
+                    name="chevron-left"
+                    size={34}
+                    color={'#F68B73'}
                   />
                 }
                 nextComponent={
-                  <Avatar
-                    source={icon.iconNextOrange}
-                    containerStyle={styles.iconSize10}
+                  <IconMateria
+                    name="chevron-right"
+                    size={34}
+                    color={'#F68B73'}
                   />
                 }
               />
@@ -276,12 +256,10 @@ const BookingScreen = ({navigation, route}: BookingScreenProps) => {
                           minute: '2-digit',
                         })}
                       </Text>
-                      <Avatar
-                        source={icon.iconNextOrange}
-                        containerStyle={[
-                          styles.iconSize10,
-                          styles.marginLeft12,
-                        ]}
+                      <IconMateria
+                        name="chevron-right"
+                        size={28}
+                        color={'#F68B73'}
                       />
                     </View>
                   </View>

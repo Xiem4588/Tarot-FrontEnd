@@ -30,13 +30,15 @@ const Header = ({navigation, title, name}: HeaderProps) => {
               </Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => {}}>
-            <View style={styles.RowCenterBetween}>
-              {name === 'notify' ? (
+          <View style={styles.RowCenterBetween}>
+            {name === 'notify' ? (
+              <TouchableOpacity onPress={() => {}}>
                 <Text style={[styles.textWhiteGrray, styles.fontSize16]}>
                   Đọc tất cả
                 </Text>
-              ) : name === 'setting' ? (
+              </TouchableOpacity>
+            ) : name === 'setting' ? (
+              <TouchableOpacity onPress={() => {}}>
                 <Text
                   style={[
                     styles.textOrange,
@@ -45,11 +47,34 @@ const Header = ({navigation, title, name}: HeaderProps) => {
                   ]}>
                   Lưu
                 </Text>
-              ) : (
-                ''
-              )}
-            </View>
-          </TouchableOpacity>
+              </TouchableOpacity>
+            ) : name === 'booking' ? (
+              <>
+                <TouchableOpacity onPress={() => {}}>
+                  <View style={styles.buttonEllipseSm}>
+                    <IconMateria name="heart" size={18} color={'red'} />
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.buttonEllipseSm, styles.marginLeft12]}
+                  onPress={() => {}}>
+                  <IconMateria name="export-variant" size={18} color={'#fff'} />
+                </TouchableOpacity>
+              </>
+            ) : name === 'payment' ? (
+              <TouchableOpacity
+                style={[styles.buttonEllipseSm, styles.marginLeft12]}
+                onPress={() => {}}>
+                <IconMateria
+                  name="comment-text-outline"
+                  size={16}
+                  color="#fff"
+                />
+              </TouchableOpacity>
+            ) : (
+              ''
+            )}
+          </View>
         </View>
       </View>
     </>

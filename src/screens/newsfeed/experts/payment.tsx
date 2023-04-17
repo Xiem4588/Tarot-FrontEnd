@@ -1,21 +1,13 @@
-import React, {FC, useRef, useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Clipboard,
-  Animated,
-  Modal,
-} from 'react-native';
+import React, {FC, useState} from 'react';
+import {View, Text, TouchableOpacity, Clipboard, Modal} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
 import {icon, images} from '../../../../assets/constants';
 import {styles} from '../../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
-import IconLoading from 'react-native-vector-icons/AntDesign';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImageViewer from 'react-native-image-zoom-viewer';
-
+import Header from '../../../conponents/header';
 // Props
 type BookingScreenProps = {
   navigation: any;
@@ -36,48 +28,12 @@ const ScreenPayment: FC<BookingScreenProps> = ({
     Clipboard.setString(text);
   };
 
-  // Animation icon loading
-  const spinValue = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    Animated.loop(
-      Animated.timing(spinValue, {
-        toValue: 1,
-        duration: 3000,
-        useNativeDriver: true,
-      }),
-    ).start();
-  });
-  const spin = spinValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
-  });
-  // end Animation
-
   // Image Zoom
   const [isImageViewVisible, setIsImageViewVisible] = useState(false);
 
   return (
     <WrapBgBox>
-      <View style={styles.paddingTop50Ios15Adroid}>
-        <View style={[styles.RowBetween, styles.paddingHorizontal18]}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Avatar source={icon.iconBackWhite} size={24} />
-          </TouchableOpacity>
-          <View>
-            <View style={styles.RowBetween}>
-              <TouchableOpacity
-                style={[styles.buttonEllipseSm, styles.marginLeft12]}
-                onPress={() => navigation.navigate('setting')}>
-                <IconMateria
-                  name="comment-text-outline"
-                  size={16}
-                  color="#fff"
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </View>
+      <Header navigation={navigation} name="payment" />
 
       <View style={[styles.detailUserBooking]}>
         <View
@@ -100,18 +56,16 @@ const ScreenPayment: FC<BookingScreenProps> = ({
             </Text>
             <View style={styles.RowAlignItems}>
               <View style={styles.RowAlignItems}>
-                <Avatar
-                  source={icon.iconHeartActive}
-                  containerStyle={styles.iconSize12Mgr5}
-                />
-                <Text style={styles.fontSize12}>14,087</Text>
+                <IconMateria name="heart" size={16} color={'red'} />
+                <Text style={[styles.fontSize12, styles.marginLeft5]}>
+                  14,087
+                </Text>
               </View>
               <View style={[styles.RowAlignItems, styles.marginLeft12]}>
-                <Avatar
-                  source={icon.iconViewBlack}
-                  containerStyle={styles.iconSize12Mgr5}
-                />
-                <Text style={styles.fontSize12}>25,635</Text>
+                <IconMateria name="eye-outline" size={16} color={'#000'} />
+                <Text style={[styles.fontSize12, styles.marginLeft5]}>
+                  25,635
+                </Text>
               </View>
               <View style={[styles.RowAlignItems, styles.marginLeft12]}>
                 <Avatar
@@ -188,7 +142,12 @@ const ScreenPayment: FC<BookingScreenProps> = ({
                   <TouchableOpacity
                     onPress={() => copyToClipboard('195556488')}>
                     <Text style={[styles.fontBold600]}>
-                      <Avatar source={icon.iconCopy} size={14} /> 195556488
+                      <IconMateria
+                        name="content-copy"
+                        size={16}
+                        color="#F78B73"
+                      />{' '}
+                      195556488
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -204,7 +163,11 @@ const ScreenPayment: FC<BookingScreenProps> = ({
                     onPress={() => copyToClipboard('Thanh toan Tarot 546881')}>
                     <Text style={styles.fontBold600}>
                       Thanh toan Tarot 546881{' '}
-                      <Avatar source={icon.iconCopy} size={14} />
+                      <IconMateria
+                        name="content-copy"
+                        size={16}
+                        color="#F78B73"
+                      />
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -228,6 +191,7 @@ const ScreenPayment: FC<BookingScreenProps> = ({
               </View>
             </View>
             <View style={[styles.RowAlignItems, styles.marginTop10]}>
+              <IconMateria name="timer-sand" size={14} color="#F78B73" />
               <Text
                 style={[
                   styles.fontBold600,
@@ -236,9 +200,6 @@ const ScreenPayment: FC<BookingScreenProps> = ({
                 ]}>
                 Thanh toán đang chờ xác nhận!
               </Text>
-              <Animated.View style={{transform: [{rotate: spin}]}}>
-                <IconLoading name="loading1" size={14} color="#F78B73" />
-              </Animated.View>
             </View>
             <TouchableOpacity
               style={[

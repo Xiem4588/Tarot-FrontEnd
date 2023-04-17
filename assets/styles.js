@@ -18,7 +18,7 @@ if (width >= 768 && height >= 1024) {
 } else {
   // Thiết bị có độ phân giải màn hình nhỏ hơn các giá trị độ phân giải chuẩn
 }
-const avatarLoginHeight = height >= 667 ? 200 : 100;
+const avatarLoginHeight = height >= 700 ? 180 : 150;
 
 export const styles = StyleSheet.create({
   bodyScreen: {
@@ -641,7 +641,7 @@ export const styles = StyleSheet.create({
   },
   width40: {
     width: 40,
-    paddingLeft: 25,
+    paddingLeft: 20,
   },
   width120: {
     width: 120,
@@ -923,7 +923,8 @@ export const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 10,
     textAlign: 'center',
-    padding: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
   },
   btnDone: {
     justifyContent: 'center',

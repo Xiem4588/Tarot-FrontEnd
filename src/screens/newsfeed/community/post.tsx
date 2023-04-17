@@ -9,7 +9,6 @@ import {
 import {styles} from '../../../../assets/styles';
 import {images} from '../../../../assets/constants';
 import {ScrollView} from 'react-native-gesture-handler';
-import IconsAnt from 'react-native-vector-icons/AntDesign';
 import IconsMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface ModalCommentProps {
@@ -105,7 +104,7 @@ const Post = ({handleScroll, IdAuthor}: ModalCommentProps) => {
               </View>
               <View style={styles.marginLeft10}>
                 <View style={styles.alignCenter}>
-                  <IconsAnt name="hearto" size={18} color={'#fff'} />
+                  <IconsMateria name="heart-outline" size={24} color={'#fff'} />
                   <Text
                     numberOfLines={1}
                     style={[styles.fonsize10White, styles.paddingTop5]}>
@@ -118,7 +117,7 @@ const Post = ({handleScroll, IdAuthor}: ModalCommentProps) => {
                   <View style={[styles.alignCenter, styles.paddingTop10]}>
                     <IconsMateria
                       name="chat-outline"
-                      size={20}
+                      size={24}
                       color={'#fff'}
                     />
                     <Text

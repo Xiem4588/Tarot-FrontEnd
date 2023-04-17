@@ -2,8 +2,9 @@ import React from 'react';
 import {Avatar, Text} from 'react-native-elements';
 import {TouchableOpacity, View} from 'react-native';
 import {styles} from '../../../../assets/styles';
-import {images, icon} from '../../../../assets/constants';
+import {images} from '../../../../assets/constants';
 import {ScrollView} from 'react-native-gesture-handler';
+import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ScreenExperts = ({navigation}: any) => {
   return (
@@ -52,18 +53,24 @@ const ScreenExperts = ({navigation}: any) => {
                   </View>
                   <View style={[styles.marginTopAuto]}>
                     <View style={styles.RowAlignItems}>
-                      <Avatar
-                        source={icon.iconHeartBlack}
-                        containerStyle={styles.iconSize12Mgr5}
+                      <IconMateria
+                        name="heart-outline"
+                        size={14}
+                        color={'#000'}
                       />
-                      <Text style={styles.fontSize12}>{item.like}</Text>
+                      <Text style={[styles.fontSize12, styles.marginLeft5]}>
+                        {item.like}
+                      </Text>
                     </View>
                     <View style={[styles.RowAlignItems, styles.paddingTop5]}>
-                      <Avatar
-                        source={icon.iconViewBlack}
-                        containerStyle={styles.iconSize12Mgr5}
+                      <IconMateria
+                        name="eye-outline"
+                        size={14}
+                        color={'#000'}
                       />
-                      <Text style={styles.fontSize12}>{item.view}</Text>
+                      <Text style={[styles.fontSize12, styles.marginLeft5]}>
+                        {item.view}
+                      </Text>
                     </View>
                   </View>
                 </View>

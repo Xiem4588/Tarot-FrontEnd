@@ -3,7 +3,7 @@ import {Avatar, Text} from 'react-native-elements';
 import {TouchableOpacity, View} from 'react-native';
 import {styles} from '../../../../assets/styles';
 import {images} from '../../../../assets/constants';
-import IconsAnt from 'react-native-vector-icons/AntDesign';
+import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface isProps {
   focusInput: () => void;
@@ -29,7 +29,7 @@ const CommentComponent = ({focusInput}: isProps) => {
             </Text>
             <View style={[styles.RowAlignItems, styles.marginTop5]}>
               <View style={[styles.RowAlignItems]}>
-                <IconsAnt name="hearto" size={12} />
+                <IconMateria name="heart-outline" size={12} />
                 <Text style={[styles.fontSize12, styles.marginLeft5]}>14</Text>
               </View>
               <View style={styles.marginLeft12}>
@@ -63,7 +63,7 @@ const CommentComponent = ({focusInput}: isProps) => {
             </Text>
             <View style={[styles.RowAlignItems, styles.marginTop5]}>
               <View style={[styles.RowAlignItems]}>
-                <IconsAnt name="heart" size={12} color="red" />
+                <IconMateria name="heart" size={12} color="red" />
                 <Text style={[styles.fontSize12, styles.marginLeft5]}>14</Text>
               </View>
               <View style={styles.marginLeft12}>
@@ -90,7 +90,7 @@ const CommentComponent = ({focusInput}: isProps) => {
                   </Text>
                   <View style={[styles.RowAlignItems, styles.marginTop5]}>
                     <View style={[styles.RowAlignItems]}>
-                      <IconsAnt name="heart" size={12} color="red" />
+                      <IconMateria name="heart" size={12} color="red" />
                       <Text style={[styles.fontSize12, styles.marginLeft5]}>
                         14
                       </Text>
@@ -139,7 +139,7 @@ const CommentComponent = ({focusInput}: isProps) => {
             </Text>
             <View style={[styles.RowAlignItems, styles.marginTop5]}>
               <View style={[styles.RowAlignItems]}>
-                <IconsAnt name="hearto" size={12} />
+                <IconMateria name="heart-outline" size={12} />
                 <Text style={[styles.fontSize12, styles.marginLeft5]}>14</Text>
               </View>
               <View style={styles.marginLeft12}>
@@ -166,7 +166,7 @@ const CommentComponent = ({focusInput}: isProps) => {
                   </Text>
                   <View style={[styles.RowAlignItems, styles.marginTop5]}>
                     <View style={[styles.RowAlignItems]}>
-                      <IconsAnt name="hearto" size={12} />
+                      <IconMateria name="heart-outline" size={12} />
                       <Text style={[styles.fontSize12, styles.marginLeft5]}>
                         14
                       </Text>
@@ -215,7 +215,7 @@ const CommentComponent = ({focusInput}: isProps) => {
             </Text>
             <View style={[styles.RowAlignItems, styles.marginTop5]}>
               <View style={[styles.RowAlignItems]}>
-                <IconsAnt name="hearto" size={12} />
+                <IconMateria name="heart-outline" size={12} />
                 <Text style={[styles.fontSize12, styles.marginLeft5]}>14</Text>
               </View>
               <View style={styles.marginLeft12}>
@@ -242,7 +242,7 @@ const CommentComponent = ({focusInput}: isProps) => {
                   </Text>
                   <View style={[styles.RowAlignItems, styles.marginTop5]}>
                     <View style={[styles.RowAlignItems]}>
-                      <IconsAnt name="hearto" size={12} />
+                      <IconMateria name="heart-outline" size={12} />
                       <Text style={[styles.fontSize12, styles.marginLeft5]}>
                         14
                       </Text>

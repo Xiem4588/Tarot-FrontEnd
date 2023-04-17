@@ -11,7 +11,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {images, icon} from '../../../assets/constants';
 import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../conponents/wrapBgBox';
-import IconArrowRight from 'react-native-vector-icons/AntDesign';
+import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ScreenToday = ({navigation}: any) => {
   const isAvatar = true;
@@ -70,7 +70,7 @@ const ScreenToday = ({navigation}: any) => {
                   {item.ques}
                 </Text>
                 <Text style={[styles.marginLeft12, styles.width40]}>
-                  <IconArrowRight name="arrowright" size={16} />
+                  <IconMateria name="chevron-right" size={24} />
                 </Text>
               </View>
             </TouchableOpacity>
