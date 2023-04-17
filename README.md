@@ -50,4 +50,15 @@ Map project
 https://github.com/oblador/react-native-vector-icons#icon-component
 https://oblador.github.io/react-native-vector-icons/
 
+//
+* Add Font Icon on Android:
+      Edit android/app/build.gradle ( NOT android/build.gradle ) and add the following:
+      /*
+            apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+      */
+
+//
+* IOS run install Pod:
+      cd to ... /ios -> pod install
+
 ```

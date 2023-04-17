@@ -1,8 +1,24 @@
 /**
  * @format style
  */
-import {StyleSheet, StatusBar, Platform} from 'react-native';
+import {StyleSheet, StatusBar, Platform, Dimensions} from 'react-native';
 import {colors} from './constants';
+const {width, height} = Dimensions.get('window');
+
+if (width >= 768 && height >= 1024) {
+  // Thiết bị có độ phân giải màn hình iPad Pro
+} else if (width >= 414 && height >= 896) {
+  // Thiết bị có độ phân giải màn hình iPhone X/XS/11 Pro Max/12 Pro Max
+} else if (width >= 375 && height >= 812) {
+  // Thiết bị có độ phân giải màn hình iPhone X/XS/11 Pro/12 Pro
+} else if (width >= 375 && height >= 667) {
+  // Thiết bị có độ phân giải màn hình iPhone 6/7/8 Plus
+} else if (width >= 320 && height >= 568) {
+  // Thiết bị có độ phân giải màn hình iPhone 5/SE/6/7/8
+} else {
+  // Thiết bị có độ phân giải màn hình nhỏ hơn các giá trị độ phân giải chuẩn
+}
+const avatarLoginHeight = height >= 667 ? 200 : 100;
 
 export const styles = StyleSheet.create({
   bodyScreen: {
@@ -223,7 +239,7 @@ export const styles = StyleSheet.create({
   avatarLogin: {
     paddingTop: Platform.OS === 'ios' ? 50 : 15,
     backgroundColor: '#A9B0F5',
-    height: 200,
+    height: avatarLoginHeight,
     position: 'relative',
     marginBottom: 100,
   },
@@ -414,6 +430,10 @@ export const styles = StyleSheet.create({
   },
   fontBold700: {
     fontWeight: 700,
+    fontFamily: 'Montserrat',
+  },
+  fontBold: {
+    fontWeight: 'bold',
     fontFamily: 'Montserrat',
   },
   fontMontserrat: {
@@ -954,11 +974,11 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 50,
     right: 18,
-    zIndex: 3,
+    zIndex: 9,
   },
   LaunchPagination: {
     position: 'absolute',
-    bottom: 50,
+    bottom: 60,
     left: 18,
     zIndex: 3,
   },
@@ -974,8 +994,8 @@ export const styles = StyleSheet.create({
   },
   IconAbs: {
     position: 'absolute',
-    right: 15,
-    top: 9,
+    right: 10,
+    top: 8,
   },
   modalComment: {
     flex: 1,

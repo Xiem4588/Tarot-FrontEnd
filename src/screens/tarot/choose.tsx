@@ -4,31 +4,30 @@ import {Image} from 'react-native-elements';
 import {images} from '../../../assets/constants';
 import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../conponents/wrapBgBox';
+import Header from '../../conponents/header';
+import moment from 'moment';
 // import Swiper from 'react-native-swiper';
 // import {FlatList} from 'react-native-gesture-handler';
 import Carousel from 'react-native-snap-carousel';
-import Header from '../../conponents/header';
-import moment from 'moment';
-
 const {width} = Dimensions.get('window');
 
 type CardTarotItem = {
   id: any;
-  tarotimages: any;
+  url_image: any;
 };
 const cardTarot: CardTarotItem[] = [
-  {id: '1', tarotimages: `${images.imgTarotCard}`},
-  {id: '2', tarotimages: `${images.imgTarotCard}`},
-  {id: '3', tarotimages: `${images.imgTarotCard}`},
-  {id: '4', tarotimages: `${images.imgTarotCard}`},
-  {id: '5', tarotimages: `${images.imgTarotCard}`},
-  {id: '6', tarotimages: `${images.imgTarotCard}`},
-  {id: '7', tarotimages: `${images.imgTarotCard}`},
-  {id: '8', tarotimages: `${images.imgTarotCard}`},
-  {id: '9', tarotimages: `${images.imgTarotCard}`},
-  {id: '10', tarotimages: `${images.imgTarotCard}`},
-  {id: '11', tarotimages: `${images.imgTarotCard}`},
-  {id: '12', tarotimages: `${images.imgTarotCard}`},
+  {id: '1', url_image: `${images.imgTarotCard}`},
+  {id: '2', url_image: `${images.imgTarotCard}`},
+  {id: '3', url_image: `${images.imgTarotCard}`},
+  {id: '4', url_image: `${images.imgTarotCard}`},
+  {id: '5', url_image: `${images.imgTarotCard}`},
+  {id: '6', url_image: `${images.imgTarotCard}`},
+  {id: '7', url_image: `${images.imgTarotCard}`},
+  {id: '8', url_image: `${images.imgTarotCard}`},
+  {id: '9', url_image: `${images.imgTarotCard}`},
+  {id: '10', url_image: `${images.imgTarotCard}`},
+  {id: '11', url_image: `${images.imgTarotCard}`},
+  {id: '12', url_image: `${images.imgTarotCard}`},
 ];
 
 const TarotCardSelector = ({navigation}: any) => {
@@ -40,8 +39,12 @@ const TarotCardSelector = ({navigation}: any) => {
         onPress={() => navigation.navigate('detail', setActiveCardId(item.id))}>
         <Image
           key={item.id}
-          source={item.tarotimages}
-          style={{width: 60, height: 240, marginTop: isActive ? -30 : 0}}
+          source={item.url_image}
+          style={{
+            width: '100%',
+            height: 220,
+            resizeMode: 'contain' /*marginTop: isActive ? -30 : 0*/,
+          }}
         />
       </TouchableOpacity>
     );
@@ -60,7 +63,12 @@ const TarotCardSelector = ({navigation}: any) => {
             Hít một hơi thật sâu và nghĩ đến điều mà bạn sắp đón nhận...
           </Text>
         </View>
-        <View style={[styles.flexBox, styles.paddingVertical20]}>
+        <View
+          style={[
+            styles.flexBox,
+            styles.paddingVertical20,
+            styles.marginBottom50,
+          ]}>
           <View>
             <View style={[styles.alignCenter]}>
               <Text style={[styles.fonsize14White, styles.alignCenter]}>
@@ -77,14 +85,20 @@ const TarotCardSelector = ({navigation}: any) => {
               data={cardTarot}
               renderItem={renderCardTarotItem}
               sliderWidth={width}
-              itemWidth={60}
+              itemWidth={120}
               loop={true}
               autoplay={false}
-              autoplayDelay={500}
-              autoplayInterval={3000}
+              // autoplayDelay={500}
+              // autoplayInterval={3000}
               useScrollView={true}
-              inactiveSlideOpacity={0.6}
-              inactiveSlideScale={0.8}
+              layoutCardOffset={60}
+              enableMomentum={true}
+              decelerationRate={0.9}
+              layout={'stack'}
+              hasParallaxImages={true}
+              // activeSlideAlignment={'start'}
+              // inactiveSlideOpacity={0.1}
+              // inactiveSlideScale={0.1}
               onSnapToItem={index => {
                 console.log(`Item at index ${index} is now active`);
               }}

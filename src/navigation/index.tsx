@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import * as Font from 'expo-font';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -125,9 +125,11 @@ const StackScreenOptionsHeaderTransparent = ({navigation}: any) => ({
 const App = () => {
   // check first user
   const isCheck = false;
+
   // Add Font Montserrat
-  const [fontLoaded, setFontLoaded] = useState(true);
-  React.useEffect(() => {
+
+  const [fontLoaded, setFontLoaded] = useState(false);
+  useEffect(() => {
     async function loadFont() {
       await Font.loadAsync({
         Montserrat: require('../../assets/fonts/Montserrat-VariableFont_wght.ttf'),
@@ -136,11 +138,10 @@ const App = () => {
     }
 
     loadFont();
-  }, []);
-
-  if (!fontLoaded) {
-    return null;
-  }
+    if (!fontLoaded) {
+      loadFont();
+    }
+  }, [fontLoaded]);
 
   return (
     <>

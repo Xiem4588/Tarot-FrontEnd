@@ -75,38 +75,43 @@ const Login = ({handleInputUser, handleLogin}: LoginProps) => {
               />
             </View>
           </View>
+          <View
+            style={[
+              styles.paddingHorizontal18,
+              styles.alignRight,
+              styles.marginTop20,
+            ]}>
+            <TouchableOpacity
+              style={styles.buttonTmp}
+              onPress={() => handleLogin('1')}>
+              <Text style={styles.buttonText}>Đăng nhập</Text>
+            </TouchableOpacity>
+            <View
+              style={[
+                styles.RowAlignItems,
+                styles.marginVertical18,
+                styles.marginBottom30,
+              ]}>
+              <Text style={[styles.colorWhite, styles.fontSize12]}>
+                Chưa có tài khoản
+              </Text>
+              <TouchableOpacity
+                onPress={handleInputUser}
+                style={styles.RowAlignItems}>
+                <Text
+                  style={[
+                    styles.colorOrange,
+                    styles.marginLeft5,
+                    styles.fontSize12,
+                  ]}>
+                  đăng ký
+                </Text>
+                <IconMateria name="chevron-right" size={18} color="#F78B73" />
+              </TouchableOpacity>
+            </View>
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
-      <View style={[styles.paddingHorizontal18, styles.alignRight]}>
-        <TouchableOpacity
-          style={styles.buttonTmp}
-          onPress={() => handleLogin('1')}>
-          <Text style={styles.buttonText}>Đăng nhập</Text>
-        </TouchableOpacity>
-        <View
-          style={[
-            styles.RowAlignItems,
-            styles.marginVertical18,
-            styles.marginBottom30,
-          ]}>
-          <Text style={[styles.colorWhite, styles.fontSize12]}>
-            Chưa có tài khoản
-          </Text>
-          <TouchableOpacity
-            onPress={handleInputUser}
-            style={styles.RowAlignItems}>
-            <Text
-              style={[
-                styles.colorOrange,
-                styles.marginLeft5,
-                styles.fontSize12,
-              ]}>
-              đăng ký
-            </Text>
-            <IconMateria name="chevron-right" size={18} color="#F78B73" />
-          </TouchableOpacity>
-        </View>
-      </View>
     </WrapBgBox>
   );
 };

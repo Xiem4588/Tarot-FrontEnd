@@ -3,14 +3,15 @@
  */
 
 import React, {useRef, useState} from 'react';
-import {StatusBar, View, Text} from 'react-native';
+import {StatusBar, View, Text, TouchableHighlight} from 'react-native';
 import Swiper from 'react-native-swiper';
 import {styles} from '../../../assets/styles';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import IconArrowRight from 'react-native-vector-icons/Entypo';
+import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import StepOne from './stepOne';
 import StepTwo from './stepTwo';
 import StepThree from './stepThree';
+
+MIcon.loadFont();
 
 const CustomPagination = (
   index: number,
@@ -71,39 +72,39 @@ const LaunchScreen = ({navigation}: any) => {
 
       {isLastScreen ? (
         <View style={styles.BoxButtonNext}>
-          <TouchableOpacity onPress={() => navigation.navigate('MainNav')}>
+          <TouchableHighlight onPress={() => navigation.navigate('MainNav')}>
             <View style={styles.buttonNext}>
               <Text
                 style={[
-                  styles.fontMontserrat,
-                  styles.fontBold600,
                   styles.RowAlignItems,
+                  styles.fontBold,
+                  styles.colorBlack,
                 ]}>
                 Đăng ký
               </Text>
               <Text style={styles.IconAbs}>
-                <IconArrowRight name="chevron-thin-right" size={18} />
+                <MIcon name="chevron-right" size={22} color={'#000'} />
               </Text>
             </View>
-          </TouchableOpacity>
+          </TouchableHighlight>
         </View>
       ) : (
         <View style={styles.BoxButtonNext}>
-          <TouchableOpacity onPress={handleNext}>
+          <TouchableHighlight onPress={handleNext}>
             <View style={styles.buttonNext}>
               <Text
                 style={[
-                  styles.fontMontserrat,
-                  styles.fontBold600,
                   styles.RowAlignItems,
+                  styles.fontBold,
+                  styles.colorBlack,
                 ]}>
                 Tiếp theo
               </Text>
               <Text style={styles.IconAbs}>
-                <IconArrowRight name="chevron-thin-right" size={18} />
+                <MIcon name="chevron-right" size={22} color={'#000'} />
               </Text>
             </View>
-          </TouchableOpacity>
+          </TouchableHighlight>
         </View>
       )}
     </>
