@@ -256,6 +256,7 @@ export const styles = StyleSheet.create({
   btnTmpAuto: {
     minWidth: 88,
     padding: 12,
+    paddingBottom: 8,
     minHeight: 56,
     backgroundColor: '#FFF',
     alignItems: 'center',
@@ -1180,5 +1181,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     fontWeight: '700',
     backgroundColor: 'transparent',
+  },
+  tooltip: {
+    position: 'absolute',
+    right: 5,
+    top: -5,
+    fontSize: 20,
   },
 });

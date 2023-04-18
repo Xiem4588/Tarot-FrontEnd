@@ -8,21 +8,59 @@ import {
   Platform,
   Image,
   StyleSheet,
+  Alert,
 } from 'react-native';
 import {styles} from '../../../assets/styles';
 import {images, icon} from '../../../assets/constants';
 import {ScrollView} from 'react-native-gesture-handler';
 import WrapBgBox from '../../conponents/wrapBgBox';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import validator from 'email-validator';
 interface RegisterProps {
   navigation: any;
   handleInputUser: () => void;
 }
 
 const Register = ({navigation, handleInputUser}: RegisterProps) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  // check input email
+  const [isEmail, setEmail] = useState('');
+  const [isValidEmail, setIsValidEmail] = useState('');
+  const handleEmailChange = (text: string) => {
+    setEmail(text);
+    const isValid = validator.validate(text);
+    if (isValid) {
+      setIsValidEmail('true');
+    } else {
+      setIsValidEmail('false');
+    }
+  };
+  // Show password
+  const [isPassword, setPassword] = useState('');
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [isCheckPasswordValid, setisCheckPasswordValidValid] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+  const handlePasswordChange = (text: string) => {
+    setPassword(text);
+    setIsPasswordValid(text.length >= 8);
+    setisCheckPasswordValidValid(`${isPasswordValid}`);
+  };
+  // Select button
+  const [selectedButton, setSelectedButton] = useState('');
+  const handleButtonPress = (buttonName: string) => {
+    setSelectedButton(buttonName);
+  };
+  // check all to submit
+  const handlePress = () => {
+    if (isValidEmail && isPassword) {
+      navigation.navigate('MainNav');
+    } else {
+      Alert.alert('Invalid email!');
+    }
+  };
+
   return (
     <WrapBgBox>
       <KeyboardAvoidingView
@@ -51,10 +89,17 @@ const Register = ({navigation, handleInputUser}: RegisterProps) => {
               />
               <TextInput
                 style={styles.inputForm}
-                value={username}
-                onChangeText={setUsername}
+                value={isEmail}
+                onChangeText={handleEmailChange}
                 placeholder="Email"
               />
+              {isValidEmail === 'false' ? (
+                <Text style={[styles.colorOrange, styles.marginTop5]}>
+                  Email chưa đúng
+                </Text>
+              ) : (
+                ''
+              )}
             </View>
             <View style={styles.inputContainer}>
               <IconMateria
@@ -65,23 +110,39 @@ const Register = ({navigation, handleInputUser}: RegisterProps) => {
               />
               <TextInput
                 style={styles.inputForm}
-                value={password}
-                onChangeText={setPassword}
+                value={isPassword}
+                onChangeText={handlePasswordChange}
                 placeholder="***********"
-                secureTextEntry
+                secureTextEntry={!showPassword}
               />
-              <IconMateria
-                name="eye-off-outline"
-                size={16}
-                color="#000"
-                style={stylesScreen.iconRightInput}
-              />
+              <TouchableOpacity
+                onPress={handleShowPassword}
+                style={stylesScreen.iconRightInput}>
+                <IconMateria
+                  name={showPassword ? 'eye-outline' : 'eye-off-outline'}
+                  size={16}
+                  color="#000"
+                />
+              </TouchableOpacity>
+              {isCheckPasswordValid === 'false' ? (
+                <Text style={[styles.colorOrange, styles.marginTop5]}>
+                  Password phải lớn hơn 8 ký tự
+                </Text>
+              ) : (
+                ''
+              )}
             </View>
             <View style={[styles.Row]}>
               <View style={styles.flexBox}>
                 <TouchableOpacity
-                  style={[styles.btnTmpAuto]}
-                  onPress={() => {}}>
+                  onPress={() => handleButtonPress('Guest')}
+                  style={[
+                    styles.btnTmpAuto,
+                    styles.borderBottomWhite,
+                    selectedButton === 'Guest'
+                      ? styles.borderBottomOrange
+                      : null,
+                  ]}>
                   <Image
                     source={icon.iconGuest}
                     style={stylesScreen.iconSize24}
@@ -100,8 +161,14 @@ const Register = ({navigation, handleInputUser}: RegisterProps) => {
               <View style={stylesScreen.separator} />
               <View style={styles.flexBox}>
                 <TouchableOpacity
-                  style={[styles.btnTmpAuto, styles.borderBottomOrange]}
-                  onPress={() => {}}>
+                  onPress={() => handleButtonPress('Expert')}
+                  style={[
+                    styles.btnTmpAuto,
+                    styles.borderBottomWhite,
+                    selectedButton === 'Expert'
+                      ? styles.borderBottomOrange
+                      : null,
+                  ]}>
                   <Image
                     source={icon.iconExpert}
                     style={stylesScreen.iconSize24}
@@ -120,8 +187,14 @@ const Register = ({navigation, handleInputUser}: RegisterProps) => {
             </View>
             <View style={[styles.alignCenter, styles.marginTop24]}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('MainNav')}
-                style={[styles.buttonFullDisable]}>
+                onPress={() => handlePress}
+                style={
+                  isCheckPasswordValid === 'true' &&
+                  isValidEmail === 'true' &&
+                  selectedButton
+                    ? styles.buttonTmp
+                    : styles.buttonFullDisable
+                }>
                 <Text style={styles.buttonText}>Đăng ký</Text>
               </TouchableOpacity>
             </View>
