@@ -18,4 +18,5 @@ export default {
   imgArrowUnderChoose: require('../images/imgArrowUnderChoose.png'),
   imgTarotCard: require('../images/imgTarotCard.png'),
   imgHandDirection: require('../images/imgHandDirection.png'),
+  imageLoginTop: require('../images/imageLoginTop.png'),
 };

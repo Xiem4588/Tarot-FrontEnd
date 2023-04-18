@@ -38,6 +38,9 @@ export const styles = StyleSheet.create({
   paddingHorizontal18: {
     paddingHorizontal: 18,
   },
+  paddingHorizontal24: {
+    paddingHorizontal: 24,
+  },
   paddingLeft18: {
     paddingLeft: 18,
   },
@@ -121,16 +124,14 @@ export const styles = StyleSheet.create({
   width50: {
     width: '50%',
   },
-  widthFull: {
+  fullWidthHeight: {
     width: '100%',
     height: '100%',
     flex: 1,
   },
-  widthFullHW: {
-    position: 'absolute',
+  fullWidht: {
     width: '100%',
-    height: '100%',
-    flex: 1,
+    resizeMode: 'contain',
   },
   paddingBox: {
     zIndex: 1,
@@ -195,7 +196,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#F78B73',
   },
   inputContainer: {
-    marginBottom: 5,
+    marginBottom: 24,
     width: '100%',
   },
   label: {
@@ -215,18 +216,55 @@ export const styles = StyleSheet.create({
     borderRadius: 36,
     backgroundColor: '#F2F2F2',
   },
+  inputForm: {
+    height: 42,
+    paddingHorizontal: 36,
+    borderRadius: 36,
+    color: '#000',
+    backgroundColor: '#F2F2F2',
+  },
+  iconLeftInput: {
+    position: 'absolute',
+    left: 12,
+    top: 12,
+    zIndex: 3,
+  },
+  iconRightInput: {
+    position: 'absolute',
+    right: 12,
+    top: 12,
+    zIndex: 3,
+  },
   buttonTmp: {
     width: '100%',
-    height: 54,
+    height: 50,
     backgroundColor: '#F78B73',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
     marginTop: 'auto',
   },
+  buttonFullDisable: {
+    width: '100%',
+    height: 50,
+    backgroundColor: '#383838',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    marginTop: 'auto',
+  },
+  btnTmpAuto: {
+    minWidth: 88,
+    padding: 12,
+    minHeight: 56,
+    backgroundColor: '#FFF',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 16,
+  },
   buttonText: {
     color: colors.defaultBlack,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 600,
     fontFamily: 'Montserrat',
   },
@@ -351,6 +389,9 @@ export const styles = StyleSheet.create({
   marginLeft10: {
     marginLeft: 10,
   },
+  marginLeft18: {
+    marginLeft: 18,
+  },
   marginTop5: {
     marginTop: 5,
   },
@@ -369,6 +410,9 @@ export const styles = StyleSheet.create({
   marginTop20: {
     marginTop: 20,
   },
+  marginTop24: {
+    marginTop: 24,
+  },
   marginTop15: {
     marginTop: 15,
   },
@@ -381,11 +425,17 @@ export const styles = StyleSheet.create({
   marginBottom20: {
     marginBottom: 20,
   },
+  marginBottom24: {
+    marginBottom: 24,
+  },
   marginBottom30: {
     marginBottom: 30,
   },
   marginBottom50: {
     marginBottom: 50,
+  },
+  marginBottom_50: {
+    marginBottom: -50,
   },
   marginHorizontalA9: {
     marginHorizontal: -9,
@@ -398,6 +448,12 @@ export const styles = StyleSheet.create({
   },
   marginVertical18: {
     marginVertical: 18,
+  },
+  marginVertical24: {
+    marginVertical: 24,
+  },
+  marginVertical34: {
+    marginVertical: 34,
   },
   marginVertical10: {
     marginVertical: 10,
@@ -664,6 +720,10 @@ export const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
   },
+  colorGrray: {
+    color: '#9E9E9E',
+    fontFamily: 'Montserrat',
+  },
   colorBlack: {
     color: '#000',
     fontFamily: 'Montserrat',
@@ -704,7 +764,9 @@ export const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
     fontWeight: 600,
   },
-  image: {},
+  fontsize48: {
+    fontSize: 48,
+  },
   imageItem: {
     width: 80,
     height: 80,
@@ -955,6 +1017,15 @@ export const styles = StyleSheet.create({
     paddingBottom: 15,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0, 0, 0, 0.4)',
+  },
+
+  borderBottomOrange: {
+    borderBottomColor: '#F78B73',
+    borderBottomWidth: 4,
+  },
+  borderBottomWhite: {
+    borderBottomColor: '#FFF',
+    borderBottomWidth: 4,
   },
 
   //

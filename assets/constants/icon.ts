@@ -31,4 +31,7 @@ export default {
   iconClock: require('../images/iconClock.png'),
   iconStar: require('../images/iconStar.png'),
   iconUniverse: require('../images/iconUniverse.png'),
+  iconGoogle: require('../images/iconGoogle.png'),
+  iconExpert: require('../images/iconExpert.png'),
+  iconGuest: require('../images/iconGuest.png'),
 };
