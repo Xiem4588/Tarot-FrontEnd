@@ -8,21 +8,54 @@ import {
   Platform,
   Image,
   StyleSheet,
+  Alert,
+  Dimensions,
 } from 'react-native';
 import {styles} from '../../../assets/styles';
 import {images} from '../../../assets/constants';
 import {ScrollView} from 'react-native-gesture-handler';
 import WrapBgBox from '../../conponents/wrapBgBox';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
+import validator from 'email-validator';
 interface LoginProps {
   handleInputUser: () => void;
   handleLogin: (id: string) => void;
 }
 
 const Login = ({handleInputUser, handleLogin}: LoginProps) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  //
+  // check input email
+  const [isEmail, setEmail] = useState('');
+  const [isValidEmail, setIsValidEmail] = useState('');
+  const handleEmailChange = (text: string) => {
+    setEmail(text);
+    const isValid = validator.validate(text);
+    if (isValid) {
+      setIsValidEmail('true');
+    } else {
+      setIsValidEmail('false');
+    }
+  };
+  // Show password
+  const [isPassword, setPassword] = useState('');
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [isCheckPasswordValid, setisCheckPasswordValidValid] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+  const handlePasswordChange = (text: string) => {
+    setPassword(text);
+    setIsPasswordValid(text.length >= 8);
+    setisCheckPasswordValidValid(`${isPasswordValid}`);
+  };
+  // check all to submit
+  const handlePress = () => {
+    if (isValidEmail && isPassword) {
+      handleLogin('1');
+    } else {
+      Alert.alert('Error một hoặc nhiều trường bị thiếu vui lòng thử lại!');
+    }
+  };
 
   return (
     <WrapBgBox>
@@ -52,10 +85,17 @@ const Login = ({handleInputUser, handleLogin}: LoginProps) => {
               />
               <TextInput
                 style={styles.inputForm}
-                value={username}
-                onChangeText={setUsername}
+                value={isEmail}
+                onChangeText={handleEmailChange}
                 placeholder="Email"
               />
+              {isValidEmail === 'false' ? (
+                <Text style={[styles.colorOrange, styles.marginTop5]}>
+                  Email chưa đúng
+                </Text>
+              ) : (
+                ''
+              )}
             </View>
             <View style={styles.inputContainer}>
               <IconMateria
@@ -66,22 +106,36 @@ const Login = ({handleInputUser, handleLogin}: LoginProps) => {
               />
               <TextInput
                 style={styles.inputForm}
-                value={password}
-                onChangeText={setPassword}
+                value={isPassword}
+                onChangeText={handlePasswordChange}
                 placeholder="***********"
-                secureTextEntry
+                secureTextEntry={!showPassword}
               />
-              <IconMateria
-                name="eye-off-outline"
-                size={16}
-                color="#000"
-                style={stylesScreen.iconRightInput}
-              />
+              <TouchableOpacity
+                onPress={handleShowPassword}
+                style={stylesScreen.iconRightInput}>
+                <IconMateria
+                  name={showPassword ? 'eye-outline' : 'eye-off-outline'}
+                  size={16}
+                  color="#000"
+                />
+              </TouchableOpacity>
+              {isCheckPasswordValid === 'false' ? (
+                <Text style={[styles.colorOrange, styles.marginTop5]}>
+                  Password phải lớn hơn 8 ký tự
+                </Text>
+              ) : (
+                ''
+              )}
             </View>
             <View style={styles.alignCenter}>
               <TouchableOpacity
-                style={styles.buttonTmp}
-                onPress={() => handleLogin('1')}>
+                onPress={handlePress}
+                style={
+                  isCheckPasswordValid === 'true' && isValidEmail === 'true'
+                    ? styles.buttonTmp
+                    : styles.buttonFullDisable
+                }>
                 <Text style={[styles.buttonText, styles.fontBold600]}>
                   Đăng nhập
                 </Text>
@@ -131,6 +185,9 @@ const Login = ({handleInputUser, handleLogin}: LoginProps) => {
   );
 };
 
+const {height} = Dimensions.get('window');
+const HeightImage = height >= 680 ? (height >= 700 ? 250 : 180) : 150;
+
 const stylesScreen = StyleSheet.create({
   image: {
     marginBottom: -80,
@@ -138,7 +195,7 @@ const stylesScreen = StyleSheet.create({
     padding: 0,
     marginLeft: 'auto',
     width: '80%',
-    height: Platform.OS === 'ios' ? 250 : 180,
+    height: HeightImage,
     resizeMode: 'contain',
   },
   iconLeftInput: {

@@ -9,6 +9,7 @@ import {
   Image,
   StyleSheet,
   Alert,
+  Dimensions,
 } from 'react-native';
 import {styles} from '../../../assets/styles';
 import {images, icon} from '../../../assets/constants';
@@ -17,11 +18,11 @@ import WrapBgBox from '../../conponents/wrapBgBox';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
 interface RegisterProps {
-  navigation: any;
-  handleInputUser: () => void;
+  navigation?: any;
+  handleInputUser?: () => void;
 }
 
-const Register = ({navigation, handleInputUser}: RegisterProps) => {
+const Register = ({handleInputUser}: RegisterProps) => {
   // check input email
   const [isEmail, setEmail] = useState('');
   const [isValidEmail, setIsValidEmail] = useState('');
@@ -55,9 +56,9 @@ const Register = ({navigation, handleInputUser}: RegisterProps) => {
   // check all to submit
   const handlePress = () => {
     if (isValidEmail && isPassword) {
-      navigation.navigate('MainNav');
+      handleInputUser?.();
     } else {
-      Alert.alert('Invalid email!');
+      Alert.alert('Error một hoặc nhiều trường bị thiếu vui lòng thử lại!');
     }
   };
 
@@ -187,7 +188,7 @@ const Register = ({navigation, handleInputUser}: RegisterProps) => {
             </View>
             <View style={[styles.alignCenter, styles.marginTop24]}>
               <TouchableOpacity
-                onPress={() => handlePress}
+                onPress={handlePress}
                 style={
                   isCheckPasswordValid === 'true' &&
                   isValidEmail === 'true' &&
@@ -237,6 +238,9 @@ const Register = ({navigation, handleInputUser}: RegisterProps) => {
   );
 };
 
+const {height} = Dimensions.get('window');
+const HeightImage = height >= 680 ? (height >= 700 ? 220 : 150) : 120;
+
 const stylesScreen = StyleSheet.create({
   image: {
     marginBottom: -80,
@@ -244,7 +248,7 @@ const stylesScreen = StyleSheet.create({
     padding: 0,
     marginLeft: 'auto',
     width: '80%',
-    height: Platform.OS === 'ios' ? 220 : 180,
+    height: HeightImage,
     resizeMode: 'contain',
   },
   iconSize24: {

@@ -38,7 +38,7 @@ const AccountScreen = ({navigation}: any) => {
           <MyProfile navigation={navigation} />
         )
       ) : (
-        <Register navigation={navigation} handleInputUser={handleInputUser} />
+        <Register handleInputUser={handleInputUser} />
       )}
     </View>
   );
