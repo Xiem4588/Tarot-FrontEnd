@@ -71,14 +71,17 @@ const Item = ({id, title, describe, price}: ItemProps) => (
   <View key={id} style={styles.itemCarousel}>
     <View>
       <Text style={styles.nameItemBlack16}>{title}</Text>
-      <Text style={[styles.fontSize12, styles.marginBottom10]}>{describe}</Text>
+      <Text
+        style={[styles.fontSize12, styles.marginBottom10, styles.colorBlack]}>
+        {describe}
+      </Text>
     </View>
     <Text
       style={[
         styles.fontSize16,
         styles.colorOrange,
         styles.marginTopAuto,
-        styles.fontBold600,
+        styles.fontBold700,
       ]}>
       {price}
     </Text>
@@ -143,20 +146,35 @@ const BookingScreen = ({navigation, route}: BookingScreenProps) => {
           </View>
           <View style={styles.boxInfo}>
             <Text style={styles.nameItemBlack16}>Lee Jae‑wook</Text>
-            <Text style={[styles.fontSize12, styles.marginBottom10]}>
+            <Text
+              style={[
+                styles.fontSize12,
+                styles.marginBottom10,
+                styles.colorBlack,
+              ]}>
               Có hơn 8 năm kinh nghiệm {'\n'} Có xem khuya & lịch gấp trog ngày
               (có tính thêm phụ phí)
             </Text>
             <View style={styles.RowAlignItems}>
               <View style={styles.RowAlignItems}>
                 <IconMateria name="heart" size={16} color={'red'} />
-                <Text style={[styles.fontSize12, styles.marginLeft5]}>
+                <Text
+                  style={[
+                    styles.fontSize12,
+                    styles.marginLeft5,
+                    styles.colorBlack,
+                  ]}>
                   14,087
                 </Text>
               </View>
               <View style={[styles.RowAlignItems, styles.marginLeft12]}>
                 <IconMateria name="eye-outline" size={16} color={'#000'} />
-                <Text style={[styles.fontSize12, styles.marginLeft5]}>
+                <Text
+                  style={[
+                    styles.fontSize12,
+                    styles.marginLeft5,
+                    styles.colorBlack,
+                  ]}>
                   25,635
                 </Text>
               </View>
@@ -247,7 +265,7 @@ const BookingScreen = ({navigation, route}: BookingScreenProps) => {
                   <View
                     style={[styles.btnTimeBooking, styles.RowCenterBetween]}>
                     <View>
-                      <Text style={styles.fontMontserrat}>Thời gian</Text>
+                      <Text style={[styles.fontMontserrat, styles.colorBlack]}>Thời gian</Text>
                     </View>
                     <View style={styles.RowCenterBetween}>
                       <Text style={[styles.colorOrange, styles.fontMontserrat]}>

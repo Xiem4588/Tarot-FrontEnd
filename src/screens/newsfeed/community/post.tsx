@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
   View,
   Dimensions,
+  StyleSheet,
+  Image,
 } from 'react-native';
 import {styles} from '../../../../assets/styles';
 import {images} from '../../../../assets/constants';
@@ -41,10 +43,7 @@ const Post = ({handleScroll, IdAuthor}: ModalCommentProps) => {
               <Text style={[styles.fonsize20White]}>{item.title}</Text>
             </View>
             <View style={[styles.paddingVertical10]}>
-              <Avatar
-                source={images.ImgTarotDeck}
-                containerStyle={styles.ImgPostCommunity}
-              />
+              <Image source={images.ImgTarotDeck} style={stylesScreen.image} />
             </View>
           </View>
           <View style={[styles.flexBox, styles.paddingHorizontal18]}>
@@ -199,5 +198,15 @@ const DATA: DataProps[] = [
     },
   },
 ];
+
+const {height} = Dimensions.get('window');
+const HeightImage = height >= 680 ? (height >= 700 ? 250 : 180) : 150;
+
+const stylesScreen = StyleSheet.create({
+  image: {
+    height: height >= 700 ? height / 2.2 : height / 2.5,
+    resizeMode: 'contain',
+  },
+});
 
 export default Post;

@@ -239,7 +239,6 @@ const Register = ({handleInputUser}: RegisterProps) => {
 };
 
 const {height} = Dimensions.get('window');
-const HeightImage = height >= 680 ? (height >= 700 ? 220 : 150) : 120;
 
 const stylesScreen = StyleSheet.create({
   image: {
@@ -248,7 +247,7 @@ const stylesScreen = StyleSheet.create({
     padding: 0,
     marginLeft: 'auto',
     width: '80%',
-    height: HeightImage,
+    height: height >= 680 ? (height >= 720 ? 220 : 150) : 120,
     resizeMode: 'contain',
   },
   iconSize24: {

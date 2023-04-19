@@ -73,9 +73,8 @@ export const styles = StyleSheet.create({
   },
   ImageBackgroundCommunity: {
     flex: 1,
-    width: '100%',
-    height: '100%',
-    top: -5,
+    width: width,
+    height: height,
     position: 'absolute',
   },
   bodyScreenBlack: {
@@ -141,11 +140,14 @@ export const styles = StyleSheet.create({
   paddingTop50: {
     paddingTop: 50,
   },
+  paddingTop40: {
+    paddingTop: height >= 700 ? 40 : Platform.OS === 'ios' ? 20 : 0,
+  },
   paddingTop50Ios15Adroid: {
-    paddingTop: Platform.OS === 'ios' ? 50 : 15,
+    paddingTop: height >= 700 ? 50 : Platform.OS === 'ios' ? 25 : 15,
   },
   paddingTop80: {
-    paddingTop: Platform.OS === 'ios' ? 80 : 60,
+    paddingTop: height >= 700 ? 90 : Platform.OS === 'ios' ? 70 : 55,
   },
   paddingVertical30: {
     paddingVertical: 30,
@@ -276,14 +278,14 @@ export const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
   },
   avatarLogin: {
-    paddingTop: Platform.OS === 'ios' ? 50 : 15,
+    paddingTop: height >= 700 ? 50 : 15,
     backgroundColor: '#A9B0F5',
     height: avatarLoginHeight,
     position: 'relative',
     marginBottom: 100,
   },
   avatarProfile: {
-    paddingTop: Platform.OS === 'ios' ? 40 : 15,
+    paddingTop: height >= 700 ? 40 : 15,
     backgroundColor: '#A9B0F5',
     position: 'relative',
     paddingBottom: 20,
@@ -336,7 +338,6 @@ export const styles = StyleSheet.create({
   },
   positionAbsoluteTop: {
     position: 'absolute',
-    // top: 0,
     zIndex: 2,
   },
   buttonTmpSm: {
@@ -381,6 +382,9 @@ export const styles = StyleSheet.create({
   marginRight30: {
     marginRight: 30,
   },
+  marginRight36: {
+    marginRight: 36,
+  },
   marginLeft12: {
     marginLeft: 12,
   },
@@ -392,6 +396,12 @@ export const styles = StyleSheet.create({
   },
   marginLeft18: {
     marginLeft: 18,
+  },
+  marginLeft24: {
+    marginLeft: 24,
+  },
+  marginLeft34: {
+    marginLeft: 34,
   },
   marginTop5: {
     marginTop: 5,
@@ -434,6 +444,9 @@ export const styles = StyleSheet.create({
   },
   marginBottom50: {
     marginBottom: 50,
+  },
+  marginBottom80: {
+    marginBottom: 80,
   },
   marginBottom_50: {
     marginBottom: -50,
@@ -582,8 +595,7 @@ export const styles = StyleSheet.create({
   },
   ImgPostCommunity: {
     width: 226,
-    height: 600,
-    maxHeight: 400,
+    height: 400,
     resizeMode: 'contain',
   },
   boxInfo: {
@@ -726,7 +738,7 @@ export const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
   },
   colorBlack: {
-    color: '#000',
+    color: 'rgba(0, 0, 0, 0.87)',
     fontFamily: 'Montserrat',
   },
   colorBlue: {
@@ -892,7 +904,6 @@ export const styles = StyleSheet.create({
   },
   TabView: {
     backgroundColor: 'transparent',
-    paddingVertical: 18,
     width: '100%',
     height: '100%',
     flex: 1,
@@ -907,13 +918,28 @@ export const styles = StyleSheet.create({
   indicatorSelected: {
     backgroundColor: '#F68B73',
     height: 2,
-    width: Platform.OS === 'ios' ? 90 : 72,
-    left: 20,
+    width: Platform.OS === 'ios' ? 94 : 76,
+    left: 18,
+  },
+  tabItemDefault: {
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    height: 2,
+    width: Platform.OS === 'ios' ? 94 : 76,
+    position: 'absolute',
+    bottom: -12,
+  },
+  tabItemSelected: {
+    backgroundColor: '#F68B73',
+    width: '100%',
+    height: 2,
+    zIndex: 3,
+    position: 'relative',
+    marginTop: 10,
   },
   BgTransparent: {
     backgroundColor: 'transparent',
     position: 'absolute',
-    top: Platform.OS === 'ios' ? 40 : 25,
+    top: height >= 700 ? 30 : Platform.OS === 'ios' ? 15 : 0,
     zIndex: 9,
     width: '80%',
     paddingVertical: 12,
@@ -921,12 +947,9 @@ export const styles = StyleSheet.create({
     marginTop: 10,
   },
   textTitleTabDefault: {
-    position: 'absolute',
-    left: 0,
-    height: Platform.OS === 'ios' ? 24 : 25,
     color: 'rgba(255, 255, 255, 0.4)',
     fontFamily: 'Montserrat',
-    fontWeight: 600,
+    fontWeight: 'bold',
     fontSize: 16,
   },
   textTitleTabSelected: {
@@ -1160,26 +1183,23 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#F68B73',
     color: '#F68B73',
-    padding: 4,
     width: 28,
     height: 28,
-    justifyContent: 'center',
+    lineHeight: Platform.OS === 'ios' ? 24 : 26,
+    textAlign: 'center',
     borderRadius: 14,
-    alignItems: 'center',
-    fontWeight: '700',
+    fontWeight: 'bold',
     backgroundColor: 'transparent',
   },
   selectedDayTextStyle: {
     borderWidth: 2,
     borderColor: '#4BAE4F',
     color: '#4BAE4F',
-    padding: 4,
     width: 28,
     height: 28,
-    justifyContent: 'center',
+    textAlign: 'center',
     borderRadius: 14,
-    alignItems: 'center',
-    fontWeight: '700',
+    fontWeight: 'bold !important',
     backgroundColor: 'transparent',
   },
   tooltip: {

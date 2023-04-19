@@ -1,6 +1,6 @@
 import React from 'react';
 import {Tab, TabView} from '@rneui/themed';
-import {View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../conponents/wrapBgBox';
 import ScreenCommunity from './community';
@@ -21,24 +21,32 @@ const NewsFeed = ({navigation}: any) => {
             index === 0 ? styles.indicatorSelected : null,
             index === 1 ? styles.indicatorSelected : null,
           ]}>
-          <Tab.Item>
-            <Text
-              style={[
-                styles.textTitleTabDefault,
-                index === 0 ? styles.textTitleTabSelected : null,
-              ]}>
-              Chuyên gia
-            </Text>
-          </Tab.Item>
-          <Tab.Item>
-            <Text
-              style={[
-                styles.textTitleTabDefault,
-                index === 1 ? styles.textTitleTabSelected : null,
-              ]}>
-              Cộng đồng
-            </Text>
-          </Tab.Item>
+          {/* Sử dụng TouchableWithoutFeedback thay vì Tab.Item
+          để tạo ra tab để ko bị nháy nền trên android khi click */}
+          <TouchableOpacity onPress={() => setIndex(0)}>
+            <View style={styles.marginRight36}>
+              <Text
+                style={[
+                  styles.textTitleTabDefault,
+                  index === 0 ? styles.textTitleTabSelected : null,
+                ]}>
+                Chuyên gia
+              </Text>
+            </View>
+            <View style={styles.tabItemDefault} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setIndex(1)}>
+            <View>
+              <Text
+                style={[
+                  styles.textTitleTabDefault,
+                  index === 1 ? styles.textTitleTabSelected : null,
+                ]}>
+                Cộng đồng
+              </Text>
+            </View>
+            <View style={styles.tabItemDefault} />
+          </TouchableOpacity>
         </Tab>
         <TabView value={index} onChange={setIndex}>
           <TabView.Item style={styles.TabView}>

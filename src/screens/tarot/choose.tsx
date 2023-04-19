@@ -52,7 +52,9 @@ const TarotCardSelector = ({navigation}: any) => {
 
   return (
     <WrapBgBox>
-      <Header navigation={navigation} name="nothing" />
+      <View style={styles.positionAbsoluteTop}>
+        <Header navigation={navigation} name="nothing" />
+      </View>
       <View style={[styles.flexBox]}>
         <View style={[styles.flexBox, styles.alignItems, styles.padding18]}>
           <Text style={[styles.colorOrange, styles.marginBottom15]}>
@@ -80,7 +82,7 @@ const TarotCardSelector = ({navigation}: any) => {
               style={{resizeMode: 'contain', height: 38}}
             />
           </View>
-          <View style={styles.flex1}>
+          <View>
             <Carousel
               data={cardTarot}
               renderItem={renderCardTarotItem}

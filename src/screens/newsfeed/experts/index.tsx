@@ -39,8 +39,14 @@ const ScreenExperts = ({navigation}: any) => {
               ]}>
               <View key={item.id} style={styles.itemTimeline}>
                 <View style={styles.flexBox}>
-                  <Text style={styles.nameItemBlack16}>{item.name}</Text>
-                  <Text style={[styles.fontSize10, styles.marginBottom10]}>
+                  <Text style={[styles.nameItemBlack16]}>{item.name}</Text>
+                  <Text
+                    numberOfLines={3}
+                    style={[
+                      styles.fontSize10,
+                      styles.marginBottom10,
+                      styles.colorBlack,
+                    ]}>
                     {item.content}
                   </Text>
                 </View>
@@ -53,12 +59,13 @@ const ScreenExperts = ({navigation}: any) => {
                   </View>
                   <View style={[styles.marginTopAuto]}>
                     <View style={styles.RowAlignItems}>
-                      <IconMateria
-                        name="heart-outline"
-                        size={14}
-                        color={'#000'}
-                      />
-                      <Text style={[styles.fontSize12, styles.marginLeft5]}>
+                      <IconMateria name="heart" size={16} color={'red'} />
+                      <Text
+                        style={[
+                          styles.fontSize12,
+                          styles.marginLeft5,
+                          styles.colorBlack,
+                        ]}>
                         {item.like}
                       </Text>
                     </View>
@@ -68,7 +75,12 @@ const ScreenExperts = ({navigation}: any) => {
                         size={14}
                         color={'#000'}
                       />
-                      <Text style={[styles.fontSize12, styles.marginLeft5]}>
+                      <Text
+                        style={[
+                          styles.fontSize12,
+                          styles.marginLeft5,
+                          styles.colorBlack,
+                        ]}>
                         {item.view}
                       </Text>
                     </View>

@@ -186,7 +186,6 @@ const Login = ({handleInputUser, handleLogin}: LoginProps) => {
 };
 
 const {height} = Dimensions.get('window');
-const HeightImage = height >= 680 ? (height >= 700 ? 250 : 180) : 150;
 
 const stylesScreen = StyleSheet.create({
   image: {
@@ -195,7 +194,7 @@ const stylesScreen = StyleSheet.create({
     padding: 0,
     marginLeft: 'auto',
     width: '80%',
-    height: HeightImage,
+    height: height >= 680 ? (height >= 720 ? 250 : 180) : 150,
     resizeMode: 'contain',
   },
   iconLeftInput: {

@@ -31,16 +31,31 @@ const ScreenToday = ({navigation}: any) => {
               rounded
               source={isAvatar ? images.AvatarDemo2 : images.avataDefault}
             />
-            <Text style={[styles.marginLeft10, styles.fontBold600]}>
+            <Text
+              style={[
+                styles.marginLeft10,
+                styles.fontBold700,
+                styles.colorBlack,
+              ]}>
               Hi, Mogwrr Ohnf!
             </Text>
           </View>
           <View style={styles.RowBetween}>
             <View style={[styles.marginTop20, styles.flex1]}>
-              <Text style={[styles.fontSize18, styles.fontBold600]}>
+              <Text
+                style={[
+                  styles.fontSize18,
+                  styles.fontBold700,
+                  styles.colorBlack,
+                ]}>
                 Điều gì sắp tới sẽ đến với bạn?
               </Text>
-              <Text style={[styles.fontSize14, styles.marginTop5]}>
+              <Text
+                style={[
+                  styles.fontSize14,
+                  styles.marginTop5,
+                  styles.colorBlack,
+                ]}>
                 Hãy đón nhận những thông điệp theo một cách tích cực.
               </Text>
             </View>
@@ -66,15 +81,17 @@ const ScreenToday = ({navigation}: any) => {
                   styles.boxWhiteRadius,
                   styles.marginBottom15,
                 ]}>
-                <Text style={[styles.fontSize16, styles.flex1]}>
+                <Text
+                  style={[styles.fontSize16, styles.flex1, styles.colorBlack]}>
                   {item.ques}
                 </Text>
                 <Text style={[styles.marginLeft12, styles.width40]}>
-                  <IconMateria name="chevron-right" size={24} />
+                  <IconMateria name="chevron-right" size={24} color={'#000'} />
                 </Text>
               </View>
             </TouchableOpacity>
           ))}
+          <View style={styles.marginBottom80} />
         </ScrollView>
       </View>
       <TouchableOpacity
@@ -82,9 +99,9 @@ const ScreenToday = ({navigation}: any) => {
         onPress={() => navigation.navigate('choose')}>
         <Image
           source={icon.iconUniverse}
-          style={{resizeMode: 'contain', height: 38}}
+          style={{resizeMode: 'contain', height: 42}}
         />
-        <Text style={(styles.fontSize14, styles.fontBold600)}>
+        <Text style={[styles.fontSize14, styles.fontBold, styles.colorBlack]}>
           Thông điệp {'\n'} ngày hôm nay
         </Text>
       </TouchableOpacity>

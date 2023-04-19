@@ -1,31 +1,40 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Avatar, Text} from 'react-native-elements';
-import {Dimensions, ImageBackground, View} from 'react-native';
+import {
+  Dimensions,
+  ImageBackground,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {styles} from '../../../assets/styles';
-import {images, icon} from '../../../assets/constants';
+import {images} from '../../../assets/constants';
 import {ScrollView} from 'react-native-gesture-handler';
 import Header from '../../conponents/header';
+import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ScreenDetail = ({navigation}: any) => {
   const {width, height} = Dimensions.get('window');
-
+  const [isLike, setLike] = useState(false);
+  const handleLike = () => {
+    setLike(!isLike);
+  };
   return (
     <>
-      <ImageBackground
-        source={images.bgTarotDeck}
-        resizeMode="contain"
-        style={styles.ImageBackgroundCommunity}
-      />
       <View style={styles.positionAbsoluteTop}>
         <Header navigation={navigation} name="nothing" />
       </View>
       <ScrollView>
+        <ImageBackground
+          source={images.bgTarotDeck}
+          resizeMode="cover"
+          style={styles.ImageBackgroundCommunity}
+        />
         <View style={{minHeight: height, minWidth: width}}>
           <View
             style={[
               styles.alignCenter,
               styles.paddingHorizontal18,
-              styles.paddingTop50,
+              styles.paddingTop40,
             ]}>
             <View style={[styles.alignCenter, styles.paddingVertical10]}>
               <Text style={styles.fonsize24White}>X</Text>
@@ -49,12 +58,15 @@ const ScreenDetail = ({navigation}: any) => {
                 </Text>
               </View>
               <View style={[styles.width40]}>
-                <View style={styles.alignCenter}>
-                  <Avatar
-                    source={icon.iconHeartActive}
-                    containerStyle={styles.iconSize20}
-                  />
-                </View>
+                <TouchableOpacity onPress={handleLike}>
+                  <View style={styles.alignCenter}>
+                    <IconMateria
+                      name={isLike ? 'heart' : 'heart-outline'}
+                      size={22}
+                      color={isLike ? 'red' : 'white'}
+                    />
+                  </View>
+                </TouchableOpacity>
               </View>
             </View>
             <View style={[styles.boxInfo, styles.paddingVertical10]}>
