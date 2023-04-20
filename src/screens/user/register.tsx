@@ -58,7 +58,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
     if (isValidEmail && isPassword) {
       handleInputUser?.();
     } else {
-      Alert.alert('Error một hoặc nhiều trường bị thiếu vui lòng thử lại!');
+      Alert.alert('Error! Một hoặc nhiều trường bị lỗi vui lòng thử lại!');
     }
   };
 
