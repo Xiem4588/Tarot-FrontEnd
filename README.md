@@ -66,4 +66,9 @@ Map project
 //
 * Để đồng bộ phiên bản của các gems trong Gemfile.lock với các phiên bản được định nghĩa trong Gemfile, bạn có thể chạy lệnh bundle update trong thư mục dự án của mình. Lệnh này sẽ tìm kiếm phiên bản mới nhất của tất cả các gems trong Gemfile, cập nhật phiên bản của các gems đó trong Gemfile.lock và cài đặt các gems mới nhất đó.
       - bundle update
+
+// Cấu hình multi language cho ứng dụng dùng thư viện i18next cần chú ý
+      * Với typescript thì file setup của i18n phải là i18n.js chứ không phải là đuôi .ts hay .tsx thì sẽ bị lỗi
+
+
 ```

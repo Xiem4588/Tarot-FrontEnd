@@ -3,5 +3,8 @@
   "farewell": "Goodbye!",
   "expert": "Expert",
   "login": "Login",
-  "steponeTitme": "Meet the top experts"
+  "stepOneTitle": "steponeTitle",
+  "stepOneDec": "SteponeDec",
+  "stepTwoTitle": "stepTwoTitle",
+  "stepTwoDec": "stepTwoDec"
 }
