@@ -8,9 +8,7 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "react-devtools": "react-devtools",
-    "assets:ios": "react-native-asset ./assets/fonts/",
-    "assets:android": "react-native-asset ./assets/fonts/ ./node_modules/react-native-vector-icons/Fonts"
+    "react-devtools": "react-devtools"
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.4.9",
@@ -27,7 +25,6 @@
     "core-js": "^3.30.0",
     "email-validator": "^2.0.4",
     "expo-font": "^11.1.1",
-    "i18n-js": "^4.2.3",
     "moment": "^2.29.4",
     "react": "18.2.0",
     "react-native": "0.71.6",
@@ -55,7 +52,6 @@
     "@babel/runtime": "^7.20.0",
     "@react-native-community/eslint-config": "^3.2.0",
     "@tsconfig/react-native": "^2.0.3",
-    "@types/i18n-js": "^3.8.4",
     "@types/jest": "^29.4.2",
     "@types/react": "^18.0.31",
     "@types/react-native": "^0.71.5",

@@ -53,7 +53,7 @@ const Login = ({handleInputUser, handleLogin}: LoginProps) => {
     if (isValidEmail && isPassword) {
       handleLogin('1');
     } else {
-      Alert.alert('Error! Một hoặc nhiều trường bị lỗi vui lòng thử lại!');
+      Alert.alert('Error! Một hoặc nhiều trường có lỗi vui lòng thử lại!');
     }
   };
 
