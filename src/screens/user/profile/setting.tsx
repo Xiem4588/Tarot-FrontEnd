@@ -2,20 +2,22 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
-import {images, icon} from '../../../assets/constants';
+import {images} from '../../../assets/constants';
 import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
 import Header from '../../../conponents/header';
+import {LanguageSwitcher} from '../../../conponents/LanguageSwitcher';
+import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useTranslation} from 'react-i18next';
+import i18n from '../../../languages/i18n';
 
 type DataProps = {
-  id: string;
   name: string;
   dateOfBirth: string;
   describe: string;
   language: string;
 };
 const DATA: DataProps = {
-  id: '1',
   name: 'Mogwrr Ohnf',
   dateOfBirth: '23/06/1996',
   describe: 'Là một người...',
@@ -23,6 +25,7 @@ const DATA: DataProps = {
 };
 
 const SettingScreen = ({navigation}: any) => {
+  useTranslation();
   return (
     <WrapBgBox>
       <Header navigation={navigation} title="Cài đặt" name="setting" />
@@ -33,39 +36,34 @@ const SettingScreen = ({navigation}: any) => {
           </View>
         </View>
         <View style={styles.paddingHorizontal18}>
-          <Text style={styles.titleBox}>Lịch đã đặt</Text>
+          <Text style={styles.titleBox}>{i18n.t('account')}</Text>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
-            <Text style={styles.textSize16}>Tên</Text>
+            <Text style={styles.textSize16}>{i18n.t('name')}</Text>
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Text style={styles.textSize16}>{DATA.name}</Text>
             </TouchableOpacity>
           </View>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
-            <Text style={styles.textSize16}>Ngày sinh</Text>
+            <Text style={styles.textSize16}>{i18n.t('birth')}</Text>
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Text style={styles.textSize16}>{DATA.dateOfBirth}</Text>
             </TouchableOpacity>
           </View>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
-            <Text style={styles.textSize16}>Mô tả</Text>
+            <Text style={styles.textSize16}>{i18n.t('describe')}</Text>
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Text style={styles.textSize16}>{DATA.describe}</Text>
             </TouchableOpacity>
           </View>
           <Text style={[styles.titleBox, styles.paddingTop30]}>
-            Cài đặt khác
+            {i18n.t('other')}
           </Text>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
-            <Text style={styles.textSize16}>Ngôn ngữ</Text>
-            <TouchableOpacity
-              style={styles.RowAlignItems}
-              onPress={() => navigation.goBack()}>
-              <Text style={styles.textSize16}>{DATA.language}</Text>
-              <Avatar
-                source={icon.iconArrowRight}
-                containerStyle={styles.iconSize16}
-              />
-            </TouchableOpacity>
+            <Text style={styles.textSize16}>{i18n.t('language')}</Text>
+            <View style={styles.RowAlignItems}>
+              <LanguageSwitcher />
+              <MIcon name="chevron-right" size={28} color={'#fff'} />
+            </View>
           </View>
         </View>
         <View style={[styles.alignItems, styles.flexBox]}>
@@ -75,7 +73,7 @@ const SettingScreen = ({navigation}: any) => {
             containerStyle={styles.resizeModeContain}
           />
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Text style={styles.buttonTmpSmWhite05}>Đăng xuất</Text>
+            <Text style={styles.buttonTmpSmWhite05}>{i18n.t('logout')}</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

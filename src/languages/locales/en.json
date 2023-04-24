@@ -1,0 +1,21 @@
+{
+  "greeting": "Hello!",
+  "farewell": "Goodbye!",
+  "expert": "Expert",
+  "login": "Login",
+  "stepOneTitle": "steponeTitle",
+  "stepOneDec": "SteponeDec",
+  "stepTwoTitle": "stepTwoTitle",
+  "stepTwoDec": "stepTwoDec",
+  "language": "Language",
+  "other": "Other",
+  "describe": "Describe",
+  "birth": "Date of birth",
+  "name": "Name",
+  "account": "Account",
+  "logout": "Log out",
+  "logoin": "Login",
+  "setting": "Setting",
+  "save": "Save",
+  "read_all": "Read all"
+}

@@ -2,12 +2,15 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {styles} from '../assets/styles';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useTranslation} from 'react-i18next';
+import i18n from '../languages/i18n';
 interface HeaderProps {
   navigation?: any;
   title?: string;
   name?: string;
 }
 const Header = ({navigation, title, name}: HeaderProps) => {
+  useTranslation();
   return (
     <>
       <View style={styles.paddingTop50Ios15Adroid}>
@@ -34,7 +37,7 @@ const Header = ({navigation, title, name}: HeaderProps) => {
             {name === 'notify' ? (
               <TouchableOpacity onPress={() => {}}>
                 <Text style={[styles.textWhiteGrray, styles.fontSize16]}>
-                  Đọc tất cả
+                  {i18n.t('read_all')}
                 </Text>
               </TouchableOpacity>
             ) : name === 'setting' ? (
@@ -45,7 +48,7 @@ const Header = ({navigation, title, name}: HeaderProps) => {
                     styles.fontSize18,
                     styles.fontBold600,
                   ]}>
-                  Lưu
+                  {i18n.t('save')}
                 </Text>
               </TouchableOpacity>
             ) : name === 'booking' ? (

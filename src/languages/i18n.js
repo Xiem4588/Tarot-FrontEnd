@@ -3,8 +3,8 @@ import {initReactI18next} from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 // import resources
-import translationEN from './en.json';
-import translationVI from './vi.json';
+import translationEN from './locales/en.json';
+import translationVI from './locales/vi.json';
 
 const resources = {
   en: {

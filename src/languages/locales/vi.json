@@ -1,0 +1,21 @@
+{
+  "greeting": "Xin chao!",
+  "farewell": "Tam biet!",
+  "expert": "Chuyên gia",
+  "login": "Đăng nhập",
+  "stepOneTitle": "Gặp gỡ những chuyên gia hàng đầu",
+  "stepOneDec": "Thể hiện mong muốn sâu sắc nhất của bạn. Điều gì sẽ đến với bạn?",
+  "stepTwoTitle": "Nội dung các lá bài đa dạng",
+  "stepTwoDec": "Thể hiện mong muốn sâu sắc nhất của bạn. Điều gì sẽ đến với bạn?",
+  "language": "Ngôn ngữ",
+  "other": "Cài đặt khác",
+  "describe": "Mô tả",
+  "birth": "Ngày sinh",
+  "name": "Tên",
+  "account": "Tài khoản",
+  "logout": "Đăng xuất",
+  "logoin": "Đăng nhập",
+  "setting": "Cài đặt",
+  "save": "Lưu",
+  "read_all": "Đọc tất cả"
+}
