@@ -70,5 +70,6 @@ Map project
 // Cấu hình multi language cho ứng dụng dùng thư viện i18next cần chú ý
       * Với typescript thì file setup của i18n phải là i18n.js chứ không phải là đuôi .ts hay .tsx thì sẽ bị lỗi
 
-
+// Một số trường hợp khi khởi chạy trên android bị lỗi khi build ko gọi đc jvascrpt thì chạy lệnh sau:
+      * mở Command Prompt hoặc Terminal trên máy tính của mình và chạy lệnh npx react-native start từ thư mục gốc của dự án React Native của bạn.
 ```

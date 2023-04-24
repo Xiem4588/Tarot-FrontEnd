@@ -4,8 +4,8 @@
 
 import React from 'react';
 import {View, Image, Text} from 'react-native';
-import {styles} from '../../../assets/styles';
-import {images} from '../../../assets/constants';
+import {styles} from '../../assets/styles';
+import {images} from '../../assets/constants';
 
 const StepThree = () => {
   return (

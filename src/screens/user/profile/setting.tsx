@@ -2,8 +2,8 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
-import {images, icon} from '../../../../assets/constants';
-import {styles} from '../../../../assets/styles';
+import {images, icon} from '../../../assets/constants';
+import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
 import Header from '../../../conponents/header';
 

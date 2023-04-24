@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
-import {icon, images} from '../../../../assets/constants';
-import {styles} from '../../../../assets/styles';
+import {icon, images} from '../../../assets/constants';
+import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
 import Carousel from 'react-native-snap-carousel';
 import CalendarPicker from 'react-native-calendar-picker';

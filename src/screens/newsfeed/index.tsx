@@ -1,7 +1,7 @@
 import React from 'react';
 import {Tab, TabView} from '@rneui/themed';
 import {TouchableOpacity, View} from 'react-native';
-import {styles} from '../../../assets/styles';
+import {styles} from '../../assets/styles';
 import WrapBgBox from '../../conponents/wrapBgBox';
 import ScreenCommunity from './community';
 import ScreenExperts from './experts';

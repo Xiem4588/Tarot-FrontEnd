@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import Login from './login';
 import Register from './register';
 import MyProfile from './profile';
-import {styles} from '../../../assets/styles';
+import {styles} from '../../assets/styles';
 
 const AccountScreen = ({navigation}: any) => {
   //

@@ -8,8 +8,8 @@ import {
   StyleSheet,
   Image,
 } from 'react-native';
-import {styles} from '../../../../assets/styles';
-import {images} from '../../../../assets/constants';
+import {styles} from '../../../assets/styles';
+import {images} from '../../../assets/constants';
 import {ScrollView} from 'react-native-gesture-handler';
 import IconsMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 

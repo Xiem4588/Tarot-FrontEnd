@@ -1,8 +1,8 @@
 import React from 'react';
 import {ImageBackground, StatusBar} from 'react-native';
-import {styles} from '../../assets/styles';
+import {styles} from '../assets/styles';
 import type {PropsWithChildren} from 'react';
-import {images} from '../../assets/constants';
+import {images} from '../assets/constants';
 
 const WrapBgBox = ({children}: PropsWithChildren) => {
   return (

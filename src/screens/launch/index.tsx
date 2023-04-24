@@ -5,7 +5,7 @@
 import React, {useRef, useState} from 'react';
 import {StatusBar, View, Text, TouchableHighlight} from 'react-native';
 import Swiper from 'react-native-swiper';
-import {styles} from '../../../assets/styles';
+import {styles} from '../../assets/styles';
 import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import StepOne from './stepOne';
 import StepTwo from './stepTwo';

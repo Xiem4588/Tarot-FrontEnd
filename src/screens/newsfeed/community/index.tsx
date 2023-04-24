@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Dimensions, View} from 'react-native';
-import {styles} from '../../../../assets/styles';
+import {styles} from '../../../assets/styles';
 import ModalComment from './modal';
 import Post from './post';
 

@@ -6,7 +6,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {View, Button, Alert} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import WrapBgBox from '../conponents/wrapBgBox';
-import {icon, colors} from '../../assets/constants';
+import {icon, colors} from '../assets/constants';
 import {
   NewsFeed,
   User,
@@ -20,7 +20,7 @@ import {
   Launch,
 } from '../screens';
 
-import {styles} from '../../assets/styles';
+import {styles} from '../assets/styles';
 import {Text} from 'react-native-elements';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
@@ -132,7 +132,7 @@ const App = () => {
   useEffect(() => {
     async function loadFont() {
       await Font.loadAsync({
-        Montserrat: require('../../assets/fonts/Montserrat-VariableFont_wght.ttf'),
+        Montserrat: require('../../src/assets/fonts/Montserrat-VariableFont_wght.ttf'),
       });
       setFontLoaded(true);
     }

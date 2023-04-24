@@ -8,10 +8,10 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import {styles} from '../../../../assets/styles';
+import {styles} from '../../../assets/styles';
 import {ScrollView} from 'react-native-gesture-handler';
 import CommentComponent from './comment';
-import {images} from '../../../../assets/constants';
+import {images} from '../../../assets/constants';
 import IconsMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import GestureRecognizer from 'react-native-swipe-gestures';
 

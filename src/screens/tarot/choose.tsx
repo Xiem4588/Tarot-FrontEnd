@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, Dimensions} from 'react-native';
 import {Image} from 'react-native-elements';
-import {images} from '../../../assets/constants';
-import {styles} from '../../../assets/styles';
+import {images} from '../../assets/constants';
+import {styles} from '../../assets/styles';
 import WrapBgBox from '../../conponents/wrapBgBox';
 import Header from '../../conponents/header';
 import moment from 'moment';

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {styles} from '../../assets/styles';
+import {styles} from '../assets/styles';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 interface HeaderProps {
   navigation?: any;

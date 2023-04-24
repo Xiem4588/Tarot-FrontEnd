@@ -9,8 +9,8 @@ import {
 import moment from 'moment';
 import {Avatar, LinearProgress} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
-import {images, icon} from '../../../../assets/constants';
-import {styles} from '../../../../assets/styles';
+import {images, icon} from '../../../assets/constants';
+import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
