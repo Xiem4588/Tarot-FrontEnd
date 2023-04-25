@@ -202,7 +202,9 @@ const ForgotPassword = ({navigation}: any) => {
               <TouchableOpacity
                 onPress={handleConfirm}
                 style={
-                  selectedButton ? styles.buttonTmp : styles.buttonFullDisable
+                  seconds === 0 && selectedButton
+                    ? styles.buttonTmp
+                    : styles.buttonFullDisable
                 }>
                 <Text style={styles.buttonText}>{i18n.t('confirm')}</Text>
               </TouchableOpacity>
@@ -278,11 +280,11 @@ const ForgotPassword = ({navigation}: any) => {
               </View>
               <View style={styles.marginTopAuto}>
                 <TouchableOpacity
-                  onPress={handleNext}
+                  onPress={() => navigation.navigate('MainNav')}
                   style={
                     selectedButton ? styles.buttonTmp : styles.buttonFullDisable
                   }>
-                  <Text style={styles.buttonText}>{i18n.t('next')}</Text>
+                  <Text style={styles.buttonText}>{i18n.t('confirm')}</Text>
                 </TouchableOpacity>
               </View>
             </View>
