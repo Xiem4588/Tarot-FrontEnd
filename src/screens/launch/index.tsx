@@ -10,6 +10,7 @@ import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import StepOne from './stepOne';
 import StepTwo from './stepTwo';
 import StepThree from './stepThree';
+import {LanguageSwitcher} from '../../conponents/LanguageSwitcher';
 
 MIcon.loadFont();
 
@@ -69,7 +70,9 @@ const LaunchScreen = ({navigation}: any) => {
         <StepTwo />
         <StepThree />
       </Swiper>
-
+      <View style={styles.hidden}>
+        <LanguageSwitcher />
+      </View>
       {isLastScreen ? (
         <View style={styles.BoxButtonNext}>
           <TouchableHighlight onPress={() => navigation.navigate('MainNav')}>

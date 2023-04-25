@@ -55,7 +55,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
   };
   // check all to submit
   const handlePress = () => {
-    if (isValidEmail && isPassword) {
+    if (isValidEmail && isPassword && selectedButton) {
       handleInputUser?.();
     } else {
       Alert.alert('Error! Một hoặc nhiều trường có lỗi vui lòng thử lại!');

@@ -31,6 +31,7 @@ const AccountScreen = ({navigation}: any) => {
       {isInputUser ? (
         isLogin ? (
           <Login
+            navigation={navigation}
             handleInputUser={handleInputUser}
             handleLogin={(id: string) => handleLogin(id)}
           />

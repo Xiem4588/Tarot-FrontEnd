@@ -28,7 +28,11 @@ const SettingScreen = ({navigation}: any) => {
   useTranslation();
   return (
     <WrapBgBox>
-      <Header navigation={navigation} title="Cài đặt" name="setting" />
+      <Header
+        navigation={navigation}
+        title={i18n.t('setting')}
+        name="setting"
+      />
       <ScrollView>
         <View style={[styles.alignItems, styles.paddingVertical30]}>
           <View style={[styles.avataProfileEllipse]}>
@@ -39,20 +43,29 @@ const SettingScreen = ({navigation}: any) => {
           <Text style={styles.titleBox}>{i18n.t('account')}</Text>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
             <Text style={styles.textSize16}>{i18n.t('name')}</Text>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            <TouchableOpacity
+              style={styles.RowAlignItems}
+              onPress={() => navigation.goBack()}>
               <Text style={styles.textSize16}>{DATA.name}</Text>
+              <MIcon name="chevron-right" size={28} color={'#fff'} />
             </TouchableOpacity>
           </View>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
             <Text style={styles.textSize16}>{i18n.t('birth')}</Text>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            <TouchableOpacity
+              style={styles.RowAlignItems}
+              onPress={() => navigation.goBack()}>
               <Text style={styles.textSize16}>{DATA.dateOfBirth}</Text>
+              <MIcon name="chevron-right" size={28} color={'#fff'} />
             </TouchableOpacity>
           </View>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
             <Text style={styles.textSize16}>{i18n.t('describe')}</Text>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            <TouchableOpacity
+              style={styles.RowAlignItems}
+              onPress={() => navigation.goBack()}>
               <Text style={styles.textSize16}>{DATA.describe}</Text>
+              <MIcon name="chevron-right" size={28} color={'#fff'} />
             </TouchableOpacity>
           </View>
           <Text style={[styles.titleBox, styles.paddingTop30]}>

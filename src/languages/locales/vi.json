@@ -17,5 +17,10 @@
   "logoin": "Đăng nhập",
   "setting": "Cài đặt",
   "save": "Lưu",
-  "read_all": "Đọc tất cả"
+  "read_all": "Đọc tất cả",
+  "forgotpassword": "Quên mật khẩu",
+  "next": "Tiếp tục",
+  "otpfromsms": "Nhận OTP từ SMS:",
+  "otpfromemail": "Nhận OTP từ Email:",
+  "confirm": "Xác nhận"
 }

@@ -218,6 +218,15 @@ export const styles = StyleSheet.create({
     borderRadius: 36,
     backgroundColor: '#F2F2F2',
   },
+  inputOtp: {
+    width: 60,
+    height: 50,
+    paddingHorizontal: 16,
+    marginHorizontal: 10,
+    borderWidth: 0,
+    borderRadius: 12,
+    backgroundColor: '#F2F2F2',
+  },
   inputForm: {
     height: 42,
     paddingHorizontal: 36,
@@ -263,6 +272,14 @@ export const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: 16,
+  },
+  btnTmpAutoLeft: {
+    padding: 12,
+    paddingBottom: 8,
+    minHeight: 56,
+    backgroundColor: '#FFF',
+    alignItems: 'center',
     borderRadius: 16,
   },
   buttonText: {
@@ -412,6 +429,9 @@ export const styles = StyleSheet.create({
   marginTop30: {
     marginTop: 30,
   },
+  marginTop50: {
+    marginTop: 50,
+  },
   marginTop100P: {
     marginTop: '100%',
   },
@@ -429,6 +449,9 @@ export const styles = StyleSheet.create({
   },
   marginBottom10: {
     marginBottom: 10,
+  },
+  marginBottom5: {
+    marginBottom: 5,
   },
   marginBottom15: {
     marginBottom: 15,
@@ -749,6 +772,10 @@ export const styles = StyleSheet.create({
     color: '#F78B73',
     fontFamily: 'Montserrat',
   },
+  colorRed: {
+    color: '#FF2F2F',
+    fontFamily: 'Montserrat',
+  },
   fonsize10White: {
     fontSize: 10,
     color: '#FFFFFF',
@@ -762,6 +789,11 @@ export const styles = StyleSheet.create({
   fonsize14White: {
     fontSize: 14,
     lineHeight: 18,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat',
+  },
+  fonsize16White: {
+    fontSize: 16,
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
   },

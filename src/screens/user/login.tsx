@@ -20,9 +20,10 @@ import validator from 'email-validator';
 interface LoginProps {
   handleInputUser: () => void;
   handleLogin: (id: string) => void;
+  navigation?: any;
 }
 
-const Login = ({handleInputUser, handleLogin}: LoginProps) => {
+const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
   // check input email
   const [isEmail, setEmail] = useState('');
   const [isValidEmail, setIsValidEmail] = useState('');
@@ -141,7 +142,7 @@ const Login = ({handleInputUser, handleLogin}: LoginProps) => {
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={handleInputUser}
+                onPress={() => navigation.navigate('forgot')}
                 style={[styles.RowAlignItems, styles.marginTop20]}>
                 <Text style={[styles.colorOrange, styles.fontBold600]}>
                   Bạn quên mật khẩu?

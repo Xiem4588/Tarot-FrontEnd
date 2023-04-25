@@ -17,5 +17,10 @@
   "logoin": "Login",
   "setting": "Setting",
   "save": "Save",
-  "read_all": "Read all"
+  "read_all": "Read all",
+  "forgotpassword": "For got password",
+  "next": "Next",
+  "otpfromsms": "Enter OTP from SMS",
+  "otpfromemail": "Enter OTP from Email:",
+  "confirm": "Confirm"
 }

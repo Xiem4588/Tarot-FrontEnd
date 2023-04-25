@@ -6,7 +6,6 @@ import React from 'react';
 import {View, Image, Text} from 'react-native';
 import {styles} from '../../assets/styles';
 import {images} from '../../assets/constants';
-import {LanguageSwitcher} from '../../conponents/LanguageSwitcher';
 import {useTranslation} from 'react-i18next';
 import i18n from '../../languages/i18n';
 
@@ -28,7 +27,6 @@ const StepOne = () => {
             {i18n.t('stepOneDec')}
           </Text>
         </View>
-        <LanguageSwitcher />
       </View>
     </>
   );

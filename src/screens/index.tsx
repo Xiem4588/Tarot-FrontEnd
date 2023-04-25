@@ -1,3 +1,4 @@
+import Launch from './launch';
 import NewsFeed from './newsfeed';
 import Booking from './newsfeed/experts/booking';
 import Payment from './newsfeed/experts/payment';
@@ -8,7 +9,7 @@ import User from './user';
 import Profile from './user/profile';
 import Notify from './user/profile/notify';
 import Setting from './user/profile/setting';
-import Launch from './launch';
+import Forgot from './user/profile/forgot';
 
 export {
   NewsFeed,
@@ -22,4 +23,5 @@ export {
   Notify,
   Launch,
   Profile,
+  Forgot,
 };
