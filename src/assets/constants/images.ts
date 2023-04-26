@@ -20,4 +20,5 @@ export default {
   imgHandDirection: require('../images/imgHandDirection.png'),
   imageLoginTop: require('../images/imageLoginTop.png'),
   visuaforgotpassword: require('../images/visuaforgotpassword.png'),
+  iconContinue: require('../images/iconContinue.png'),
 };

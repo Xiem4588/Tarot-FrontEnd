@@ -18,7 +18,7 @@ import {
   Setting,
   Notify,
   Launch,
-  Forgot
+  ForgotPassword,
 } from '../screens';
 
 import {styles} from '../assets/styles';
@@ -159,7 +159,7 @@ const App = () => {
               <Stack.Screen name="booking" component={Booking} />
               <Stack.Screen name="setting" component={Setting} />
               <Stack.Screen name="notify" component={Notify} />
-              <Stack.Screen name="forgot" component={Forgot} />
+              <Stack.Screen name="forgotPassword" component={ForgotPassword} />
             </Stack.Group>
             <Stack.Screen
               options={{

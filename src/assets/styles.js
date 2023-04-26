@@ -84,6 +84,9 @@ export const styles = StyleSheet.create({
   backgBlack: {
     backgroundColor: '#000',
   },
+  backgBlackOpacity: {
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  },
   backgWhite: {
     backgroundColor: '#fff',
   },
@@ -177,6 +180,9 @@ export const styles = StyleSheet.create({
   },
   padding18: {
     padding: 18,
+  },
+  padding24: {
+    padding: 24,
   },
   alignCenter: {
     alignItems: 'center',
@@ -1039,6 +1045,11 @@ export const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 10,
     flex: 1,
+  },
+  boxWhiteRadius40: {
+    backgroundColor: '#FFFFFF',
+    padding: 32,
+    borderRadius: 40,
   },
   titleFlatList: {
     fontSize: 18,
