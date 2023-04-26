@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -66,7 +66,7 @@ const ForgotPassword = ({navigation}: any) => {
   };
 
   // Input enter OTP
-  const [otp, setOtp] = useState(['', '', '', '']);
+  const [otp, setOtp] = useState(['', '', '', '', '']);
   const handleOtpChange = (index: number, value: string) => {
     const newOtp = [...otp];
     newOtp[index] = value;
@@ -164,7 +164,7 @@ const ForgotPassword = ({navigation}: any) => {
             </View>
           ) : isNewPass ? (
             <View style={[styles.marginTop50]}>
-              <View style={styles.marginBottom20}>
+              <View>
                 <Text style={[styles.fonsize16White]}>
                   OTP đã được gửi tới{' '}
                   <Text style={styles.fontBold}>
@@ -172,7 +172,12 @@ const ForgotPassword = ({navigation}: any) => {
                   </Text>
                 </Text>
               </View>
-              <View style={[styles.RowCenterBetween]}>
+              <View
+                style={[
+                  styles.Row,
+                  styles.alignItems,
+                  styles.marginVertical34,
+                ]}>
                 {otp.map((item, index) => (
                   <TextInput
                     key={index}
@@ -185,11 +190,7 @@ const ForgotPassword = ({navigation}: any) => {
                 ))}
               </View>
               <View
-                style={[
-                  styles.Row,
-                  styles.alignItems,
-                  styles.marginVertical34,
-                ]}>
+                style={[styles.Row, styles.alignItems, styles.marginBottom30]}>
                 {seconds === 0 ? (
                   <Text style={styles.fonsize16White}>Đã hết thời gian</Text>
                 ) : (

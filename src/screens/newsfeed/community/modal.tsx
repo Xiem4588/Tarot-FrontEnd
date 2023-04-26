@@ -119,13 +119,15 @@ const ModalComment = ({isID, isModalVisible, onClick}: ModalCommentProps) => {
             </View>
             <View style={styles.marginLeft10}>
               <TouchableOpacity style={[styles.btnSend]} onPress={() => {}}>
-                <IconsMateria name="send" size={24} color={'#fff'} />
+                <View style={styles.transformX3}>
+                  <IconsMateria name="send" size={26} color={'#fff'} />
+                </View>
               </TouchableOpacity>
             </View>
           </View>
         </KeyboardAvoidingView>
       </GestureRecognizer>
-      <View style={styles.spacer} />
+      {Platform.OS === 'ios' ? <View style={styles.spacer} /> : ''}
     </Modal>
   );
 };

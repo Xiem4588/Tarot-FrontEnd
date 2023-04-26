@@ -8,7 +8,7 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ScreenExperts = ({navigation}: any) => {
   return (
-    <View style={[styles.paddingTop80]}>
+    <View style={[styles.paddingTop90]}>
       <Text />
       <ScrollView>
         <View style={[styles.paddingHorizontal18]}>

@@ -36,7 +36,7 @@ const Post = ({handleScroll, IdAuthor}: ModalCommentProps) => {
             style={[
               styles.alignCenter,
               styles.paddingHorizontal18,
-              styles.paddingTop80,
+              styles.paddingTop90,
             ]}>
             <View style={[styles.alignCenter, styles.paddingVertical10]}>
               <Text style={styles.fonsize24White}>{item.card}</Text>

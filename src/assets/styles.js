@@ -144,10 +144,24 @@ export const styles = StyleSheet.create({
     paddingTop: height >= 700 ? 40 : Platform.OS === 'ios' ? 20 : 0,
   },
   paddingTop50Ios15Adroid: {
-    paddingTop: height >= 700 ? 50 : Platform.OS === 'ios' ? 25 : 15,
+    paddingTop:
+      height >= 700
+        ? Platform.OS === 'ios'
+          ? 50
+          : 25
+        : Platform.OS === 'ios'
+        ? 25
+        : 15,
   },
-  paddingTop80: {
-    paddingTop: height >= 700 ? 90 : Platform.OS === 'ios' ? 70 : 55,
+  paddingTop90: {
+    paddingTop:
+      height >= 700
+        ? Platform.OS === 'ios'
+          ? 90
+          : 70
+        : Platform.OS === 'ios'
+        ? 70
+        : 55,
   },
   paddingVertical30: {
     paddingVertical: 30,
@@ -219,10 +233,10 @@ export const styles = StyleSheet.create({
     backgroundColor: '#F2F2F2',
   },
   inputOtp: {
-    width: 60,
-    height: 50,
+    // width: 50,
+    // height: 50,
     paddingHorizontal: 16,
-    marginHorizontal: 10,
+    marginHorizontal: 7,
     borderWidth: 0,
     borderRadius: 12,
     backgroundColor: '#F2F2F2',
@@ -285,7 +299,7 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: colors.defaultBlack,
     fontSize: 16,
-    fontWeight: 600,
+    fontWeight: 700,
     fontFamily: 'Montserrat',
   },
   buttonClose: {
@@ -295,14 +309,14 @@ export const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
   },
   avatarLogin: {
-    paddingTop: height >= 700 ? 50 : 15,
+    paddingTop: height >= 700 ? (Platform.OS === 'ios' ? 50 : 25) : 15,
     backgroundColor: '#A9B0F5',
     height: avatarLoginHeight,
     position: 'relative',
     marginBottom: 100,
   },
   avatarProfile: {
-    paddingTop: height >= 700 ? 40 : 15,
+    paddingTop: height >= 700 ? (Platform.OS === 'ios' ? 40 : 25) : 15,
     backgroundColor: '#A9B0F5',
     position: 'relative',
     paddingBottom: 20,
@@ -971,7 +985,14 @@ export const styles = StyleSheet.create({
   BgTransparent: {
     backgroundColor: 'transparent',
     position: 'absolute',
-    top: height >= 700 ? 30 : Platform.OS === 'ios' ? 15 : 0,
+    top:
+      height >= 700
+        ? Platform.OS === 'ios'
+          ? 30
+          : 10
+        : Platform.OS === 'ios'
+        ? 15
+        : 0,
     zIndex: 9,
     width: '80%',
     paddingVertical: 12,
@@ -1176,6 +1197,10 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    transform: [{rotate: '-30deg'}],
+  },
+  transformX3: {
+    transform: [{translateX: 3}],
   },
   inputTheme2: {
     height: 50,
