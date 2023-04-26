@@ -140,7 +140,7 @@ const ForgotStepThree = ({navigation}: ForgotProps) => {
           <Text style={styles.buttonText}>{i18n.t('confirm')}</Text>
         </TouchableOpacity>
       </View>
-      <Modal transparent={true} visible={isModalContinue} animationType="slide">
+      <Modal transparent={true} visible={isModalContinue} animationType="fade">
         <View
           style={[styles.padding24, styles.flexBox, styles.backgBlackOpacity]}>
           <View style={[styles.alignItems, styles.flexBox, styles.padding18]}>
