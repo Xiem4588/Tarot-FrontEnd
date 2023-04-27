@@ -13,9 +13,9 @@ import {styles} from '../../assets/styles';
 import {stylesScreen} from './styles';
 import {images} from '../../assets/constants';
 import {ScrollView} from 'react-native-gesture-handler';
-import WrapBgBox from '../../conponents/wrapBgBox';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
+import i18n from '../../languages/i18n';
 interface LoginProps {
   handleInputUser: () => void;
   handleLogin: (id: string) => void;
@@ -58,7 +58,7 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
   };
 
   return (
-    <WrapBgBox>
+    <>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={[styles.flexBox]}>
@@ -73,7 +73,7 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
                   styles.fontBold,
                   styles.marginBottom30,
                 ]}>
-                Đăng nhập
+                {i18n.t('login')}
               </Text>
             </View>
             <View style={styles.inputContainer}>
@@ -91,7 +91,7 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
               />
               {isValidEmail === 'false' ? (
                 <Text style={[styles.colorOrange, styles.marginTop5]}>
-                  Email chưa đúng
+                  {i18n.t('errorEmail')}
                 </Text>
               ) : (
                 ''
@@ -122,7 +122,7 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
               </TouchableOpacity>
               {isCheckPasswordValid === 'false' ? (
                 <Text style={[styles.colorOrange, styles.marginTop5]}>
-                  Password phải lớn hơn 8 ký tự
+                  {i18n.t('errorPass')}
                 </Text>
               ) : (
                 ''
@@ -181,7 +181,7 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
-    </WrapBgBox>
+    </>
   );
 };
 

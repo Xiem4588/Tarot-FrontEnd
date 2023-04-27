@@ -85,7 +85,7 @@ const SettingScreen = ({navigation}: any) => {
             size={150}
             containerStyle={styles.resizeModeContain}
           />
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+          <TouchableOpacity onPress={() => navigation.navigate('launch')}>
             <Text style={styles.buttonTmpSmWhite05}>{i18n.t('logout')}</Text>
           </TouchableOpacity>
         </View>

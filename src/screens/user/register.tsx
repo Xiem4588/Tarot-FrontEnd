@@ -13,9 +13,9 @@ import {styles} from '../../assets/styles';
 import {stylesScreen} from './styles';
 import {images, icon} from '../../assets/constants';
 import {ScrollView} from 'react-native-gesture-handler';
-import WrapBgBox from '../../conponents/wrapBgBox';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
+import i18n from '../../languages/i18n';
 interface RegisterProps {
   navigation?: any;
   handleInputUser?: () => void;
@@ -62,7 +62,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
   };
 
   return (
-    <WrapBgBox>
+    <>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={[styles.flexBox]}>
@@ -77,7 +77,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
                   styles.fontBold,
                   styles.marginBottom30,
                 ]}>
-                Đăng ký
+                {i18n.t('register')}
               </Text>
             </View>
             <View style={styles.inputContainer}>
@@ -195,7 +195,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
                     ? styles.buttonTmp
                     : styles.buttonFullDisable
                 }>
-                <Text style={styles.buttonText}>Đăng ký</Text>
+                <Text style={styles.buttonText}>{i18n.t('register')}</Text>
               </TouchableOpacity>
             </View>
             <View style={[styles.alignCenter, styles.marginVertical34]}>
@@ -233,7 +233,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
-    </WrapBgBox>
+    </>
   );
 };
 

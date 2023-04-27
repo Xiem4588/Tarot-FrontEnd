@@ -150,7 +150,7 @@ export const styles = StyleSheet.create({
     paddingTop:
       height >= 700
         ? Platform.OS === 'ios'
-          ? 50
+          ? 60
           : 25
         : Platform.OS === 'ios'
         ? 25
@@ -239,13 +239,14 @@ export const styles = StyleSheet.create({
     backgroundColor: '#F2F2F2',
   },
   inputOtp: {
-    // width: 50,
-    // height: 50,
-    paddingHorizontal: 16,
-    marginHorizontal: 7,
-    borderWidth: 0,
-    borderRadius: 12,
     backgroundColor: '#F2F2F2',
+    paddingVertical: 14,
+    width: 55,
+    textAlign: 'center',
+    marginHorizontal: 7,
+    borderRadius: 12,
+    fontSize: 24,
+    fontWeight: 'bold',
   },
   inputForm: {
     height: 42,
@@ -376,6 +377,10 @@ export const styles = StyleSheet.create({
   positionAbsoluteTop: {
     position: 'absolute',
     zIndex: 2,
+  },
+  zindexRelative9: {
+    position: 'relative',
+    zIndex: 9,
   },
   buttonTmpSm: {
     backgroundColor: 'rgba(0, 0, 0, 0.4)',

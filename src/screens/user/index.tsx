@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {View} from 'react-native';
 import Login from './login';
 import Register from './register';
 import MyProfile from './profile';
-import {styles} from '../../assets/styles';
+import WrapBgBox from '../../conponents/wrapBgBox';
 
 const AccountScreen = ({navigation}: any) => {
   //
@@ -27,7 +26,7 @@ const AccountScreen = ({navigation}: any) => {
   }, [isUserId]);
 
   return (
-    <View style={styles.bodyScreen}>
+    <WrapBgBox>
       {isInputUser ? (
         isLogin ? (
           <Login
@@ -41,7 +40,7 @@ const AccountScreen = ({navigation}: any) => {
       ) : (
         <Register handleInputUser={handleInputUser} />
       )}
-    </View>
+    </WrapBgBox>
   );
 };
 

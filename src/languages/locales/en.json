@@ -20,7 +20,11 @@
   "read_all": "Read all",
   "forgotpassword": "For got password",
   "next": "Next",
+  "nextmore": "Next step",
   "otpfromsms": "Enter OTP from SMS",
   "otpfromemail": "Enter OTP from Email:",
-  "confirm": "Confirm"
+  "confirm": "Confirm",
+  "register": "Register",
+  "errorEmail": "Error email",
+  "errorPass": "Password must be more than 8 characters"
 }

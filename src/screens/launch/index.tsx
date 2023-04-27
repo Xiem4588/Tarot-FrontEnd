@@ -3,7 +3,13 @@
  */
 
 import React, {useRef, useState} from 'react';
-import {StatusBar, View, Text, TouchableHighlight} from 'react-native';
+import {
+  StatusBar,
+  View,
+  Text,
+  // TouchableHighlight,
+  TouchableOpacity,
+} from 'react-native';
 import Swiper from 'react-native-swiper';
 import {styles} from '../../assets/styles';
 import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -11,6 +17,8 @@ import StepOne from './stepOne';
 import StepTwo from './stepTwo';
 import StepThree from './stepThree';
 import {LanguageSwitcher} from '../../conponents/LanguageSwitcher';
+import {useTranslation} from 'react-i18next';
+import i18n from '../../languages/i18n';
 
 MIcon.loadFont();
 
@@ -43,6 +51,7 @@ const CustomPagination = (
 };
 
 const LaunchScreen = ({navigation}: any) => {
+  useTranslation();
   const [isLastScreen, setIsLastScreen] = useState(false);
   const swiperRef = useRef<Swiper>(null);
   const handleNext = () => {
@@ -59,6 +68,9 @@ const LaunchScreen = ({navigation}: any) => {
 
   return (
     <>
+      <View style={styles.hidden}>
+        <LanguageSwitcher />
+      </View>
       <StatusBar barStyle="light-content" />
       <Swiper
         loop={false}
@@ -70,12 +82,9 @@ const LaunchScreen = ({navigation}: any) => {
         <StepTwo />
         <StepThree />
       </Swiper>
-      <View style={styles.hidden}>
-        <LanguageSwitcher />
-      </View>
       {isLastScreen ? (
         <View style={styles.BoxButtonNext}>
-          <TouchableHighlight onPress={() => navigation.navigate('MainNav')}>
+          <TouchableOpacity onPress={() => navigation.navigate('MainNav')}>
             <View style={styles.buttonNext}>
               <Text
                 style={[
@@ -83,17 +92,17 @@ const LaunchScreen = ({navigation}: any) => {
                   styles.fontBold,
                   styles.colorBlack,
                 ]}>
-                Đăng ký
+                {i18n.t('register')}
               </Text>
               <Text style={styles.IconAbs}>
                 <MIcon name="chevron-right" size={22} color={'#000'} />
               </Text>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
       ) : (
         <View style={styles.BoxButtonNext}>
-          <TouchableHighlight onPress={handleNext}>
+          <TouchableOpacity onPress={handleNext}>
             <View style={styles.buttonNext}>
               <Text
                 style={[
@@ -101,13 +110,13 @@ const LaunchScreen = ({navigation}: any) => {
                   styles.fontBold,
                   styles.colorBlack,
                 ]}>
-                Tiếp theo
+                {i18n.t('nextmore')}
               </Text>
               <Text style={styles.IconAbs}>
                 <MIcon name="chevron-right" size={22} color={'#000'} />
               </Text>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
       )}
     </>

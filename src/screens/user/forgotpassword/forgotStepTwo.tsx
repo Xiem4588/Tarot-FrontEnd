@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {RefObject, createRef, useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import {styles} from '../../../assets/styles';
 import {useTranslation} from 'react-i18next';
@@ -26,12 +26,16 @@ const ForgotStepTwo = ({selectedButton, handleConfirm}: ForgotProps) => {
   const hiddenPhone = prefixPhone + '*****' + suffixPhone;
 
   // Input enter OTP
-  const [otp, setOtp] = useState(['', '', '', '', '']);
+  const [isOTP, setOTP] = useState(['', '', '', '', '']);
   const handleOtpChange = (index: number, value: string) => {
-    const newOtp = [...otp];
+    const newOtp = [...isOTP];
     newOtp[index] = value;
-    setOtp(newOtp);
+    setOTP(newOtp);
   };
+  const refs = isOTP.reduce<RefObject<TextInput>[]>(
+    (acc, _val) => [...acc, createRef<TextInput>()],
+    [],
+  );
 
   // thoi gian dem nguoc
   const [seconds, setSeconds] = useState(60);
@@ -58,7 +62,7 @@ const ForgotStepTwo = ({selectedButton, handleConfirm}: ForgotProps) => {
         </Text>
       </View>
       <View style={[styles.Row, styles.alignItems, styles.marginVertical34]}>
-        {otp.map((item, index) => (
+        {isOTP.map((item, index) => (
           <TextInput
             key={index}
             style={styles.inputOtp}
@@ -66,6 +70,17 @@ const ForgotStepTwo = ({selectedButton, handleConfirm}: ForgotProps) => {
             onChangeText={value => handleOtpChange(index, value)}
             value={item}
             keyboardType="numeric"
+            ref={refs[index]}
+            onKeyPress={({nativeEvent}) => {
+              if (nativeEvent.key === 'Backspace' && index !== 0) {
+                refs[index - 1].current?.focus();
+              } else if (
+                nativeEvent.key !== 'Backspace' &&
+                index !== isOTP.length - 1
+              ) {
+                refs[index + 1].current?.focus();
+              }
+            }}
           />
         ))}
       </View>

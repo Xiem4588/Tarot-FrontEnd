@@ -20,7 +20,11 @@
   "read_all": "Đọc tất cả",
   "forgotpassword": "Quên mật khẩu",
   "next": "Tiếp tục",
+  "nextmore": "Tiếp theo",
   "otpfromsms": "Nhận OTP từ SMS:",
   "otpfromemail": "Nhận OTP từ Email:",
-  "confirm": "Xác nhận"
+  "confirm": "Xác nhận",
+  "register": "Đăng ký",
+  "errorEmail": "Email chưa đúng",
+  "errorPass": "Password phải lớn hơn 8 ký tự"
 }

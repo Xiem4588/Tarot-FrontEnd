@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Alert, Text} from 'react-native';
+import {View, Text, TouchableHighlight} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {styles} from '../assets/styles';
@@ -16,12 +16,16 @@ export const LanguageSwitcher = () => {
   const changeLanguage = async (language: string) => {
     try {
       if (language === 'en') {
-        await AsyncStorage.setItem('language', language);
+        await AsyncStorage.setItem('language', 'en');
         i18n.changeLanguage('en');
         setLanguage(false);
-      } else {
-        await AsyncStorage.setItem('language', language);
+      } else if (language === 'vi') {
+        await AsyncStorage.setItem('language', 'vi');
         i18n.changeLanguage('vi');
+        setLanguage(true);
+      } else {
+        await AsyncStorage.setItem('language', 'en');
+        i18n.changeLanguage('en');
         setLanguage(true);
       }
     } catch (e) {
@@ -35,11 +39,15 @@ export const LanguageSwitcher = () => {
       const language: any = await AsyncStorage.getItem('language');
       // Alert.alert(language);
       if (!language) {
-        if (defaultLanguage !== 'vi') {
+        if (defaultLanguage === 'vi') {
           // Alert.alert(defaultLanguage);
           await AsyncStorage.setItem('language', 'vi');
           i18n.changeLanguage('vi');
           setLanguage(true);
+        } else {
+          await AsyncStorage.setItem('language', 'en');
+          i18n.changeLanguage('en');
+          setLanguage(false);
         }
       } else {
         try {
@@ -69,23 +77,29 @@ export const LanguageSwitcher = () => {
   // };
 
   return (
-    <>
-      {/* <TouchableOpacity style={styles.RowAlignItems} onPress={clearLanguage}>
+    <View style={styles.RowCenterBetween}>
+      {/* <TouchableHighlight style={styles.RowAlignItems} onPress={clearLanguage}>
         <Text style={styles.textSize16}>clearLanguage</Text>
-      </TouchableOpacity> */}
-      {isLanguage ? (
-        <TouchableOpacity
-          style={styles.RowAlignItems}
-          onPress={() => changeLanguage('en')}>
-          <Text style={styles.textSize16}>English</Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          style={styles.RowAlignItems}
-          onPress={() => changeLanguage('vi')}>
-          <Text style={styles.textSize16}>Vietnamese</Text>
-        </TouchableOpacity>
-      )}
-    </>
+      </TouchableHighlight> */}
+      <View>
+        {isLanguage ? (
+          <TouchableHighlight
+            style={styles.RowAlignItems}
+            onPress={() => changeLanguage('en')}>
+            <View>
+              <Text style={styles.textSize16}>English</Text>
+            </View>
+          </TouchableHighlight>
+        ) : (
+          <TouchableHighlight
+            style={styles.RowAlignItems}
+            onPress={() => changeLanguage('vi')}>
+            <View>
+              <Text style={styles.textSize16}>Vietnamese</Text>
+            </View>
+          </TouchableHighlight>
+        )}
+      </View>
+    </View>
   );
 };
