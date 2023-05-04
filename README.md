@@ -73,3 +73,9 @@ Map project
 // Một số trường hợp khi khởi chạy trên android bị lỗi khi build ko gọi đc jvascrpt thì chạy lệnh sau:
       * mở Command Prompt hoặc Terminal trên máy tính của mình và chạy lệnh npx react-native start từ thư mục gốc của dự án React Native của bạn.
 ```
+
+// config lệnh Lỗi này xảy ra khi bạn cố gắng tích hợp một số Pods (thư viện) của Swift vào ứng dụng iOS của mình dưới dạng các thư viện tĩnh (static libraries). Trong trường hợp này, một trong các Pods Swift đó là FirebaseCoreInternal phụ thuộc vào GoogleUtilities, nhưng GoogleUtilities không định nghĩa các modules (tập tin phụ trợ cho việc import trong Swift khi xây dựng dưới dạng các thư viện tĩnh).
+
+      * Để khắc phục lỗi này, bạn có thể làm theo các hướng dẫn sau đây:
+      1. Mở tệp Podfile trong dự án của bạn.
+      2. Thêm use_modular_headers! vào phía trên cùng của tệp Podfile, để bật tính năng tạo

@@ -16,6 +16,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
 import i18n from '../../languages/i18n';
+import LoginSocial from './social';
 interface RegisterProps {
   navigation?: any;
   handleInputUser?: () => void;
@@ -203,17 +204,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
               <Text style={stylesScreen.absolutePosition}>Hoặc</Text>
             </View>
             <View style={[styles.alignCenter]}>
-              <View style={styles.RowAlignItems}>
-                <TouchableOpacity style={styles.btnTmpAuto} onPress={() => {}}>
-                  <IconMateria name="facebook" size={26} color={'#007AD9'} />
-                </TouchableOpacity>
-                <View style={stylesScreen.separator} />
-                <TouchableOpacity
-                  style={[styles.btnTmpAuto]}
-                  onPress={() => {}}>
-                  <IconMateria name="google" size={24} color={'#EB4335'} />
-                </TouchableOpacity>
-              </View>
+              <LoginSocial />
               <View
                 style={[
                   styles.RowAlignItems,

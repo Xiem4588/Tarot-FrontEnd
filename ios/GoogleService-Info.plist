@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1053473079185-d82f0pakv3vlv0llhrdesotphef6d7l2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1053473079185-d82f0pakv3vlv0llhrdesotphef6d7l2</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAgqyP0eKq_Gy5KW3aLg7bO-0sOa5kuukM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1053473079185</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.GameTarot</string>
+	<key>PROJECT_ID</key>
+	<string>tarot-c1565</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tarot-c1565.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1053473079185:ios:211e7f8e07f36d2c756430</string>
+</dict>
+</plist>

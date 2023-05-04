@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1053473079185",
+    "project_id": "tarot-c1565",
+    "storage_bucket": "tarot-c1565.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1053473079185:android:039d5ff8f5d66765756430",
+        "android_client_info": {
+          "package_name": "com.gametarot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1053473079185-b6bmlci3vad72cit4kndkp5eqvr74tmk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpOsR-Nw0CfF7xNjCBVL0Fpu-1KbENeAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1053473079185-b6bmlci3vad72cit4kndkp5eqvr74tmk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1053473079185-d82f0pakv3vlv0llhrdesotphef6d7l2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.GameTarot"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

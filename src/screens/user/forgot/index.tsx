@@ -6,9 +6,9 @@ import WrapBgBox from '../../../conponents/wrapBgBox';
 import Header from '../../../conponents/header';
 import {useTranslation} from 'react-i18next';
 import i18n from '../../../languages/i18n';
-import ForgotStepOne from './forgotStepOne';
-import ForgotStepTwo from './forgotStepTwo';
-import ForgotStepThree from './forgotStepThree';
+import StepOne from './step1';
+import StepTwo from './step2';
+import StepThree from './step3';
 
 const ForgotPassword = ({navigation}: any) => {
   useTranslation();
@@ -39,7 +39,7 @@ const ForgotPassword = ({navigation}: any) => {
       <ScrollView>
         <View style={[styles.paddingHorizontal18]}>
           {isConfirm ? (
-            <ForgotStepOne
+            <StepOne
               handleButtonPress={(buttonName: string) =>
                 handleButtonPress(buttonName)
               }
@@ -47,12 +47,12 @@ const ForgotPassword = ({navigation}: any) => {
               handleNext={handleNext}
             />
           ) : isNewPass ? (
-            <ForgotStepTwo
+            <StepTwo
               selectedButton={selectedButton}
               handleConfirm={handleConfirm}
             />
           ) : (
-            <ForgotStepThree navigation={navigation} />
+            <StepThree navigation={navigation} />
           )}
         </View>
       </ScrollView>

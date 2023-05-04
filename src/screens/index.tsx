@@ -9,7 +9,7 @@ import User from './user';
 import Profile from './user/profile';
 import Notify from './user/profile/notify';
 import Setting from './user/profile/setting';
-import ForgotPassword from './user/forgotpassword';
+import ForgotPassword from './user/forgot';
 
 export {
   NewsFeed,
