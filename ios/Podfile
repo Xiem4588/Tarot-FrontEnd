@@ -18,7 +18,7 @@ flipper_config = ENV['NO_FLIPPER'] == "1" ? FlipperConfiguration.disabled : Flip
 linkage = ENV['USE_FRAMEWORKS']
 
 use_frameworks! :linkage => :static
-$RNFirebaseAsStaticFramework = true
+# $RNFirebaseAsStaticFramework = true
 
 if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green

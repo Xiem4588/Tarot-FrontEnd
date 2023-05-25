@@ -1,41 +1,42 @@
 {
   "project_info": {
-    "project_number": "1053473079185",
-    "project_id": "tarot-c1565",
-    "storage_bucket": "tarot-c1565.appspot.com"
+    "project_number": "858123806789",
+    "project_id": "tomo-tarot",
+    "storage_bucket": "tomo-tarot.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1053473079185:android:039d5ff8f5d66765756430",
+        "mobilesdk_app_id": "1:858123806789:android:418289ac29c4584a269b2c",
         "android_client_info": {
           "package_name": "com.gametarot"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1053473079185-b6bmlci3vad72cit4kndkp5eqvr74tmk.apps.googleusercontent.com",
+          "client_id": "858123806789-dhj8u5s6i2n27rnvaaa1n75iodleahg7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gametarot",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "858123806789-s5j2cr551am67pcuht2kllfi8he2a4vp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCpOsR-Nw0CfF7xNjCBVL0Fpu-1KbENeAw"
+          "current_key": "AIzaSyBiXnIMYLc5aYlN1iyvSK7IT3I0oqihTbk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1053473079185-b6bmlci3vad72cit4kndkp5eqvr74tmk.apps.googleusercontent.com",
+              "client_id": "858123806789-s5j2cr551am67pcuht2kllfi8he2a4vp.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "1053473079185-d82f0pakv3vlv0llhrdesotphef6d7l2.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "org.reactjs.native.example.GameTarot"
-              }
             }
           ]
         }

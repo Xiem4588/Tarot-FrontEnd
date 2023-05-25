@@ -4,11 +4,15 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../../assets/styles';
 import {stylesScreen} from './styles';
 
-const Firebase = () => {
+const SocialFirebase = () => {
+  const signInWithFacebook = () => {};
+
   return (
     <>
       <View style={styles.RowAlignItems}>
-        <TouchableOpacity style={styles.btnTmpAuto} onPress={() => {}}>
+        <TouchableOpacity
+          style={styles.btnTmpAuto}
+          onPress={signInWithFacebook}>
           <IconMateria name="facebook" size={26} color={'#007AD9'} />
         </TouchableOpacity>
         <View style={stylesScreen.separator} />
@@ -20,4 +24,4 @@ const Firebase = () => {
   );
 };
 
-export default Firebase;
+export default SocialFirebase;

@@ -496,6 +496,18 @@ export const styles = StyleSheet.create({
   marginBottom80: {
     marginBottom: 80,
   },
+  marginBottomA80: {
+    marginBottom: -80,
+  },
+  marginBottomA50: {
+    marginBottom: -50,
+  },
+  marginBottomA40: {
+    marginBottom: -40,
+  },
+  marginBottomA30: {
+    marginBottom: -30,
+  },
   marginBottom_50: {
     marginBottom: -50,
   },
@@ -1253,27 +1265,27 @@ export const styles = StyleSheet.create({
   },
 
   todayTextStyle: {
-    borderWidth: 2,
-    borderColor: '#F68B73',
-    color: '#F68B73',
-    width: 28,
-    height: 28,
-    lineHeight: Platform.OS === 'ios' ? 24 : 26,
+    // borderWidth: 2,
+    // borderColor: '#F68B73',
+    color: '#000',
+    // width: 28,
+    // height: 28,
+    // lineHeight: Platform.OS === 'ios' ? 24 : 26,
     textAlign: 'center',
     borderRadius: 14,
     fontWeight: 'bold',
     backgroundColor: 'transparent',
   },
   selectedDayTextStyle: {
-    borderWidth: 2,
-    borderColor: '#4BAE4F',
-    color: '#4BAE4F',
-    width: 28,
-    height: 28,
+    // borderWidth: 2,
+    // borderColor: '#4BAE4F',
+    color: '#FFF',
+    // width: 28,
+    // height: 28,
     textAlign: 'center',
     borderRadius: 14,
-    fontWeight: 'bold !important',
-    backgroundColor: 'transparent',
+    fontWeight: 'bold',
+    backgroundColor: '#F68B73',
   },
   tooltip: {
     position: 'absolute',
