@@ -1293,4 +1293,9 @@ export const styles = StyleSheet.create({
     top: -5,
     fontSize: 20,
   },
+  emptyDate: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
