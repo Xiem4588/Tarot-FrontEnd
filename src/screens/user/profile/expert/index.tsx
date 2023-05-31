@@ -1,146 +1,208 @@
 import React, {useEffect, useState} from 'react';
-import {Alert, Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity} from 'react-native';
 import {Agenda} from 'react-native-calendars';
 import InforProfile from '../component/infor';
+import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../../../../assets/styles';
+import ModalDataDate from './modal';
 
-interface Items {
+interface isProps {
+  navigation: any;
+}
+interface isItems {
+  index: string;
+  day: string;
   start: string;
   end: string;
   name: string;
   summary: string;
-  cookies: boolean;
+  confirm: boolean;
 }
 
-const AgendaScreen = ({navigation}: any) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [items, setItems] = useState<{[key: string]: Items[]}>({
-    '2023-05-28': [
-      {
-        start: '09:00:00',
-        end: '10:00:00',
-        name: 'Dr. Khach 1',
-        summary: 'Goi 130k',
-        cookies: true,
-      },
-      {
-        start: '15:00:00',
-        end: '16:00:00',
-        name: 'Dr. Khach 2',
-        summary: 'Goi 100k',
-        cookies: true,
-      },
-    ],
-    '2023-05-29': [
-      {
-        start: '09:00:00',
-        end: '10:00:00',
-        name: 'Dr. Khach 3',
-        summary: 'Goi 130k',
-        cookies: false,
-      },
-      {
-        start: '15:00:00',
-        end: '16:00:00',
-        name: 'Dr. Khach 4',
-        summary: 'Goi 100k',
-        cookies: true,
-      },
-    ],
-    '2023-05-30': [
-      {
-        start: '09:00:00',
-        end: '10:00:00',
-        name: 'Dr. Khach 3',
-        summary: 'Goi 130k',
-        cookies: false,
-      },
-      {
-        start: '15:00:00',
-        end: '16:00:00',
-        name: 'Dr. Khach 4',
-        summary: 'Goi 100k',
-        cookies: true,
-      },
-    ],
-  });
+const AgendaScreen = (navigation: isProps, isItems: isItems) => {
+  const [items, setItems] = useState<{}>(isItems);
+  useEffect(() => {
+    setItems({
+      '2023-05-31': [
+        {
+          index: '10',
+          day: '2023-05-29',
+          start: '09:00:00',
+          end: '10:00:00',
+          name: 'Dr. Khach 01',
+          summary: 'Goi 30k',
+          confirm: false,
+        },
+        {
+          index: '15',
+          day: '2023-05-29',
+          start: '19:00:00',
+          end: '19:30:00',
+          name: 'Dr. Khach 02',
+          summary: 'Goi 130k',
+          confirm: true,
+        },
+      ],
+      '2023-06-01': [
+        {
+          index: '1',
+          day: '2023-05-30',
+          start: '09:00:00',
+          end: '10:00:00',
+          name: 'Dr. 100',
+          summary: 'Goi 30k',
+          confirm: true,
+        },
+        {
+          index: '2',
+          day: '2023-05-30',
+          start: '12:00:00',
+          end: '13:00:00',
+          name: 'Khach 120',
+          summary: 'Goi 50k',
+          confirm: false,
+        },
+        {
+          index: '21',
+          day: '2023-05-30',
+          start: '14:00:00',
+          end: '15:00:00',
+          name: 'Khach 130',
+          summary: 'Goi 50k',
+          confirm: null,
+        },
+      ],
+    });
+  }, []);
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const response = await fetch(
-  //       'https://jsonplaceholder.typicode.com/posts',
-  //     );
-  //     const data = await response.json();
-  //     Alert.alert('>>>>>>>>>', JSON.stringify(data));
-  //     setItems(data);
-  //   };
-  //   getData();
-  // }, []);
+  //
+  const [isDataItem, setDataItem] = useState('');
+  const [isModalVisible, setModalVisible] = useState(false);
+  const toggleModal = (item: any) => {
+    setModalVisible(!isModalVisible);
+    setDataItem(item);
+  };
+  const toggleModal2 = () => {
+    setModalVisible(!isModalVisible);
+  };
 
   const renderItem = (item: any) => {
+    const dataItem = item;
     return (
-      <TouchableOpacity
-        onPress={() => Alert.alert('item detail')}
-        style={[styles.boxWhiteRadius, styles.marginVertical10]}>
-        <Text style={[styles.colorBlack]}>{item.name}</Text>
-        <Text style={[styles.colorBlack]}>
-          Start: {item.start}, End: {item.end}
-        </Text>
-        <Text style={[styles.colorBlack]}>Summary: {item.summary}</Text>
-        {item.cookies ? (
-          <Text style={[styles.colorBlack]}>Cookies: True</Text>
-        ) : (
-          <Text style={[styles.colorBlack]}>Cookies: False</Text>
-        )}
-      </TouchableOpacity>
+      <>
+        <TouchableOpacity
+          onPress={() => toggleModal(item)}
+          style={[styles.boxWhiteRadius, styles.marginVertical10]}>
+          <View style={[]}>
+            <View style={[styles.RowBetween, styles.marginBottom10]}>
+              <Text style={[styles.textBlack, styles.fontBold600]}>
+                Trạng thái
+              </Text>
+              <Text style={[styles.textBlack, styles.fontBold600]}>
+                {item.confirm === true && (
+                  <View style={styles.RowCenterBetween}>
+                    <Text style={[styles.marginRight5, styles.colorGrray]}>
+                      Chấp thuận
+                    </Text>
+                    <IconMateria
+                      name="check-circle-outline"
+                      size={24}
+                      color={'#366AF0'}
+                    />
+                  </View>
+                )}
+                {item.confirm === false && (
+                  <View style={styles.RowCenterBetween}>
+                    <Text style={[styles.marginRight5, styles.colorGrray]}>
+                      Cancel
+                    </Text>
+                    <IconMateria name="cancel" size={24} color={'#9E9E9E'} />
+                  </View>
+                )}
+                {item.confirm === null && (
+                  <View style={styles.RowCenterBetween}>
+                    <Text style={[styles.marginRight5, styles.colorOrange]}>
+                      Chưa xem
+                    </Text>
+                  </View>
+                )}
+              </Text>
+            </View>
+            <View style={styles.RowCenterBetween}>
+              <View style={[styles.textBlack, styles.marginRight10]}>
+                <Text style={styles.fontBold600}>{dataItem.name}</Text>
+              </View>
+              <View style={[styles.boxGrayRadius10]}>
+                <Text style={[styles.textBlack]}>
+                  {dataItem.start} - {dataItem.end}
+                </Text>
+              </View>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <ModalDataDate
+          isModalVisible={isModalVisible}
+          onClick={toggleModal2}
+          dataItem={isDataItem}
+        />
+      </>
     );
   };
 
   const renderEmptyData = () => {
-    if (isLoading) {
-      return (
-        <View style={styles.emptyDate}>
-          <Text>No data available</Text>
-        </View>
-      );
-    } else {
-      return (
-        <View style={styles.emptyDate}>
-          <Text>No data available</Text>
-        </View>
-      );
-    }
+    return (
+      <View style={styles.emptyDate}>
+        <Text>Không có dữ liệu</Text>
+      </View>
+    );
+  };
+
+  // sử lý để lấy ngày tháng năm của Agenda
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const renderKnob = () => {
+    // Hàm để hiển thị phần tháng năm
+    // const currentDate = new Date();
+    const month = selectedDate.toLocaleString('default', {month: 'long'});
+    const year = selectedDate.getFullYear();
+    return (
+      <View style={[styles.textCenter, styles.alignItems]}>
+        <Text
+          style={[
+            styles.fontBold600,
+            styles.colorGrray,
+          ]}>{`${month} ${year}`}</Text>
+      </View>
+    );
+  };
+
+  const handleDayPress = (day: any) => {
+    // Xử lý sự kiện khi ngày tháng được chọn
+    setSelectedDate(new Date(day.timestamp));
   };
 
   return (
     <>
       <InforProfile navigation={navigation} expert="expert" />
-      <View style={styles.backgWhite}>
-        {/* <Text>{JSON.stringify(items)}</Text> */}
+      <View
+        style={[
+          styles.backgWhite,
+          styles.paddingVertical10,
+          styles.marginBottomA10,
+        ]}>
+        {renderKnob()}
       </View>
       <Agenda
+        // renderKnob={renderKnob}
         items={items}
         renderItem={renderItem}
         showClosingKnob={true}
         renderEmptyData={renderEmptyData}
-        theme={
-          {
-            // calendarBackground: '#fff', //agenda background
-            // agendaKnobColor: 'transparent', // knob color
-            // backgroundColor: 'transparent', // background color below agenda
-            // agendaDayTextColor: 'transparent', // day name
-            // agendaDayNumColor: 'transparent', // day number
-            // agendaTodayColor: '#000', // today in list
-            // monthTextColor: 'transparent', // name in calendar
-            // textDefaultColor: 'red',
-            // todayBackgroundColor: 'transparent',
-            // textSectionTitleColor: 'transparent',
-            // selectedDayBackgroundColor: 'transparent', // calendar sel date
-            // dayTextColor: 'transparent', // calendar day
-            // dotColor: 'white', // dots
-            // textDisabledColor: 'red',
-          }
-        }
+        theme={{
+          calendarBackground: '#FFF',
+          dotColor: '#F78B73',
+          selectedDayBackgroundColor: '#F78B73',
+        }}
+        onDayPress={handleDayPress} // Gọi hàm handleDayPress khi ngày được chọn
       />
     </>
   );

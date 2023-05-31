@@ -2,8 +2,16 @@ import React, {useState} from 'react';
 import MyProfileUser from './user';
 import MyProfileExpert from './expert';
 
-const MyProfile = ({navigation}: any) => {
+interface isState {
+  navigation?: any;
+  account?: string;
+}
+
+const MyProfile = ({navigation, account}: isState) => {
   const [isCheckUser, setCheckUser] = useState(false);
+  if (account === 'expert') {
+    setCheckUser(true);
+  }
   return (
     <>
       {isCheckUser ? (

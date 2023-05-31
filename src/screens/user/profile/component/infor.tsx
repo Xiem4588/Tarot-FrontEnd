@@ -14,16 +14,22 @@ const InforProfile = ({navigation, expert}: Props) => {
   const isAvatar = true;
   return (
     <View style={[styles.avatarProfile]}>
-      <ImageBackground
-        source={images.bgHeaderLogin}
-        resizeMode="contain"
-        style={[styles.ImgBgBottom]}
-      />
-      <ImageBackground
-        source={images.imgHeaderRegister2}
-        resizeMode="contain"
-        style={[styles.ImgIconBag]}
-      />
+      {!expert ? (
+        <>
+          <ImageBackground
+            source={images.bgHeaderLogin}
+            resizeMode="contain"
+            style={[styles.ImgBgBottom]}
+          />
+          <ImageBackground
+            source={images.imgHeaderRegister2}
+            resizeMode="contain"
+            style={[styles.ImgIconBag]}
+          />
+        </>
+      ) : (
+        ''
+      )}
       <View style={[styles.paddingBox]}>
         <View style={styles.RowCenterBetween}>
           <TouchableOpacity

@@ -16,7 +16,7 @@ const MyProfileUser = ({navigation}: Props) => {
   return (
     <WrapBgBox>
       <InforProfile navigation={navigation} />
-      <View style={[styles.itemContainer, styles.paddingBox]}>
+      <View style={[styles.itemContainer, styles.paddingBox, styles.marginTop20]}>
         <Text style={styles.titleBox}>Lịch đã đặt</Text>
         <ScrollView>
           {DATA.map(item => (

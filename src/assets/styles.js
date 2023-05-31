@@ -126,6 +126,12 @@ export const styles = StyleSheet.create({
   width50: {
     width: '50%',
   },
+  height30p: {
+    height: '30%',
+  },
+  height40p: {
+    height: '40%',
+  },
   fullWidthHeight: {
     width: '100%',
     height: '100%',
@@ -327,7 +333,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#A9B0F5',
     position: 'relative',
     paddingBottom: 20,
-    marginBottom: 30,
   },
   ImgIconBag: {
     position: 'absolute',
@@ -439,6 +444,9 @@ export const styles = StyleSheet.create({
   marginLeft18: {
     marginLeft: 18,
   },
+  margin18: {
+    margin: 18,
+  },
   marginLeft24: {
     marginLeft: 24,
   },
@@ -504,6 +512,9 @@ export const styles = StyleSheet.create({
   },
   marginBottomA40: {
     marginBottom: -40,
+  },
+  marginBottomA10: {
+    marginBottom: -10,
   },
   marginBottomA30: {
     marginBottom: -30,
@@ -789,6 +800,9 @@ export const styles = StyleSheet.create({
   width30p: {
     width: '30%',
   },
+  width40p: {
+    width: '40%',
+  },
   colorWhite: {
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
@@ -799,6 +813,10 @@ export const styles = StyleSheet.create({
   },
   colorBlack: {
     color: 'rgba(0, 0, 0, 0.87)',
+    fontFamily: 'Montserrat',
+  },
+  textBlack: {
+    color: '#000000',
     fontFamily: 'Montserrat',
   },
   colorBlue: {
@@ -1062,6 +1080,11 @@ export const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 10,
     flex: 1,
+  },
+  boxGrayRadius10: {
+    backgroundColor: '#F2F2F2',
+    padding: 12,
+    borderRadius: 10,
   },
   boxWhiteRadius40: {
     backgroundColor: '#FFFFFF',
