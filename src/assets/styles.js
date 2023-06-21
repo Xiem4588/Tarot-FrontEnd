@@ -1070,7 +1070,7 @@ export const styles = StyleSheet.create({
   },
   itemCarousel: {
     backgroundColor: '#FFFFFF',
-    marginRight: 12,
+    marginLeft: 12,
     padding: 12,
     borderRadius: 10,
     flex: 1,

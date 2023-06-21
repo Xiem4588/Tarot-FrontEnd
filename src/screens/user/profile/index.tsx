@@ -17,7 +17,7 @@ const MyProfile = ({navigation, account}: isState) => {
       {isCheckUser ? (
         <MyProfileUser navigation={navigation} />
       ) : (
-        <MyProfileExpert />
+        <MyProfileExpert navigation={navigation} />
       )}
     </>
   );

@@ -89,7 +89,7 @@ const Pack = () => {
       <Text style={[styles.textTitle18Black, styles.paddingHorizontal18]}>
         Bảng giá
       </Text>
-      <View style={styles.paddingLeft18}>
+      <View>
         <Carousel
           data={data}
           renderItem={renderItem}

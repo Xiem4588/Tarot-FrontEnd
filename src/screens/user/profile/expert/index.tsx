@@ -19,7 +19,7 @@ interface isItems {
   confirm: boolean;
 }
 
-const AgendaScreen = (navigation: isProps, isItems: isItems) => {
+const AgendaScreen = ({navigation}: isProps, isItems: isItems) => {
   const [items, setItems] = useState<{}>(isItems);
   useEffect(() => {
     setItems({
