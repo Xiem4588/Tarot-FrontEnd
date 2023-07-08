@@ -132,6 +132,12 @@ export const styles = StyleSheet.create({
   height40p: {
     height: '40%',
   },
+  height100px: {
+    height: 100,
+  },
+  height200px: {
+    height: 200,
+  },
   fullWidthHeight: {
     width: '100%',
     height: '100%',
@@ -1288,23 +1294,14 @@ export const styles = StyleSheet.create({
   },
 
   todayTextStyle: {
-    // borderWidth: 2,
-    // borderColor: '#F68B73',
     color: '#000',
-    // width: 28,
-    // height: 28,
-    // lineHeight: Platform.OS === 'ios' ? 24 : 26,
     textAlign: 'center',
     borderRadius: 14,
     fontWeight: 'bold',
     backgroundColor: 'transparent',
   },
   selectedDayTextStyle: {
-    // borderWidth: 2,
-    // borderColor: '#4BAE4F',
     color: '#FFF',
-    // width: 28,
-    // height: 28,
     textAlign: 'center',
     borderRadius: 14,
     fontWeight: 'bold',
@@ -1320,5 +1317,13 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  opacity0: {
+    opacity: 0.1
+  },
+  ImageBackgroundHand: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: colors.lightBlack,
   },
 });

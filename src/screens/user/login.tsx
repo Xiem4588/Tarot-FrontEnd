@@ -17,6 +17,7 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
 import i18n from '../../languages/i18n';
 import LoginSocial from './social';
+
 interface LoginProps {
   handleInputUser: () => void;
   handleLogin: (id: string) => void;
@@ -54,7 +55,7 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
     if (isValidEmail && isPassword) {
       handleLogin('1');
     } else {
-      Alert.alert('Error! Một hoặc nhiều trường có lỗi vui lòng thử lại!');
+      Alert.alert(`${i18n.t('errorLogin')}`);
     }
   };
 
@@ -138,20 +139,20 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
                     : styles.buttonFullDisable
                 }>
                 <Text style={[styles.buttonText, styles.fontBold600]}>
-                  Đăng nhập
+                  {i18n.t('login')}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => navigation.navigate('forgotPassword')}
                 style={[styles.RowAlignItems, styles.marginTop20]}>
                 <Text style={[styles.colorOrange, styles.fontBold600]}>
-                  Bạn quên mật khẩu?
+                  {i18n.t('forgotpassword')}
                 </Text>
               </TouchableOpacity>
             </View>
             <View style={[styles.alignCenter, styles.marginVertical34]}>
               <View style={stylesScreen.border} />
-              <Text style={stylesScreen.absolutePosition}>Hoặc</Text>
+              <Text style={stylesScreen.absolutePosition}>{i18n.t('or')}</Text>
             </View>
             <View style={[styles.alignCenter]}>
               <LoginSocial />
@@ -161,12 +162,12 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
                   styles.marginVertical18,
                   styles.marginBottom30,
                 ]}>
-                <Text style={[styles.colorGrray]}>Bạn chưa có tài khoản?</Text>
+                <Text style={[styles.colorGrray]}>{i18n.t('donotaccount')}</Text>
                 <TouchableOpacity
                   onPress={handleInputUser}
                   style={styles.RowAlignItems}>
                   <Text style={[styles.colorOrange, styles.marginLeft5]}>
-                    đăng ký
+                    {i18n.t('register')}
                   </Text>
                 </TouchableOpacity>
               </View>

@@ -7,6 +7,8 @@
   "stepOneDec": "SteponeDec",
   "stepTwoTitle": "stepTwoTitle",
   "stepTwoDec": "stepTwoDec",
+  "stepThreeTitle": "stepThreeTitle",
+  "stepThreeDec": "stepThreeDec",
   "language": "Language",
   "other": "Other",
   "describe": "Describe",
@@ -14,11 +16,10 @@
   "name": "Name",
   "account": "Account",
   "logout": "Log out",
-  "logoin": "Login",
   "setting": "Setting",
   "save": "Save",
   "read_all": "Read all",
-  "forgotpassword": "For got password",
+  "forgotpassword": "Forgot your password?",
   "next": "Next",
   "nextmore": "Next step",
   "otpfromsms": "Enter OTP from SMS",
@@ -26,5 +27,8 @@
   "confirm": "Confirm",
   "register": "Register",
   "errorEmail": "Error email",
-  "errorPass": "Password must be more than 8 characters"
+  "errorPass": "Password must be more than 8 characters",
+  "or": "or",
+  "donotaccount": "Do not have an account?",
+  "errorLogin": "Error! One or more fields have an error, please try again!"
 }

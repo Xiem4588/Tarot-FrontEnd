@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import {Avatar, Text} from 'react-native-elements';
 import {
+  Alert,
   Dimensions,
   ImageBackground,
   TouchableOpacity,
@@ -12,12 +14,50 @@ import {ScrollView} from 'react-native-gesture-handler';
 import Header from '../../conponents/header';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const ScreenDetail = ({navigation}: any) => {
+// Props
+type detailProps = {
+  navigation: any;
+  route: any;
+}; //
+
+type TarotCard = {
+  cardId: string;
+  cardName: string;
+  arcana: string;
+  cardDescription: string;
+  cardImage: string;
+  cardType: object;
+};
+
+const ScreenDetail = ({navigation, route}: detailProps) => {
   const {width, height} = Dimensions.get('window');
   const [isLike, setLike] = useState(false);
   const handleLike = () => {
     setLike(!isLike);
   };
+
+  const itemId = route.params; //route.params
+  console.log('Id duoc lay tu url', itemId);
+
+  // call api
+  const [data, setData] = useState<TarotCard>();
+
+  useEffect(() => {
+    async function fetchData(itemId: number) {
+      try {
+        const response = await axios.get(`http://localhost:3002/tarot/${itemId}`);
+        const data = response.data;
+        setData(data);
+      } catch (error: any) {
+        // console.error('Error:', error);
+        Alert.alert('Error:', error);
+      }
+    };
+    fetchData(itemId);
+  }, [itemId]);
+
+  console.log('=>>>>>>>>', data);
+
   return (
     <>
       <View style={styles.positionAbsoluteTop}>
@@ -39,10 +79,11 @@ const ScreenDetail = ({navigation}: any) => {
             <View style={[styles.alignCenter, styles.paddingVertical10]}>
               <Text style={styles.fonsize24White}>X</Text>
               <Text style={[styles.fonsize20White]}>
-                Chuyên gia xem bài Tarot
+                Chuyên gia xem bài Tarot {itemId}
               </Text>
             </View>
             <View style={[styles.paddingVertical10]}>
+              <Text>{data?.arcana}</Text>
               <Avatar
                 source={images.ImgTarotDeck}
                 containerStyle={styles.ImgPostCommunity}

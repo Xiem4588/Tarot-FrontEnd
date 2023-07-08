@@ -6,46 +6,51 @@ import {styles} from '../../assets/styles';
 import WrapBgBox from '../../conponents/wrapBgBox';
 import Header from '../../conponents/header';
 import moment from 'moment';
-// import Swiper from 'react-native-swiper';
-// import {FlatList} from 'react-native-gesture-handler';
 import Carousel from 'react-native-snap-carousel';
 const {width} = Dimensions.get('window');
 
-type CardTarotItem = {
-  id: any;
-  url_image: any;
+type Item = {
+  id: string;
+  image: Object;
+  navigation?: any;
 };
-const cardTarot: CardTarotItem[] = [
-  {id: '1', url_image: `${images.imgTarotCard}`},
-  {id: '2', url_image: `${images.imgTarotCard}`},
-  {id: '3', url_image: `${images.imgTarotCard}`},
-  {id: '4', url_image: `${images.imgTarotCard}`},
-  {id: '5', url_image: `${images.imgTarotCard}`},
-  {id: '6', url_image: `${images.imgTarotCard}`},
-  {id: '7', url_image: `${images.imgTarotCard}`},
-  {id: '8', url_image: `${images.imgTarotCard}`},
-  {id: '9', url_image: `${images.imgTarotCard}`},
-  {id: '10', url_image: `${images.imgTarotCard}`},
-  {id: '11', url_image: `${images.imgTarotCard}`},
-  {id: '12', url_image: `${images.imgTarotCard}`},
-];
 
-const TarotCardSelector = ({navigation}: any) => {
-  const [activeCardId, setActiveCardId] = useState(null);
-  const renderCardTarotItem = ({item}: {item: CardTarotItem}) => {
-    const isActive = item.id === activeCardId;
+// lấy ra 76 lá bài với đường dẫn image
+const TarotCardSelector = ({ navigation }: any) => {
+
+  const data = Array.from(
+    {length: 3},
+    ((_, i) => ({
+      id: String(i + 1),
+      image: `${images.imgTarotCardDefault1}`
+    }))
+  );
+  
+  const randomIndexes = Array.from(
+    {length: data.length},
+    () => Math.floor(Math.random() * data.length)
+  );
+
+  const renderItem = ({ item, index }: { item: Item, index: number }) => {
+    const numberCard = randomIndexes[index];
+    const handlePress = (id: number) => {
+      navigation.navigate('detail', id)
+    };
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('detail', setActiveCardId(item.id))}>
+        onPress={() => handlePress(numberCard)}
+        style={{paddingBottom: 100}}
+      >
         <Image
           key={item.id}
-          source={item.url_image}
+          source={item.image}
           style={{
             width: '100%',
-            height: 220,
-            resizeMode: 'contain' /*marginTop: isActive ? -30 : 0*/,
+            height: 300,
+            resizeMode: 'contain'
           }}
         />
+        <Text style={[styles.colorWhite, styles.textCenter]}>{numberCard}</Text>
       </TouchableOpacity>
     );
   };
@@ -84,39 +89,22 @@ const TarotCardSelector = ({navigation}: any) => {
           </View>
           <View>
             <Carousel
-              data={cardTarot}
-              renderItem={renderCardTarotItem}
+              data={data}
+              renderItem={renderItem}
               sliderWidth={width}
-              itemWidth={120}
+              itemWidth={80}
               loop={true}
               autoplay={false}
-              // autoplayDelay={500}
-              // autoplayInterval={3000}
-              useScrollView={true}
-              layoutCardOffset={60}
+              useScrollView={false}
+              layoutCardOffset={0}
               enableMomentum={true}
               decelerationRate={0.9}
-              layout={'stack'}
+              layout={'default'}
               hasParallaxImages={true}
-              // activeSlideAlignment={'start'}
-              // inactiveSlideOpacity={0.1}
-              // inactiveSlideScale={0.1}
-              onSnapToItem={index => {
-                console.log(`Item at index ${index} is now active`);
-              }}
             />
-            {/* <Swiper>
-              <FlatList
-                horizontal={true}
-                data={cardTarot}
-                keyExtractor={item => item.id}
-                renderItem={renderCardTarotItem}
-              />
-            </Swiper> */}
-            <Image
-              source={images.imgHandDirection}
-              style={{resizeMode: 'contain', height: 38}}
-            />
+          </View>
+          <View style={{transform: [{translateY: -60,}], position: 'relative', zIndex: -1}}>
+            <Image source={images.imgHandDirection} style={{resizeMode: 'contain', height: 38}} />
           </View>
         </View>
       </View>
