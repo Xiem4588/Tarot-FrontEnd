@@ -180,7 +180,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                   <Text
                     style={[
                       styles.textWhite,
-                      // styles.lineHeight22,
+                      styles.lineHeight22,
                       styles.marginBottom15,
                     ]}
                     key={key}
