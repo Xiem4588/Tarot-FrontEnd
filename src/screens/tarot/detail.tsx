@@ -159,7 +159,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
           </View>
           <View style={[styles.flexBox, styles.paddingHorizontal18]}>
             <View style={[styles.RowCenterBetween]}>
-              <View style={[styles.boxInfo]}>
+              <View style={[styles.paddingTop20]}>
                 <Text style={[styles.colorWhite, styles.textOrange]}>Ý nghĩa lá bài</Text>
               </View>
               <View style={[styles.width40]}>
@@ -174,13 +174,13 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={[styles.boxInfo, styles.paddingVertical10, styles.marginTopA30]}>
+            <View style={[styles.paddingBottom30]}>
               {isCardType ?
                 (Object.entries(isCardType).map(([key, value]) => (
                   <Text
                     style={[
                       styles.textWhite,
-                      styles.lineHeight22,
+                      // styles.lineHeight22,
                       styles.marginBottom15,
                     ]}
                     key={key}

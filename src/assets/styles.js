@@ -191,6 +191,9 @@ export const styles = StyleSheet.create({
   paddingBottom10: {
     paddingBottom: 10,
   },
+  paddingBottom30: {
+    paddingBottom: 30,
+  },
   padding18: {
     padding: 18,
   },
