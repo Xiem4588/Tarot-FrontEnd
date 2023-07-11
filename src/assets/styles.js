@@ -675,7 +675,7 @@ export const styles = StyleSheet.create({
     marginTop: -30,
   },
   ImgPostCommunity: {
-    width: 226,
+    width: 256,
     height: 400,
     resizeMode: 'contain',
   },
