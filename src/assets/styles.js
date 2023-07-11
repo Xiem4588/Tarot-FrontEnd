@@ -76,6 +76,7 @@ export const styles = StyleSheet.create({
     width: width,
     height: height,
     position: 'absolute',
+    backgroundColor: '#000'
   },
   bodyScreenBlack: {
     flex: 1,
@@ -551,6 +552,9 @@ export const styles = StyleSheet.create({
   },
   marginTopA50: {
     marginTop: -50,
+  },
+  marginTopA30: {
+    marginTop: -30,
   },
   marginTopAuto: {
     marginTop: 'auto',

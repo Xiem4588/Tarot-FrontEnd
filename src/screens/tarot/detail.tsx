@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import {Avatar, Text} from 'react-native-elements';
 import {
@@ -23,11 +23,59 @@ type detailProps = {
 type TarotCard = {
   cardId: string;
   cardName: string;
-  arcana: string;
-  cardDescription: string;
   cardImage: string;
-  cardType: object;
+  cardType: {
+    xuoi: {
+      dannhap: string;
+      tongquan: string;
+      congviec: string;
+      tinhyeu: string;
+      taichinh: string;
+      suckhoe: string;
+      tinhthan: string;
+    };
+    nguoc: {
+      dannhap: string;
+      tongquan: string;
+      congviec: string;
+      tinhyeu: string;
+      taichinh: string;
+      suckhoe: string;
+      tinhthan: string;
+    };
+  };
 };
+
+type CardType = {
+  dannhap: {
+    title: string,
+    content: string,
+  };
+  tongquan: {
+    title: string,
+    content: string,
+  };
+  congviec: {
+    title: string,
+    content: string,
+  };
+  tinhyeu: {
+    title: string,
+    content: string,
+  };
+  taichinh: {
+    title: string,
+    content: string,
+  };
+  suckhoe: {
+    title: string,
+    content: string,
+  };
+  tinhthan: {
+    title: string,
+    content: string,
+  };
+}
 
 const ScreenDetail = ({navigation, route}: detailProps) => {
   const {width, height} = Dimensions.get('window');
@@ -36,28 +84,45 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
     setLike(!isLike);
   };
 
-  const itemId = route.params; //route.params
-  console.log('Id duoc lay tu url', itemId);
+  
+  // api
+  const [isLengthCard, setLengthCard] = useState(0);
+  const [isDetail, setDetail] = useState<TarotCard>();
+  const [isCardType, setCardType] = useState<CardType>();
+  const [isBoolean, setBoolean] = useState(false);
+  const [isNumberCard, setNumberCard] = useState(0);
 
-  // call api
-  const [data, setData] = useState<TarotCard>();
+  const fetchData = useCallback(async (cardNumber: number) => {
+    try {
+      const resList = await axios.get(`http://localhost:3002/tarot`);
+      const resItem = await axios.get(`http://localhost:3002/tarot/${cardNumber}`);
+      const lengthCard = resList.data.length;
+      setLengthCard(lengthCard);
+      const detail = resItem.data;
+      setDetail(detail);
+      const isType = Math.random() < 0.5;
+      if (isType === true) {
+        setBoolean(isType);
+        setCardType(resItem.data.cardType.xuoi);
+      } else if (isType === false) {
+        setBoolean(isType);
+        setCardType(resItem.data.cardType.nguoc);
+      }
+    } catch (error: any) {
+      Alert.alert('Error:', error);
+    }
+  }, []);
 
   useEffect(() => {
-    async function fetchData(itemId: number) {
-      try {
-        const response = await axios.get(`http://localhost:3002/tarot/${itemId}`);
-        const data = response.data;
-        setData(data);
-      } catch (error: any) {
-        // console.error('Error:', error);
-        Alert.alert('Error:', error);
-      }
-    };
-    fetchData(itemId);
-  }, [itemId]);
+    const randomCardNumber = Math.floor(Math.random() * isLengthCard);
+    fetchData(randomCardNumber);
+    setNumberCard(randomCardNumber)
+  }, [fetchData, isLengthCard]);
 
-  console.log('=>>>>>>>>', data);
-
+  console.log('Số thẻ bài: =>>>>>>>> ', isNumberCard);
+  console.log('Tổng mảng có: =>>>>>>>> ', isLengthCard);
+  console.log('True: Xuôi, False: Ngược: =>>>>>>>> ', String(isBoolean));
+  console.log('Detail: =>>>>>>>> ', isDetail);
   return (
     <>
       <View style={styles.positionAbsoluteTop}>
@@ -74,29 +139,28 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
             style={[
               styles.alignCenter,
               styles.paddingHorizontal18,
-              styles.paddingTop40,
+              styles.paddingTop50,
             ]}>
             <View style={[styles.alignCenter, styles.paddingVertical10]}>
-              <Text style={styles.fonsize24White}>X</Text>
               <Text style={[styles.fonsize20White]}>
-                Chuyên gia xem bài Tarot {itemId}
+                {isDetail?.cardName}
               </Text>
+              <Text style={styles.textOrange}>{isBoolean === true ? '(Lá bài Xuôi)' : '(Lá bài Ngược)' }</Text>
             </View>
             <View style={[styles.paddingVertical10]}>
-              <Text>{data?.arcana}</Text>
-              <Avatar
-                source={images.ImgTarotDeck}
-                containerStyle={styles.ImgPostCommunity}
-              />
+                <Avatar
+                  source={{ uri: `http://localhost:3002/cards/${isDetail?.cardImage}` }}
+                  containerStyle={[
+                    styles.ImgPostCommunity,
+                    { transform: [{ rotate: `${isBoolean === true ? '0deg' : '180deg'}` }] }
+                  ]}
+                />
             </View>
           </View>
           <View style={[styles.flexBox, styles.paddingHorizontal18]}>
             <View style={[styles.RowCenterBetween]}>
               <View style={[styles.boxInfo]}>
-                <Text style={[styles.colorWhite]}>Ý nghĩa lá bài</Text>
-                <Text style={[styles.textOrange, styles.fontSize16]}>
-                  Wheel of Fortune ngược
-                </Text>
+                <Text style={[styles.colorWhite, styles.textOrange]}>Ý nghĩa lá bài</Text>
               </View>
               <View style={[styles.width40]}>
                 <TouchableOpacity onPress={handleLike}>
@@ -110,43 +174,26 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={[styles.boxInfo, styles.paddingVertical10]}>
-              <Text
-                style={[
-                  styles.textWhite,
-                  styles.lineHeight22,
-                  styles.marginBottom15,
-                ]}>
-                <Text style={[styles.fontBold600, styles.colorWhite]}>
-                  Dẫn nhập:
-                </Text>{' '}
-                Bài Wheel of Fortune xuất hiện ngược nghĩa là sẽ có thay đổi
-                trong sự vật, sự việc, hoàn cảnh. Trong đa số trường hợp, đây là
-                những thay đổi tích cực và cần thiết nhưng với vài người, thay
-                đổi có thể rất khó khăn, thậm chí là khó chịu. Nếu cần giúp đỡ
-                để đối mặt với thay đổi, hãy đi nhờ vả mọi người. Đừng ép mình
-                đơn độc, đừng đối đầu với con sóng, hãy linh hoạt đi cùng nó,
-                chấp nhận rằng thay đổi là quy luật tất yếu của cuộc sống. Sẽ
-                chẳng lợi ích gì nếu chống lại nó.
-              </Text>
-              <Text
-                style={[
-                  styles.textWhite,
-                  styles.lineHeight22,
-                  styles.marginBottom15,
-                ]}>
-                <Text style={[styles.fontBold600, styles.colorWhite]}>
-                  Dẫn nhập:
-                </Text>{' '}
-                Bài Wheel of Fortune xuất hiện ngược nghĩa là sẽ có thay đổi
-                trong sự vật, sự việc, hoàn cảnh. Trong đa số trường hợp, đây là
-                những thay đổi tích cực và cần thiết nhưng với vài người, thay
-                đổi có thể rất khó khăn, thậm chí là khó chịu. Nếu cần giúp đỡ
-                để đối mặt với thay đổi, hãy đi nhờ vả mọi người. Đừng ép mình
-                đơn độc, đừng đối đầu với con sóng, hãy linh hoạt đi cùng nó,
-                chấp nhận rằng thay đổi là quy luật tất yếu của cuộc sống. Sẽ
-                chẳng lợi ích gì nếu chống lại nó.
-              </Text>
+            <View style={[styles.boxInfo, styles.paddingVertical10, styles.marginTopA30]}>
+              {isCardType ?
+                (Object.entries(isCardType).map(([key, value]) => (
+                  <Text
+                    style={[
+                      styles.textWhite,
+                      styles.lineHeight22,
+                      styles.marginBottom15,
+                    ]}
+                    key={key}
+                  >
+                    <Text style={[styles.fontBold600, styles.colorWhite]}>
+                      {value.title}
+                    </Text>{' '} {value.content}
+                  </Text>
+                ))
+                ) : (
+                  <Text style={styles.textWhite}>No card types available</Text>
+                )
+              }
             </View>
           </View>
         </View>

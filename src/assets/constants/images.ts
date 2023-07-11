@@ -23,22 +23,4 @@ export default {
 
   imgTarotCardDefault: require('../images/imgTarotCard.png'),
   imgTarotCardDefault1: require('../images/imgTarotCard1.png'),
-  //76 card
-  imgTarotCard0: require('../images/cards/0-TheFool.png'),
-  imgTarotCard1: require('../images/cards/0-TheFool.png'),
-  imgTarotCard2: require('../images/cards/0-TheFool.png'),
-  imgTarotCard3: require('../images/cards/0-TheFool.png'),
-  imgTarotCard4: require('../images/cards/0-TheFool.png'),
-  imgTarotCard5: require('../images/cards/0-TheFool.png'),
-  imgTarotCard6: require('../images/cards/0-TheFool.png'),
-  imgTarotCard7: require('../images/cards/0-TheFool.png'),
-  imgTarotCard8: require('../images/cards/0-TheFool.png'),
-  imgTarotCard9: require('../images/cards/0-TheFool.png'),
-  imgTarotCard10: require('../images/cards/0-TheFool.png'),
-  imgTarotCard11: require('../images/cards/0-TheFool.png'),
-  imgTarotCard12: require('../images/cards/0-TheFool.png'),
-  imgTarotCard13: require('../images/cards/0-TheFool.png'),
-  imgTarotCard14: require('../images/cards/0-TheFool.png'),
-  imgTarotCard15: require('../images/cards/0-TheFool.png'),
-  
 };
