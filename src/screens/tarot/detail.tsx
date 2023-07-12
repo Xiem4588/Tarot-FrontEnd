@@ -9,7 +9,6 @@ import {
   View,
 } from 'react-native';
 import {styles} from '../../assets/styles';
-import {images} from '../../assets/constants';
 import {ScrollView} from 'react-native-gesture-handler';
 import Header from '../../conponents/header';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -125,79 +124,81 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
   console.log('Detail: =>>>>>>>> ', isDetail);
   return (
     <>
+      <ImageBackground
+        source={{ uri: `http://localhost:3002/cards/${isDetail?.cardImage}` }}
+        resizeMode="cover"
+        style={styles.ImageBackgroundCommunity}
+      />
       <View style={styles.positionAbsoluteTop}>
         <Header navigation={navigation} name="nothing" />
       </View>
-      <ScrollView>
-        <ImageBackground
-          source={images.bgTarotDeck}
-          resizeMode="cover"
-          style={styles.ImageBackgroundCommunity}
-        />
-        <View style={{minHeight: height, minWidth: width}}>
-          <View
-            style={[
-              styles.alignCenter,
-              styles.paddingHorizontal18,
-              styles.paddingTop50,
-            ]}>
-            <View style={[styles.alignCenter, styles.paddingVertical10]}>
-              <Text style={[styles.fonsize20White]}>
-                {isDetail?.cardName}
-              </Text>
-              <Text style={styles.textOrange}>{isBoolean === true ? '(Lá bài Xuôi)' : '(Lá bài Ngược)' }</Text>
-            </View>
-            <View style={[styles.paddingVertical10]}>
-                <Avatar
-                  source={{ uri: `http://localhost:3002/cards/${isDetail?.cardImage}` }}
-                  containerStyle={[
-                    styles.ImgPostCommunity,
-                    { transform: [{ rotate: `${isBoolean === true ? '0deg' : '180deg'}` }] }
-                  ]}
-                />
-            </View>
-          </View>
-          <View style={[styles.flexBox, styles.paddingHorizontal18]}>
-            <View style={[styles.RowCenterBetween]}>
-              <View style={[styles.paddingTop20]}>
-                <Text style={[styles.colorWhite, styles.textOrange]}>Ý nghĩa lá bài</Text>
+      <View style={styles.backgBlackOpacity08}>
+        <ScrollView>
+          <View style={[{minHeight: height, minWidth: width}]}>
+            <View
+              style={[
+                styles.alignCenter,
+                styles.paddingHorizontal18,
+                styles.paddingTop50,
+              ]}>
+              <View style={[styles.alignCenter, styles.paddingVertical10]}>
+                <Text style={[styles.fonsize20White]}>
+                  {isDetail?.cardName}
+                </Text>
+                <Text style={styles.textOrange}>{isBoolean === true ? '(Lá bài Xuôi)' : '(Lá bài Ngược)' }</Text>
               </View>
-              <View style={[styles.width40]}>
-                <TouchableOpacity onPress={handleLike}>
-                  <View style={styles.alignCenter}>
-                    <IconMateria
-                      name={isLike ? 'heart' : 'heart-outline'}
-                      size={22}
-                      color={isLike ? 'red' : 'white'}
-                    />
-                  </View>
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={[styles.paddingBottom30]}>
-              {isCardType ?
-                (Object.entries(isCardType).map(([key, value]) => (
-                  <Text
-                    style={[
-                      styles.textWhite,
-                      styles.lineHeight22,
-                      styles.marginBottom15,
+              <View style={[styles.paddingVertical10]}>
+                  <Avatar
+                    source={{ uri: `http://localhost:3002/cards/${isDetail?.cardImage}` }}
+                    containerStyle={[
+                      styles.ImgPostCommunity,
+                      { transform: [{ rotate: `${isBoolean === true ? '0deg' : '180deg'}` }] }
                     ]}
-                    key={key}
-                  >
-                    <Text style={[styles.fontBold600, styles.colorWhite]}>
-                      {value.title}
-                    </Text>{' '} {value.content}
-                  </Text>
-                ))
-                ) : (
-                  <Text style={styles.textWhite}>No card types available</Text>
-                )
-              }
+                  />
+              </View>
+            </View>
+            <View style={[styles.flexBox, styles.paddingHorizontal18]}>
+              <View style={[styles.RowCenterBetween]}>
+                <View style={[styles.paddingTop20]}>
+                  <Text style={[styles.fontSize18, styles.textOrange]}>Ý nghĩa lá bài</Text>
+                </View>
+                <View style={[styles.width40]}>
+                  <TouchableOpacity onPress={handleLike}>
+                    <View style={styles.alignCenter}>
+                      <IconMateria
+                        name={isLike ? 'heart' : 'heart-outline'}
+                        size={22}
+                        color={isLike ? 'red' : 'white'}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View style={[styles.paddingBottom30]}>
+                {isCardType ?
+                  (Object.entries(isCardType).map(([key, value]) => (
+                    <Text
+                      style={[
+                        styles.textWhite,
+                        styles.lineHeight22,
+                        styles.marginBottom15,
+                      ]}
+                      key={key}
+                    >
+                      <Text style={[styles.fontBold600, styles.colorWhite]}>
+                        {value.title}
+                      </Text>{' '} {value.content}
+                    </Text>
+                  ))
+                  ) : (
+                    <Text style={styles.textWhite}>No card types available</Text>
+                  )
+                }
+              </View>
             </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </>
   );
 };

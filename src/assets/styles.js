@@ -76,7 +76,6 @@ export const styles = StyleSheet.create({
     width: width,
     height: height,
     position: 'absolute',
-    backgroundColor: '#000'
   },
   bodyScreenBlack: {
     flex: 1,
@@ -87,6 +86,9 @@ export const styles = StyleSheet.create({
   },
   backgBlackOpacity: {
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  },
+  backgBlackOpacity08: {
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
   },
   backgWhite: {
     backgroundColor: '#fff',
@@ -339,10 +341,10 @@ export const styles = StyleSheet.create({
     marginBottom: 100,
   },
   avatarProfile: {
-    paddingTop: height >= 700 ? (Platform.OS === 'ios' ? 40 : 25) : 15,
     backgroundColor: '#A9B0F5',
     position: 'relative',
     paddingBottom: 20,
+    paddingTop: height >= 700 ? (Platform.OS === 'ios' ? 60 : 25) : 15,
   },
   ImgIconBag: {
     position: 'absolute',
