@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
+import {useDispatch} from 'react-redux';
 import axios from 'axios';
 import {Avatar, Text} from 'react-native-elements';
 import {
@@ -8,124 +9,88 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {styles} from '../../assets/styles';
 import {ScrollView} from 'react-native-gesture-handler';
 import Header from '../../conponents/header';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
+import store from '../../../redux/store';
+import {styles} from '../../assets/styles';
 
-// Props
 type detailProps = {
   navigation: any;
   route: any;
-}; //
+};
 
 type TarotCard = {
   cardId: string;
   cardName: string;
   cardImage: string;
   cardType: {
-    xuoi: {
-      dannhap: string;
-      tongquan: string;
-      congviec: string;
-      tinhyeu: string;
-      taichinh: string;
-      suckhoe: string;
-      tinhthan: string;
-    };
-    nguoc: {
-      dannhap: string;
-      tongquan: string;
-      congviec: string;
-      tinhyeu: string;
-      taichinh: string;
-      suckhoe: string;
-      tinhthan: string;
-    };
+    xuoi: CardType;
+    nguoc: CardType;
   };
 };
 
 type CardType = {
-  dannhap: {
-    title: string,
-    content: string,
-  };
-  tongquan: {
-    title: string,
-    content: string,
-  };
-  congviec: {
-    title: string,
-    content: string,
-  };
-  tinhyeu: {
-    title: string,
-    content: string,
-  };
-  taichinh: {
-    title: string,
-    content: string,
-  };
-  suckhoe: {
-    title: string,
-    content: string,
-  };
-  tinhthan: {
-    title: string,
-    content: string,
-  };
-}
+  title: any;
+  content: any;
+};
 
 const ScreenDetail = ({navigation, route}: detailProps) => {
-  const {width, height} = Dimensions.get('window');
+  const {userID} = route.params;
   const [isLike, setLike] = useState(false);
+  const [isTotalLike, setTotalLike] = useState(0);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const count = store.getState().like.total;
+    setTotalLike(count);
+    const status = store.getState().like.status;
+    setLike(status);
+  }, [isLike, dispatch]);
+
   const handleLike = () => {
     setLike(!isLike);
+    if (!isLike) {
+      dispatch({type: 'LIKE'});
+    } else {
+      dispatch({type: 'UNLIKE'});
+    }
   };
 
-  
-  // api
+  const {width, height} = Dimensions.get('window');
+
   const [isLengthCard, setLengthCard] = useState(0);
   const [isDetail, setDetail] = useState<TarotCard>();
   const [isCardType, setCardType] = useState<CardType>();
   const [isBoolean, setBoolean] = useState(false);
-  const [isNumberCard, setNumberCard] = useState(0);
 
   const fetchData = useCallback(async (cardNumber: number) => {
     try {
-      const resList = await axios.get(`http://localhost:3002/tarot`);
-      const resItem = await axios.get(`http://localhost:3002/tarot/${cardNumber}`);
+      const resList = await axios.get('http://localhost:3002/tarot');
+      const resItem = await axios.get(
+        `http://localhost:3002/tarot/${cardNumber}`,
+      );
       const lengthCard = resList.data.length;
       setLengthCard(lengthCard);
       const detail = resItem.data;
       setDetail(detail);
       const isType = Math.random() < 0.5;
-      if (isType === true) {
-        setBoolean(isType);
-        setCardType(resItem.data.cardType.xuoi);
-      } else if (isType === false) {
-        setBoolean(isType);
-        setCardType(resItem.data.cardType.nguoc);
-      }
+      setBoolean(isType);
+      setCardType(detail.cardType[isType ? 'xuoi' : 'nguoc']);
     } catch (error: any) {
       Alert.alert('Error:', error);
     }
   }, []);
 
   useEffect(() => {
-    const randomCardNumber = Math.floor(Math.random() * isLengthCard);
+    const randomCardNumber = 1; // Math.floor(Math.random() * isLengthCard)
     fetchData(randomCardNumber);
-    setNumberCard(randomCardNumber)
   }, [fetchData, isLengthCard]);
 
-  console.log('Số thẻ bài: =>>>>>>>> ', isNumberCard);
-  console.log('Tổng mảng có: =>>>>>>>> ', isLengthCard);
-  console.log('True: Xuôi, False: Ngược: =>>>>>>>> ', String(isBoolean));
-  console.log('Detail: =>>>>>>>> ', isDetail);
   return (
     <>
       <ImageBackground
-        source={{ uri: `http://localhost:3002/cards/${isDetail?.cardImage}` }}
+        source={{uri: `http://localhost:3002/cards/${isDetail?.cardImage}`}}
         resizeMode="cover"
         style={styles.ImageBackgroundCommunity}
       />
@@ -145,25 +110,35 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                 <Text style={[styles.fonsize20White]}>
                   {isDetail?.cardName}
                 </Text>
-                <Text style={styles.textOrange}>{isBoolean === true ? '(Lá bài Xuôi)' : '(Lá bài Ngược)' }</Text>
+                <Text style={styles.textOrange}>
+                  {isBoolean ? '(Lá bài Xuôi)' : '(Lá bài Ngược)'}
+                </Text>
               </View>
               <View style={[styles.paddingVertical10]}>
-                  <Avatar
-                    source={{ uri: `http://localhost:3002/cards/${isDetail?.cardImage}` }}
-                    containerStyle={[
-                      styles.ImgPostCommunity,
-                      { transform: [{ rotate: `${isBoolean === true ? '0deg' : '180deg'}` }] }
-                    ]}
-                  />
+                <Avatar
+                  source={{
+                    uri: `http://localhost:3002/cards/${isDetail?.cardImage}`,
+                  }}
+                  containerStyle={[
+                    styles.ImgPostCommunity,
+                    {transform: [{rotate: `${isBoolean ? '0deg' : '180deg'}`}]},
+                  ]}
+                />
               </View>
             </View>
             <View style={[styles.flexBox, styles.paddingHorizontal18]}>
               <View style={[styles.RowCenterBetween]}>
                 <View style={[styles.paddingTop20]}>
-                  <Text style={[styles.fontSize18, styles.textOrange]}>Ý nghĩa lá bài</Text>
+                  <Text style={[styles.fontSize18, styles.textOrange]}>
+                    Ý nghĩa lá bài
+                  </Text>
                 </View>
+                <Text style={styles.colorWhite}>
+                  userID: {userID}
+                  count: {isTotalLike}
+                </Text>
                 <View style={[styles.width40]}>
-                  <TouchableOpacity onPress={handleLike}>
+                  <TouchableOpacity onPress={() => handleLike()}>
                     <View style={styles.alignCenter}>
                       <IconMateria
                         name={isLike ? 'heart' : 'heart-outline'}
@@ -175,25 +150,24 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                 </View>
               </View>
               <View style={[styles.paddingBottom30]}>
-                {isCardType ?
-                  (Object.entries(isCardType).map(([key, value]) => (
+                {isCardType ? (
+                  Object.entries(isCardType).map(([key, value]) => (
                     <Text
                       style={[
                         styles.textWhite,
                         styles.lineHeight22,
                         styles.marginBottom15,
                       ]}
-                      key={key}
-                    >
+                      key={key}>
                       <Text style={[styles.fontBold600, styles.colorWhite]}>
                         {value.title}
-                      </Text>{' '} {value.content}
+                      </Text>{' '}
+                      {value.content}
                     </Text>
                   ))
-                  ) : (
-                    <Text style={styles.textWhite}>No card types available</Text>
-                  )
-                }
+                ) : (
+                  <Text style={styles.textWhite}>No card types available</Text>
+                )}
               </View>
             </View>
           </View>
