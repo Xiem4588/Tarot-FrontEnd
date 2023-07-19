@@ -123,7 +123,7 @@ const StackScreenOptionsHeaderTransparent = ({navigation}: any) => ({
   ),
 });
 
-const App = () => {
+const Navigation = () => {
   // check first user
   const isCheck = false;
 
@@ -175,4 +175,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Navigation;
