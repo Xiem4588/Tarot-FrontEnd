@@ -528,6 +528,9 @@ export const styles = StyleSheet.create({
   marginBottomA10: {
     marginBottom: -10,
   },
+  marginBottomA20: {
+    marginBottom: -20,
+  },
   marginBottomA30: {
     marginBottom: -30,
   },
@@ -680,8 +683,8 @@ export const styles = StyleSheet.create({
     marginTop: -30,
   },
   ImgPostCommunity: {
-    width: 256,
-    height: 400,
+    width: 200,
+    height: 315,
     resizeMode: 'contain',
   },
   boxInfo: {
@@ -821,6 +824,9 @@ export const styles = StyleSheet.create({
   colorWhite: {
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
+  },
+  textAlign: {
+    textAlign: 'justify',
   },
   colorGrray: {
     color: '#9E9E9E',

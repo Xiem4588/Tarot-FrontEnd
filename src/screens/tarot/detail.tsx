@@ -1,5 +1,4 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {useDispatch} from 'react-redux';
 import axios from 'axios';
 import {Avatar, Text} from 'react-native-elements';
 import {
@@ -12,8 +11,9 @@ import {
 import {ScrollView} from 'react-native-gesture-handler';
 import Header from '../../conponents/header';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
-import store from '../../../redux/store';
 import {styles} from '../../assets/styles';
+import {LikeAction} from '../../redux/actions';
+import store from '../../redux/store';
 
 type detailProps = {
   navigation: any;
@@ -36,56 +36,63 @@ type CardType = {
 };
 
 const ScreenDetail = ({navigation, route}: detailProps) => {
-  const {userID} = route.params;
-  const [isLike, setLike] = useState(false);
-  const [isTotalLike, setTotalLike] = useState(0);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const count = store.getState().like.total;
-    setTotalLike(count);
-    const status = store.getState().like.status;
-    setLike(status);
-  }, [isLike, dispatch]);
-
-  const handleLike = () => {
-    setLike(!isLike);
-    if (!isLike) {
-      dispatch({type: 'LIKE'});
-    } else {
-      dispatch({type: 'UNLIKE'});
-    }
-  };
-
   const {width, height} = Dimensions.get('window');
-
-  const [isLengthCard, setLengthCard] = useState(0);
+  // call api
+  const [isLengthCard, setLengthCard] = useState(Number);
   const [isDetail, setDetail] = useState<TarotCard>();
   const [isCardType, setCardType] = useState<CardType>();
-  const [isBoolean, setBoolean] = useState(false);
+  const [isTypeCard, setTypeCard] = useState(String);
 
   const fetchData = useCallback(async (cardNumber: number) => {
     try {
+      // call api
       const resList = await axios.get('http://localhost:3002/tarot');
       const resItem = await axios.get(
         `http://localhost:3002/tarot/${cardNumber}`,
       );
+
+      // total card
       const lengthCard = resList.data.length;
       setLengthCard(lengthCard);
+
+      // detail card
       const detail = resItem.data;
       setDetail(detail);
-      const isType = Math.random() < 0.5;
-      setBoolean(isType);
-      setCardType(detail.cardType[isType ? 'xuoi' : 'nguoc']);
+
+      // random type card ('xuoi' or 'nguoc')
+      const isType = Math.random() < 0.5 ? 'xuoi' : 'nguoc';
+      setTypeCard(isType);
+
+      // check let get data card ('xuoi' or 'nguoc')
+      setCardType(detail.cardType[isType === 'xuoi' ? 'xuoi' : 'nguoc']);
+
+      // Dispatch the action after fetching data successfully
+      const action: LikeAction = {
+        type: 'RANDOM_CARD',
+        payload: {
+          cardId: detail.cardId,
+          typeCard: isType,
+        },
+      };
+      store.dispatch(action);
     } catch (error: any) {
       Alert.alert('Error:', error);
     }
   }, []);
 
+  // new cardID?
   useEffect(() => {
-    const randomCardNumber = 1; // Math.floor(Math.random() * isLengthCard)
+    const randomCardNumber = Math.floor(Math.random() * isLengthCard);
     fetchData(randomCardNumber);
-  }, [fetchData, isLengthCard]);
+    //params get user
+    const {userID} = route.params;
+    console.log('Check user login >>>>>>>>>>>>', userID);
+  }, [fetchData, isLengthCard, route.params]);
+
+  // click heart
+  const handleShare = () => {
+    return 'Share';
+  };
 
   return (
     <>
@@ -110,40 +117,44 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                 <Text style={[styles.fonsize20White]}>
                   {isDetail?.cardName}
                 </Text>
-                <Text style={styles.textOrange}>
-                  {isBoolean ? '(Lá bài Xuôi)' : '(Lá bài Ngược)'}
-                </Text>
+                {/* <Text style={styles.textOrange}>
+                  {isTypeCard === 'xuoi' ? '(Lá bài Xuôi)' : '(Lá bài Ngược)'}
+                </Text> */}
               </View>
-              <View style={[styles.paddingVertical10]}>
+              <View style={[styles.paddingVertical30]}>
                 <Avatar
                   source={{
                     uri: `http://localhost:3002/cards/${isDetail?.cardImage}`,
                   }}
                   containerStyle={[
                     styles.ImgPostCommunity,
-                    {transform: [{rotate: `${isBoolean ? '0deg' : '180deg'}`}]},
+                    {
+                      transform: [
+                        {
+                          rotate: `${
+                            isTypeCard === 'xuoi' ? '0deg' : '180deg'
+                          }`,
+                        },
+                      ],
+                    },
                   ]}
                 />
               </View>
             </View>
-            <View style={[styles.flexBox, styles.paddingHorizontal18]}>
-              <View style={[styles.RowCenterBetween]}>
-                <View style={[styles.paddingTop20]}>
+            <View style={[styles.flexBox, styles.paddingHorizontal9]}>
+              <View style={[styles.RowCenterBetween, styles.marginBottomA20]}>
+                <View>
                   <Text style={[styles.fontSize18, styles.textOrange]}>
                     Ý nghĩa lá bài
                   </Text>
                 </View>
-                <Text style={styles.colorWhite}>
-                  userID: {userID}
-                  count: {isTotalLike}
-                </Text>
-                <View style={[styles.width40]}>
-                  <TouchableOpacity onPress={() => handleLike()}>
-                    <View style={styles.alignCenter}>
+                <View>
+                  <TouchableOpacity onPress={() => handleShare()}>
+                    <View style={[styles.alignCenter]}>
                       <IconMateria
-                        name={isLike ? 'heart' : 'heart-outline'}
-                        size={22}
-                        color={isLike ? 'red' : 'white'}
+                        name={'share-variant-outline'}
+                        size={32}
+                        color={'white'}
                       />
                     </View>
                   </TouchableOpacity>
@@ -159,7 +170,12 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                         styles.marginBottom15,
                       ]}
                       key={key}>
-                      <Text style={[styles.fontBold600, styles.colorWhite]}>
+                      <Text
+                        style={[
+                          styles.fontBold600,
+                          styles.colorWhite,
+                          styles.textAlign,
+                        ]}>
                         {value.title}
                       </Text>{' '}
                       {value.content}

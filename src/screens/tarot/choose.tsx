@@ -1,6 +1,12 @@
-/* eslint-disable react-native/no-inline-styles */
+//  choose.tsx
 import React from 'react';
-import {View, Text, TouchableOpacity, Dimensions} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+  StyleSheet,
+} from 'react-native';
 import {Image} from 'react-native-elements';
 import {images} from '../../assets/constants';
 import {styles} from '../../assets/styles';
@@ -8,8 +14,11 @@ import WrapBgBox from '../../conponents/wrapBgBox';
 import Header from '../../conponents/header';
 import moment from 'moment';
 import Carousel from 'react-native-snap-carousel';
+
+// get width window
 const {width} = Dimensions.get('window');
 
+// props
 type Item = {
   id: string;
   image: Object;
@@ -18,7 +27,7 @@ type Item = {
 
 // lấy ra 76 lá bài với đường dẫn image
 const TarotCardSelector = ({navigation}: any) => {
-  const data = Array.from({length: 20}, (_, i) => ({
+  const data = Array.from({length: 76}, (_, i) => ({
     id: String(i + 1),
     image: `${images.imgTarotCardDefault1}`,
   }));
@@ -31,15 +40,11 @@ const TarotCardSelector = ({navigation}: any) => {
     return (
       <TouchableOpacity
         onPress={() => handlePress()}
-        style={{paddingBottom: 100}}>
+        style={innerStyles.TouchabItem}>
         <Image
           key={item.id}
           source={item.image}
-          style={{
-            width: '100%',
-            height: 300,
-            resizeMode: 'contain',
-          }}
+          style={innerStyles.ImageItem}
         />
       </TouchableOpacity>
     );
@@ -74,7 +79,7 @@ const TarotCardSelector = ({navigation}: any) => {
             </View>
             <Image
               source={images.imgArrowUnderChoose}
-              style={{resizeMode: 'contain', height: 38}}
+              style={innerStyles.ImageLineIcon}
             />
           </View>
           <View>
@@ -82,26 +87,21 @@ const TarotCardSelector = ({navigation}: any) => {
               data={data}
               renderItem={renderItem}
               sliderWidth={width}
-              itemWidth={80}
+              itemWidth={width / 9}
               loop={true}
-              autoplay={false}
-              useScrollView={false}
-              layoutCardOffset={0}
+              autoplay={true}
+              useScrollView={true}
+              layoutCardOffset={15}
               enableMomentum={true}
-              decelerationRate={0.9}
+              decelerationRate={0}
               layout={'default'}
               hasParallaxImages={true}
             />
           </View>
-          <View
-            style={{
-              transform: [{translateY: -60}],
-              position: 'relative',
-              zIndex: -1,
-            }}>
+          <View style={innerStyles.BoxImageScrollCard}>
             <Image
               source={images.imgHandDirection}
-              style={{resizeMode: 'contain', height: 38}}
+              style={innerStyles.ImageScrollCard}
             />
           </View>
         </View>
@@ -109,5 +109,30 @@ const TarotCardSelector = ({navigation}: any) => {
     </WrapBgBox>
   );
 };
+
+const innerStyles = StyleSheet.create({
+  ImageItem: {
+    width: '100%',
+    height: 300,
+    resizeMode: 'contain',
+  },
+  TouchabItem: {
+    paddingBottom: 100,
+    marginHorizontal: -15,
+  },
+  ImageLineIcon: {
+    resizeMode: 'contain',
+    height: 38,
+  },
+  ImageScrollCard: {
+    transform: [{translateY: -60}],
+    position: 'relative',
+    zIndex: -1,
+  },
+  BoxImageScrollCard: {
+    resizeMode: 'contain',
+    height: 38,
+  },
+});
 
 export default TarotCardSelector;
