@@ -60,10 +60,7 @@ const ScreenToday = ({navigation}: any) => {
               </Text>
             </View>
             <View style={[styles.width120, styles.alignCenter]}>
-              <Image
-                source={images.hand}
-                style={{resizeMode: 'contain', height: 120}}
-              />
+              <Image source={images.hand} style={styles.IconHand} />
             </View>
           </View>
         </View>
@@ -97,10 +94,7 @@ const ScreenToday = ({navigation}: any) => {
       <TouchableOpacity
         style={[styles.btnTheme2]}
         onPress={() => navigation.navigate('choose')}>
-        <Image
-          source={icon.iconUniverse}
-          style={{resizeMode: 'contain', height: 42}}
-        />
+        <Image source={icon.iconUniverse} style={styles.IconUniverse} />
         <Text style={[styles.fontSize14, styles.fontBold, styles.colorBlack]}>
           Thông điệp {'\n'} ngày hôm nay
         </Text>

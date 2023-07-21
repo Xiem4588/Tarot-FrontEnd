@@ -1,12 +1,6 @@
 //  choose.tsx
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Dimensions,
-  StyleSheet,
-} from 'react-native';
+import {View, Text, TouchableOpacity, Dimensions} from 'react-native';
 import {Image} from 'react-native-elements';
 import {images} from '../../assets/constants';
 import {styles} from '../../assets/styles';
@@ -40,12 +34,8 @@ const TarotCardSelector = ({navigation}: any) => {
     return (
       <TouchableOpacity
         onPress={() => handlePress()}
-        style={innerStyles.TouchabItem}>
-        <Image
-          key={item.id}
-          source={item.image}
-          style={innerStyles.ImageItem}
-        />
+        style={styles.TouchabItem}>
+        <Image key={item.id} source={item.image} style={styles.ImageItem} />
       </TouchableOpacity>
     );
   };
@@ -79,7 +69,7 @@ const TarotCardSelector = ({navigation}: any) => {
             </View>
             <Image
               source={images.imgArrowUnderChoose}
-              style={innerStyles.ImageLineIcon}
+              style={styles.ImageLineIcon}
             />
           </View>
           <View>
@@ -98,10 +88,10 @@ const TarotCardSelector = ({navigation}: any) => {
               hasParallaxImages={true}
             />
           </View>
-          <View style={innerStyles.BoxImageScrollCard}>
+          <View style={styles.BoxImageScrollCard}>
             <Image
               source={images.imgHandDirection}
-              style={innerStyles.ImageScrollCard}
+              style={styles.ImageScrollCard}
             />
           </View>
         </View>
@@ -109,30 +99,5 @@ const TarotCardSelector = ({navigation}: any) => {
     </WrapBgBox>
   );
 };
-
-const innerStyles = StyleSheet.create({
-  ImageItem: {
-    width: '100%',
-    height: 300,
-    resizeMode: 'contain',
-  },
-  TouchabItem: {
-    paddingBottom: 100,
-    marginHorizontal: -15,
-  },
-  ImageLineIcon: {
-    resizeMode: 'contain',
-    height: 38,
-  },
-  ImageScrollCard: {
-    transform: [{translateY: -60}],
-    position: 'relative',
-    zIndex: -1,
-  },
-  BoxImageScrollCard: {
-    resizeMode: 'contain',
-    height: 38,
-  },
-});
 
 export default TarotCardSelector;

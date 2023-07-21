@@ -324,13 +324,13 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: colors.defaultBlack,
     fontSize: 16,
-    fontWeight: 700,
+    fontWeight: '700',
     fontFamily: 'Montserrat',
   },
   buttonClose: {
     color: colors.white,
     fontSize: 24,
-    fontWeight: 600,
+    fontWeight: '600',
     fontFamily: 'Montserrat',
   },
   avatarLogin: {
@@ -351,13 +351,6 @@ export const styles = StyleSheet.create({
     bottom: -80,
     height: 200,
     width: '100%',
-  },
-  IconStarBg: {
-    position: 'absolute',
-    bottom: 0,
-    right: 100,
-    height: 26,
-    resizeMode: 'contain',
   },
   ImgBgBottom: {
     position: 'absolute',
@@ -381,7 +374,7 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   nameProfile: {
-    fontWeight: 600,
+    fontWeight: '600',
     fontSize: 18,
     marginVertical: 8,
     color: '#000',
@@ -420,7 +413,7 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
     overflow: 'hidden',
-    fontWeight: 600,
+    fontWeight: '600',
     fontFamily: 'Montserrat',
   },
   buttonEllipseSm: {
@@ -584,11 +577,11 @@ export const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
   },
   fontBold600: {
-    fontWeight: 600,
+    fontWeight: '600',
     fontFamily: 'Montserrat',
   },
   fontBold700: {
-    fontWeight: 700,
+    fontWeight: '700',
     fontFamily: 'Montserrat',
   },
   fontBold: {
@@ -692,21 +685,21 @@ export const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   nameItem: {
-    fontWeight: 600,
+    fontWeight: '600',
     fontSize: 16,
     marginBottom: 4,
     color: 'rgba(255, 255, 255, 0.87)',
     fontFamily: 'Montserrat',
   },
   nameItemBlack16: {
-    fontWeight: 600,
+    fontWeight: '600',
     fontSize: 16,
     marginBottom: 4,
     color: '#000000',
     fontFamily: 'Montserrat',
   },
   nameItemBlack14: {
-    fontWeight: 600,
+    fontWeight: '600',
     fontSize: 14,
     marginBottom: 4,
     color: '#000000',
@@ -720,7 +713,7 @@ export const styles = StyleSheet.create({
   textSize18BoldWhite: {
     color: '#ffffff',
     fontSize: 18,
-    fontWeight: 600,
+    fontWeight: '600',
     fontFamily: 'Montserrat',
   },
   dateTime: {
@@ -877,13 +870,13 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
-    fontWeight: 600,
+    fontWeight: '600',
   },
   fonsize20White: {
     fontSize: 20,
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
-    fontWeight: 600,
+    fontWeight: '600',
   },
   fontsize48: {
     fontSize: 48,
@@ -902,7 +895,7 @@ export const styles = StyleSheet.create({
   },
   titleBox: {
     color: '#F78B73',
-    fontWeight: 600,
+    fontWeight: '600',
     fontSize: 16,
     marginBottom: 16,
     fontFamily: 'Montserrat',
@@ -996,16 +989,16 @@ export const styles = StyleSheet.create({
   tabTitle: {
     color: '#ffffff',
     fontFamily: 'Montserrat',
-    fontWeight: 600,
+    fontWeight: '600',
   },
   textTitle24Black: {
-    fontWeight: 600,
+    fontWeight: '600',
     fontSize: 24,
     color: '#000000',
     fontFamily: 'Montserrat',
   },
   textTitle18Black: {
-    fontWeight: 600,
+    fontWeight: '600',
     fontSize: 18,
     color: '#000000',
     fontFamily: 'Montserrat',
@@ -1021,7 +1014,7 @@ export const styles = StyleSheet.create({
   tabMenu: {
     backgroundColor: 'transparent',
     fontFamily: 'Montserrat',
-    fontWeight: 600,
+    fontWeight: '600',
   },
   indicatorSelected: {
     backgroundColor: '#F68B73',
@@ -1143,7 +1136,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 16,
     fontSize: 18,
-    fontWeight: 600,
+    fontWeight: '600',
     color: '#F78B73',
     fontFamily: 'Montserrat',
     marginTop: 50,
@@ -1210,7 +1203,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingVertical: 10,
     fontFamily: 'Montserrat',
-    fontWeight: 600,
+    fontWeight: '600',
     fontSize: 14,
   },
   IconAbs: {
@@ -1334,11 +1327,48 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   opacity0: {
-    opacity: 0.1
+    opacity: 0.1,
   },
   ImageBackgroundHand: {
     width: '100%',
     height: '100%',
     backgroundColor: colors.lightBlack,
+  },
+  IconStarBg: {
+    position: 'absolute',
+    bottom: 0,
+    right: 100,
+    height: 26,
+    resizeMode: 'contain',
+  },
+  IconHand: {
+    resizeMode: 'contain',
+    height: 120,
+  },
+  IconUniverse: {
+    resizeMode: 'contain',
+    height: 42,
+  },
+  ImageItem: {
+    width: '100%',
+    height: 300,
+    resizeMode: 'contain',
+  },
+  TouchabItem: {
+    paddingBottom: 100,
+    marginHorizontal: -15,
+  },
+  ImageLineIcon: {
+    resizeMode: 'contain',
+    height: 38,
+  },
+  ImageScrollCard: {
+    transform: [{translateY: -60}],
+    position: 'relative',
+    zIndex: -1,
+  },
+  BoxImageScrollCard: {
+    resizeMode: 'contain',
+    height: 38,
   },
 });
