@@ -557,6 +557,9 @@ export const styles = StyleSheet.create({
   marginTopA30: {
     marginTop: -30,
   },
+  marginTopA20: {
+    marginTop: -20,
+  },
   marginTopAuto: {
     marginTop: 'auto',
   },

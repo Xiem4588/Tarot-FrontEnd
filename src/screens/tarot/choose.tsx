@@ -1,5 +1,5 @@
 //  choose.tsx
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {View, Text, TouchableOpacity, Dimensions} from 'react-native';
 import {Image} from 'react-native-elements';
 import {images} from '../../assets/constants';
@@ -10,9 +10,16 @@ import moment from 'moment';
 import Carousel from 'react-native-snap-carousel';
 
 // get width window
-const {width} = Dimensions.get('window');
+const screenWidth = Dimensions.get('window').width;
+const itemWidth = screenWidth / 7;
+const totalWidth = itemWidth * 9; // Tổng kích thước của 12 mục
 
 // props
+
+type chooseProps = {
+  navigation: any;
+  route: any;
+};
 type Item = {
   id: string;
   image: Object;
@@ -20,15 +27,23 @@ type Item = {
 };
 
 // lấy ra 76 lá bài với đường dẫn image
-const TarotCardSelector = ({navigation}: any) => {
+const TarotCardSelector = ({navigation, route}: chooseProps) => {
+  const [isCategory, setCategory] = useState(String);
   const data = Array.from({length: 76}, (_, i) => ({
     id: String(i + 1),
     image: `${images.imgTarotCardDefault1}`,
   }));
 
+  useEffect(() => {
+    const category = route.params;
+    setCategory(category);
+  }, [route]);
+
+  console.log('title >>>>>>', isCategory);
+
   const renderItem = ({item}: {item: Item}) => {
     const handlePress = () => {
-      navigation.navigate('detail', {userID: 1});
+      navigation.navigate('detail', {user: 1, category: isCategory});
     };
 
     return (
@@ -39,6 +54,9 @@ const TarotCardSelector = ({navigation}: any) => {
       </TouchableOpacity>
     );
   };
+
+  const carouselRef = useRef(null);
+  const layoutCardOffset = (screenWidth - totalWidth) / 2;
 
   return (
     <WrapBgBox>
@@ -74,14 +92,15 @@ const TarotCardSelector = ({navigation}: any) => {
           </View>
           <View>
             <Carousel
+              ref={carouselRef}
               data={data}
               renderItem={renderItem}
-              sliderWidth={width}
-              itemWidth={width / 9}
+              sliderWidth={screenWidth}
+              itemWidth={itemWidth}
               loop={true}
-              autoplay={true}
+              autoplay={false}
               useScrollView={true}
-              layoutCardOffset={15}
+              layoutCardOffset={layoutCardOffset}
               enableMomentum={true}
               decelerationRate={0}
               layout={'default'}

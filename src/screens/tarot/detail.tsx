@@ -37,6 +37,7 @@ type CardType = {
 
 const ScreenDetail = ({navigation, route}: detailProps) => {
   const {width, height} = Dimensions.get('window');
+  const [isCategory, setCategory] = useState(String);
   // call api
   const [isLengthCard, setLengthCard] = useState(Number);
   const [isDetail, setDetail] = useState<TarotCard>();
@@ -85,14 +86,26 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
     const randomCardNumber = Math.floor(Math.random() * isLengthCard);
     fetchData(randomCardNumber);
     //params get user
-    const {userID} = route.params;
-    console.log('Check user login >>>>>>>>>>>>', userID);
-  }, [fetchData, isLengthCard, route.params]);
+    const getParams = route.params;
+    // Kiểm tra và lấy giá trị của thuộc tính "category"
+    if (typeof getParams.category === 'object' && getParams.category !== null) {
+      const categoryValue = getParams.category.category;
+      setCategory(categoryValue);
+      // console.log('isCategory >>>>>>>>>>>>', isCategory); // Output: ''
+    }
+    // Kiểm tra và lấy giá trị của thuộc tính "user"
+    if (typeof getParams.user === 'number') {
+      // const userValue = getParams.user;
+      // console.log('userValue >>>>>>>>>>>>', userValue); // Output: ''
+    }
+  }, [fetchData, isLengthCard, route.params, isCategory]);
 
   // click heart
   const handleShare = () => {
     return 'Share';
   };
+
+  // console.log('isCardType >>>>>>>>>>>>', isCardType);
 
   return (
     <>
@@ -142,7 +155,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
               </View>
             </View>
             <View style={[styles.flexBox, styles.paddingHorizontal9]}>
-              <View style={[styles.RowCenterBetween, styles.marginBottomA20]}>
+              <View style={[styles.RowCenterBetween]}>
                 <View>
                   <Text style={[styles.fontSize18, styles.textOrange]}>
                     Ý nghĩa lá bài
@@ -160,31 +173,67 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                   </TouchableOpacity>
                 </View>
               </View>
-              <View style={[styles.paddingBottom30]}>
-                {isCardType ? (
-                  Object.entries(isCardType).map(([key, value]) => (
-                    <Text
-                      style={[
-                        styles.textWhite,
-                        styles.lineHeight22,
-                        styles.marginBottom15,
-                      ]}
-                      key={key}>
+              {isCategory === 'all' ? (
+                <View style={[styles.paddingBottom30, styles.marginTopA20]}>
+                  {isCardType ? (
+                    Object.entries(isCardType).map(([key, value]) => (
                       <Text
                         style={[
-                          styles.fontBold600,
-                          styles.colorWhite,
-                          styles.textAlign,
-                        ]}>
-                        {value.title}
-                      </Text>{' '}
-                      {value.content}
+                          styles.textWhite,
+                          styles.lineHeight22,
+                          styles.marginBottom15,
+                        ]}
+                        key={key}>
+                        <Text
+                          style={[
+                            styles.fontBold600,
+                            styles.colorWhite,
+                            styles.textAlign,
+                          ]}>
+                          {value.title}
+                        </Text>{' '}
+                        {value.content}
+                      </Text>
+                    ))
+                  ) : (
+                    <Text style={styles.textWhite}>
+                      No card types available
                     </Text>
-                  ))
-                ) : (
-                  <Text style={styles.textWhite}>No card types available</Text>
-                )}
-              </View>
+                  )}
+                </View>
+              ) : (
+                <View style={[styles.paddingBottom30, styles.marginTop20]}>
+                  {isCardType
+                    ? Object.entries(isCardType).map(([key, value]) => (
+                        <>
+                          {console.log('value >>>', value)}
+                          {console.log('isCategory >>>', isCategory)}
+                          {value.title === isCategory ? (
+                            <Text
+                              style={[
+                                styles.textWhite,
+                                styles.lineHeight22,
+                                styles.marginBottom15,
+                              ]}
+                              key={key}>
+                              <Text
+                                style={[
+                                  styles.fontBold600,
+                                  styles.colorWhite,
+                                  styles.textAlign,
+                                ]}>
+                                {value.title}
+                              </Text>{' '}
+                              {value.content}
+                            </Text>
+                          ) : (
+                            ''
+                          )}
+                        </>
+                      ))
+                    : null}
+                </View>
+              )}
             </View>
           </View>
         </ScrollView>

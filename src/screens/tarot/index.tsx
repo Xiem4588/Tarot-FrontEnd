@@ -66,12 +66,16 @@ const ScreenToday = ({navigation}: any) => {
         </View>
       </View>
       <View style={[styles.itemContainer, styles.paddingBox]}>
-        <Text style={styles.titleBox}>Phương hướng dành cho bạn</Text>
+        <Text style={[styles.titleBox, styles.marginTop15]}>
+          Phương hướng dành cho bạn
+        </Text>
         <ScrollView>
           {DATA.map(item => (
             <TouchableOpacity
               key={item.id}
-              onPress={() => navigation.navigate('choose')}>
+              onPress={() =>
+                navigation.navigate('choose', {category: item.category})
+              }>
               <View
                 style={[
                   styles.RowCenterBetween,
@@ -93,7 +97,7 @@ const ScreenToday = ({navigation}: any) => {
       </View>
       <TouchableOpacity
         style={[styles.btnTheme2]}
-        onPress={() => navigation.navigate('choose')}>
+        onPress={() => navigation.navigate('choose', {category: 'all'})}>
         <Image source={icon.iconUniverse} style={styles.IconUniverse} />
         <Text style={[styles.fontSize14, styles.fontBold, styles.colorBlack]}>
           Thông điệp {'\n'} ngày hôm nay
@@ -105,32 +109,44 @@ const ScreenToday = ({navigation}: any) => {
 
 interface DataProps {
   id: string;
+  category: string;
   ques: string;
 }
 const DATA: DataProps[] = [
   {
     id: '1',
-    ques: 'Tình cảm của người đó dành cho bạn như thế nào?',
+    category: 'Dẫn nhập',
+    ques: '"Dẫn nhập" là cái quái gì ta?',
   },
   {
     id: '2',
-    ques: 'Cơ hội công việc nào đang đến với bạn?',
+    category: 'Tổng quan',
+    ques: '"Tổng quan" cho cuộc sống của tôi có gì phải lưu ý?',
   },
   {
     id: '3',
-    ques: 'Bạn và người ấy sẽ kéo dài được bao lâu',
+    category: 'Công việc',
+    ques: '"Công việc" của bạn dạo này thế nào?',
   },
   {
     id: '4',
-    ques: 'Cơ hội công việc nào đang đến với bạn?',
+    category: 'Tình yêu',
+    ques: '"Tình yêu" hôm nay có gì thay đổi?',
   },
   {
     id: '5',
-    ques: 'Có người nào đó đang thầm thương trộm nhớ bạn?',
+    category: 'Tài chính',
+    ques: '"Tài chính" hôm nay có gì phải quan tâm?',
   },
   {
     id: '6',
-    ques: 'Có người nào đó đang thầm thương trộm nhớ bạn?',
+    category: 'Sức khoẻ',
+    ques: '"Sức khoẻ" tôi hôm nay ra sao?',
+  },
+  {
+    id: '7',
+    category: 'Tinh thần',
+    ques: 'Hôm nay "tinh thần" của tôi thế nào?',
   },
 ];
 
