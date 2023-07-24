@@ -38,23 +38,24 @@ type CardType = {
 const ScreenDetail = ({navigation, route}: detailProps) => {
   const {width, height} = Dimensions.get('window');
   const [isCategory, setCategory] = useState(String);
+  const [isUserLogin, setUserLogin] = useState(String);
   // call api
-  const [isLengthCard, setLengthCard] = useState(Number);
   const [isDetail, setDetail] = useState<TarotCard>();
   const [isCardType, setCardType] = useState<CardType>();
   const [isTypeCard, setTypeCard] = useState(String);
 
-  const fetchData = useCallback(async (cardNumber: number) => {
+  const fetchData = useCallback(async () => {
     try {
       // call api
       const resList = await axios.get('http://localhost:3002/tarot');
-      const resItem = await axios.get(
-        `http://localhost:3002/tarot/${cardNumber}`,
-      );
-
       // total card
       const lengthCard = resList.data.length;
-      setLengthCard(lengthCard);
+
+      const randomCardNumber = Math.floor(Math.random() * lengthCard);
+
+      const resItem = await axios.get(
+        `http://localhost:3002/tarot/${randomCardNumber}`,
+      );
 
       // detail card
       const detail = resItem.data;
@@ -75,37 +76,39 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
           typeCard: isType,
         },
       };
+
+      //params get user
+      const getParams = route.params;
+      // Kiểm tra và lấy giá trị của thuộc tính "category"
+      if (
+        typeof getParams.category === 'object' &&
+        getParams.category !== null
+      ) {
+        const categoryValue = getParams.category.category;
+        setCategory(categoryValue);
+      }
+      // Kiểm tra và lấy giá trị của thuộc tính "user"
+      if (typeof getParams.user === 'number') {
+        const userValue = getParams.user;
+        setUserLogin(userValue);
+      }
+
       store.dispatch(action);
     } catch (error: any) {
       Alert.alert('Error:', error);
     }
-  }, []);
+  }, [route.params]);
 
-  // new cardID?
   useEffect(() => {
-    const randomCardNumber = Math.floor(Math.random() * isLengthCard);
-    fetchData(randomCardNumber);
-    //params get user
-    const getParams = route.params;
-    // Kiểm tra và lấy giá trị của thuộc tính "category"
-    if (typeof getParams.category === 'object' && getParams.category !== null) {
-      const categoryValue = getParams.category.category;
-      setCategory(categoryValue);
-      // console.log('isCategory >>>>>>>>>>>>', isCategory); // Output: ''
-    }
-    // Kiểm tra và lấy giá trị của thuộc tính "user"
-    if (typeof getParams.user === 'number') {
-      // const userValue = getParams.user;
-      // console.log('userValue >>>>>>>>>>>>', userValue); // Output: ''
-    }
-  }, [fetchData, isLengthCard, route.params, isCategory]);
+    fetchData();
+  }, [fetchData]);
 
   // click heart
   const handleShare = () => {
     return 'Share';
   };
 
-  // console.log('isCardType >>>>>>>>>>>>', isCardType);
+  isUserLogin;
 
   return (
     <>
@@ -206,8 +209,6 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                   {isCardType
                     ? Object.entries(isCardType).map(([key, value]) => (
                         <>
-                          {console.log('value >>>', value)}
-                          {console.log('isCategory >>>', isCategory)}
                           {value.title === isCategory ? (
                             <Text
                               style={[

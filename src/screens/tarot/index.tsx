@@ -140,8 +140,8 @@ const DATA: DataProps[] = [
   },
   {
     id: '6',
-    category: 'Sức khoẻ',
-    ques: '"Sức khoẻ" tôi hôm nay ra sao?',
+    category: 'Sức khỏe',
+    ques: '"sức khỏe" tôi hôm nay ra sao?',
   },
   {
     id: '7',
