@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {Avatar, Text} from 'react-native-elements';
 import {
@@ -44,64 +44,64 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
   const [isCardType, setCardType] = useState<CardType>();
   const [isTypeCard, setTypeCard] = useState(String);
 
-  const fetchData = useCallback(async () => {
-    try {
-      // call api
-      const resList = await axios.get('http://localhost:3002/tarot');
-      // total card
-      const lengthCard = resList.data.length;
-
-      const randomCardNumber = Math.floor(Math.random() * lengthCard);
-
-      const resItem = await axios.get(
-        `http://localhost:3002/tarot/${randomCardNumber}`,
-      );
-
-      // detail card
-      const detail = resItem.data;
-      setDetail(detail);
-
-      // random type card ('xuoi' or 'nguoc')
-      const isType = Math.random() < 0.5 ? 'xuoi' : 'nguoc';
-      setTypeCard(isType);
-
-      // check let get data card ('xuoi' or 'nguoc')
-      setCardType(detail.cardType[isType === 'xuoi' ? 'xuoi' : 'nguoc']);
-
-      // Dispatch the action after fetching data successfully
-      const action: LikeAction = {
-        type: 'RANDOM_CARD',
-        payload: {
-          cardId: detail.cardId,
-          typeCard: isType,
-        },
-      };
-
-      //params get user
-      const getParams = route.params;
-      // Kiểm tra và lấy giá trị của thuộc tính "category"
-      if (
-        typeof getParams.category === 'object' &&
-        getParams.category !== null
-      ) {
-        const categoryValue = getParams.category.category;
-        setCategory(categoryValue);
-      }
-      // Kiểm tra và lấy giá trị của thuộc tính "user"
-      if (typeof getParams.user === 'number') {
-        const userValue = getParams.user;
-        setUserLogin(userValue);
-      }
-
-      store.dispatch(action);
-    } catch (error: any) {
-      Alert.alert('Error:', error);
-    }
-  }, [route.params]);
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // call api
+        const resList = await axios.get('http://localhost:3002/tarot');
+        // total card
+        const lengthCard = resList.data.length;
+
+        const randomCardNumber = Math.floor(Math.random() * lengthCard);
+
+        const resItem = await axios.get(
+          `http://localhost:3002/tarot/${randomCardNumber}`,
+        );
+
+        // detail card
+        const detail = resItem.data;
+        setDetail(detail);
+
+        // random type card ('xuoi' or 'nguoc')
+        const isType = Math.random() < 0.5 ? 'xuoi' : 'nguoc';
+        setTypeCard(isType);
+
+        // check let get data card ('xuoi' or 'nguoc')
+        setCardType(detail.cardType[isType === 'xuoi' ? 'xuoi' : 'nguoc']);
+
+        // Dispatch the action after fetching data successfully
+        const action: LikeAction = {
+          type: 'RANDOM_CARD',
+          payload: {
+            cardId: detail.cardId,
+            typeCard: isType,
+          },
+        };
+
+        //params get user
+        const getParams = route.params;
+        // Kiểm tra và lấy giá trị của thuộc tính "category"
+        if (
+          typeof getParams.category === 'object' &&
+          getParams.category !== null
+        ) {
+          const categoryValue = getParams.category.category;
+          setCategory(categoryValue);
+        }
+        // Kiểm tra và lấy giá trị của thuộc tính "user"
+        if (typeof getParams.user === 'number') {
+          const userValue = getParams.user;
+          setUserLogin(userValue);
+        }
+
+        store.dispatch(action);
+      } catch (error: any) {
+        Alert.alert('Error:', error);
+      }
+    };
+
     fetchData();
-  }, [fetchData]);
+  }, [route.params]);
 
   // click heart
   const handleShare = () => {
