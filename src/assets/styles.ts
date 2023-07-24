@@ -1365,12 +1365,12 @@ export const styles = StyleSheet.create({
     resizeMode: 'contain',
     height: 38,
   },
-  ImageScrollCard: {
+  BoxImageScrollCard: {
     transform: [{translateY: -60}],
     position: 'relative',
     zIndex: -1,
   },
-  BoxImageScrollCard: {
+  ImageScrollCard: {
     resizeMode: 'contain',
     height: 38,
   },
