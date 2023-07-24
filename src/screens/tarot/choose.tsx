@@ -35,8 +35,11 @@ const TarotCardSelector = ({navigation, route}: chooseProps) => {
   }));
 
   useEffect(() => {
-    const category = route.params;
-    setCategory(category);
+    const fetchData = async () => {
+      const category = await route.params;
+      setCategory(category);
+    };
+    fetchData();
   }, [route]);
 
   console.log('title >>>>>>', isCategory);

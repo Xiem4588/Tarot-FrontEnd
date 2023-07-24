@@ -47,13 +47,12 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // call api
+        // call api all card
         const resList = await axios.get('http://localhost:3002/tarot');
-        // total card
         const lengthCard = resList.data.length;
 
+        // rendom number card
         const randomCardNumber = Math.floor(Math.random() * lengthCard);
-
         const resItem = await axios.get(
           `http://localhost:3002/tarot/${randomCardNumber}`,
         );
