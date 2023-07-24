@@ -11,8 +11,8 @@ import Carousel from 'react-native-snap-carousel';
 
 // get width window
 const screenWidth = Dimensions.get('window').width;
-const itemWidth = screenWidth / 7;
-const totalWidth = itemWidth * 9; // Tổng kích thước của 12 mục
+const itemWidth = screenWidth / 14;
+const totalWidth = itemWidth * 8; // Tổng kích thước của 12 mục
 
 // props
 
@@ -42,8 +42,6 @@ const TarotCardSelector = ({navigation, route}: chooseProps) => {
     fetchData();
   }, [route]);
 
-  console.log('title >>>>>>', isCategory);
-
   const renderItem = ({item}: {item: Item}) => {
     const handlePress = () => {
       navigation.navigate('detail', {user: 1, category: isCategory});
@@ -60,6 +58,8 @@ const TarotCardSelector = ({navigation, route}: chooseProps) => {
 
   const carouselRef = useRef(null);
   const layoutCardOffset = (screenWidth - totalWidth) / 2;
+
+  console.log('title >>>>>>', isCategory);
 
   return (
     <WrapBgBox>
@@ -108,6 +108,7 @@ const TarotCardSelector = ({navigation, route}: chooseProps) => {
               decelerationRate={0}
               layout={'default'}
               hasParallaxImages={true}
+              firstItem={76 / 2}
             />
           </View>
           <View style={styles.BoxImageScrollCard}>
