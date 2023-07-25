@@ -68,17 +68,9 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
         // check let get data card ('xuoi' or 'nguoc')
         setCardType(detail.cardType[isType === 'xuoi' ? 'xuoi' : 'nguoc']);
 
-        // Dispatch the action after fetching data successfully
-        const action: LikeAction = {
-          type: 'RANDOM_CARD',
-          payload: {
-            cardId: detail.cardId,
-            typeCard: isType,
-          },
-        };
-
         //params get user
         const getParams = route.params;
+
         // Kiểm tra và lấy giá trị của thuộc tính "category"
         if (
           typeof getParams.category === 'object' &&
@@ -87,12 +79,21 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
           const categoryValue = getParams.category.category;
           setCategory(categoryValue);
         }
+
         // Kiểm tra và lấy giá trị của thuộc tính "user"
         if (typeof getParams.user === 'number') {
           const userValue = getParams.user;
           setUserLogin(userValue);
         }
 
+        // Dispatch the action after fetching data successfully
+        const action: LikeAction = {
+          type: 'RANDOM_CARD',
+          payload: {
+            cardId: detail.cardId,
+            typeCard: isType,
+          },
+        };
         store.dispatch(action);
       } catch (error: any) {
         Alert.alert('Error:', error);

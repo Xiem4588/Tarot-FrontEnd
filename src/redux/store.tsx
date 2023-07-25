@@ -1,12 +1,16 @@
 // src/redux/store.ts
 import {createStore, combineReducers} from 'redux';
-import likeReducer from './reducers/likeReducer';
-import {RootState} from './types';
+import likeCardReducer from './reducers/likeCard';
+import shareCardReducer from './reducers/shareCard';
 
-const rootReducer = combineReducers<RootState>({
-  like: likeReducer,
+// Kết hợp các reducers thành rootReducer
+const rootReducer = combineReducers({
+  like: likeCardReducer,
+  share: shareCardReducer,
+  // Khác: nếu bạn có thêm các reducers khác, hãy kết hợp chúng ở đây
 });
 
+// Tạo Redux store với rootReducer
 const store = createStore(rootReducer);
 
 export default store;

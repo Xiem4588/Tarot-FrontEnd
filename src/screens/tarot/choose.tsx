@@ -11,8 +11,8 @@ import Carousel from 'react-native-snap-carousel';
 
 // get width window
 const screenWidth = Dimensions.get('window').width;
-const itemWidth = screenWidth / 14;
-const totalWidth = itemWidth * 8; // Tổng kích thước của 12 mục
+const itemWidth = screenWidth / 10;
+const totalWidth = itemWidth * 10; // Tổng kích thước của 12 mục
 
 // props
 
