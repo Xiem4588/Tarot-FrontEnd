@@ -33,6 +33,7 @@ const CustomPagination = (
         return (
           <View
             key={i}
+            // eslint-disable-next-line react-native/no-inline-styles
             style={{
               width: isActive ? 20 : 8,
               height: 8,

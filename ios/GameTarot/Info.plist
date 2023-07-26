@@ -73,6 +73,11 @@
 		<string>Montserrat-Thin.ttf</string>
 		<string>Montserrat-ThinItalic.ttf</string>
 		<string>Montserrat-VariableFont_wght.ttf</string>
+		<string>AbhayaLibre-Bold.ttf</string>
+		<string>AbhayaLibre-ExtraBold.ttf</string>
+		<string>AbhayaLibre-Medium.ttf</string>
+		<string>AbhayaLibre-Regular.ttf</string>
+		<string>AbhayaLibre-SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>

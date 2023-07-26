@@ -11,6 +11,7 @@ export type LikeAction = {
 export type ShareAction = {
   type: 'SHARE';
   payload: {
+    userID: string;
     cardId: string;
     typeCard: string;
   };

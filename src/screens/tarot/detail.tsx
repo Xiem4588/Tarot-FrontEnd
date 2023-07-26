@@ -12,8 +12,8 @@ import {ScrollView} from 'react-native-gesture-handler';
 import Header from '../../conponents/header';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../../assets/styles';
-import {LikeAction} from '../../redux/actions';
-import store from '../../redux/store';
+import {ShareAction} from '../../redux/actions';
+import {store} from '../../redux/store';
 
 type detailProps = {
   navigation: any;
@@ -51,14 +51,16 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
         const resList = await axios.get('http://localhost:3002/tarot');
         const lengthCard = resList.data.length;
 
+        if (lengthCard === 0) {
+          // Handle the case when the card list is empty
+          return;
+        }
+
         // rendom number card
         const randomCardNumber = Math.floor(Math.random() * lengthCard);
-        const resItem = await axios.get(
-          `http://localhost:3002/tarot/${randomCardNumber}`,
-        );
 
         // detail card
-        const detail = resItem.data;
+        const detail = resList.data[randomCardNumber];
         setDetail(detail);
 
         // random type card ('xuoi' or 'nguoc')
@@ -66,13 +68,16 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
         setTypeCard(isType);
 
         // check let get data card ('xuoi' or 'nguoc')
-        setCardType(detail.cardType[isType === 'xuoi' ? 'xuoi' : 'nguoc']);
+        if (detail && detail.cardType) {
+          setCardType(detail.cardType[isType === 'xuoi' ? 'xuoi' : 'nguoc']);
+        }
 
         //params get user
         const getParams = route.params;
 
         // Kiểm tra và lấy giá trị của thuộc tính "category"
         if (
+          getParams &&
           typeof getParams.category === 'object' &&
           getParams.category !== null
         ) {
@@ -81,22 +86,17 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
         }
 
         // Kiểm tra và lấy giá trị của thuộc tính "user"
-        if (typeof getParams.user === 'number') {
+        if (getParams && typeof getParams.user === 'number') {
           const userValue = getParams.user;
           setUserLogin(userValue);
         }
+      } catch (error: unknown) {
+        // Xác định kiểu dữ liệu cho biến error
+        const errorMessage =
+          error instanceof Error ? error.message : 'Unknown error';
 
-        // Dispatch the action after fetching data successfully
-        const action: LikeAction = {
-          type: 'RANDOM_CARD',
-          payload: {
-            cardId: detail.cardId,
-            typeCard: isType,
-          },
-        };
-        store.dispatch(action);
-      } catch (error: any) {
-        Alert.alert('Error:', error);
+        // Xử lý lỗi API hoặc các lỗi ngoại lệ khác
+        Alert.alert('Error:', errorMessage);
       }
     };
 
@@ -105,6 +105,18 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
 
   // click heart
   const handleShare = () => {
+    // Dispatch the action after fetching data successfully
+    if (isDetail) {
+      const share: ShareAction = {
+        type: 'SHARE',
+        payload: {
+          userID: 'tao la 1',
+          cardId: isDetail.cardId,
+          typeCard: isTypeCard,
+        },
+      };
+      store.dispatch(share);
+    }
     return 'Share';
   };
 
@@ -130,7 +142,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                 styles.paddingTop50,
               ]}>
               <View style={[styles.alignCenter, styles.paddingVertical10]}>
-                <Text style={[styles.fonsize20White]}>
+                <Text style={[styles.fonsize32White, styles.fontAbhayaLibre]}>
                   {isDetail?.cardName}
                 </Text>
                 {/* <Text style={styles.textOrange}>
@@ -158,7 +170,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
               </View>
             </View>
             <View style={[styles.flexBox, styles.paddingHorizontal9]}>
-              <View style={[styles.RowCenterBetween]}>
+              <View style={[styles.RowCenterBetween, styles.zindexRelative9]}>
                 <View>
                   <Text style={[styles.fontSize18, styles.textOrange]}>
                     Ý nghĩa lá bài
@@ -208,15 +220,14 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                 <View style={[styles.paddingBottom30, styles.marginTop20]}>
                   {isCardType
                     ? Object.entries(isCardType).map(([key, value]) => (
-                        <>
+                        <View key={key}>
                           {value.title === isCategory ? (
                             <Text
                               style={[
                                 styles.textWhite,
                                 styles.lineHeight22,
                                 styles.marginBottom15,
-                              ]}
-                              key={key}>
+                              ]}>
                               <Text
                                 style={[
                                   styles.fontBold600,
@@ -230,7 +241,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                           ) : (
                             ''
                           )}
-                        </>
+                        </View>
                       ))
                     : null}
                 </View>

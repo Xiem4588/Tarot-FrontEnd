@@ -79,3 +79,18 @@ Map project
       * Để khắc phục lỗi này, bạn có thể làm theo các hướng dẫn sau đây:
       1. Mở tệp Podfile trong dự án của bạn.
       2. Thêm use_modular_headers! vào phía trên cùng của tệp Podfile, để bật tính năng tạo
+
+// Add fonts
+
+      Tạo file react-native.config.js rồi thêm nội dung sau:
+      module.exports = {
+            resolver: {
+                  assetExts: ['ttf', 'png', 'jpg', 'jpeg', 'gif'], // Thêm các định dạng file asset bạn muốn hỗ trợ
+            },
+            project: {
+                  ios: {},
+                  android: {},
+            },
+            assets: ['src/assets/fonts'], // đường dẫn tới folder fonts
+      };
+      ==> sau đó chạy lệnh để link đến ứng dụng: 'npx react-native-asset'

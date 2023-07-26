@@ -594,6 +594,9 @@ export const styles = StyleSheet.create({
   fontMontserrat: {
     fontFamily: 'Montserrat',
   },
+  fontAbhayaLibre: {
+    fontFamily: 'AbhayaLibre-Regular',
+  },
   notifyNew: {
     width: 8,
     height: 8,
@@ -880,6 +883,10 @@ export const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
     fontWeight: '600',
+  },
+  fonsize32White: {
+    fontSize: 32,
+    color: '#FFFFFF',
   },
   fontsize48: {
     fontSize: 48,
