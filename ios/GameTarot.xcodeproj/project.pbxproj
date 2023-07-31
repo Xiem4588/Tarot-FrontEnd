@@ -15,11 +15,11 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		35D8FF04B5045051C99437E1 /* Pods_GameTarot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51333DF4E2F1FF843776F6A0 /* Pods_GameTarot.framework */; };
 		3C9AAA93DA414496A92E26F9 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4D02923297A4D678D64EA23 /* Montserrat-SemiBold.ttf */; };
 		3CD8E760465A40888F89F503 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC004A437F584A7FADB66B03 /* Montserrat-ThinItalic.ttf */; };
 		3ED1AFAC00EC4362BB3216B2 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28952450D0B64C38AAD16E8F /* Montserrat-Bold.ttf */; };
 		54C170E9300746CE9658E0C7 /* Montserrat-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FEEC1BD30F7E4F1C8A2CD4A8 /* Montserrat-VariableFont_wght.ttf */; };
-		5D5C5CD6997BF6CB1F1CE39C /* Pods_GameTarot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 877E8612B9E69D1BCDE9C436 /* Pods_GameTarot.framework */; };
 		611022EADA8D44F5961D7C29 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3C83DA2FB45BA8B5EAE7A /* Montserrat-Thin.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8411541A57F04FB18FED6715 /* AbhayaLibre-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20EE5942E78D4E3EBFA0999B /* AbhayaLibre-ExtraBold.ttf */; };
@@ -33,7 +33,7 @@
 		BC66523B476744008A538BFD /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 393A6B68970D45BEAFDED10F /* Montserrat-ExtraBold.ttf */; };
 		BEC862C551CC46008BBD4B47 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72BDBEAA1CEC4CE280A2F222 /* Montserrat-Light.ttf */; };
 		C534F91EE2E14B8BBAF4FB32 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 512F229945AE49868CCC78F9 /* Montserrat-Black.ttf */; };
-		C76E037E4A7792708466B500 /* Pods_GameTarot_GameTarotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9790BC876AA546E51048341 /* Pods_GameTarot_GameTarotTests.framework */; };
+		D133C9F9A8046795AC2A8EAD /* Pods_GameTarot_GameTarotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B7F32E98D173AE412F3E836 /* Pods_GameTarot_GameTarotTests.framework */; };
 		D5602E8C4D36454A9FB3CFE8 /* AbhayaLibre-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8A780ABBDE84458A95C6B93 /* AbhayaLibre-Medium.ttf */; };
 		D7EEA9B17DBB4FFB9E323D13 /* AbhayaLibre-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89DB1232B5CF4C10920E7DDE /* AbhayaLibre-Regular.ttf */; };
 		D92965D8A6D94F26A3CF4328 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CABF30ED178E4C3CBCCE3B0E /* Montserrat-BoldItalic.ttf */; };
@@ -65,33 +65,33 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = GameTarot/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = GameTarot/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = GameTarot/main.m; sourceTree = "<group>"; };
-		1A9CC15498D58EC4B113A9B4 /* Pods-GameTarot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameTarot.release.xcconfig"; path = "Target Support Files/Pods-GameTarot/Pods-GameTarot.release.xcconfig"; sourceTree = "<group>"; };
 		20EE5942E78D4E3EBFA0999B /* AbhayaLibre-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AbhayaLibre-ExtraBold.ttf"; path = "../src/assets/fonts/AbhayaLibre-ExtraBold.ttf"; sourceTree = "<group>"; };
 		28952450D0B64C38AAD16E8F /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../src/assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		29F7B8215CF31314D7D64637 /* Pods-GameTarot-GameTarotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameTarot-GameTarotTests.release.xcconfig"; path = "Target Support Files/Pods-GameTarot-GameTarotTests/Pods-GameTarot-GameTarotTests.release.xcconfig"; sourceTree = "<group>"; };
+		2A944264F83593DA742BD1E8 /* Pods-GameTarot-GameTarotTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameTarot-GameTarotTests.debug.xcconfig"; path = "Target Support Files/Pods-GameTarot-GameTarotTests/Pods-GameTarot-GameTarotTests.debug.xcconfig"; sourceTree = "<group>"; };
 		393A6B68970D45BEAFDED10F /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../src/assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
-		3A028AC38CDCE111DE34DBE7 /* Pods-GameTarot-GameTarotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameTarot-GameTarotTests.release.xcconfig"; path = "Target Support Files/Pods-GameTarot-GameTarotTests/Pods-GameTarot-GameTarotTests.release.xcconfig"; sourceTree = "<group>"; };
 		3E51E62B4DE944E29B277B35 /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLight.ttf"; path = "../src/assets/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
 		3F01AE456ED848E28F857814 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBoldItalic.ttf"; path = "../src/assets/fonts/Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		493D5CF814AD4A90812C306B /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BlackItalic.ttf"; path = "../src/assets/fonts/Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
 		4B5CF0611AA7466984DF9EED /* AbhayaLibre-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AbhayaLibre-Bold.ttf"; path = "../src/assets/fonts/AbhayaLibre-Bold.ttf"; sourceTree = "<group>"; };
 		512F229945AE49868CCC78F9 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Black.ttf"; path = "../src/assets/fonts/Montserrat-Black.ttf"; sourceTree = "<group>"; };
+		51333DF4E2F1FF843776F6A0 /* Pods_GameTarot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameTarot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		59DB961CF063A24061A1AC82 /* Pods-GameTarot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameTarot.debug.xcconfig"; path = "Target Support Files/Pods-GameTarot/Pods-GameTarot.debug.xcconfig"; sourceTree = "<group>"; };
 		607CD0588C1E4C82B3824FDE /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-LightItalic.ttf"; path = "../src/assets/fonts/Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
 		72BDBEAA1CEC4CE280A2F222 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../src/assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		79552DBB634341E8A157C637 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../src/assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		7B76EC9FECC14B17B81303A0 /* AbhayaLibre-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AbhayaLibre-SemiBold.ttf"; path = "../src/assets/fonts/AbhayaLibre-SemiBold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = GameTarot/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		842DFE5929FB85B9007AB5B8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		877E8612B9E69D1BCDE9C436 /* Pods_GameTarot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameTarot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89DB1232B5CF4C10920E7DDE /* AbhayaLibre-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AbhayaLibre-Regular.ttf"; path = "../src/assets/fonts/AbhayaLibre-Regular.ttf"; sourceTree = "<group>"; };
+		8B7F32E98D173AE412F3E836 /* Pods_GameTarot_GameTarotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameTarot_GameTarotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D02923297A4D678D64EA23 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../src/assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		AA036EE96E0BED4DF105595E /* Pods-GameTarot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameTarot.release.xcconfig"; path = "Target Support Files/Pods-GameTarot/Pods-GameTarot.release.xcconfig"; sourceTree = "<group>"; };
 		B7EDB2FD84CE42EDAB675689 /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLightItalic.ttf"; path = "../src/assets/fonts/Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
-		B9790BC876AA546E51048341 /* Pods_GameTarot_GameTarotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameTarot_GameTarotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8A780ABBDE84458A95C6B93 /* AbhayaLibre-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "AbhayaLibre-Medium.ttf"; path = "../src/assets/fonts/AbhayaLibre-Medium.ttf"; sourceTree = "<group>"; };
 		CABF30ED178E4C3CBCCE3B0E /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BoldItalic.ttf"; path = "../src/assets/fonts/Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
 		CC004A437F584A7FADB66B03 /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ThinItalic.ttf"; path = "../src/assets/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
-		CC85CAED90EA26C9EF38840D /* Pods-GameTarot-GameTarotTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameTarot-GameTarotTests.debug.xcconfig"; path = "Target Support Files/Pods-GameTarot-GameTarotTests/Pods-GameTarot-GameTarotTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D79D3946E4504CE98E10FA5F /* Montserrat-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Italic-VariableFont_wght.ttf"; path = "../src/assets/fonts/Montserrat-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
-		EBBFA2D2D4F6C0D9DBAA419A /* Pods-GameTarot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameTarot.debug.xcconfig"; path = "Target Support Files/Pods-GameTarot/Pods-GameTarot.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F10AACA1944C4FF884929590 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../src/assets/fonts/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		F5BDA368316B4952BF0A87DD /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Italic.ttf"; path = "../src/assets/fonts/Montserrat-Italic.ttf"; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C76E037E4A7792708466B500 /* Pods_GameTarot_GameTarotTests.framework in Frameworks */,
+				D133C9F9A8046795AC2A8EAD /* Pods_GameTarot_GameTarotTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D5C5CD6997BF6CB1F1CE39C /* Pods_GameTarot.framework in Frameworks */,
+				35D8FF04B5045051C99437E1 /* Pods_GameTarot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,8 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				877E8612B9E69D1BCDE9C436 /* Pods_GameTarot.framework */,
-				B9790BC876AA546E51048341 /* Pods_GameTarot_GameTarotTests.framework */,
+				51333DF4E2F1FF843776F6A0 /* Pods_GameTarot.framework */,
+				8B7F32E98D173AE412F3E836 /* Pods_GameTarot_GameTarotTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -226,10 +226,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EBBFA2D2D4F6C0D9DBAA419A /* Pods-GameTarot.debug.xcconfig */,
-				1A9CC15498D58EC4B113A9B4 /* Pods-GameTarot.release.xcconfig */,
-				CC85CAED90EA26C9EF38840D /* Pods-GameTarot-GameTarotTests.debug.xcconfig */,
-				3A028AC38CDCE111DE34DBE7 /* Pods-GameTarot-GameTarotTests.release.xcconfig */,
+				59DB961CF063A24061A1AC82 /* Pods-GameTarot.debug.xcconfig */,
+				AA036EE96E0BED4DF105595E /* Pods-GameTarot.release.xcconfig */,
+				2A944264F83593DA742BD1E8 /* Pods-GameTarot-GameTarotTests.debug.xcconfig */,
+				29F7B8215CF31314D7D64637 /* Pods-GameTarot-GameTarotTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -241,12 +241,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "GameTarotTests" */;
 			buildPhases = (
-				37950D847EDD26222864DCCA /* [CP] Check Pods Manifest.lock */,
+				93D61C070787D22AF713A187 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				AC66E89C734D017122B9E1D1 /* [CP] Embed Pods Frameworks */,
-				1EF48809F5AF7F5AF99A7C35 /* [CP] Copy Pods Resources */,
+				0D57A0ADC447AA8642044A8A /* [CP] Embed Pods Frameworks */,
+				ACA1DD47E875357F550F16F2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -262,14 +262,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "GameTarot" */;
 			buildPhases = (
-				60E061F02690EB5DAA1A65D8 /* [CP] Check Pods Manifest.lock */,
+				09DA55154C9F24AF034B6488 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				F5A43C4553B84028F65DF471 /* [CP] Embed Pods Frameworks */,
-				AFB22028CFC8B8869D521935 /* [CP] Copy Pods Resources */,
+				78590B12315FAFBCAD2232B6 /* [CP] Embed Pods Frameworks */,
+				6DB8AF1141BCA195DBE00E98 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -378,46 +378,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		1EF48809F5AF7F5AF99A7C35 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GameTarot-GameTarotTests/Pods-GameTarot-GameTarotTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GameTarot-GameTarotTests/Pods-GameTarot-GameTarotTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GameTarot-GameTarotTests/Pods-GameTarot-GameTarotTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		37950D847EDD26222864DCCA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GameTarot-GameTarotTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		60E061F02690EB5DAA1A65D8 /* [CP] Check Pods Manifest.lock */ = {
+		09DA55154C9F24AF034B6488 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -439,7 +400,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AC66E89C734D017122B9E1D1 /* [CP] Embed Pods Frameworks */ = {
+		0D57A0ADC447AA8642044A8A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -456,7 +417,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GameTarot-GameTarotTests/Pods-GameTarot-GameTarotTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AFB22028CFC8B8869D521935 /* [CP] Copy Pods Resources */ = {
+		6DB8AF1141BCA195DBE00E98 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -473,7 +434,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GameTarot/Pods-GameTarot-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F5A43C4553B84028F65DF471 /* [CP] Embed Pods Frameworks */ = {
+		78590B12315FAFBCAD2232B6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -488,6 +449,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GameTarot/Pods-GameTarot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93D61C070787D22AF713A187 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GameTarot-GameTarotTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ACA1DD47E875357F550F16F2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GameTarot-GameTarotTests/Pods-GameTarot-GameTarotTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GameTarot-GameTarotTests/Pods-GameTarot-GameTarotTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GameTarot-GameTarotTests/Pods-GameTarot-GameTarotTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -542,7 +542,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC85CAED90EA26C9EF38840D /* Pods-GameTarot-GameTarotTests.debug.xcconfig */;
+			baseConfigurationReference = 2A944264F83593DA742BD1E8 /* Pods-GameTarot-GameTarotTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -569,7 +569,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A028AC38CDCE111DE34DBE7 /* Pods-GameTarot-GameTarotTests.release.xcconfig */;
+			baseConfigurationReference = 29F7B8215CF31314D7D64637 /* Pods-GameTarot-GameTarotTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -593,7 +593,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EBBFA2D2D4F6C0D9DBAA419A /* Pods-GameTarot.debug.xcconfig */;
+			baseConfigurationReference = 59DB961CF063A24061A1AC82 /* Pods-GameTarot.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -620,7 +620,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A9CC15498D58EC4B113A9B4 /* Pods-GameTarot.release.xcconfig */;
+			baseConfigurationReference = AA036EE96E0BED4DF105595E /* Pods-GameTarot.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

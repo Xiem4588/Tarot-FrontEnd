@@ -102,15 +102,15 @@ const ModalDataDate = ({
                     </Text>
                     <View style={styles.RowBetween}>
                       <View
-                        style={[
-                          styles.textBlack,
-                          styles.boxGrayRadius10,
-                          styles.marginRight10,
-                        ]}>
-                        <Text style={styles.fontBold600}>{dataItem.start}</Text>
+                        style={[styles.boxGrayRadius10, styles.marginRight10]}>
+                        <Text style={[styles.textBlack, styles.fontBold600]}>
+                          {dataItem.start}
+                        </Text>
                       </View>
-                      <View style={[styles.textBlack, styles.boxGrayRadius10]}>
-                        <Text style={styles.fontBold600}>{dataItem.day}</Text>
+                      <View style={[styles.boxGrayRadius10]}>
+                        <Text style={(styles.textBlack, styles.fontBold600)}>
+                          {dataItem.day}
+                        </Text>
                       </View>
                     </View>
                   </View>
@@ -120,15 +120,15 @@ const ModalDataDate = ({
                     </Text>
                     <View style={styles.RowBetween}>
                       <View
-                        style={[
-                          styles.textBlack,
-                          styles.boxGrayRadius10,
-                          styles.marginRight10,
-                        ]}>
-                        <Text style={styles.fontBold600}>{dataItem.end}</Text>
+                        style={[styles.boxGrayRadius10, styles.marginRight10]}>
+                        <Text style={(styles.textBlack, styles.fontBold600)}>
+                          {dataItem.end}
+                        </Text>
                       </View>
-                      <View style={[styles.textBlack, styles.boxGrayRadius10]}>
-                        <Text style={styles.fontBold600}>{dataItem.day}</Text>
+                      <View style={[styles.boxGrayRadius10]}>
+                        <Text style={(styles.textBlack, styles.fontBold600)}>
+                          {dataItem.day}
+                        </Text>
                       </View>
                     </View>
                   </View>
@@ -145,12 +145,13 @@ const ModalDataDate = ({
                     </Text>
                     <View style={styles.RowBetween}>
                       <View
-                        style={[
-                          styles.textBlack,
-                          styles.boxGrayRadius10,
-                          styles.marginRight10,
-                        ]}>
-                        <Text style={[styles.fontBold600, styles.colorOrange]}>
+                        style={[styles.boxGrayRadius10, styles.marginRight10]}>
+                        <Text
+                          style={[
+                            styles.textBlack,
+                            styles.fontBold600,
+                            styles.colorOrange,
+                          ]}>
                           {dataItem.summary}
                         </Text>
                       </View>

@@ -3,14 +3,16 @@ import MyProfileUser from './user';
 import MyProfileExpert from './expert';
 
 interface isState {
-  navigation?: any;
-  account?: string;
+  navigation: any;
+  loginUser: string;
 }
 
-const MyProfile = ({navigation, account}: isState) => {
+const MyProfile = ({navigation, loginUser}: isState) => {
+  console.log('truy cap voi userID la: >>>>>', loginUser);
   const [isCheckUser, setCheckUser] = useState(false);
-  if (account === 'expert') {
+  if (loginUser === 'expert') {
     setCheckUser(true);
+    console.log('typeUser >>>>>', loginUser);
   }
   return (
     <>

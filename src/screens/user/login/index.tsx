@@ -9,14 +9,15 @@ import {
   Image,
   Alert,
 } from 'react-native';
-import {styles} from '../../assets/styles';
-import {stylesScreen} from './styles';
-import {images} from '../../assets/constants';
+import {styles} from '../../../assets/styles';
+import {stylesScreen} from '../styles';
+import {images} from '../../../assets/constants';
 import {ScrollView} from 'react-native-gesture-handler';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
-import i18n from '../../languages/i18n';
-import LoginSocial from './social';
+import i18n from '../../../languages/i18n';
+import LoginSocial from '../social';
+import axios from 'axios';
 
 interface LoginProps {
   handleInputUser: () => void;
@@ -50,12 +51,41 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
     setIsPasswordValid(text.length >= 8);
     setisCheckPasswordValidValid(`${isPasswordValid}`);
   };
+
+  // checkLogin
+  const API_BASE_URL = 'http://localhost:3002/users'; // Thay đổi URL tại đây
+  const checkLogin = async (email: string, password: string) => {
+    try {
+      const response = await axios.post(`${API_BASE_URL}/login`, {
+        email,
+        password,
+      });
+      return response.data;
+    } catch (error) {
+      // Xử lý lỗi tại đây (nếu cần)
+      throw error;
+    }
+  };
+
   // check all to submit
-  const handlePress = () => {
-    if (isValidEmail && isPassword) {
-      handleLogin('1');
-    } else {
-      Alert.alert(`${i18n.t('errorLogin')}`);
+  const handlePress = async () => {
+    try {
+      const response = await checkLogin(isEmail, isPassword);
+      console.log('response >>>>>>', response);
+
+      if (isValidEmail && isPasswordValid) {
+        if (response.success) {
+          handleLogin(response.userID);
+          // Alert.alert('Success!', response.message);
+        } else {
+          Alert.alert('Lỗi', response.message);
+        }
+      } else {
+        Alert.alert(`${i18n.t('errorLogin')}`);
+      }
+    } catch (error) {
+      // Xử lý lỗi tại đây (nếu cần)
+      Alert.alert('Lỗi', 'Tài khoản chưa tồn tại, vui lòng kiểm tra lại!');
     }
   };
 
@@ -162,7 +192,9 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
                   styles.marginVertical18,
                   styles.marginBottom30,
                 ]}>
-                <Text style={[styles.colorGrray]}>{i18n.t('donotaccount')}</Text>
+                <Text style={[styles.colorGrray]}>
+                  {i18n.t('donotaccount')}
+                </Text>
                 <TouchableOpacity
                   onPress={handleInputUser}
                   style={styles.RowAlignItems}>

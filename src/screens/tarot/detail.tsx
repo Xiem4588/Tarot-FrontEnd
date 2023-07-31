@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
 import {Avatar, Text} from 'react-native-elements';
 import {
   Alert,
@@ -14,6 +13,7 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../../assets/styles';
 import {ShareAction} from '../../redux/actions';
 import {store} from '../../redux/store';
+import {getCards} from '../../api';
 
 type detailProps = {
   navigation: any;
@@ -48,8 +48,9 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
     const fetchData = async () => {
       try {
         // call api all card
-        const resList = await axios.get('http://localhost:3002/tarot');
-        const lengthCard = resList.data.length;
+        const routes = 'tarot';
+        const res = await getCards(routes);
+        const lengthCard = res.data.length;
 
         if (lengthCard === 0) {
           // Handle the case when the card list is empty
@@ -60,7 +61,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
         const randomCardNumber = Math.floor(Math.random() * lengthCard);
 
         // detail card
-        const detail = resList.data[randomCardNumber];
+        const detail = res.data[randomCardNumber];
         setDetail(detail);
 
         // random type card ('xuoi' or 'nguoc')

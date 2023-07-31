@@ -129,8 +129,10 @@ const AgendaScreen = ({navigation}: isProps, isItems: isItems) => {
               </Text>
             </View>
             <View style={styles.RowCenterBetween}>
-              <View style={[styles.textBlack, styles.marginRight10]}>
-                <Text style={styles.fontBold600}>{dataItem.name}</Text>
+              <View style={[styles.marginRight10]}>
+                <Text style={(styles.textBlack, styles.fontBold600)}>
+                  {dataItem.name}
+                </Text>
               </View>
               <View style={[styles.boxGrayRadius10]}>
                 <Text style={[styles.textBlack]}>
@@ -165,9 +167,10 @@ const AgendaScreen = ({navigation}: isProps, isItems: isItems) => {
     const month = selectedDate.toLocaleString('default', {month: 'long'});
     const year = selectedDate.getFullYear();
     return (
-      <View style={[styles.textCenter, styles.alignItems]}>
+      <View style={[styles.alignItems]}>
         <Text
           style={[
+            styles.textCenter,
             styles.fontBold600,
             styles.colorGrray,
           ]}>{`${month} ${year}`}</Text>

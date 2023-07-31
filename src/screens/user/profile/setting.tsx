@@ -30,7 +30,7 @@ const SettingScreen = ({navigation}: any) => {
     <WrapBgBox>
       <Header
         navigation={navigation}
-        title={i18n.t('setting')}
+        title={String(i18n.t('setting'))}
         name="setting"
       />
       <ScrollView>

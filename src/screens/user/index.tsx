@@ -19,8 +19,8 @@ const AccountScreen = ({navigation}: any) => {
     }
   };
   useEffect(() => {
-    if (isUserId === '1') {
-      console.log('isUserId', isUserId);
+    if (isUserId) {
+      console.log('login với isUserId là: ', isUserId);
       setLogin(false);
     }
   }, [isUserId]);
@@ -35,7 +35,7 @@ const AccountScreen = ({navigation}: any) => {
             handleLogin={(id: string) => handleLogin(id)}
           />
         ) : (
-          <MyProfile navigation={navigation} />
+          <MyProfile navigation={navigation} loginUser={isUserId} />
         )
       ) : (
         <Register handleInputUser={handleInputUser} />
