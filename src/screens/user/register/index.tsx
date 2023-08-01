@@ -9,14 +9,14 @@ import {
   Image,
   Alert,
 } from 'react-native';
-import {styles} from '../../assets/styles';
-import {stylesScreen} from './styles';
-import {images, icon} from '../../assets/constants';
+import {styles} from '../../../assets/styles';
+import {stylesScreen} from '../styles';
+import {images, icon} from '../../../assets/constants';
 import {ScrollView} from 'react-native-gesture-handler';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
-import i18n from '../../languages/i18n';
-import LoginSocial from './social';
+import i18n from '../../../languages/i18n';
+import LoginSocial from '../social';
 interface RegisterProps {
   navigation?: any;
   handleInputUser?: () => void;
