@@ -17,7 +17,7 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
 import i18n from '../../../languages/i18n';
 import LoginSocial from '../social';
-import axios from 'axios';
+import {apiUser} from '../../../api';
 
 interface LoginProps {
   handleInputUser: () => void;
@@ -53,13 +53,13 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
   };
 
   // checkLogin
-  const API_BASE_URL = 'http://localhost:3002/users'; // Thay đổi URL tại đây
   const checkLogin = async (email: string, password: string) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/login`, {
+      const newUser = {
         email,
         password,
-      });
+      };
+      const response = await apiUser('login', newUser);
       return response.data;
     } catch (error) {
       // Xử lý lỗi tại đây (nếu cần)
@@ -71,14 +71,11 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
   const handlePress = async () => {
     try {
       const response = await checkLogin(isEmail, isPassword);
-      console.log('response >>>>>>', response);
-
       if (isValidEmail && isPasswordValid) {
         if (response.success) {
           handleLogin(response.userID);
-          // Alert.alert('Success!', response.message);
         } else {
-          Alert.alert('Lỗi', response.message);
+          Alert.alert('Error', response.error);
         }
       } else {
         Alert.alert(`${i18n.t('errorLogin')}`);

@@ -20,4 +20,16 @@ export const getCards = async (routes: string) => {
   }
 };
 
+// ************ API apiUser: login, register
+export const apiUser = async (routes: string, data: object) => {
+  try {
+    const url = `/users/${routes}`;
+    const response = await axiosClient.post(url, data);
+    return response;
+  } catch (error) {
+    console.error('Lỗi khi tìm nạp thẻ: ', error);
+    throw error;
+  }
+};
+
 // ************ khac
