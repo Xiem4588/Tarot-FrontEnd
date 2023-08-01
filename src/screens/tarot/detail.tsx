@@ -131,7 +131,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
         style={styles.ImageBackgroundCommunity}
       />
       <View style={styles.positionAbsoluteTop}>
-        <Header navigation={navigation} name="nothing" />
+        <Header navigation={navigation} />
       </View>
       <View style={styles.backgBlackOpacity08}>
         <ScrollView>

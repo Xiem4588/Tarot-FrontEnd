@@ -49,6 +49,7 @@ const TarotCardSelector = ({navigation, route}: chooseProps) => {
 
     return (
       <TouchableOpacity
+        activeOpacity={1}
         onPress={() => handlePress()}
         style={styles.TouchabItem}>
         <Image key={item.id} source={item.image} style={styles.ImageItem} />
@@ -58,8 +59,6 @@ const TarotCardSelector = ({navigation, route}: chooseProps) => {
 
   const carouselRef = useRef(null);
   const layoutCardOffset = (screenWidth - totalWidth) / 2;
-
-  console.log('title >>>>>>', isCategory);
 
   return (
     <WrapBgBox>
@@ -109,6 +108,9 @@ const TarotCardSelector = ({navigation, route}: chooseProps) => {
               layout={'default'}
               hasParallaxImages={true}
               firstItem={76 / 2}
+              onSnapToItem={(index: number) => {
+                console.log('Item được nhấn:', data[index]);
+              }}
             />
           </View>
           <View style={styles.BoxImageScrollCard}>
