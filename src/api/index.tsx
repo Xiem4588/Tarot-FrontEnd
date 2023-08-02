@@ -8,19 +8,19 @@ const axiosClient = axios.create({
   headers: {'Content-Type': 'application/json'},
 });
 
-// ************ Get Cards
-export const getCards = async (routes: string) => {
+// ************ Get API apiCategory
+export const apiCategory = async (routes: string) => {
   try {
     const url = `/${routes}`;
     const response = await axiosClient.get(url);
     return response;
   } catch (error) {
-    console.error('Error while fetching cards:', error);
+    console.error('Error!', error);
     throw error;
   }
 };
 
-// ************ API apiUser: login, register
+// ************ Post API apiUser: login, register
 export const apiUser = async (routes: string, data: object) => {
   try {
     const url = `/users/${routes}`;

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Text,
   TextInput,
@@ -7,7 +7,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   Image,
-  Alert,
 } from 'react-native';
 import {styles} from '../../../assets/styles';
 import {stylesScreen} from '../styles';
@@ -17,6 +16,7 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
 import i18n from '../../../languages/i18n';
 import LoginSocial from '../social';
+import {apiUser} from '../../../api';
 interface RegisterProps {
   navigation?: any;
   handleInputUser?: () => void;
@@ -24,10 +24,13 @@ interface RegisterProps {
 
 const Register = ({handleInputUser}: RegisterProps) => {
   // check input email
-  const [isEmail, setEmail] = useState('');
-  const [isValidEmail, setIsValidEmail] = useState('');
+  const [isID, setIdUser] = useState(String);
+  const [isTel, setTel] = useState(String);
+  const [isEmail, setEmail] = useState(String);
+  const [isValidEmail, setIsValidEmail] = useState(String);
   const handleEmailChange = (text: string) => {
     setEmail(text);
+    setTel(text);
     const isValid = validator.validate(text);
     if (isValid) {
       setIsValidEmail('true');
@@ -48,17 +51,59 @@ const Register = ({handleInputUser}: RegisterProps) => {
     setIsPasswordValid(text.length >= 8);
     setisCheckPasswordValidValid(`${isPasswordValid}`);
   };
+
+  //
+  useEffect(() => {
+    setIdUser(String(Math.floor(Math.random() * 2000)));
+  }, []);
+
   // Select button
-  const [selectedButton, setSelectedButton] = useState('');
+  const [isTypeUser, setTypeUser] = useState('');
   const handleButtonPress = (buttonName: string) => {
-    setSelectedButton(buttonName);
+    setTypeUser(buttonName);
   };
-  // check all to submit
-  const handlePress = () => {
-    if (isValidEmail && isPassword && selectedButton) {
-      handleInputUser?.();
-    } else {
-      Alert.alert('Error! Một hoặc nhiều trường có lỗi vui lòng thử lại!');
+
+  // RegisterAccount
+  const RegisterAccount = async (
+    id: string,
+    tel: string,
+    email: string,
+    password: string,
+    typeUser: string,
+  ) => {
+    // Kiểm tra các giá trị đầu vào có khác rỗng không
+    if (!id || !tel || !email || !password || !typeUser) {
+      throw new Error('Vui lòng điền đầy đủ thông tin đăng ký.');
+    }
+    const newUser = {
+      id,
+      tel,
+      email,
+      password,
+      typeUser,
+    };
+    const response = await apiUser('register', newUser);
+    return response.data;
+  };
+
+  // submit
+  const handlePress = async () => {
+    try {
+      const response = await RegisterAccount(
+        isID,
+        isTel,
+        isEmail,
+        isPassword,
+        isTypeUser,
+      );
+
+      if (response.success) {
+        console.log('Trạng thái đăng ký >>> ', response.message);
+      } else {
+        console.log('Trạng thái đăng ký >>>', response.error);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -140,9 +185,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
                   style={[
                     styles.btnTmpAuto,
                     styles.borderBottomWhite,
-                    selectedButton === 'Guest'
-                      ? styles.borderBottomOrange
-                      : null,
+                    isTypeUser === 'Guest' ? styles.borderBottomOrange : null,
                   ]}>
                   <Image
                     source={icon.iconGuest}
@@ -166,9 +209,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
                   style={[
                     styles.btnTmpAuto,
                     styles.borderBottomWhite,
-                    selectedButton === 'Expert'
-                      ? styles.borderBottomOrange
-                      : null,
+                    isTypeUser === 'Expert' ? styles.borderBottomOrange : null,
                   ]}>
                   <Image
                     source={icon.iconExpert}
@@ -190,11 +231,12 @@ const Register = ({handleInputUser}: RegisterProps) => {
               <TouchableOpacity
                 onPress={handlePress}
                 style={
-                  isCheckPasswordValid === 'true' &&
-                  isValidEmail === 'true' &&
-                  selectedButton
-                    ? styles.buttonTmp
-                    : styles.buttonFullDisable
+                  styles.buttonTmp
+                  // isCheckPasswordValid === 'true' &&
+                  // isValidEmail === 'true' &&
+                  // TypeUser
+                  //   ? styles.buttonTmp
+                  //   : styles.buttonFullDisable
                 }>
                 <Text style={styles.buttonText}>{i18n.t('register')}</Text>
               </TouchableOpacity>

@@ -75,14 +75,14 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
         if (response.success) {
           handleLogin(response.userID);
         } else {
-          Alert.alert('Error', response.error);
+          Alert.alert('Error login', response.message);
         }
       } else {
         Alert.alert(`${i18n.t('errorLogin')}`);
       }
     } catch (error) {
       // Xử lý lỗi tại đây (nếu cần)
-      Alert.alert('Lỗi', 'Tài khoản chưa tồn tại, vui lòng kiểm tra lại!');
+      Alert.alert('Tài khoản chưa tồn tại, vui lòng kiểm tra lại!');
     }
   };
 
