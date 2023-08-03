@@ -843,6 +843,10 @@ export const styles = StyleSheet.create({
     color: '#366AF0',
     fontFamily: 'Montserrat',
   },
+  colorGreen: {
+    color: 'green',
+    fontFamily: 'Montserrat',
+  },
   colorOrange: {
     color: '#F78B73',
     fontFamily: 'Montserrat',

@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 import {styles} from '../../../assets/styles';
 import {stylesScreen} from '../styles';
@@ -39,9 +40,9 @@ const Register = ({handleInputUser}: RegisterProps) => {
     }
   };
   // Show password
-  const [isPassword, setPassword] = useState('');
+  const [isPassword, setPassword] = useState(String);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
-  const [isCheckPasswordValid, setisCheckPasswordValidValid] = useState('');
+  const [isCheckPasswordValid, setisCheckPasswordValidValid] = useState(String);
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -58,7 +59,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
   }, []);
 
   // Select button
-  const [isTypeUser, setTypeUser] = useState('');
+  const [isTypeUser, setTypeUser] = useState(String);
   const handleButtonPress = (buttonName: string) => {
     setTypeUser(buttonName);
   };
@@ -71,10 +72,6 @@ const Register = ({handleInputUser}: RegisterProps) => {
     password: string,
     typeUser: string,
   ) => {
-    // Kiểm tra các giá trị đầu vào có khác rỗng không
-    if (!id || !tel || !email || !password || !typeUser) {
-      throw new Error('Vui lòng điền đầy đủ thông tin đăng ký.');
-    }
     const newUser = {
       id,
       tel,
@@ -87,24 +84,43 @@ const Register = ({handleInputUser}: RegisterProps) => {
   };
 
   // submit
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setSuccess] = useState(Boolean);
+  const [isStatus, setStatus] = useState(String);
   const handlePress = async () => {
-    try {
-      const response = await RegisterAccount(
-        isID,
-        isTel,
-        isEmail,
-        isPassword,
-        isTypeUser,
-      );
-
-      if (response.success) {
-        console.log('Trạng thái đăng ký >>> ', response.message);
+    setIsLoading(true); // Bắt đầu hiển thị trạng thái loading
+    setTimeout(async () => {
+      if (!isID || !isTel || !isEmail || !isPassword || !isTypeUser) {
+        console.log('>>>>>> Các trường là bắt buộc nhập!');
+        setStatus('Các trường là bắt buộc nhập!');
+      } else if (isValidEmail === 'true') {
+        try {
+          const response = await RegisterAccount(
+            isID,
+            isTel,
+            isEmail,
+            isPassword,
+            isTypeUser,
+          );
+          if (response.success) {
+            setStatus(response.message);
+            setSuccess(response.success);
+            console.log('1 Trạng thái đăng ký >>> ', response.message);
+          } else {
+            console.log('2 Trạng thái đăng ký >>>', response.error);
+            setStatus(response.error);
+            setSuccess(response.success);
+          }
+        } catch (error) {
+          setStatus('Loi khi dang ky');
+          console.log('3 Loi khi dang ky: >>>>', error);
+        }
       } else {
-        console.log('Trạng thái đăng ký >>>', response.error);
+        setStatus('Thông tin đăng ký không hợp lệ!');
+        console.log('4 >>> Thông tin đăng ký không hợp lệ!');
       }
-    } catch (error) {
-      console.log(error);
-    }
+      setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (
@@ -125,6 +141,16 @@ const Register = ({handleInputUser}: RegisterProps) => {
                 ]}>
                 {i18n.t('register')}
               </Text>
+              {isStatus && (
+                <Text
+                  style={[
+                    styles.fontSize14,
+                    styles.marginBottom15,
+                    isSuccess !== true ? styles.colorRed : styles.colorGreen,
+                  ]}>
+                  {isStatus}
+                </Text>
+              )}
             </View>
             <View style={styles.inputContainer}>
               <IconMateria
@@ -229,16 +255,26 @@ const Register = ({handleInputUser}: RegisterProps) => {
             </View>
             <View style={[styles.alignCenter, styles.marginTop24]}>
               <TouchableOpacity
-                onPress={handlePress}
-                style={
-                  styles.buttonTmp
-                  // isCheckPasswordValid === 'true' &&
-                  // isValidEmail === 'true' &&
-                  // TypeUser
-                  //   ? styles.buttonTmp
-                  //   : styles.buttonFullDisable
-                }>
-                <Text style={styles.buttonText}>{i18n.t('register')}</Text>
+                activeOpacity={1}
+                onPress={
+                  isValidEmail === 'true' &&
+                  isCheckPasswordValid === 'true' &&
+                  isTypeUser
+                    ? handlePress
+                    : undefined
+                }
+                style={[
+                  isValidEmail === 'true' &&
+                  isCheckPasswordValid === 'true' &&
+                  isTypeUser
+                    ? styles.buttonTmp
+                    : styles.buttonFullDisable,
+                ]}>
+                {isLoading ? (
+                  <ActivityIndicator color="white" />
+                ) : (
+                  <Text style={styles.buttonText}>{i18n.t('register')}</Text>
+                )}
               </TouchableOpacity>
             </View>
             <View style={[styles.alignCenter, styles.marginVertical34]}>

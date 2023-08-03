@@ -75,9 +75,11 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
         if (response.success) {
           handleLogin(response.userID);
         } else {
+          console.log('Error login >>>>>', response.message);
           Alert.alert('Error login', response.message);
         }
       } else {
+        console.log('Error login >>>>>', `${i18n.t('errorLogin')}`);
         Alert.alert(`${i18n.t('errorLogin')}`);
       }
     } catch (error) {

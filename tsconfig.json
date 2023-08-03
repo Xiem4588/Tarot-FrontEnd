@@ -9,7 +9,7 @@
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
-    "target": "esnext", // Có thể bạn muốn cập nhật target thành es2017 thay vì es6 //esnext
+    "target": "es6", // Có thể bạn muốn cập nhật target thành es2017 thay vì es6 //esnext
     "module": "esnext",
     "resolveJsonModule": true,
     "lib": ["es2017", "dom"],
