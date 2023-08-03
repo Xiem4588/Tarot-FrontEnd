@@ -196,6 +196,15 @@ export const styles = StyleSheet.create({
   paddingBottom30: {
     paddingBottom: 30,
   },
+  paddingVertical5: {
+    paddingVertical: 5,
+  },
+  paddingVertical3: {
+    paddingVertical: 3,
+  },
+  paddingHorizontal10: {
+    paddingHorizontal: 10,
+  },
   padding18: {
     padding: 18,
   },
@@ -383,6 +392,16 @@ export const styles = StyleSheet.create({
   positionAbsolute: {
     position: 'absolute',
     bottom: -50,
+  },
+  positionAbsoluteLoadingLeft: {
+    position: 'absolute',
+    left: 25,
+    top: 15,
+  },
+  positionAbsoluteLoadingRight: {
+    position: 'absolute',
+    right: 25,
+    top: 15,
   },
   positionAbsoluteTop: {
     position: 'absolute',
@@ -832,27 +851,33 @@ export const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
   },
   colorBlack: {
-    color: 'rgba(0, 0, 0, 0.87)',
+    color: 'rgba(0, 0, 0, 1)',
+    fontWeight: '500',
     fontFamily: 'Montserrat',
   },
   textBlack: {
     color: '#000000',
+    fontWeight: '500',
     fontFamily: 'Montserrat',
   },
   colorBlue: {
     color: '#366AF0',
+    fontWeight: '500',
     fontFamily: 'Montserrat',
   },
   colorGreen: {
     color: 'green',
+    fontWeight: '500',
     fontFamily: 'Montserrat',
   },
   colorOrange: {
     color: '#F78B73',
+    fontWeight: '500',
     fontFamily: 'Montserrat',
   },
   colorRed: {
     color: '#FF2F2F',
+    fontWeight: '500',
     fontFamily: 'Montserrat',
   },
   fonsize10White: {

@@ -60,6 +60,8 @@ const TarotCardSelector = ({navigation, route}: chooseProps) => {
   const carouselRef = useRef(null);
   const layoutCardOffset = (screenWidth - totalWidth) / 2;
 
+  console.log('screen choose: title >>>>>>', isCategory);
+
   return (
     <WrapBgBox>
       <View style={styles.positionAbsoluteTop}>

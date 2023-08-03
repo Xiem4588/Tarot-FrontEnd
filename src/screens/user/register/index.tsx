@@ -8,6 +8,7 @@ import {
   Platform,
   Image,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import {styles} from '../../../assets/styles';
 import {stylesScreen} from '../styles';
@@ -107,20 +108,23 @@ const Register = ({handleInputUser}: RegisterProps) => {
             setSuccess(response.success);
             console.log('1 Trạng thái đăng ký >>> ', response.message);
           } else {
-            console.log('2 Trạng thái đăng ký >>>', response.error);
+            Alert.alert(response.error);
             setStatus(response.error);
             setSuccess(response.success);
+            console.log('2 Trạng thái đăng ký >>>', response.error);
           }
         } catch (error) {
+          Alert.alert('error');
           setStatus('Loi khi dang ky');
           console.log('3 Loi khi dang ky: >>>>', error);
         }
       } else {
+        Alert.alert('error');
         setStatus('Thông tin đăng ký không hợp lệ!');
         console.log('4 >>> Thông tin đăng ký không hợp lệ!');
       }
       setIsLoading(false);
-    }, 3000); // 3-second delay
+    }, 1000); // 1-second delay
   };
 
   return (
@@ -255,7 +259,13 @@ const Register = ({handleInputUser}: RegisterProps) => {
             </View>
             <View style={[styles.alignCenter, styles.marginTop24]}>
               <TouchableOpacity
-                activeOpacity={1}
+                activeOpacity={
+                  isValidEmail === 'true' &&
+                  isCheckPasswordValid === 'true' &&
+                  isTypeUser
+                    ? 0.6
+                    : 1
+                }
                 onPress={
                   isValidEmail === 'true' &&
                   isCheckPasswordValid === 'true' &&

@@ -8,6 +8,7 @@ import {
   Platform,
   Image,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import {styles} from '../../../assets/styles';
 import {stylesScreen} from '../styles';
@@ -68,24 +69,35 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
   };
 
   // check all to submit
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setSuccess] = useState(Boolean);
+  const [isStatus, setStatus] = useState(String);
   const handlePress = async () => {
-    try {
-      const response = await checkLogin(isEmail, isPassword);
-      if (isValidEmail && isPasswordValid) {
-        if (response.success) {
-          handleLogin(response.userID);
+    setIsLoading(true); // Bắt đầu hiển thị trạng thái loading
+    setTimeout(async () => {
+      try {
+        const response = await checkLogin(isEmail, isPassword);
+        if (isValidEmail && isPasswordValid) {
+          if (response.success) {
+            handleLogin(response.userID);
+          } else {
+            Alert.alert('Error login', response.message);
+            console.log('Error login >>>>>', response.message);
+            setStatus(response.message);
+            setSuccess(response.success);
+          }
         } else {
-          console.log('Error login >>>>>', response.message);
-          Alert.alert('Error login', response.message);
+          Alert.alert(`${i18n.t('errorLogin')}`);
+          console.log('Error login >>>>>', `${i18n.t('errorLogin')}`);
+          setStatus(response.message);
+          setSuccess(response.success);
         }
-      } else {
-        console.log('Error login >>>>>', `${i18n.t('errorLogin')}`);
-        Alert.alert(`${i18n.t('errorLogin')}`);
+      } catch (error) {
+        // Xử lý lỗi tại đây (nếu cần)
+        Alert.alert('Tài khoản chưa tồn tại, vui lòng kiểm tra lại!');
       }
-    } catch (error) {
-      // Xử lý lỗi tại đây (nếu cần)
-      Alert.alert('Tài khoản chưa tồn tại, vui lòng kiểm tra lại!');
-    }
+      setIsLoading(false);
+    }, 1000); // 1-second delay
   };
 
   return (
@@ -106,6 +118,16 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
                 ]}>
                 {i18n.t('login')}
               </Text>
+              {isStatus && (
+                <Text
+                  style={[
+                    styles.fontSize14,
+                    styles.marginBottom15,
+                    isSuccess !== true ? styles.colorRed : styles.colorGreen,
+                  ]}>
+                  {isStatus}
+                </Text>
+              )}
             </View>
             <View style={styles.inputContainer}>
               <IconMateria
@@ -161,15 +183,28 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
             </View>
             <View style={styles.alignCenter}>
               <TouchableOpacity
-                onPress={handlePress}
+                activeOpacity={
+                  isCheckPasswordValid === 'true' && isValidEmail === 'true'
+                    ? 0.6
+                    : 1
+                }
+                onPress={
+                  isCheckPasswordValid === 'true' && isValidEmail === 'true'
+                    ? handlePress
+                    : undefined
+                }
                 style={
                   isCheckPasswordValid === 'true' && isValidEmail === 'true'
                     ? styles.buttonTmp
                     : styles.buttonFullDisable
                 }>
-                <Text style={[styles.buttonText, styles.fontBold600]}>
-                  {i18n.t('login')}
-                </Text>
+                {isLoading ? (
+                  <ActivityIndicator color="white" />
+                ) : (
+                  <Text style={[styles.buttonText, styles.fontBold600]}>
+                    {i18n.t('login')}
+                  </Text>
+                )}
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => navigation.navigate('forgotPassword')}

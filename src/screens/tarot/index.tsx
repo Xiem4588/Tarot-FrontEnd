@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
   ImageBackground,
   TouchableOpacity,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -14,9 +15,25 @@ import WrapBgBox from '../../conponents/wrapBgBox';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ScreenToday = ({navigation}: any) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isCategory, setCategory] = useState(String);
   const isAvatar = true;
   const handlePress = (value: string) => {
-    navigation.navigate('choose', {category: value});
+    if (value === 'all') {
+      setIsLoading(true); // Bắt đầu hiển thị trạng thái loading
+      setTimeout(async () => {
+        navigation.navigate('choose', {category: value});
+        setIsLoading(false);
+      }, 50); // delay
+    } else {
+      setCategory(value);
+      setIsLoading(true); // Bắt đầu hiển thị trạng thái loading
+      setTimeout(async () => {
+        navigation.navigate('choose', {category: value});
+        setCategory('');
+      }, 0); // delay
+      setIsLoading(false);
+    }
   };
   return (
     <WrapBgBox>
@@ -75,6 +92,7 @@ const ScreenToday = ({navigation}: any) => {
         <ScrollView>
           {DATA.map(item => (
             <TouchableOpacity
+              activeOpacity={1}
               key={item.id}
               onPress={() => handlePress(item.category)}>
               <View
@@ -84,11 +102,21 @@ const ScreenToday = ({navigation}: any) => {
                   styles.marginBottom15,
                 ]}>
                 <Text
-                  style={[styles.fontSize16, styles.flex1, styles.colorBlack]}>
+                  style={[
+                    styles.fontSize16,
+                    styles.flex1,
+                    item.category === isCategory
+                      ? styles.colorOrange
+                      : styles.colorBlack,
+                  ]}>
                   {item.ques}
                 </Text>
                 <Text style={[styles.marginLeft12, styles.width40]}>
-                  <IconMateria name="chevron-right" size={24} color={'#000'} />
+                  <IconMateria
+                    name="chevron-right"
+                    size={24}
+                    color={item.category === isCategory ? '#F78B73' : '#999'}
+                  />
                 </Text>
               </View>
             </TouchableOpacity>
@@ -100,6 +128,14 @@ const ScreenToday = ({navigation}: any) => {
         onPress={() => handlePress('all')}
         activeOpacity={1}
         style={[styles.btnTheme2]}>
+        {isLoading ? (
+          <>
+            <ActivityIndicator
+              color="white"
+              style={[styles.positionAbsoluteLoadingLeft]}
+            />
+          </>
+        ) : null}
         <Image source={icon.iconUniverse} style={styles.IconUniverse} />
         <Text style={[styles.fontSize14, styles.fontBold, styles.colorBlack]}>
           Thông điệp {'\n'} ngày hôm nay
