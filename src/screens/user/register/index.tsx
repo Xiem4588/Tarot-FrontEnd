@@ -86,8 +86,9 @@ const Register = ({handleInputUser}: RegisterProps) => {
 
   // submit
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setSuccess] = useState(Boolean);
-  const [isStatus, setStatus] = useState(String);
+  const [isSuccess, setSuccess] = useState(false);
+  const [isStatus, setStatus] = useState('');
+
   const handlePress = async () => {
     setIsLoading(true); // Bắt đầu hiển thị trạng thái loading
     setTimeout(async () => {
@@ -173,9 +174,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
                 <Text style={[styles.colorOrange, styles.marginTop5]}>
                   Email chưa đúng
                 </Text>
-              ) : (
-                ''
-              )}
+              ) : null}
             </View>
             <View style={styles.inputContainer}>
               <IconMateria

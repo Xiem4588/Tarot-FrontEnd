@@ -13,7 +13,7 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../../assets/styles';
 import {ShareAction} from '../../redux/actions';
 import {store} from '../../redux/store';
-import {apiCategory} from '../../api';
+import {apiRoutesMain} from '../../api';
 
 type detailProps = {
   navigation: any;
@@ -48,7 +48,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
     const fetchData = async () => {
       try {
         // call api all card
-        const res = await apiCategory('tarot');
+        const res = await apiRoutesMain('tarot');
         const lengthCard = res.data.length;
 
         if (lengthCard === 0) {

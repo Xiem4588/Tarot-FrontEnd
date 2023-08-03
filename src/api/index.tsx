@@ -8,8 +8,8 @@ const axiosClient = axios.create({
   headers: {'Content-Type': 'application/json'},
 });
 
-// ************ Get API apiCategory
-export const apiCategory = async (routes: string) => {
+// ************ Get API apiRoutesMain
+export const apiRoutesMain = async (routes: string) => {
   try {
     const url = `/${routes}`;
     const response = await axiosClient.get(url);
