@@ -15,6 +15,9 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ScreenToday = ({navigation}: any) => {
   const isAvatar = true;
+  const handlePress = (value: string) => {
+    navigation.navigate('choose', {category: value});
+  };
   return (
     <WrapBgBox>
       <View style={[styles.avatarProfile]}>
@@ -73,9 +76,7 @@ const ScreenToday = ({navigation}: any) => {
           {DATA.map(item => (
             <TouchableOpacity
               key={item.id}
-              onPress={() =>
-                navigation.navigate('choose', {category: item.category})
-              }>
+              onPress={() => handlePress(item.category)}>
               <View
                 style={[
                   styles.RowCenterBetween,
@@ -96,8 +97,9 @@ const ScreenToday = ({navigation}: any) => {
         </ScrollView>
       </View>
       <TouchableOpacity
-        style={[styles.btnTheme2]}
-        onPress={() => navigation.navigate('choose', {category: 'all'})}>
+        onPress={() => handlePress('all')}
+        activeOpacity={1}
+        style={[styles.btnTheme2]}>
         <Image source={icon.iconUniverse} style={styles.IconUniverse} />
         <Text style={[styles.fontSize14, styles.fontBold, styles.colorBlack]}>
           Thông điệp {'\n'} ngày hôm nay
