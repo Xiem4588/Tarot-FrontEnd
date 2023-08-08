@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   Text,
   TextInput,
@@ -26,13 +26,12 @@ interface RegisterProps {
 
 const Register = ({handleInputUser}: RegisterProps) => {
   // check input email
-  const [isID, setIdUser] = useState(String);
-  const [isTel, setTel] = useState(String);
+  // const [isTel, setTel] = useState(Number);
   const [isEmail, setEmail] = useState(String);
   const [isValidEmail, setIsValidEmail] = useState(String);
   const handleEmailChange = (text: string) => {
     setEmail(text);
-    setTel(text);
+    // setTel(text);
     const isValid = validator.validate(text);
     if (isValid) {
       setIsValidEmail('true');
@@ -54,11 +53,6 @@ const Register = ({handleInputUser}: RegisterProps) => {
     setisCheckPasswordValidValid(`${isPasswordValid}`);
   };
 
-  //
-  useEffect(() => {
-    setIdUser(String(Math.floor(Math.random() * 2000)));
-  }, []);
-
   // Select button
   const [isTypeUser, setTypeUser] = useState(String);
   const handleButtonPress = (buttonName: string) => {
@@ -67,15 +61,11 @@ const Register = ({handleInputUser}: RegisterProps) => {
 
   // RegisterAccount
   const RegisterAccount = async (
-    id: string,
-    tel: string,
     email: string,
     password: string,
     typeUser: string,
   ) => {
     const newUser = {
-      id,
-      tel,
       email,
       password,
       typeUser,
@@ -92,14 +82,12 @@ const Register = ({handleInputUser}: RegisterProps) => {
   const handlePress = async () => {
     setIsLoading(true); // Bắt đầu hiển thị trạng thái loading
     setTimeout(async () => {
-      if (!isID || !isTel || !isEmail || !isPassword || !isTypeUser) {
+      if (!isEmail || !isPassword || !isTypeUser) {
         console.log('>>>>>> Các trường là bắt buộc nhập!');
         setStatus('Các trường là bắt buộc nhập!');
       } else if (isValidEmail === 'true') {
         try {
           const response = await RegisterAccount(
-            isID,
-            isTel,
             isEmail,
             isPassword,
             isTypeUser,

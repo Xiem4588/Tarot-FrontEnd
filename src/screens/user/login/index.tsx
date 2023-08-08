@@ -53,14 +53,14 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
     setisCheckPasswordValidValid(`${isPasswordValid}`);
   };
 
-  // checkLogin
-  const checkLogin = async (email: string, password: string) => {
+  // checkInput
+  const checkInput = async (email: string, password: string) => {
     try {
       const newUser = {
         email,
         password,
       };
-      const response = await apiUser('login', newUser);
+      const response = await apiUser('login', newUser); // call api
       return response.data;
     } catch (error) {
       // Xử lý lỗi tại đây (nếu cần)
@@ -76,15 +76,16 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
     setIsLoading(true); // Bắt đầu hiển thị trạng thái loading
     setTimeout(async () => {
       try {
-        const response = await checkLogin(isEmail, isPassword);
+        const response = await checkInput(isEmail, isPassword);
         if (isValidEmail && isPasswordValid) {
           if (response.success) {
-            handleLogin(response.userID);
+            console.log('login 2 >>>>', response.user._id);
+            handleLogin(response.user._id);
           } else {
-            Alert.alert('Error login', response.message);
-            console.log('Error login >>>>>', response.message);
-            setStatus(response.message);
-            setSuccess(response.success);
+            Alert.alert('Error login', response.error);
+            console.log('Error login >>>>>', response.error);
+            setStatus(response.error);
+            setSuccess(response.error);
           }
         } else {
           Alert.alert(`${i18n.t('errorLogin')}`);
