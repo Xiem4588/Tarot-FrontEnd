@@ -26,9 +26,15 @@ export const apiUser = async (routes: string, data: object) => {
     const url = `/users/${routes}`;
     const response = await axiosClient.post(url, data);
     return response;
-  } catch (error) {
-    console.error('Lỗi khi tìm nạp thẻ: ', error);
-    throw error;
+  } catch (error: any) {
+    // Xử lý phản hồi từ máy chủ khi có lỗi
+    const {response} = error;
+    if (response) {
+      throw response; // Ném lại lỗi để xử lý bên ngoài (nếu cần)
+    } else {
+      console.error('Request failed:', error);
+      throw error; // Ném lại lỗi nếu không có phản hồi từ máy chủ
+    }
   }
 };
 

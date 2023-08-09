@@ -54,44 +54,49 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
   };
 
   // checkInput
-  const checkInput = async (email: string, password: string) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isStatus, setStatus] = useState(Boolean);
+  const [isNotify, setNotify] = useState(String);
+  interface userType {
+    email: string;
+    password: string;
+  }
+
+  const checkInput = async (dataUser: userType) => {
     try {
-      const newUser = {
-        email,
-        password,
-      };
-      const response = await apiUser('login', newUser); // call api
-      return response.data;
+      const res = await apiUser('login', dataUser); // Gọi hàm API để đăng nhập
+      return res; // Trả về dữ liệu phản hồi từ máy chủ
     } catch (error) {
-      // Xử lý lỗi tại đây (nếu cần)
-      throw error;
+      throw error; // Ném lại lỗi để xử lý bên ngoài (nếu cần)
     }
   };
 
-  // check all to submit
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setSuccess] = useState(Boolean);
-  const [isStatus, setStatus] = useState(String);
   const handlePress = async () => {
     setIsLoading(true); // Bắt đầu hiển thị trạng thái loading
+
     setTimeout(async () => {
       try {
-        const response = await checkInput(isEmail, isPassword);
+        const dataUser = {
+          email: isEmail,
+          password: isPassword,
+        };
+
+        // Reques api
+        const response = await checkInput(dataUser);
+        const data = response.data;
+
         if (isValidEmail && isPasswordValid) {
-          if (response.success) {
-            console.log('login 2 >>>>', response.user._id);
-            handleLogin(response.user._id);
+          if (data.status === true) {
+            Alert.alert(data.notify);
+            handleLogin(data.user._id);
           } else {
-            Alert.alert('Error login', response.error);
-            console.log('Error login >>>>>', response.error);
-            setStatus(response.error);
-            setSuccess(response.error);
+            Alert.alert(data.notify);
+            setStatus(data.status);
+            setNotify(data.notify);
           }
         } else {
           Alert.alert(`${i18n.t('errorLogin')}`);
-          console.log('Error login >>>>>', `${i18n.t('errorLogin')}`);
-          setStatus(response.message);
-          setSuccess(response.success);
+          setNotify(`${i18n.t('errorLogin')}`);
         }
       } catch (error) {
         // Xử lý lỗi tại đây (nếu cần)
@@ -119,14 +124,14 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
                 ]}>
                 {i18n.t('login')}
               </Text>
-              {isStatus && (
+              {isNotify && (
                 <Text
                   style={[
                     styles.fontSize14,
                     styles.marginBottom15,
-                    isSuccess !== true ? styles.colorRed : styles.colorGreen,
+                    isStatus !== true ? styles.colorRed : styles.colorGreen,
                   ]}>
-                  {isStatus}
+                  {isNotify}
                 </Text>
               )}
             </View>

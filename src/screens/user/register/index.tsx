@@ -49,7 +49,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
   };
   const handlePasswordChange = (text: string) => {
     setPassword(text);
-    setIsPasswordValid(text.length >= 8);
+    setIsPasswordValid(text.length >= 6);
     setisCheckPasswordValidValid(`${isPasswordValid}`);
   };
 
@@ -59,58 +59,57 @@ const Register = ({handleInputUser}: RegisterProps) => {
     setTypeUser(buttonName);
   };
 
-  // RegisterAccount
-  const RegisterAccount = async (
-    email: string,
-    password: string,
-    typeUser: string,
-  ) => {
-    const newUser = {
-      email,
-      password,
-      typeUser,
-    };
-    const response = await apiUser('register', newUser);
-    return response.data;
-  };
-
-  // submit
+  // Register new Account
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setSuccess] = useState(false);
-  const [isStatus, setStatus] = useState('');
+  const [isStatus, setStatus] = useState(false);
+  const [isNotify, setNotify] = useState('');
+  interface userType {
+    email: string;
+    password: string;
+    typeUser: string;
+  }
+
+  const RegisterAccount = async (dataUser: userType) => {
+    const response = await apiUser('register', dataUser);
+    return response;
+  };
 
   const handlePress = async () => {
     setIsLoading(true); // Bắt đầu hiển thị trạng thái loading
     setTimeout(async () => {
       if (!isEmail || !isPassword || !isTypeUser) {
-        console.log('>>>>>> Các trường là bắt buộc nhập!');
-        setStatus('Các trường là bắt buộc nhập!');
+        setNotify('Các trường là bắt buộc nhập!');
       } else if (isValidEmail === 'true') {
         try {
-          const response = await RegisterAccount(
-            isEmail,
-            isPassword,
-            isTypeUser,
-          );
-          if (response.success) {
-            setStatus(response.message);
-            setSuccess(response.success);
-            console.log('1 Trạng thái đăng ký >>> ', response.message);
+          const newUser = {
+            email: isEmail,
+            password: isPassword,
+            typeUser: isTypeUser,
+          };
+
+          // Reques api
+          const response = await RegisterAccount(newUser);
+          const data = response.data;
+
+          if (data.status === true) {
+            Alert.alert(data.notify);
+            setNotify(data.notify);
+            setStatus(data.status);
+            handleInputUser;
           } else {
-            Alert.alert(response.error);
-            setStatus(response.error);
-            setSuccess(response.success);
-            console.log('2 Trạng thái đăng ký >>>', response.error);
+            Alert.alert(data.notify);
+            setNotify(data.notify);
+            setStatus(data.status);
           }
-        } catch (error) {
-          Alert.alert('error');
-          setStatus('Loi khi dang ky');
-          console.log('3 Loi khi dang ky: >>>>', error);
+        } catch (error: any) {
+          Alert.alert(error.data.notify);
+          setNotify(error.data.notify);
+          console.log('3 >>>>', error.data.notify);
         }
       } else {
         Alert.alert('error');
-        setStatus('Thông tin đăng ký không hợp lệ!');
-        console.log('4 >>> Thông tin đăng ký không hợp lệ!');
+        setNotify('Thông tin đăng ký không hợp lệ!');
+        console.log('4 >>>> Error!');
       }
       setIsLoading(false);
     }, 1000); // 1-second delay
@@ -134,16 +133,6 @@ const Register = ({handleInputUser}: RegisterProps) => {
                 ]}>
                 {i18n.t('register')}
               </Text>
-              {isStatus && (
-                <Text
-                  style={[
-                    styles.fontSize14,
-                    styles.marginBottom15,
-                    isSuccess !== true ? styles.colorRed : styles.colorGreen,
-                  ]}>
-                  {isStatus}
-                </Text>
-              )}
             </View>
             <View style={styles.inputContainer}>
               <IconMateria
@@ -273,6 +262,16 @@ const Register = ({handleInputUser}: RegisterProps) => {
                   <Text style={styles.buttonText}>{i18n.t('register')}</Text>
                 )}
               </TouchableOpacity>
+              {isNotify && (
+                <Text
+                  style={[
+                    styles.fontSize14,
+                    styles.marginVertical18,
+                    isStatus !== true ? styles.colorRed : styles.colorGreen,
+                  ]}>
+                  {isNotify}
+                </Text>
+              )}
             </View>
             <View style={[styles.alignCenter, styles.marginVertical34]}>
               <View style={stylesScreen.borderBottom} />
