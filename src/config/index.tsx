@@ -1,8 +1,12 @@
 // config file common Api
-
 import axios from 'axios';
-const apiUrlMainnet = 'http://localhost:3002';
+// config .env nhung chua dc
+// import Config from 'react-native-config';
+// const BASE_URL = Config.BASE_URL;
+// console.log('BASE_URL', BASE_URL);
 
+// tam dung url
+const apiUrlMainnet = 'http://localhost:3002';
 const axiosClient = axios.create({
   baseURL: apiUrlMainnet,
   headers: {'Content-Type': 'application/json'},
@@ -32,7 +36,7 @@ export const apiUser = async (routes: string, data: object) => {
     if (response) {
       throw response; // Ném lại lỗi để xử lý bên ngoài (nếu cần)
     } else {
-      console.error('Request failed:', error);
+      console.error('Lỗi API không tồn tại', error);
       throw error; // Ném lại lỗi nếu không có phản hồi từ máy chủ
     }
   }
