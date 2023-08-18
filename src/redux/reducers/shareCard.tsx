@@ -1,14 +1,14 @@
 // src/redux/reducers/shareCard.ts
 
-import {ShareAction} from '../actions';
-import {ShareCard} from '../state';
+import {shareAction} from '../actions';
+import {shareType} from '../typesState';
 
-const setState: ShareCard = {
+const setState: shareType = {
   shareCards: [],
 };
 
-const shareCardReducer = (state = setState, action: ShareAction): ShareCard => {
-  console.log('action SHARE >>>>>>>', action);
+const SHARE_CARD = (state = setState, action: shareAction): shareType => {
+  // console.log('action SHARE >>>>>>>', action);
   switch (action.type) {
     case 'SHARE':
       const cardIdExistsInShare = state.shareCards.includes(
@@ -32,4 +32,4 @@ const shareCardReducer = (state = setState, action: ShareAction): ShareCard => {
   }
 };
 
-export default shareCardReducer;
+export default SHARE_CARD;

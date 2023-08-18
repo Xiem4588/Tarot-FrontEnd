@@ -1,13 +1,13 @@
 // src/redux/reducers/likeCard.ts
 
-import {LikeAction} from '../actions';
-import {LikeCard} from '../state';
+import {likeAction} from '../actions';
+import {likeType} from '../typesState';
 
-const setState: LikeCard = {
+const setState: likeType = {
   likedCards: [],
 };
 
-const likeCardReducer = (state = setState, action: LikeAction): LikeCard => {
+const LIKE_CARD = (state = setState, action: likeAction): likeType => {
   // console.log('action LIKE >>>>>>>', action);
   switch (action.type) {
     case 'LIKE':
@@ -31,4 +31,4 @@ const likeCardReducer = (state = setState, action: LikeAction): LikeCard => {
   }
 };
 
-export default likeCardReducer;
+export default LIKE_CARD;
