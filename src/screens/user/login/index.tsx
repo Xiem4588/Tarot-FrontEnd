@@ -112,7 +112,7 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
         }
       } catch (error) {
         // Xử lý lỗi tại đây (nếu cần)
-        Alert.alert('Network Error');
+        Alert.alert('Network Error 1');
       }
       setIsLoading(false);
     }, 1000); // 1-second delay

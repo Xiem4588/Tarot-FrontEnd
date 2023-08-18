@@ -14,6 +14,7 @@ import {styles} from '../../assets/styles';
 import {shareAction} from '../../redux/actions';
 import {store} from '../../redux/store';
 import {apiRoutesMain} from '../../config';
+import {uri} from '../../config/env';
 
 type detailProps = {
   navigation: any;
@@ -125,7 +126,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
   return (
     <>
       <ImageBackground
-        source={{uri: `http://localhost:3002/cards/${isDetail?.cardImage}`}}
+        source={{uri: `${uri}/cards/${isDetail?.cardImage}`}}
         resizeMode="cover"
         style={styles.ImageBackgroundCommunity}
       />
@@ -152,7 +153,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
               <View style={[styles.paddingVertical30]}>
                 <Avatar
                   source={{
-                    uri: `http://localhost:3002/cards/${isDetail?.cardImage}`,
+                    uri: `${uri}/cards/${isDetail?.cardImage}`,
                   }}
                   containerStyle={[
                     styles.ImgPostCommunity,

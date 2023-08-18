@@ -1,12 +1,7 @@
 // config file common Api
 import axios from 'axios';
-// config .env nhung chua dc
-// import Config from 'react-native-config';
-// const BASE_URL = Config.BASE_URL;
-// console.log('BASE_URL', BASE_URL);
-
-// tam dung url
-const apiUrlMainnet = 'http://localhost:3002';
+import {uri} from './env';
+const apiUrlMainnet = uri;
 const axiosClient = axios.create({
   baseURL: apiUrlMainnet,
   headers: {'Content-Type': 'application/json'},
