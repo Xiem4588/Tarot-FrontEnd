@@ -1,19 +1,35 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react'; // Import useEffect
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../redux/typesState';
+
 import MyProfileUser from './user';
 import MyProfileExpert from './expert';
 
-interface isState {
+interface Props {
   navigation: any;
-  loginUser: string;
 }
 
-const MyProfile = ({navigation, loginUser}: isState) => {
-  console.log('truy cap voi userID la: >>>>>', loginUser);
+const UserProfile = ({navigation}: Props) => {
   const [isCheckUser, setCheckUser] = useState(false);
-  if (loginUser === 'expert') {
-    setCheckUser(true);
-    console.log('typeUser >>>>>', loginUser);
-  }
+  const getStore = useSelector((state: RootState) => state.userData); // Lấy dữ liệu trực tiếp từ store
+  useEffect(() => {
+    if (getStore) {
+      if (getStore.data.typeUser === 'Guest') {
+        setCheckUser(true);
+        console.log(
+          '------- 1 data typeUser --------->',
+          getStore.data.typeUser,
+        );
+      } else {
+        setCheckUser(false);
+        console.log(
+          '------- 2 data typeUser --------->',
+          getStore.data.typeUser,
+        );
+      }
+    }
+  }, [getStore]);
+
   return (
     <>
       {isCheckUser ? (
@@ -25,4 +41,4 @@ const MyProfile = ({navigation, loginUser}: isState) => {
   );
 };
 
-export default MyProfile;
+export default UserProfile;

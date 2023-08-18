@@ -18,12 +18,13 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
 import i18n from '../../../languages/i18n';
 import LoginSocial from '../social';
-import {apiUser} from '../../../api';
-
+import {tokenUser} from '../../../redux/actions';
+import {store} from '../../../redux/store';
+import {apiUser} from '../../../config';
 interface LoginProps {
   handleInputUser: () => void;
   handleLogin: (id: string) => void;
-  navigation?: any;
+  navigation: any;
 }
 
 const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
@@ -76,19 +77,30 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
 
     setTimeout(async () => {
       try {
+        // Reques api
         const dataUser = {
           email: isEmail,
           password: isPassword,
         };
-
-        // Reques api
         const response = await checkInput(dataUser);
         const data = response.data;
 
         if (isValidEmail && isPasswordValid) {
           if (data.status === true) {
             Alert.alert(data.notify);
-            handleLogin(data.user._id);
+            handleLogin(data.token);
+            const userData = {
+              email: data.user.email,
+              typeUser: data.user.typeUser,
+              token: data.token,
+              // ... other fields
+            };
+            // add to store
+            const userLogin: tokenUser = {
+              type: 'LOGIN_SUCCESS',
+              payload: userData,
+            };
+            store.dispatch(userLogin);
           } else {
             Alert.alert(data.notify);
             setStatus(data.status);
@@ -100,7 +112,7 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
         }
       } catch (error) {
         // Xử lý lỗi tại đây (nếu cần)
-        Alert.alert('Tài khoản chưa tồn tại, vui lòng kiểm tra lại!');
+        Alert.alert('Network Error');
       }
       setIsLoading(false);
     }, 1000); // 1-second delay

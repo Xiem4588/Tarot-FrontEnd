@@ -18,7 +18,7 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
 import i18n from '../../../languages/i18n';
 import LoginSocial from '../social';
-import {apiUser} from '../../../api';
+import {apiUser} from '../../../config';
 interface RegisterProps {
   navigation?: any;
   handleInputUser?: () => void;
@@ -92,10 +92,16 @@ const Register = ({handleInputUser}: RegisterProps) => {
           const data = response.data;
 
           if (data.status === true) {
-            Alert.alert(data.notify);
             setNotify(data.notify);
             setStatus(data.status);
-            handleInputUser;
+            Alert.alert(data.notify, '', [
+              {
+                text: 'OK',
+                onPress: () => {
+                  handleInputUser?.();
+                },
+              },
+            ]);
           } else {
             Alert.alert(data.notify);
             setNotify(data.notify);

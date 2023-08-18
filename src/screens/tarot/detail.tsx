@@ -11,9 +11,9 @@ import {ScrollView} from 'react-native-gesture-handler';
 import Header from '../../conponents/header';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../../assets/styles';
-import {ShareAction} from '../../redux/actions';
+import {shareAction} from '../../redux/actions';
 import {store} from '../../redux/store';
-import {apiRoutesMain} from '../../api';
+import {apiRoutesMain} from '../../config';
 
 type detailProps = {
   navigation: any;
@@ -107,7 +107,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
   const handleShare = () => {
     // Dispatch the action after fetching data successfully
     if (isDetail) {
-      const share: ShareAction = {
+      const share: shareAction = {
         type: 'SHARE',
         payload: {
           userID: 'tao la 1',

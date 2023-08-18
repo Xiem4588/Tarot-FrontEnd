@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Login from './login';
 import Register from './register';
-import MyProfile from './profile';
+import UserProfile from './profile';
 import WrapBgBox from '../../conponents/wrapBgBox';
 
 const AccountScreen = ({navigation}: any) => {
@@ -9,21 +9,21 @@ const AccountScreen = ({navigation}: any) => {
   const [isInputUser, setInputUser] = useState(true);
   const handleInputUser = () => {
     setInputUser(!isInputUser);
+    console.log('isInputUser: ', isInputUser);
   };
   //
-  const [isUserId, setUserId] = useState(String);
+  const [isTokenUser, setTokenUser] = useState(String);
   const [isLogin, setLogin] = useState(true);
-  const handleLogin = (id: string) => {
-    if (id) {
-      setUserId(id);
+  const handleLogin = (token: string) => {
+    if (token) {
+      setTokenUser(token);
     }
   };
   useEffect(() => {
-    if (isUserId) {
-      console.log('login với isUserId là: ', isUserId);
+    if (isTokenUser) {
       setLogin(false);
     }
-  }, [isUserId]);
+  }, [isTokenUser]);
 
   return (
     <WrapBgBox>
@@ -32,10 +32,10 @@ const AccountScreen = ({navigation}: any) => {
           <Login
             navigation={navigation}
             handleInputUser={handleInputUser}
-            handleLogin={(id: string) => handleLogin(id)}
+            handleLogin={(token: string) => handleLogin(token)}
           />
         ) : (
-          <MyProfile navigation={navigation} loginUser={isUserId} />
+          <UserProfile navigation={navigation} />
         )
       ) : (
         <Register handleInputUser={handleInputUser} />
