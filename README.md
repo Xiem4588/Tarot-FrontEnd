@@ -61,6 +61,9 @@ Map project
 * IOS run install Pod:
       - cd to ... /ios -> pod install
 //
+* Android run-android:
+      - Trước hết, hãy thử xóa thư mục build trong thư mục gốc của dự án và cả trong android/app. Sau đó, thử chạy lại ứng dụng bằng lệnh npx react-native run-android.
+//
 * Node js default:
       - nvm alias default <version>
 //
