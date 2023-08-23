@@ -25,6 +25,8 @@ Map project
       - or -
       • Open GameTarot/ios/GameTarot.xcworkspace in Xcode or run "xed -b ios"
       • Hit the Run button
+      - or -
+      npm start -- --reset-cache
 
 *  Run instructions for macOS:
       • See https://aka.ms/ReactNativeGuideMacOS for the latest up-to-date instructions.
