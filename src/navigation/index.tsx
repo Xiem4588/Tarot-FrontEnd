@@ -22,7 +22,11 @@ import {
 
 import {styles} from '../assets/styles';
 import {Text} from 'react-native-elements';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {
+  TouchableOpacity,
+  GestureHandlerRootView,
+  NativeViewGestureHandler,
+} from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -99,17 +103,21 @@ const StackScreenOptionsHeaderTransparent = ({navigation}: any) => ({
   headerStyle: {backgroundColor: colors.transparent},
   cardStyle: {backgroundColor: '#000'},
   headerLeft: () => (
-    <TouchableOpacity
-      style={[styles.buttonEllipseSm, styles.marginLeft12]}
-      onPress={() => navigation.goBack()}>
-      <View style={styles.RowCenterBetween}>
-        <Avatar
-          source={icon.iconBackWhite}
-          containerStyle={[styles.iconSize24, styles.marginRight5]}
-        />
-        <Text style={[styles.textWhite, styles.fontSize18]}>Cài đặt</Text>
-      </View>
-    </TouchableOpacity>
+    <GestureHandlerRootView style={[styles.flexBox]}>
+      <NativeViewGestureHandler>
+        <TouchableOpacity
+          style={[styles.buttonEllipseSm, styles.marginLeft12]}
+          onPress={() => navigation.goBack()}>
+          <View style={styles.RowCenterBetween}>
+            <Avatar
+              source={icon.iconBackWhite}
+              containerStyle={[styles.iconSize24, styles.marginRight5]}
+            />
+            <Text style={[styles.textWhite, styles.fontSize18]}>Cài đặt</Text>
+          </View>
+        </TouchableOpacity>
+      </NativeViewGestureHandler>
+    </GestureHandlerRootView>
   ),
   headerRight: () => (
     <Button

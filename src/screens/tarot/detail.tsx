@@ -7,7 +7,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import {
+  ScrollView,
+  GestureHandlerRootView,
+  NativeViewGestureHandler,
+} from 'react-native-gesture-handler';
 import Header from '../../conponents/header';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../../assets/styles';
@@ -124,134 +128,136 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
   isUserLogin;
 
   return (
-    <>
+    <GestureHandlerRootView style={[styles.flexBox]}>
       <ImageBackground
         source={{uri: `${uri}/cards/${isDetail?.cardImage}`}}
         resizeMode="cover"
         style={styles.ImageBackgroundCommunity}
       />
       <View style={styles.positionAbsoluteTop}>
-        <Header navigation={navigation} />
+        <Header navigation={navigation} title={''} />
       </View>
       <View style={styles.backgBlackOpacity08}>
-        <ScrollView>
-          <View style={[{minHeight: height, minWidth: width}]}>
-            <View
-              style={[
-                styles.alignCenter,
-                styles.paddingHorizontal18,
-                styles.paddingTop50,
-              ]}>
-              <View style={[styles.alignCenter, styles.paddingVertical10]}>
-                <Text style={[styles.fonsize32White, styles.fontAbhayaLibre]}>
-                  {isDetail?.cardName}
-                </Text>
-                {/* <Text style={styles.textOrange}>
-                  {isTypeCard === 'xuoi' ? '(Lá bài Xuôi)' : '(Lá bài Ngược)'}
-                </Text> */}
-              </View>
-              <View style={[styles.paddingVertical30]}>
-                <Avatar
-                  source={{
-                    uri: `${uri}/cards/${isDetail?.cardImage}`,
-                  }}
-                  containerStyle={[
-                    styles.ImgPostCommunity,
-                    {
-                      transform: [
-                        {
-                          rotate: `${
-                            isTypeCard === 'xuoi' ? '0deg' : '180deg'
-                          }`,
-                        },
-                      ],
-                    },
-                  ]}
-                />
-              </View>
-            </View>
-            <View style={[styles.flexBox, styles.paddingHorizontal9]}>
-              <View style={[styles.RowCenterBetween, styles.zindexRelative9]}>
-                <View>
-                  <Text style={[styles.fontSize18, styles.textOrange]}>
-                    Ý nghĩa lá bài
+        <NativeViewGestureHandler>
+          <ScrollView>
+            <View style={[{minHeight: height, minWidth: width}]}>
+              <View
+                style={[
+                  styles.alignCenter,
+                  styles.paddingHorizontal18,
+                  styles.paddingTop50,
+                ]}>
+                <View style={[styles.alignCenter, styles.paddingVertical10]}>
+                  <Text style={[styles.fonsize32White, styles.fontAbhayaLibre]}>
+                    {isDetail?.cardName}
                   </Text>
+                  {/* <Text style={styles.textOrange}>
+                    {isTypeCard === 'xuoi' ? '(Lá bài Xuôi)' : '(Lá bài Ngược)'}
+                  </Text> */}
                 </View>
-                <View>
-                  <TouchableOpacity onPress={() => handleShare()}>
-                    <View style={[styles.alignCenter]}>
-                      <IconMateria
-                        name={'share-variant-outline'}
-                        size={32}
-                        color={'white'}
-                      />
-                    </View>
-                  </TouchableOpacity>
+                <View style={[styles.paddingVertical30]}>
+                  <Avatar
+                    source={{
+                      uri: `${uri}/cards/${isDetail?.cardImage}`,
+                    }}
+                    containerStyle={[
+                      styles.ImgPostCommunity,
+                      {
+                        transform: [
+                          {
+                            rotate: `${
+                              isTypeCard === 'xuoi' ? '0deg' : '180deg'
+                            }`,
+                          },
+                        ],
+                      },
+                    ]}
+                  />
                 </View>
               </View>
-              {isCategory === 'all' ? (
-                <View style={[styles.paddingBottom30, styles.marginTopA20]}>
-                  {isCardType ? (
-                    Object.entries(isCardType).map(([key, value]) => (
-                      <Text
-                        style={[
-                          styles.textWhite,
-                          styles.lineHeight22,
-                          styles.marginBottom15,
-                        ]}
-                        key={key}>
+              <View style={[styles.flexBox, styles.paddingHorizontal9]}>
+                <View style={[styles.RowCenterBetween, styles.zindexRelative9]}>
+                  <View>
+                    <Text style={[styles.fontSize18, styles.textOrange]}>
+                      Ý nghĩa lá bài
+                    </Text>
+                  </View>
+                  <View>
+                    <TouchableOpacity onPress={() => handleShare()}>
+                      <View style={[styles.alignCenter]}>
+                        <IconMateria
+                          name={'share-variant-outline'}
+                          size={32}
+                          color={'white'}
+                        />
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                {isCategory === 'all' ? (
+                  <View style={[styles.paddingBottom30, styles.marginTopA20]}>
+                    {isCardType ? (
+                      Object.entries(isCardType).map(([key, value]) => (
                         <Text
                           style={[
-                            styles.fontBold600,
-                            styles.colorWhite,
-                            styles.textAlign,
-                          ]}>
-                          {value.title}
-                        </Text>{' '}
-                        {value.content}
+                            styles.textWhite,
+                            styles.lineHeight22,
+                            styles.marginBottom15,
+                          ]}
+                          key={key}>
+                          <Text
+                            style={[
+                              styles.fontBold600,
+                              styles.colorWhite,
+                              styles.textAlign,
+                            ]}>
+                            {value.title}
+                          </Text>{' '}
+                          {value.content}
+                        </Text>
+                      ))
+                    ) : (
+                      <Text style={styles.textWhite}>
+                        No card types available
                       </Text>
-                    ))
-                  ) : (
-                    <Text style={styles.textWhite}>
-                      No card types available
-                    </Text>
-                  )}
-                </View>
-              ) : (
-                <View style={[styles.paddingBottom30, styles.marginTop20]}>
-                  {isCardType
-                    ? Object.entries(isCardType).map(([key, value]) => (
-                        <View key={key}>
-                          {value.title === isCategory ? (
-                            <Text
-                              style={[
-                                styles.textWhite,
-                                styles.lineHeight22,
-                                styles.marginBottom15,
-                              ]}>
+                    )}
+                  </View>
+                ) : (
+                  <View style={[styles.paddingBottom30, styles.marginTop20]}>
+                    {isCardType
+                      ? Object.entries(isCardType).map(([key, value]) => (
+                          <View key={key}>
+                            {value.title === isCategory ? (
                               <Text
                                 style={[
-                                  styles.fontBold600,
-                                  styles.colorWhite,
-                                  styles.textAlign,
+                                  styles.textWhite,
+                                  styles.lineHeight22,
+                                  styles.marginBottom15,
                                 ]}>
-                                {value.title}
-                              </Text>{' '}
-                              {value.content}
-                            </Text>
-                          ) : (
-                            ''
-                          )}
-                        </View>
-                      ))
-                    : null}
-                </View>
-              )}
+                                <Text
+                                  style={[
+                                    styles.fontBold600,
+                                    styles.colorWhite,
+                                    styles.textAlign,
+                                  ]}>
+                                  {value.title}
+                                </Text>{' '}
+                                {value.content}
+                              </Text>
+                            ) : (
+                              ''
+                            )}
+                          </View>
+                        ))
+                      : null}
+                  </View>
+                )}
+              </View>
             </View>
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </NativeViewGestureHandler>
       </View>
-    </>
+    </GestureHandlerRootView>
   );
 };
 

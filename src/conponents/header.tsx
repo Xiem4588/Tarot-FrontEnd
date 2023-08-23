@@ -6,7 +6,7 @@ import {useTranslation} from 'react-i18next';
 import i18n from '../languages/i18n';
 interface HeaderProps {
   navigation?: any;
-  title?: string | undefined;
+  title: string;
   name?: string;
 }
 const Header = ({navigation, title, name}: HeaderProps) => {

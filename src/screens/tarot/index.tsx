@@ -8,7 +8,11 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {Avatar} from 'react-native-elements';
-import {ScrollView} from 'react-native-gesture-handler';
+import {
+  ScrollView,
+  GestureHandlerRootView,
+  NativeViewGestureHandler,
+} from 'react-native-gesture-handler';
 import {images, icon} from '../../assets/constants';
 import {styles} from '../../assets/styles';
 import WrapBgBox from '../../conponents/wrapBgBox';
@@ -36,112 +40,118 @@ const ScreenToday = ({navigation}: any) => {
     }
   };
   return (
-    <WrapBgBox>
-      <View style={[styles.avatarProfile]}>
-        <ImageBackground
-          source={images.bgHeaderLogin}
-          resizeMode="contain"
-          style={[styles.ImgBgBottom]}
-        />
-        <Image source={icon.iconStar} style={styles.IconStarBg} />
-        <View style={[styles.paddingBox]}>
-          <View style={styles.RowAlignItems}>
-            <Avatar
-              size={48}
-              rounded
-              source={isAvatar ? images.AvatarDemo2 : images.avataDefault}
-            />
-            <Text
-              style={[
-                styles.marginLeft10,
-                styles.fontBold700,
-                styles.colorBlack,
-              ]}>
-              Hi, Mogwrr Ohnf!
-            </Text>
-          </View>
-          <View style={styles.RowBetween}>
-            <View style={[styles.marginTop20, styles.flex1]}>
+    <GestureHandlerRootView style={[styles.flexBox]}>
+      <WrapBgBox>
+        <View style={[styles.avatarProfile]}>
+          <ImageBackground
+            source={images.bgHeaderLogin}
+            resizeMode="contain"
+            style={[styles.ImgBgBottom]}
+          />
+          <Image source={icon.iconStar} style={styles.IconStarBg} />
+          <View style={[styles.paddingBox]}>
+            <View style={styles.RowAlignItems}>
+              <Avatar
+                size={48}
+                rounded
+                source={isAvatar ? images.AvatarDemo2 : images.avataDefault}
+              />
               <Text
                 style={[
-                  styles.fontSize18,
+                  styles.marginLeft10,
                   styles.fontBold700,
                   styles.colorBlack,
                 ]}>
-                Điều gì sắp tới sẽ đến với bạn?
-              </Text>
-              <Text
-                style={[
-                  styles.fontSize14,
-                  styles.marginTop5,
-                  styles.colorBlack,
-                ]}>
-                Hãy đón nhận những thông điệp theo một cách tích cực.
+                Hi, Mogwrr Ohnf!
               </Text>
             </View>
-            <View style={[styles.width120, styles.alignCenter]}>
-              <Image source={images.hand} style={styles.IconHand} />
+            <View style={styles.RowBetween}>
+              <View style={[styles.marginTop20, styles.flex1]}>
+                <Text
+                  style={[
+                    styles.fontSize18,
+                    styles.fontBold700,
+                    styles.colorBlack,
+                  ]}>
+                  Điều gì sắp tới sẽ đến với bạn?
+                </Text>
+                <Text
+                  style={[
+                    styles.fontSize14,
+                    styles.marginTop5,
+                    styles.colorBlack,
+                  ]}>
+                  Hãy đón nhận những thông điệp theo một cách tích cực.
+                </Text>
+              </View>
+              <View style={[styles.width120, styles.alignCenter]}>
+                <Image source={images.hand} style={styles.IconHand} />
+              </View>
             </View>
           </View>
         </View>
-      </View>
-      <View style={[styles.itemContainer, styles.paddingBox]}>
-        <Text style={[styles.titleBox, styles.marginTop15]}>
-          Phương hướng dành cho bạn
-        </Text>
-        <ScrollView>
-          {DATA.map(item => (
-            <TouchableOpacity
-              activeOpacity={1}
-              key={item.id}
-              onPress={() => handlePress(item.category)}>
-              <View
-                style={[
-                  styles.RowCenterBetween,
-                  styles.boxWhiteRadius,
-                  styles.marginBottom15,
-                ]}>
-                <Text
-                  style={[
-                    styles.fontSize16,
-                    styles.flex1,
-                    item.category === isCategory
-                      ? styles.colorOrange
-                      : styles.colorBlack,
-                  ]}>
-                  {item.ques}
-                </Text>
-                <Text style={[styles.marginLeft12, styles.width40]}>
-                  <IconMateria
-                    name="chevron-right"
-                    size={24}
-                    color={item.category === isCategory ? '#F78B73' : '#999'}
-                  />
-                </Text>
-              </View>
-            </TouchableOpacity>
-          ))}
-          <View style={styles.marginBottom80} />
-        </ScrollView>
-      </View>
-      <TouchableOpacity
-        onPress={() => handlePress('all')}
-        activeOpacity={1}
-        style={[styles.btnTheme2]}>
-        {isLoading ? (
-          <>
-            <ActivityIndicator
-              color="white"
-              style={[styles.positionAbsoluteLoadingLeft]}
-            />
-          </>
-        ) : null}
-        <Image source={icon.iconUniverse} style={styles.IconUniverse} />
-        <Text style={[styles.fontSize14, styles.fontBold, styles.colorBlack]}>
-          Thông điệp {'\n'} ngày hôm nay
-        </Text>
-      </TouchableOpacity>
-    </WrapBgBox>
+        <View style={[styles.itemContainer, styles.paddingBox]}>
+          <Text style={[styles.titleBox, styles.marginTop15]}>
+            Phương hướng dành cho bạn
+          </Text>
+          <NativeViewGestureHandler>
+            <ScrollView>
+              {DATA.map(item => (
+                <TouchableOpacity
+                  activeOpacity={1}
+                  key={item.id}
+                  onPress={() => handlePress(item.category)}>
+                  <View
+                    style={[
+                      styles.RowCenterBetween,
+                      styles.boxWhiteRadius,
+                      styles.marginBottom15,
+                    ]}>
+                    <Text
+                      style={[
+                        styles.fontSize16,
+                        styles.flex1,
+                        item.category === isCategory
+                          ? styles.colorOrange
+                          : styles.colorBlack,
+                      ]}>
+                      {item.ques}
+                    </Text>
+                    <Text style={[styles.marginLeft12, styles.width40]}>
+                      <IconMateria
+                        name="chevron-right"
+                        size={24}
+                        color={
+                          item.category === isCategory ? '#F78B73' : '#999'
+                        }
+                      />
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+              <View style={styles.marginBottom80} />
+            </ScrollView>
+          </NativeViewGestureHandler>
+        </View>
+        <TouchableOpacity
+          onPress={() => handlePress('all')}
+          activeOpacity={1}
+          style={[styles.btnTheme2]}>
+          {isLoading ? (
+            <>
+              <ActivityIndicator
+                color="white"
+                style={[styles.positionAbsoluteLoadingLeft]}
+              />
+            </>
+          ) : null}
+          <Image source={icon.iconUniverse} style={styles.IconUniverse} />
+          <Text style={[styles.fontSize14, styles.fontBold, styles.colorBlack]}>
+            Thông điệp {'\n'} ngày hôm nay
+          </Text>
+        </TouchableOpacity>
+      </WrapBgBox>
+    </GestureHandlerRootView>
   );
 };
 

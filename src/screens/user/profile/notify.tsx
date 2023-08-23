@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import {
+  ScrollView,
+  GestureHandlerRootView,
+  NativeViewGestureHandler,
+} from 'react-native-gesture-handler';
 import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
 import Header from '../../../conponents/header';
@@ -8,40 +12,44 @@ import Header from '../../../conponents/header';
 const NotifyScreen = ({navigation}: any) => {
   const [isReadNotify, setIsReadNotify] = useState(DATA.map(() => true));
   return (
-    <WrapBgBox>
-      <Header navigation={navigation} title="Thông báo" name="notify" />
-      <View style={[styles.itemContainer, styles.paddingBox]}>
-        <ScrollView>
-          {DATA.map((item, index) => (
-            <TouchableOpacity
-              key={item.id}
-              onPress={() => {
-                const updatedIsReadNotify = [...isReadNotify];
-                updatedIsReadNotify[index] = false;
-                setIsReadNotify(updatedIsReadNotify);
-                // storeData(updatedIsReadNotify);
-              }}>
-              <View style={styles.itemNotify}>
-                {isReadNotify[index] ? (
-                  <View style={styles.checkNotifyNew} />
-                ) : (
-                  ''
-                )}
-                <View style={styles.boxInfo}>
-                  <Text style={styles.nameItem}>{item.title}</Text>
-                  <Text style={[styles.fonsize12White, styles.paddingTop5]}>
-                    {item.content}
-                  </Text>
-                </View>
-                <Text style={[styles.fontSize14Grray, styles.marginLeft12]}>
-                  {item.date}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
-    </WrapBgBox>
+    <GestureHandlerRootView style={[styles.flexBox]}>
+      <WrapBgBox>
+        <Header navigation={navigation} title="Thông báo" name="notify" />
+        <View style={[styles.itemContainer, styles.paddingBox]}>
+          <NativeViewGestureHandler>
+            <ScrollView>
+              {DATA.map((item, index) => (
+                <TouchableOpacity
+                  key={item.id}
+                  onPress={() => {
+                    const updatedIsReadNotify = [...isReadNotify];
+                    updatedIsReadNotify[index] = false;
+                    setIsReadNotify(updatedIsReadNotify);
+                    // storeData(updatedIsReadNotify);
+                  }}>
+                  <View style={styles.itemNotify}>
+                    {isReadNotify[index] ? (
+                      <View style={styles.checkNotifyNew} />
+                    ) : (
+                      ''
+                    )}
+                    <View style={styles.boxInfo}>
+                      <Text style={styles.nameItem}>{item.title}</Text>
+                      <Text style={[styles.fonsize12White, styles.paddingTop5]}>
+                        {item.content}
+                      </Text>
+                    </View>
+                    <Text style={[styles.fontSize14Grray, styles.marginLeft12]}>
+                      {item.date}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </NativeViewGestureHandler>
+        </View>
+      </WrapBgBox>
+    </GestureHandlerRootView>
   );
 };
 

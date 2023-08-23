@@ -13,7 +13,11 @@ import {
 import {styles} from '../../../assets/styles';
 import {stylesScreen} from '../styles';
 import {images, icon} from '../../../assets/constants';
-import {ScrollView} from 'react-native-gesture-handler';
+import {
+  ScrollView,
+  GestureHandlerRootView,
+  NativeViewGestureHandler,
+} from 'react-native-gesture-handler';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
 import i18n from '../../../languages/i18n';
@@ -122,189 +126,193 @@ const Register = ({handleInputUser}: RegisterProps) => {
   };
 
   return (
-    <>
+    <GestureHandlerRootView style={[styles.flexBox]}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={[styles.flexBox]}>
-        <ScrollView style={styles.scrollView}>
-          <View style={[styles.paddingHorizontal24]}>
-            <Image source={images.imageLoginTop} style={stylesScreen.image} />
-            <View>
-              <Text
-                style={[
-                  styles.fontsize48,
-                  styles.colorWhite,
-                  styles.fontBold,
-                  styles.marginBottom30,
-                ]}>
-                {i18n.t('register')}
-              </Text>
-            </View>
-            <View style={styles.inputContainer}>
-              <IconMateria
-                name="email-outline"
-                size={16}
-                color="#000"
-                style={stylesScreen.iconLeftInput}
-              />
-              <TextInput
-                style={styles.inputForm}
-                value={isEmail}
-                onChangeText={handleEmailChange}
-                placeholder="Email"
-              />
-              {isValidEmail === 'false' ? (
-                <Text style={[styles.colorOrange, styles.marginTop5]}>
-                  Email chưa đúng
-                </Text>
-              ) : null}
-            </View>
-            <View style={styles.inputContainer}>
-              <IconMateria
-                name="lock-outline"
-                size={16}
-                color="#000"
-                style={stylesScreen.iconLeftInput}
-              />
-              <TextInput
-                style={styles.inputForm}
-                value={isPassword}
-                onChangeText={handlePasswordChange}
-                placeholder="***********"
-                secureTextEntry={!showPassword}
-              />
-              <TouchableOpacity
-                onPress={handleShowPassword}
-                style={stylesScreen.iconRightInput}>
-                <IconMateria
-                  name={showPassword ? 'eye-outline' : 'eye-off-outline'}
-                  size={16}
-                  color="#000"
-                />
-              </TouchableOpacity>
-              {isCheckPasswordValid === 'false' ? (
-                <Text style={[styles.colorOrange, styles.marginTop5]}>
-                  Password phải lớn hơn 8 ký tự
-                </Text>
-              ) : (
-                ''
-              )}
-            </View>
-            <View style={[styles.Row]}>
-              <View style={styles.flexBox}>
-                <TouchableOpacity
-                  onPress={() => handleButtonPress('Guest')}
-                  style={[
-                    styles.btnTmpAuto,
-                    styles.borderBottomWhite,
-                    isTypeUser === 'Guest' ? styles.borderBottomOrange : null,
-                  ]}>
-                  <Image
-                    source={icon.iconGuest}
-                    style={stylesScreen.iconSize24}
-                  />
-                  <Text
-                    style={[
-                      styles.fontSize14,
-                      styles.colorBlack,
-                      styles.fontBold600,
-                      styles.marginTop5,
-                    ]}>
-                    Khách
-                  </Text>
-                </TouchableOpacity>
-              </View>
-              <View style={stylesScreen.separator} />
-              <View style={styles.flexBox}>
-                <TouchableOpacity
-                  onPress={() => handleButtonPress('Expert')}
-                  style={[
-                    styles.btnTmpAuto,
-                    styles.borderBottomWhite,
-                    isTypeUser === 'Expert' ? styles.borderBottomOrange : null,
-                  ]}>
-                  <Image
-                    source={icon.iconExpert}
-                    style={stylesScreen.iconSize24}
-                  />
-                  <Text
-                    style={[
-                      styles.fontSize14,
-                      styles.colorBlack,
-                      styles.fontBold600,
-                      styles.marginTop5,
-                    ]}>
-                    Chuyên gia
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={[styles.alignCenter, styles.marginTop24]}>
-              <TouchableOpacity
-                activeOpacity={
-                  isValidEmail === 'true' &&
-                  isCheckPasswordValid === 'true' &&
-                  isTypeUser
-                    ? 0.6
-                    : 1
-                }
-                onPress={
-                  isValidEmail === 'true' &&
-                  isCheckPasswordValid === 'true' &&
-                  isTypeUser
-                    ? handlePress
-                    : undefined
-                }
-                style={[
-                  isValidEmail === 'true' &&
-                  isCheckPasswordValid === 'true' &&
-                  isTypeUser
-                    ? styles.buttonTmp
-                    : styles.buttonFullDisable,
-                ]}>
-                {isLoading ? (
-                  <ActivityIndicator color="white" />
-                ) : (
-                  <Text style={styles.buttonText}>{i18n.t('register')}</Text>
-                )}
-              </TouchableOpacity>
-              {isNotify && (
+        <NativeViewGestureHandler>
+          <ScrollView style={styles.scrollView}>
+            <View style={[styles.paddingHorizontal24]}>
+              <Image source={images.imageLoginTop} style={stylesScreen.image} />
+              <View>
                 <Text
                   style={[
-                    styles.fontSize14,
-                    styles.marginVertical18,
-                    isStatus !== true ? styles.colorRed : styles.colorGreen,
+                    styles.fontsize48,
+                    styles.colorWhite,
+                    styles.fontBold,
+                    styles.marginBottom30,
                   ]}>
-                  {isNotify}
+                  {i18n.t('register')}
                 </Text>
-              )}
-            </View>
-            <View style={[styles.alignCenter, styles.marginVertical34]}>
-              <View style={stylesScreen.borderBottom} />
-              <Text style={stylesScreen.absolutePosition}>Hoặc</Text>
-            </View>
-            <View style={[styles.alignCenter]}>
-              <LoginSocial />
-              <View
-                style={[
-                  styles.RowAlignItems,
-                  styles.marginVertical18,
-                  styles.marginBottom30,
-                ]}>
-                <Text style={[styles.colorGrray]}>Bạn đã có tài khoản?</Text>
-                <TouchableOpacity
-                  onPress={handleInputUser}
-                  style={styles.RowAlignItems}>
-                  <Text style={[styles.colorOrange, styles.marginLeft5]}>
-                    đăng nhập
+              </View>
+              <View style={styles.inputContainer}>
+                <IconMateria
+                  name="email-outline"
+                  size={16}
+                  color="#000"
+                  style={stylesScreen.iconLeftInput}
+                />
+                <TextInput
+                  style={styles.inputForm}
+                  value={isEmail}
+                  onChangeText={handleEmailChange}
+                  placeholder="Email"
+                />
+                {isValidEmail === 'false' ? (
+                  <Text style={[styles.colorOrange, styles.marginTop5]}>
+                    Email chưa đúng
                   </Text>
+                ) : null}
+              </View>
+              <View style={styles.inputContainer}>
+                <IconMateria
+                  name="lock-outline"
+                  size={16}
+                  color="#000"
+                  style={stylesScreen.iconLeftInput}
+                />
+                <TextInput
+                  style={styles.inputForm}
+                  value={isPassword}
+                  onChangeText={handlePasswordChange}
+                  placeholder="***********"
+                  secureTextEntry={!showPassword}
+                />
+                <TouchableOpacity
+                  onPress={handleShowPassword}
+                  style={stylesScreen.iconRightInput}>
+                  <IconMateria
+                    name={showPassword ? 'eye-outline' : 'eye-off-outline'}
+                    size={16}
+                    color="#000"
+                  />
                 </TouchableOpacity>
+                {isCheckPasswordValid === 'false' ? (
+                  <Text style={[styles.colorOrange, styles.marginTop5]}>
+                    Password phải lớn hơn 8 ký tự
+                  </Text>
+                ) : (
+                  ''
+                )}
+              </View>
+              <View style={[styles.Row]}>
+                <View style={styles.flexBox}>
+                  <TouchableOpacity
+                    onPress={() => handleButtonPress('Guest')}
+                    style={[
+                      styles.btnTmpAuto,
+                      styles.borderBottomWhite,
+                      isTypeUser === 'Guest' ? styles.borderBottomOrange : null,
+                    ]}>
+                    <Image
+                      source={icon.iconGuest}
+                      style={stylesScreen.iconSize24}
+                    />
+                    <Text
+                      style={[
+                        styles.fontSize14,
+                        styles.colorBlack,
+                        styles.fontBold600,
+                        styles.marginTop5,
+                      ]}>
+                      Khách
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+                <View style={stylesScreen.separator} />
+                <View style={styles.flexBox}>
+                  <TouchableOpacity
+                    onPress={() => handleButtonPress('Expert')}
+                    style={[
+                      styles.btnTmpAuto,
+                      styles.borderBottomWhite,
+                      isTypeUser === 'Expert'
+                        ? styles.borderBottomOrange
+                        : null,
+                    ]}>
+                    <Image
+                      source={icon.iconExpert}
+                      style={stylesScreen.iconSize24}
+                    />
+                    <Text
+                      style={[
+                        styles.fontSize14,
+                        styles.colorBlack,
+                        styles.fontBold600,
+                        styles.marginTop5,
+                      ]}>
+                      Chuyên gia
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View style={[styles.alignCenter, styles.marginTop24]}>
+                <TouchableOpacity
+                  activeOpacity={
+                    isValidEmail === 'true' &&
+                    isCheckPasswordValid === 'true' &&
+                    isTypeUser
+                      ? 0.6
+                      : 1
+                  }
+                  onPress={
+                    isValidEmail === 'true' &&
+                    isCheckPasswordValid === 'true' &&
+                    isTypeUser
+                      ? handlePress
+                      : undefined
+                  }
+                  style={[
+                    isValidEmail === 'true' &&
+                    isCheckPasswordValid === 'true' &&
+                    isTypeUser
+                      ? styles.buttonTmp
+                      : styles.buttonFullDisable,
+                  ]}>
+                  {isLoading ? (
+                    <ActivityIndicator color="white" />
+                  ) : (
+                    <Text style={styles.buttonText}>{i18n.t('register')}</Text>
+                  )}
+                </TouchableOpacity>
+                {isNotify && (
+                  <Text
+                    style={[
+                      styles.fontSize14,
+                      styles.marginVertical18,
+                      isStatus !== true ? styles.colorRed : styles.colorGreen,
+                    ]}>
+                    {isNotify}
+                  </Text>
+                )}
+              </View>
+              <View style={[styles.alignCenter, styles.marginVertical34]}>
+                <View style={stylesScreen.borderBottom} />
+                <Text style={stylesScreen.absolutePosition}>Hoặc</Text>
+              </View>
+              <View style={[styles.alignCenter]}>
+                <LoginSocial />
+                <View
+                  style={[
+                    styles.RowAlignItems,
+                    styles.marginVertical18,
+                    styles.marginBottom30,
+                  ]}>
+                  <Text style={[styles.colorGrray]}>Bạn đã có tài khoản?</Text>
+                  <TouchableOpacity
+                    onPress={handleInputUser}
+                    style={styles.RowAlignItems}>
+                    <Text style={[styles.colorOrange, styles.marginLeft5]}>
+                      đăng nhập
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </NativeViewGestureHandler>
       </KeyboardAvoidingView>
-    </>
+    </GestureHandlerRootView>
   );
 };
 

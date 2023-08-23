@@ -65,7 +65,7 @@ const TarotCardSelector = ({navigation, route}: chooseProps) => {
   return (
     <WrapBgBox>
       <View style={styles.positionAbsoluteTop}>
-        <Header navigation={navigation} name="nothing" />
+        <Header navigation={navigation} name="nothing" title={''} />
       </View>
       <View style={[styles.flexBox]}>
         <View style={[styles.flexBox, styles.alignItems, styles.padding18]}>
