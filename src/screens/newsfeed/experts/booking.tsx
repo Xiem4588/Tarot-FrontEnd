@@ -30,12 +30,12 @@ const BookingScreen = ({navigation, route}: BookingScreenProps) => {
         <Header navigation={navigation} name="booking" title={''} />
         <View style={[styles.detailUserBooking]}>
           <Infor />
-          <NativeViewGestureHandler>
-            <ScrollView>
+          <ScrollView>
+            <NativeViewGestureHandler>
               <Pack />
               <DateTime navigation={navigation} route={route} />
-            </ScrollView>
-          </NativeViewGestureHandler>
+            </NativeViewGestureHandler>
+          </ScrollView>
         </View>
       </WrapBgBox>
     </GestureHandlerRootView>

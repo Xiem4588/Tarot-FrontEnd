@@ -64,8 +64,8 @@ const ModalComment = ({isID, isModalVisible, onClick}: ModalCommentProps) => {
               <View style={styles.alignItems}>
                 <View
                   style={[styles.paddingHorizontal18, styles.marginBottom30]}>
-                  <NativeViewGestureHandler>
-                    <ScrollView>
+                  <ScrollView>
+                    <NativeViewGestureHandler>
                       <View style={styles.borderBottom}>
                         <View
                           style={[styles.RowAlignItems, styles.marginBottom10]}>
@@ -102,8 +102,8 @@ const ModalComment = ({isID, isModalVisible, onClick}: ModalCommentProps) => {
                         </Text>
                       </View>
                       <CommentComponent focusInput={focusInput} />
-                    </ScrollView>
-                  </NativeViewGestureHandler>
+                    </NativeViewGestureHandler>
+                  </ScrollView>
                 </View>
               </View>
             </View>

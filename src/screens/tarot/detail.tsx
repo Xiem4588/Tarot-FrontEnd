@@ -138,8 +138,8 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
         <Header navigation={navigation} title={''} />
       </View>
       <View style={styles.backgBlackOpacity08}>
-        <NativeViewGestureHandler>
-          <ScrollView>
+        <ScrollView>
+          <NativeViewGestureHandler>
             <View style={[{minHeight: height, minWidth: width}]}>
               <View
                 style={[
@@ -254,8 +254,8 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                 )}
               </View>
             </View>
-          </ScrollView>
-        </NativeViewGestureHandler>
+          </NativeViewGestureHandler>
+        </ScrollView>
       </View>
     </GestureHandlerRootView>
   );
