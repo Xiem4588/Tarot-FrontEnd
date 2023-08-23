@@ -1,4 +1,8 @@
 {
   "name": "GameTarot",
-  "displayName": "GameTarot"
+  "displayName": "GameTarot",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-4915408027379842~4422176997",
+    "ios_app_id": "ca-app-pub-4915408027379842~9093201129"
+  }
 }

@@ -17,7 +17,7 @@ import {images, icon} from '../../assets/constants';
 import {styles} from '../../assets/styles';
 import WrapBgBox from '../../conponents/wrapBgBox';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import GoogleAds from '../../googleAds';
 const ScreenToday = ({navigation}: any) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isCategory, setCategory] = useState(String);
@@ -151,6 +151,7 @@ const ScreenToday = ({navigation}: any) => {
           </Text>
         </TouchableOpacity>
       </WrapBgBox>
+      <GoogleAds />
     </GestureHandlerRootView>
   );
 };

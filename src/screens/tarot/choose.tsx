@@ -8,7 +8,7 @@ import WrapBgBox from '../../conponents/wrapBgBox';
 import Header from '../../conponents/header';
 import moment from 'moment';
 import Carousel from 'react-native-snap-carousel';
-
+import GoogleAds from '../../googleAds';
 // get width window
 const screenWidth = Dimensions.get('window').width;
 const itemWidth = screenWidth / 10;
@@ -123,6 +123,7 @@ const TarotCardSelector = ({navigation, route}: chooseProps) => {
           </View>
         </View>
       </View>
+      <GoogleAds />
     </WrapBgBox>
   );
 };
