@@ -99,3 +99,9 @@ Map project
             assets: ['src/assets/fonts'], // đường dẫn tới folder fonts
       };
       ==> sau đó chạy lệnh để link đến ứng dụng: 'npx react-native-asset'
+
+// Android tạo file APK
+Nếu bạn muốn tạo file APK trực tiếp từ bundle bằng Android Studio, hãy làm theo các bước sau:
+Mở Android Studio và mở dự án React Native của bạn.
+Trong menu, chọn "Build" > "Build Bundles(s)/APK(s)" > "Build APK(s)".
+Android Studio sẽ tạo ra tệp APK tại android/app/build/outputs/apk/release/app-release.apk.
