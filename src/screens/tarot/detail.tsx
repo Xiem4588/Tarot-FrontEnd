@@ -19,6 +19,7 @@ import {shareAction} from '../../redux/actions';
 import {store} from '../../redux/store';
 import {apiRoutesMain} from '../../config';
 import {uri} from '../../config/env';
+import GoogleAdsBannerAd from '../../googleAds/_bannerAd';
 
 type detailProps = {
   navigation: any;
@@ -175,6 +176,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                   />
                 </View>
               </View>
+              <GoogleAdsBannerAd />
               <View style={[styles.flexBox, styles.paddingHorizontal9]}>
                 <View style={[styles.RowCenterBetween, styles.zindexRelative9]}>
                   <View>

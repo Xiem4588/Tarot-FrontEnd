@@ -8,7 +8,6 @@ import {styles} from '../../assets/styles';
 import {images} from '../../assets/constants';
 import {useTranslation} from 'react-i18next';
 import i18n from '../../languages/i18n';
-import GoogleAds from '../../googleAds';
 
 const StepOne = () => {
   useTranslation();
@@ -29,7 +28,6 @@ const StepOne = () => {
           </Text>
         </View>
       </View>
-      <GoogleAds />
     </>
   );
 };

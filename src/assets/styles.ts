@@ -1410,4 +1410,13 @@ export const styles = StyleSheet.create({
     resizeMode: 'contain',
     height: 38,
   },
+  BtnBannerAds: {
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    borderRadius: 5,
+    position: 'absolute',
+    right: 5,
+    top: 5,
+    padding: 5,
+    zIndex: 999,
+  },
 });

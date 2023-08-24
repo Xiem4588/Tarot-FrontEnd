@@ -19,6 +19,7 @@ import StepThree from './stepThree';
 import {LanguageSwitcher} from '../../conponents/LanguageSwitcher';
 import {useTranslation} from 'react-i18next';
 import i18n from '../../languages/i18n';
+import GoogleAdsInterstitialAd from '../../googleAds/_bannerAd';
 
 MIcon.loadFont();
 
@@ -120,6 +121,7 @@ const LaunchScreen = ({navigation}: any) => {
           </TouchableOpacity>
         </View>
       )}
+      <GoogleAdsInterstitialAd />
     </>
   );
 };

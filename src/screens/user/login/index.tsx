@@ -25,6 +25,7 @@ import LoginSocial from '../social';
 import {tokenUser} from '../../../redux/actions';
 import {store} from '../../../redux/store';
 import {apiUser} from '../../../config';
+import GoogleAdsRewardedAd from '../../../googleAds/_rewardedAd';
 interface LoginProps {
   handleInputUser: () => void;
   handleLogin: (id: string) => void;
@@ -267,6 +268,7 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
           </ScrollView>
         </NativeViewGestureHandler>
       </KeyboardAvoidingView>
+      <GoogleAdsRewardedAd />
     </GestureHandlerRootView>
   );
 };
