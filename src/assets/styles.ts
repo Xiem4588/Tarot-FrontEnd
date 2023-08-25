@@ -916,6 +916,9 @@ export const styles = StyleSheet.create({
   fontsize48: {
     fontSize: 48,
   },
+  fontsize36: {
+    fontSize: 36,
+  },
   imageItem: {
     width: 80,
     height: 80,

@@ -130,7 +130,7 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
             <View>
               <Text
                 style={[
-                  styles.fontsize48,
+                  styles.fontsize36,
                   styles.colorWhite,
                   styles.fontBold,
                   styles.marginBottom30,

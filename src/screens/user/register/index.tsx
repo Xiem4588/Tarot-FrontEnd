@@ -131,7 +131,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
           <View>
             <Text
               style={[
-                styles.fontsize48,
+                styles.fontsize36,
                 styles.colorWhite,
                 styles.fontBold,
                 styles.marginBottom30,
