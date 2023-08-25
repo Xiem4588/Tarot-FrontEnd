@@ -209,8 +209,8 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                           key={key}>
                           <Text
                             style={[
-                              styles.fontBold600,
                               styles.colorWhite,
+                              styles.fontBold600,
                               styles.textAlign,
                             ]}>
                             {value.title}

@@ -599,16 +599,13 @@ export const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
   },
   fontBold600: {
-    fontWeight: '600',
-    fontFamily: 'Montserrat',
+    fontFamily: 'Montserrat-SemiBold',
   },
   fontBold700: {
-    fontWeight: '700',
-    fontFamily: 'Montserrat',
+    fontFamily: 'Montserrat-ExtraBold',
   },
   fontBold: {
-    fontWeight: 'bold',
-    fontFamily: 'Montserrat',
+    fontFamily: 'Montserrat-Bold',
   },
   fontMontserrat: {
     fontFamily: 'Montserrat',
