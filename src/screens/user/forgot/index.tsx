@@ -1,10 +1,5 @@
 import React, {useState} from 'react';
-import {View} from 'react-native';
-import {
-  ScrollView,
-  GestureHandlerRootView,
-  NativeViewGestureHandler,
-} from 'react-native-gesture-handler';
+import {View, ScrollView} from 'react-native';
 import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
 import Header from '../../../conponents/header';
@@ -38,33 +33,29 @@ const ForgotPassword = ({navigation}: any) => {
   //*****/ three
 
   return (
-    <GestureHandlerRootView style={[styles.flexBox]}>
-      <WrapBgBox>
-        <Header navigation={navigation} title={i18n.t('forgotpassword')} />
-        <NativeViewGestureHandler>
-          <ScrollView>
-            <View style={[styles.paddingHorizontal18]}>
-              {isConfirm ? (
-                <StepOne
-                  handleButtonPress={(buttonName: string) =>
-                    handleButtonPress(buttonName)
-                  }
-                  selectedButton={selectedButton}
-                  handleNext={handleNext}
-                />
-              ) : isNewPass ? (
-                <StepTwo
-                  selectedButton={selectedButton}
-                  handleConfirm={handleConfirm}
-                />
-              ) : (
-                <StepThree navigation={navigation} />
-              )}
-            </View>
-          </ScrollView>
-        </NativeViewGestureHandler>
-      </WrapBgBox>
-    </GestureHandlerRootView>
+    <WrapBgBox>
+      <Header navigation={navigation} title={i18n.t('forgotpassword')} />
+      <ScrollView>
+        <View style={[styles.paddingHorizontal18]}>
+          {isConfirm ? (
+            <StepOne
+              handleButtonPress={(buttonName: string) =>
+                handleButtonPress(buttonName)
+              }
+              selectedButton={selectedButton}
+              handleNext={handleNext}
+            />
+          ) : isNewPass ? (
+            <StepTwo
+              selectedButton={selectedButton}
+              handleConfirm={handleConfirm}
+            />
+          ) : (
+            <StepThree navigation={navigation} />
+          )}
+        </View>
+      </ScrollView>
+    </WrapBgBox>
   );
 };
 

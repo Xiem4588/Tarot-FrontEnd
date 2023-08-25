@@ -9,15 +9,11 @@ import {
   Image,
   Alert,
   ActivityIndicator,
+  ScrollView,
 } from 'react-native';
 import {styles} from '../../../assets/styles';
 import {stylesScreen} from '../styles';
 import {images} from '../../../assets/constants';
-import {
-  ScrollView,
-  GestureHandlerRootView,
-  NativeViewGestureHandler,
-} from 'react-native-gesture-handler';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
 import i18n from '../../../languages/i18n';
@@ -124,152 +120,148 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
   };
 
   return (
-    <GestureHandlerRootView style={[styles.flexBox]}>
+    <>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={[styles.flexBox]}>
-        <NativeViewGestureHandler>
-          <ScrollView style={styles.scrollView}>
-            <View style={[styles.paddingHorizontal24]}>
-              <Image source={images.imageLoginTop} style={stylesScreen.image} />
-              <View>
+        <ScrollView style={styles.scrollView}>
+          <View style={[styles.paddingHorizontal24]}>
+            <Image source={images.imageLoginTop} style={stylesScreen.image} />
+            <View>
+              <Text
+                style={[
+                  styles.fontsize48,
+                  styles.colorWhite,
+                  styles.fontBold,
+                  styles.marginBottom30,
+                ]}>
+                {i18n.t('login')}
+              </Text>
+              {isNotify && (
                 <Text
                   style={[
-                    styles.fontsize48,
-                    styles.colorWhite,
-                    styles.fontBold,
-                    styles.marginBottom30,
+                    styles.fontSize14,
+                    styles.marginBottom15,
+                    isStatus !== true ? styles.colorRed : styles.colorGreen,
                   ]}>
-                  {i18n.t('login')}
+                  {isNotify}
                 </Text>
-                {isNotify && (
-                  <Text
-                    style={[
-                      styles.fontSize14,
-                      styles.marginBottom15,
-                      isStatus !== true ? styles.colorRed : styles.colorGreen,
-                    ]}>
-                    {isNotify}
-                  </Text>
-                )}
-              </View>
-              <View style={styles.inputContainer}>
+              )}
+            </View>
+            <View style={styles.inputContainer}>
+              <IconMateria
+                name="email-outline"
+                size={16}
+                color="#000"
+                style={stylesScreen.iconLeftInput}
+              />
+              <TextInput
+                style={styles.inputForm}
+                value={isEmail}
+                onChangeText={handleEmailChange}
+                placeholder="Email"
+              />
+              {isValidEmail === 'false' ? (
+                <Text style={[styles.colorOrange, styles.marginTop5]}>
+                  {i18n.t('errorEmail')}
+                </Text>
+              ) : (
+                ''
+              )}
+            </View>
+            <View style={styles.inputContainer}>
+              <IconMateria
+                name="lock-outline"
+                size={16}
+                color="#000"
+                style={stylesScreen.iconLeftInput}
+              />
+              <TextInput
+                style={styles.inputForm}
+                value={isPassword}
+                onChangeText={handlePasswordChange}
+                placeholder="***********"
+                secureTextEntry={!showPassword}
+              />
+              <TouchableOpacity
+                onPress={handleShowPassword}
+                style={stylesScreen.iconRightInput}>
                 <IconMateria
-                  name="email-outline"
+                  name={showPassword ? 'eye-outline' : 'eye-off-outline'}
                   size={16}
                   color="#000"
-                  style={stylesScreen.iconLeftInput}
                 />
-                <TextInput
-                  style={styles.inputForm}
-                  value={isEmail}
-                  onChangeText={handleEmailChange}
-                  placeholder="Email"
-                />
-                {isValidEmail === 'false' ? (
-                  <Text style={[styles.colorOrange, styles.marginTop5]}>
-                    {i18n.t('errorEmail')}
-                  </Text>
-                ) : (
-                  ''
-                )}
-              </View>
-              <View style={styles.inputContainer}>
-                <IconMateria
-                  name="lock-outline"
-                  size={16}
-                  color="#000"
-                  style={stylesScreen.iconLeftInput}
-                />
-                <TextInput
-                  style={styles.inputForm}
-                  value={isPassword}
-                  onChangeText={handlePasswordChange}
-                  placeholder="***********"
-                  secureTextEntry={!showPassword}
-                />
-                <TouchableOpacity
-                  onPress={handleShowPassword}
-                  style={stylesScreen.iconRightInput}>
-                  <IconMateria
-                    name={showPassword ? 'eye-outline' : 'eye-off-outline'}
-                    size={16}
-                    color="#000"
-                  />
-                </TouchableOpacity>
-                {isCheckPasswordValid === 'false' ? (
-                  <Text style={[styles.colorOrange, styles.marginTop5]}>
-                    {i18n.t('errorPass')}
-                  </Text>
-                ) : (
-                  ''
-                )}
-              </View>
-              <View style={styles.alignCenter}>
-                <TouchableOpacity
-                  activeOpacity={
-                    isCheckPasswordValid === 'true' && isValidEmail === 'true'
-                      ? 0.6
-                      : 1
-                  }
-                  onPress={
-                    isCheckPasswordValid === 'true' && isValidEmail === 'true'
-                      ? handlePress
-                      : undefined
-                  }
-                  style={
-                    isCheckPasswordValid === 'true' && isValidEmail === 'true'
-                      ? styles.buttonTmp
-                      : styles.buttonFullDisable
-                  }>
-                  {isLoading ? (
-                    <ActivityIndicator color="white" />
-                  ) : (
-                    <Text style={[styles.buttonText, styles.fontBold600]}>
-                      {i18n.t('login')}
-                    </Text>
-                  )}
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('forgotPassword')}
-                  style={[styles.RowAlignItems, styles.marginTop20]}>
-                  <Text style={[styles.colorOrange, styles.fontBold600]}>
-                    {i18n.t('forgotpassword')}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-              <View style={[styles.alignCenter, styles.marginVertical34]}>
-                <View style={stylesScreen.border} />
-                <Text style={stylesScreen.absolutePosition}>
-                  {i18n.t('or')}
+              </TouchableOpacity>
+              {isCheckPasswordValid === 'false' ? (
+                <Text style={[styles.colorOrange, styles.marginTop5]}>
+                  {i18n.t('errorPass')}
                 </Text>
-              </View>
-              <View style={[styles.alignCenter]}>
-                <LoginSocial />
-                <View
-                  style={[
-                    styles.RowAlignItems,
-                    styles.marginVertical18,
-                    styles.marginBottom30,
-                  ]}>
-                  <Text style={[styles.colorGrray]}>
-                    {i18n.t('donotaccount')}
+              ) : (
+                ''
+              )}
+            </View>
+            <View style={styles.alignCenter}>
+              <TouchableOpacity
+                activeOpacity={
+                  isCheckPasswordValid === 'true' && isValidEmail === 'true'
+                    ? 0.6
+                    : 1
+                }
+                onPress={
+                  isCheckPasswordValid === 'true' && isValidEmail === 'true'
+                    ? handlePress
+                    : undefined
+                }
+                style={
+                  isCheckPasswordValid === 'true' && isValidEmail === 'true'
+                    ? styles.buttonTmp
+                    : styles.buttonFullDisable
+                }>
+                {isLoading ? (
+                  <ActivityIndicator color="white" />
+                ) : (
+                  <Text style={[styles.buttonText, styles.fontBold600]}>
+                    {i18n.t('login')}
                   </Text>
-                  <TouchableOpacity
-                    onPress={handleInputUser}
-                    style={styles.RowAlignItems}>
-                    <Text style={[styles.colorOrange, styles.marginLeft5]}>
-                      {i18n.t('register')}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
+                )}
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('forgotPassword')}
+                style={[styles.RowAlignItems, styles.marginTop20]}>
+                <Text style={[styles.colorOrange, styles.fontBold600]}>
+                  {i18n.t('forgotpassword')}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={[styles.alignCenter, styles.marginVertical34]}>
+              <View style={stylesScreen.border} />
+              <Text style={stylesScreen.absolutePosition}>{i18n.t('or')}</Text>
+            </View>
+            <View style={[styles.alignCenter]}>
+              <LoginSocial />
+              <View
+                style={[
+                  styles.RowAlignItems,
+                  styles.marginVertical18,
+                  styles.marginBottom30,
+                ]}>
+                <Text style={[styles.colorGrray]}>
+                  {i18n.t('donotaccount')}
+                </Text>
+                <TouchableOpacity
+                  onPress={handleInputUser}
+                  style={styles.RowAlignItems}>
+                  <Text style={[styles.colorOrange, styles.marginLeft5]}>
+                    {i18n.t('register')}
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
-          </ScrollView>
-        </NativeViewGestureHandler>
+          </View>
+        </ScrollView>
       </KeyboardAvoidingView>
       <GoogleAdsRewardedAd />
-    </GestureHandlerRootView>
+    </>
   );
 };
 

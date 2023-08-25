@@ -1,11 +1,6 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {Avatar} from 'react-native-elements';
-import {
-  ScrollView,
-  GestureHandlerRootView,
-  NativeViewGestureHandler,
-} from 'react-native-gesture-handler';
 import {images} from '../../../assets/constants';
 import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
@@ -31,76 +26,70 @@ const DATA: DataProps = {
 const SettingScreen = ({navigation}: any) => {
   useTranslation();
   return (
-    <GestureHandlerRootView style={[styles.flexBox]}>
-      <WrapBgBox>
-        <Header
-          navigation={navigation}
-          title={String(i18n.t('setting'))}
-          name="setting"
-        />
-        <NativeViewGestureHandler>
-          <ScrollView>
-            <View style={[styles.alignItems, styles.paddingVertical30]}>
-              <View style={[styles.avataProfileEllipse]}>
-                <Avatar size={80} source={images.AvatarDemo1} />
-              </View>
+    <WrapBgBox>
+      <Header
+        navigation={navigation}
+        title={String(i18n.t('setting'))}
+        name="setting"
+      />
+      <ScrollView>
+        <View style={[styles.alignItems, styles.paddingVertical30]}>
+          <View style={[styles.avataProfileEllipse]}>
+            <Avatar size={80} source={images.AvatarDemo1} />
+          </View>
+        </View>
+        <View style={styles.paddingHorizontal18}>
+          <Text style={styles.titleBox}>{i18n.t('account')}</Text>
+          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+            <Text style={styles.textSize16}>{i18n.t('name')}</Text>
+            <TouchableOpacity
+              style={styles.RowAlignItems}
+              onPress={() => navigation.goBack()}>
+              <Text style={styles.textSize16}>{DATA.name}</Text>
+              <MIcon name="chevron-right" size={28} color={'#fff'} />
+            </TouchableOpacity>
+          </View>
+          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+            <Text style={styles.textSize16}>{i18n.t('birth')}</Text>
+            <TouchableOpacity
+              style={styles.RowAlignItems}
+              onPress={() => navigation.goBack()}>
+              <Text style={styles.textSize16}>{DATA.dateOfBirth}</Text>
+              <MIcon name="chevron-right" size={28} color={'#fff'} />
+            </TouchableOpacity>
+          </View>
+          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+            <Text style={styles.textSize16}>{i18n.t('describe')}</Text>
+            <TouchableOpacity
+              style={styles.RowAlignItems}
+              onPress={() => navigation.goBack()}>
+              <Text style={styles.textSize16}>{DATA.describe}</Text>
+              <MIcon name="chevron-right" size={28} color={'#fff'} />
+            </TouchableOpacity>
+          </View>
+          <Text style={[styles.titleBox, styles.paddingTop30]}>
+            {i18n.t('other')}
+          </Text>
+          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+            <Text style={styles.textSize16}>{i18n.t('language')}</Text>
+            <View style={styles.RowAlignItems}>
+              <LanguageSwitcher />
+              <MIcon name="chevron-right" size={28} color={'#fff'} />
             </View>
-            <View style={styles.paddingHorizontal18}>
-              <Text style={styles.titleBox}>{i18n.t('account')}</Text>
-              <View style={[styles.RowBetween, styles.paddingVertical10]}>
-                <Text style={styles.textSize16}>{i18n.t('name')}</Text>
-                <TouchableOpacity
-                  style={styles.RowAlignItems}
-                  onPress={() => navigation.goBack()}>
-                  <Text style={styles.textSize16}>{DATA.name}</Text>
-                  <MIcon name="chevron-right" size={28} color={'#fff'} />
-                </TouchableOpacity>
-              </View>
-              <View style={[styles.RowBetween, styles.paddingVertical10]}>
-                <Text style={styles.textSize16}>{i18n.t('birth')}</Text>
-                <TouchableOpacity
-                  style={styles.RowAlignItems}
-                  onPress={() => navigation.goBack()}>
-                  <Text style={styles.textSize16}>{DATA.dateOfBirth}</Text>
-                  <MIcon name="chevron-right" size={28} color={'#fff'} />
-                </TouchableOpacity>
-              </View>
-              <View style={[styles.RowBetween, styles.paddingVertical10]}>
-                <Text style={styles.textSize16}>{i18n.t('describe')}</Text>
-                <TouchableOpacity
-                  style={styles.RowAlignItems}
-                  onPress={() => navigation.goBack()}>
-                  <Text style={styles.textSize16}>{DATA.describe}</Text>
-                  <MIcon name="chevron-right" size={28} color={'#fff'} />
-                </TouchableOpacity>
-              </View>
-              <Text style={[styles.titleBox, styles.paddingTop30]}>
-                {i18n.t('other')}
-              </Text>
-              <View style={[styles.RowBetween, styles.paddingVertical10]}>
-                <Text style={styles.textSize16}>{i18n.t('language')}</Text>
-                <View style={styles.RowAlignItems}>
-                  <LanguageSwitcher />
-                  <MIcon name="chevron-right" size={28} color={'#fff'} />
-                </View>
-              </View>
-            </View>
-            <View style={[styles.alignItems, styles.flexBox]}>
-              <Avatar
-                source={images.imgSettingDecorate}
-                size={150}
-                containerStyle={styles.resizeModeContain}
-              />
-              <TouchableOpacity onPress={() => navigation.navigate('launch')}>
-                <Text style={styles.buttonTmpSmWhite05}>
-                  {i18n.t('logout')}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </ScrollView>
-        </NativeViewGestureHandler>
-      </WrapBgBox>
-    </GestureHandlerRootView>
+          </View>
+        </View>
+        <View style={[styles.alignItems, styles.flexBox]}>
+          <Avatar
+            source={images.imgSettingDecorate}
+            size={150}
+            containerStyle={styles.resizeModeContain}
+          />
+          <TouchableOpacity onPress={() => navigation.navigate('launch')}>
+            <Text style={styles.buttonTmpSmWhite05}>{i18n.t('logout')}</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </WrapBgBox>
   );
 };
 

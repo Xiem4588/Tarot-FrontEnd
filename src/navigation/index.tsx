@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {View, Button, Alert} from 'react-native';
+import {View, Button, Alert, TouchableOpacity} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import WrapBgBox from '../conponents/wrapBgBox';
 import {icon, colors} from '../assets/constants';
@@ -22,11 +22,6 @@ import {
 
 import {styles} from '../assets/styles';
 import {Text} from 'react-native-elements';
-import {
-  TouchableOpacity,
-  GestureHandlerRootView,
-  NativeViewGestureHandler,
-} from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -103,21 +98,17 @@ const StackScreenOptionsHeaderTransparent = ({navigation}: any) => ({
   headerStyle: {backgroundColor: colors.transparent},
   cardStyle: {backgroundColor: '#000'},
   headerLeft: () => (
-    <GestureHandlerRootView style={[styles.flexBox]}>
-      <NativeViewGestureHandler>
-        <TouchableOpacity
-          style={[styles.buttonEllipseSm, styles.marginLeft12]}
-          onPress={() => navigation.goBack()}>
-          <View style={styles.RowCenterBetween}>
-            <Avatar
-              source={icon.iconBackWhite}
-              containerStyle={[styles.iconSize24, styles.marginRight5]}
-            />
-            <Text style={[styles.textWhite, styles.fontSize18]}>Cài đặt</Text>
-          </View>
-        </TouchableOpacity>
-      </NativeViewGestureHandler>
-    </GestureHandlerRootView>
+    <TouchableOpacity
+      style={[styles.buttonEllipseSm, styles.marginLeft12]}
+      onPress={() => navigation.goBack()}>
+      <View style={styles.RowCenterBetween}>
+        <Avatar
+          source={icon.iconBackWhite}
+          containerStyle={[styles.iconSize24, styles.marginRight5]}
+        />
+        <Text style={[styles.textWhite, styles.fontSize18]}>Cài đặt</Text>
+      </View>
+    </TouchableOpacity>
   ),
   headerRight: () => (
     <Button

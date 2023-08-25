@@ -6,13 +6,9 @@ import {
   TouchableOpacity,
   Image,
   ActivityIndicator,
+  ScrollView,
 } from 'react-native';
 import {Avatar} from 'react-native-elements';
-import {
-  ScrollView,
-  GestureHandlerRootView,
-  NativeViewGestureHandler,
-} from 'react-native-gesture-handler';
 import {images, icon} from '../../assets/constants';
 import {styles} from '../../assets/styles';
 import WrapBgBox from '../../conponents/wrapBgBox';
@@ -40,7 +36,7 @@ const ScreenToday = ({navigation}: any) => {
     }
   };
   return (
-    <GestureHandlerRootView style={[styles.flexBox]}>
+    <View style={[styles.flexBox]}>
       <WrapBgBox>
         <View style={[styles.avatarProfile]}>
           <ImageBackground
@@ -94,44 +90,40 @@ const ScreenToday = ({navigation}: any) => {
           <Text style={[styles.titleBox, styles.marginTop15]}>
             Phương hướng dành cho bạn
           </Text>
-          <NativeViewGestureHandler>
-            <ScrollView>
-              {DATA.map(item => (
-                <TouchableOpacity
-                  activeOpacity={1}
-                  key={item.id}
-                  onPress={() => handlePress(item.category)}>
-                  <View
+          <ScrollView>
+            {DATA.map(item => (
+              <TouchableOpacity
+                activeOpacity={1}
+                key={item.id}
+                onPress={() => handlePress(item.category)}>
+                <View
+                  style={[
+                    styles.RowCenterBetween,
+                    styles.boxWhiteRadius,
+                    styles.marginBottom15,
+                  ]}>
+                  <Text
                     style={[
-                      styles.RowCenterBetween,
-                      styles.boxWhiteRadius,
-                      styles.marginBottom15,
+                      styles.fontSize16,
+                      styles.flex1,
+                      item.category === isCategory
+                        ? styles.colorOrange
+                        : styles.colorBlack,
                     ]}>
-                    <Text
-                      style={[
-                        styles.fontSize16,
-                        styles.flex1,
-                        item.category === isCategory
-                          ? styles.colorOrange
-                          : styles.colorBlack,
-                      ]}>
-                      {item.ques}
-                    </Text>
-                    <Text style={[styles.marginLeft12, styles.width40]}>
-                      <IconMateria
-                        name="chevron-right"
-                        size={24}
-                        color={
-                          item.category === isCategory ? '#F78B73' : '#999'
-                        }
-                      />
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              ))}
-              <View style={styles.marginBottom80} />
-            </ScrollView>
-          </NativeViewGestureHandler>
+                    {item.ques}
+                  </Text>
+                  <Text style={[styles.marginLeft12, styles.width40]}>
+                    <IconMateria
+                      name="chevron-right"
+                      size={24}
+                      color={item.category === isCategory ? '#F78B73' : '#999'}
+                    />
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+            <View style={styles.marginBottom80} />
+          </ScrollView>
         </View>
         <TouchableOpacity
           onPress={() => handlePress('all')}
@@ -152,7 +144,7 @@ const ScreenToday = ({navigation}: any) => {
         </TouchableOpacity>
       </WrapBgBox>
       <GoogleAdsBannerAd />
-    </GestureHandlerRootView>
+    </View>
   );
 };
 

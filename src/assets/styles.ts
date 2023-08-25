@@ -100,7 +100,6 @@ export const styles = StyleSheet.create({
   textWhite: {
     color: '#FFFFFF',
     lineHeight: 20,
-    fontFamily: 'Montserrat',
   },
   textOrange: {
     color: '#F68B73',
@@ -921,6 +920,10 @@ export const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 10,
+  },
+  IconStyle2: {
+    resizeMode: 'contain',
+    height: 38,
   },
   status: {
     color: '#000000',
