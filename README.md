@@ -101,7 +101,12 @@ Map project
       ==> sau đó chạy lệnh để link đến ứng dụng: 'npx react-native-asset'
 
 // Android tạo file APK
-Nếu bạn muốn tạo file APK trực tiếp từ bundle bằng Android Studio, hãy làm theo các bước sau:
-Mở Android Studio và mở dự án React Native của bạn.
-Trong menu, chọn "Build" > "Build Bundles(s)/APK(s)" > "Build APK(s)".
-Android Studio sẽ tạo ra tệp APK tại android/app/build/outputs/apk/release/app-release.apk.
+
+      Nếu bạn muốn tạo file APK trực tiếp từ bundle bằng Android Studio, hãy làm theo các bước sau:
+      Mở Android Studio và mở dự án React Native của bạn.
+      Trong menu, chọn "Build" > "Build Bundles(s)/APK(s)" > "Build APK(s)".
+      Android Studio sẽ tạo ra tệp APK tại android/app/build/outputs/apk/debug/app-debug.apk.
+
+// để build apk cho android chạy lệnh sau: (lưu ý với typescript phải sửa index.js -> index.tsx)
+
+      npx react-native bundle --platform android --dev false --entry-file index.tsx --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
