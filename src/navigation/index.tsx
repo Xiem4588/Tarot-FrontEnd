@@ -2,8 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {View, Button, Alert, TouchableOpacity} from 'react-native';
-import {Avatar} from 'react-native-elements';
+import {View, Button, Alert, TouchableOpacity, Image} from 'react-native';
 import WrapBgBox from '../conponents/wrapBgBox';
 import {icon, colors} from '../assets/constants';
 import {
@@ -53,9 +52,9 @@ const TabScreenOptions = ({route}: any) => ({
     return (
       <>
         <View style={styles.iconTab}>
-          <Avatar
-            containerStyle={styles.imgMode}
+          <Image
             source={focused ? iconNameActive : iconName}
+            style={styles.imgMode}
           />
         </View>
         {focused ? <View style={styles.iconTabUn} /> : ''}
@@ -102,9 +101,9 @@ const StackScreenOptionsHeaderTransparent = ({navigation}: any) => ({
       style={[styles.buttonEllipseSm, styles.marginLeft12]}
       onPress={() => navigation.goBack()}>
       <View style={styles.RowCenterBetween}>
-        <Avatar
+        <Image
           source={icon.iconBackWhite}
-          containerStyle={[styles.iconSize24, styles.marginRight5]}
+          style={[styles.iconSize24, styles.marginRight5]}
         />
         <Text style={[styles.textWhite, styles.fontSize18]}>Cài đặt</Text>
       </View>
