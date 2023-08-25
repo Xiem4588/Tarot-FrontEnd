@@ -23,10 +23,16 @@ import GoogleAdsInterstitialAd from '../../googleAds/_bannerAd';
 
 MIcon.loadFont();
 
-const CustomPagination = (
-  index: number,
-  total: number /*, context: Swiper*/,
-) => {
+interface NavProps {
+  navigation: any;
+}
+
+interface CustomPaginationProps {
+  index: number;
+  total: number;
+}
+
+const CustomPagination = ({index, total}: CustomPaginationProps) => {
   return (
     <View style={[styles.RowAlignItems, styles.LaunchPagination]}>
       {[...Array(total)].map((_, i) => {
@@ -44,7 +50,6 @@ const CustomPagination = (
                 ? '#F78B73'
                 : 'rgba(255, 255, 255, 0.4)',
             }}
-            // onPress={() => context.scrollBy(i - index)}
           />
         );
       })}
@@ -52,20 +57,29 @@ const CustomPagination = (
   );
 };
 
-const LaunchScreen = ({navigation}: any) => {
-  useTranslation();
+const LaunchScreen = ({navigation}: NavProps) => {
+  useTranslation(); // Dung cho multi language
+
   const [isLastScreen, setIsLastScreen] = useState(false);
+  const [swiperIndex, setSwiperIndex] = useState(0); // Khởi tạo giá trị ban đầu cho swiperIndex
+
   const swiperRef = useRef<Swiper>(null);
+
   const handleNext = () => {
     swiperRef?.current?.scrollBy(1);
   };
 
   const handleIndexChanged = (index: number) => {
-    if (index === 2) {
+    // React.Children.count(swiperRef?.current?.props.children) => sẽ trả về số lượng children (Đếm số lượng màn hình) trong Swiper
+    if (
+      index ===
+      React.Children.count(swiperRef?.current?.props.children) - 1
+    ) {
       setIsLastScreen(true);
     } else {
       setIsLastScreen(false);
     }
+    setSwiperIndex(index); // Cập nhật swiperIndex khi index thay đổi
   };
 
   return (
@@ -79,7 +93,12 @@ const LaunchScreen = ({navigation}: any) => {
         ref={swiperRef}
         showsPagination={true}
         onIndexChanged={handleIndexChanged}
-        renderPagination={CustomPagination}>
+        renderPagination={() => (
+          <CustomPagination
+            index={swiperIndex}
+            total={React.Children.count(swiperRef?.current?.props.children)} // sẽ trả về số lượng children (Đếm số lượng màn hình) trong Swiper,
+          />
+        )}>
         <StepOne />
         <StepTwo />
         <StepThree />
