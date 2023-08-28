@@ -1,5 +1,5 @@
 // config file common Api
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 import {uri} from './env';
 const apiUrlMainnet = uri;
 const axiosClient = axios.create({
@@ -11,8 +11,8 @@ const axiosClient = axios.create({
 export const apiRoutesMain = async (routes: string) => {
   try {
     const url = `/${routes}`;
-    const response = await axiosClient.get(url);
-    return response;
+    const res = await axiosClient.get(url);
+    return res;
   } catch (error) {
     console.error('Error!', error);
     throw error;
@@ -23,17 +23,28 @@ export const apiRoutesMain = async (routes: string) => {
 export const apiUser = async (routes: string, data: object) => {
   try {
     const url = `/users/${routes}`;
-    const response = await axiosClient.post(url, data);
-    return response;
-  } catch (error: any) {
+    const res = await axiosClient.post(url, data);
+    return res;
+  } catch (error) {
     // Xử lý phản hồi từ máy chủ khi có lỗi
-    const {response} = error;
-    if (response) {
-      throw response; // Ném lại lỗi để xử lý bên ngoài (nếu cần)
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        // Handle response error
+        const axiosError = error as AxiosError;
+        console.log('Response Data:', axiosError.response?.data);
+        console.log('Response Status:', axiosError.response?.status);
+        console.log('Response Headers:', axiosError.response?.headers);
+      } else if (error.request) {
+        // Handle request error
+        console.log('Request:', (error as AxiosError).request);
+      } else {
+        // Handle other errors
+        console.log('Error:', (error as Error).message);
+      }
     } else {
-      console.error('Lỗi API không tồn tại', error);
-      throw error; // Ném lại lỗi nếu không có phản hồi từ máy chủ
+      console.log('Non-Axios Error:', (error as Error).message);
     }
+    throw error; // Re-throw the error
   }
 };
 
