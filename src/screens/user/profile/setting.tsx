@@ -25,6 +25,10 @@ const DATA: DataProps = {
 
 const SettingScreen = ({navigation}: any) => {
   useTranslation();
+  const handleLogout = () => {
+    // localStorage.removeItem('token');
+    navigation.navigate('launch');
+  };
   return (
     <WrapBgBox>
       <Header
@@ -84,7 +88,7 @@ const SettingScreen = ({navigation}: any) => {
             size={150}
             containerStyle={styles.resizeModeContain}
           />
-          <TouchableOpacity onPress={() => navigation.navigate('launch')}>
+          <TouchableOpacity onPress={handleLogout}>
             <Text style={styles.buttonTmpSmWhite05}>{i18n.t('logout')}</Text>
           </TouchableOpacity>
         </View>

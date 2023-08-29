@@ -88,7 +88,6 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
 
         if (isValidEmail && isPasswordValid) {
           if (data.status === true) {
-            Alert.alert(data.notify);
             handleLogin(data.token);
             const userData = {
               email: data.user.email,
