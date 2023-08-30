@@ -9,6 +9,9 @@ import {LanguageSwitcher} from '../../../conponents/LanguageSwitcher';
 import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useTranslation} from 'react-i18next';
 import i18n from '../../../languages/i18n';
+import {useDispatch} from 'react-redux';
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const dispatch = useDispatch();
 
 type DataProps = {
   name: string;
@@ -25,9 +28,15 @@ const DATA: DataProps = {
 
 const SettingScreen = ({navigation}: any) => {
   useTranslation();
+  // Xóa token khỏi AsyncStorage khi người dùng đăng xuất
+  const signOut = async () => {
+    dispatch({
+      type: 'LOG_OUT',
+    });
+  };
   const handleLogout = () => {
-    // localStorage.removeItem('token');
-    navigation.navigate('launch');
+    signOut();
+    navigation.navigate('user');
   };
   return (
     <WrapBgBox>

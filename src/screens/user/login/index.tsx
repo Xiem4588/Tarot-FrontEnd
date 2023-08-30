@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {
   Text,
   TextInput,
@@ -18,17 +19,15 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
 import i18n from '../../../languages/i18n';
 import LoginSocial from '../social';
-import {tokenUser} from '../../../redux/actions';
-import {store} from '../../../redux/store';
 import {apiUser} from '../../../config';
 import GoogleAdsRewardedAd from '../../../googleAds/_rewardedAd';
+
 interface LoginProps {
   handleInputUser: () => void;
-  handleLogin: (id: string) => void;
   navigation: any;
 }
 
-const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
+const Login = ({handleInputUser, navigation}: LoginProps) => {
   // check input email
   const [isEmail, setEmail] = useState('');
   const [isValidEmail, setIsValidEmail] = useState('');
@@ -64,17 +63,19 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
     password: string;
   }
 
-  const checkInput = async (dataUser: userType) => {
+  const requesUserLogin = async (dataUser: userType) => {
     try {
-      const res = await apiUser('login', dataUser); // Gọi hàm API để đăng nhập
-      return res; // Trả về dữ liệu phản hồi từ máy chủ
+      const res = await apiUser('login', dataUser);
+      return res.data;
     } catch (error) {
-      throw error; // Ném lại lỗi để xử lý bên ngoài (nếu cần)
+      throw error;
     }
   };
 
+  // add store
+  const dispatch = useDispatch();
   const handlePress = async () => {
-    setIsLoading(true); // Bắt đầu hiển thị trạng thái loading
+    setIsLoading(true);
 
     setTimeout(async () => {
       try {
@@ -83,24 +84,14 @@ const Login = ({handleInputUser, handleLogin, navigation}: LoginProps) => {
           email: isEmail,
           password: isPassword,
         };
-        const response = await checkInput(dataUser);
-        const data = response.data;
-
         if (isValidEmail && isPasswordValid) {
+          const data = await requesUserLogin(dataUser);
           if (data.status === true) {
-            handleLogin(data.token);
-            const userData = {
-              email: data.user.email,
-              typeUser: data.user.typeUser,
-              token: data.token,
-              // ... other fields
-            };
             // add to store
-            const userLogin: tokenUser = {
+            dispatch({
               type: 'LOGIN_SUCCESS',
-              payload: userData,
-            };
-            store.dispatch(userLogin);
+              payload: data.token,
+            });
           } else {
             Alert.alert(data.notify);
             setStatus(data.status);
