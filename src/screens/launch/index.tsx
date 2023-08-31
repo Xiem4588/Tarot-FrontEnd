@@ -13,13 +13,13 @@ import {
 import Swiper from 'react-native-swiper';
 import {styles} from '../../assets/styles';
 import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useTranslation} from 'react-i18next';
+import GoogleAdsInterstitialAd from '../../googleAds/_bannerAd';
+import i18n from '../../languages/i18n';
 import StepOne from './stepOne';
 import StepTwo from './stepTwo';
 import StepThree from './stepThree';
 import {LanguageSwitcher} from '../../conponents/LanguageSwitcher';
-import {useTranslation} from 'react-i18next';
-import i18n from '../../languages/i18n';
-import GoogleAdsInterstitialAd from '../../googleAds/_bannerAd';
 
 MIcon.loadFont();
 
@@ -69,6 +69,10 @@ const LaunchScreen = ({navigation}: NavProps) => {
     swiperRef?.current?.scrollBy(1);
   };
 
+  const handFlishLaunch = () => {
+    navigation.navigate('MainNav');
+  };
+
   const handleIndexChanged = (index: number) => {
     // React.Children.count(swiperRef?.current?.props.children) => sẽ trả về số lượng children (Đếm số lượng màn hình) trong Swiper
     if (
@@ -105,7 +109,7 @@ const LaunchScreen = ({navigation}: NavProps) => {
       </Swiper>
       {isLastScreen ? (
         <View style={styles.BoxButtonNext}>
-          <TouchableOpacity onPress={() => navigation.navigate('MainNav')}>
+          <TouchableOpacity onPress={handFlishLaunch}>
             <View style={styles.buttonNext}>
               <Text
                 style={[
