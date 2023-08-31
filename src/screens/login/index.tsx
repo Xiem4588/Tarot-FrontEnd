@@ -12,15 +12,14 @@ import {
   ActivityIndicator,
   ScrollView,
 } from 'react-native';
-import {styles} from '../../../assets/styles';
-import {stylesScreen} from '../styles';
-import {images} from '../../../assets/constants';
+import {styles} from '../../assets/styles';
+import {images} from '../../assets/constants';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
-import i18n from '../../../languages/i18n';
-import LoginSocial from '../social';
-import {apiUser} from '../../../services';
-import GoogleAdsRewardedAd from '../../../googleAds/_rewardedAd';
+import i18n from '../../languages/i18n';
+import LoginSocial from '../conponents/social';
+import {apiUser} from '../../services';
+import GoogleAdsRewardedAd from '../../googleAds/_rewardedAd';
 
 interface LoginProps {
   handleInputUser: () => void;
@@ -117,7 +116,7 @@ const Login = ({handleInputUser, navigation}: LoginProps) => {
         style={[styles.flexBox]}>
         <ScrollView style={styles.scrollView}>
           <View style={[styles.paddingHorizontal24]}>
-            <Image source={images.imageLoginTop} style={stylesScreen.image} />
+            <Image source={images.imageLoginTop} style={styles.accountImage} />
             <View>
               <Text
                 style={[
@@ -144,7 +143,7 @@ const Login = ({handleInputUser, navigation}: LoginProps) => {
                 name="email-outline"
                 size={16}
                 color="#000"
-                style={stylesScreen.iconLeftInput}
+                style={styles.iconLeftInput}
               />
               <TextInput
                 style={styles.inputForm}
@@ -165,7 +164,7 @@ const Login = ({handleInputUser, navigation}: LoginProps) => {
                 name="lock-outline"
                 size={16}
                 color="#000"
-                style={stylesScreen.iconLeftInput}
+                style={styles.iconLeftInput}
               />
               <TextInput
                 style={styles.inputForm}
@@ -176,7 +175,7 @@ const Login = ({handleInputUser, navigation}: LoginProps) => {
               />
               <TouchableOpacity
                 onPress={handleShowPassword}
-                style={stylesScreen.iconRightInput}>
+                style={styles.iconRightInput}>
                 <IconMateria
                   name={showPassword ? 'eye-outline' : 'eye-off-outline'}
                   size={16}
@@ -225,8 +224,8 @@ const Login = ({handleInputUser, navigation}: LoginProps) => {
               </TouchableOpacity>
             </View>
             <View style={[styles.alignCenter, styles.marginVertical34]}>
-              <View style={stylesScreen.border} />
-              <Text style={stylesScreen.absolutePosition}>{i18n.t('or')}</Text>
+              <View style={styles.border} />
+              <Text style={styles.absolutePosition}>{i18n.t('or')}</Text>
             </View>
             <View style={[styles.alignCenter]}>
               <LoginSocial />

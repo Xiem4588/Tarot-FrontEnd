@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {View, ScrollView} from 'react-native';
-import {styles} from '../../../assets/styles';
-import WrapBgBox from '../../../conponents/wrapBgBox';
-import Header from '../../../conponents/header';
+import {styles} from '../../assets/styles';
+import WrapBgBox from '../../conponents/wrapBgBox';
+import Header from '../../conponents/header';
 import {useTranslation} from 'react-i18next';
-import i18n from '../../../languages/i18n';
+import i18n from '../../languages/i18n';
 import StepOne from './step1';
 import StepTwo from './step2';
 import StepThree from './step3';

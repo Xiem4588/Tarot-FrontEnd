@@ -1422,4 +1422,44 @@ export const styles = StyleSheet.create({
     padding: 5,
     zIndex: 999,
   },
+
+  //
+  accountImage: {
+    marginBottom: -80,
+    marginTop: 0,
+    padding: 0,
+    marginLeft: 'auto',
+    width: '80%',
+    height: height >= 680 ? (height >= 720 ? 220 : 150) : 120,
+    resizeMode: 'contain',
+  },
+  accountIconSize24: {
+    height: 24,
+    resizeMode: 'contain',
+  },
+  accountBorderBottom: {
+    width: '100%',
+    height: 1,
+    borderBottomColor: 'rgba(255, 255, 255, 0.4)',
+    borderBottomWidth: 1,
+    zIndex: -1,
+  },
+  absolutePosition: {
+    position: 'absolute',
+    top: -10, // Đặt top bằng âm để đưa văn bản lên trên
+    backgroundColor: '#171717',
+    paddingHorizontal: 16,
+    color: '#616161',
+    fontFamily: 'Montserrat',
+  },
+  separator: {
+    width: 18,
+  },
+  border: {
+    width: '100%',
+    height: 1,
+    borderBottomColor: '#ccc',
+    borderBottomWidth: 1,
+    zIndex: -1,
+  },
 });

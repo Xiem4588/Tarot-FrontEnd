@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import Login from './login';
-import Register from './register';
-import UserProfile from './profile';
+import Login from '../login';
+import Register from '../register';
+import UserProfile from './account';
 import WrapBgBox from '../../conponents/wrapBgBox';
 import {useSelector} from 'react-redux';
 

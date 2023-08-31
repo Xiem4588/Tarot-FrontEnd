@@ -1,8 +1,8 @@
 import React, {RefObject, createRef, useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
-import {styles} from '../../../assets/styles';
+import {styles} from '../../assets/styles';
 import {useTranslation} from 'react-i18next';
-import i18n from '../../../languages/i18n';
+import i18n from '../../languages/i18n';
 
 interface ForgotProps {
   selectedButton: string;

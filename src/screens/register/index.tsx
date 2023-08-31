@@ -11,14 +11,13 @@ import {
   Alert,
   ScrollView,
 } from 'react-native';
-import {styles} from '../../../assets/styles';
-import {stylesScreen} from '../styles';
-import {images, icon} from '../../../assets/constants';
+import {styles} from '../../assets/styles';
+import {images, icon} from '../../assets/constants';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
-import i18n from '../../../languages/i18n';
-import LoginSocial from '../social';
-import {apiUser} from '../../../services';
+import i18n from '../../languages/i18n';
+import LoginSocial from '../conponents/social';
+import {apiUser} from '../../services';
 interface RegisterProps {
   navigation?: any;
   handleInputUser?: () => void;
@@ -127,7 +126,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
       style={[styles.flexBox]}>
       <ScrollView style={styles.scrollView}>
         <View style={[styles.paddingHorizontal24]}>
-          <Image source={images.imageLoginTop} style={stylesScreen.image} />
+          <Image source={images.imageLoginTop} style={styles.accountImage} />
           <View>
             <Text
               style={[
@@ -144,7 +143,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
               name="email-outline"
               size={16}
               color="#000"
-              style={stylesScreen.iconLeftInput}
+              style={styles.iconLeftInput}
             />
             <TextInput
               style={styles.inputForm}
@@ -163,7 +162,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
               name="lock-outline"
               size={16}
               color="#000"
-              style={stylesScreen.iconLeftInput}
+              style={styles.iconLeftInput}
             />
             <TextInput
               style={styles.inputForm}
@@ -174,7 +173,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
             />
             <TouchableOpacity
               onPress={handleShowPassword}
-              style={stylesScreen.iconRightInput}>
+              style={styles.iconRightInput}>
               <IconMateria
                 name={showPassword ? 'eye-outline' : 'eye-off-outline'}
                 size={16}
@@ -200,7 +199,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
                 ]}>
                 <Image
                   source={icon.iconGuest}
-                  style={stylesScreen.iconSize24}
+                  style={styles.accountIconSize24}
                 />
                 <Text
                   style={[
@@ -213,7 +212,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
                 </Text>
               </TouchableOpacity>
             </View>
-            <View style={stylesScreen.separator} />
+            <View style={styles.separator} />
             <View style={styles.flexBox}>
               <TouchableOpacity
                 onPress={() => handleButtonPress('Expert')}
@@ -224,7 +223,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
                 ]}>
                 <Image
                   source={icon.iconExpert}
-                  style={stylesScreen.iconSize24}
+                  style={styles.accountIconSize24}
                 />
                 <Text
                   style={[
@@ -279,8 +278,8 @@ const Register = ({handleInputUser}: RegisterProps) => {
             )}
           </View>
           <View style={[styles.alignCenter, styles.marginVertical34]}>
-            <View style={stylesScreen.borderBottom} />
-            <Text style={stylesScreen.absolutePosition}>Hoặc</Text>
+            <View style={styles.accountBorderBottom} />
+            <Text style={styles.absolutePosition}>Hoặc</Text>
           </View>
           <View style={[styles.alignCenter]}>
             <LoginSocial />

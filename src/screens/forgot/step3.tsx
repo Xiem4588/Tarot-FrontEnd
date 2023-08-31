@@ -7,12 +7,12 @@ import {
   Modal,
   Image,
 } from 'react-native';
-import {styles} from '../../../assets/styles';
+import {styles} from '../../assets/styles';
 import {stylesScreen} from './styles';
 import {useTranslation} from 'react-i18next';
-import i18n from '../../../languages/i18n';
+import i18n from '../../languages/i18n';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
-import {images} from '../../../assets/constants';
+import {images} from '../../assets/constants';
 
 interface ForgotProps {
   navigation: any;

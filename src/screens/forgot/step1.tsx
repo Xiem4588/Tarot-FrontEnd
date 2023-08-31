@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
-import {images} from '../../../assets/constants';
-import {styles} from '../../../assets/styles';
+import {images} from '../../assets/constants';
+import {styles} from '../../assets/styles';
 import {stylesScreen} from './styles';
 import {useTranslation} from 'react-i18next';
-import i18n from '../../../languages/i18n';
+import i18n from '../../languages/i18n';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface ForgotProps {

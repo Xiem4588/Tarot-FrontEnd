@@ -2,7 +2,7 @@ import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../../assets/styles';
-import {stylesScreen} from './styles';
+import {stylesScreen} from '../user/styles';
 
 const SocialFirebase = () => {
   const signInWithFacebook = () => {};

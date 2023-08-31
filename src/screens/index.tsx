@@ -6,10 +6,10 @@ import Tarot from './tarot';
 import Choose from './tarot/choose';
 import Detail from './tarot/detail';
 import User from './user';
-import Profile from './user/profile';
-import Notify from './user/profile/notify';
-import Setting from './user/profile/setting';
-import ForgotPassword from './user/forgot';
+import Account from './user/account';
+import Notify from './user/account/notify';
+import Setting from './user/account/setting';
+import ForgotPassword from './forgot';
 
 export {
   NewsFeed,
@@ -22,6 +22,6 @@ export {
   Setting,
   Notify,
   Launch,
-  Profile,
+  Account,
   ForgotPassword,
 };
