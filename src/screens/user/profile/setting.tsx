@@ -10,8 +10,6 @@ import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useTranslation} from 'react-i18next';
 import i18n from '../../../languages/i18n';
 import {useDispatch} from 'react-redux';
-// eslint-disable-next-line react-hooks/rules-of-hooks
-const dispatch = useDispatch();
 
 type DataProps = {
   name: string;
@@ -29,15 +27,21 @@ const DATA: DataProps = {
 const SettingScreen = ({navigation}: any) => {
   useTranslation();
   // Xóa token khỏi AsyncStorage khi người dùng đăng xuất
+  const dispatch = useDispatch();
   const signOut = async () => {
     dispatch({
       type: 'LOG_OUT',
     });
   };
+  const handleSetting = () => {
+    console.log('----> setting');
+  };
+
   const handleLogout = () => {
     signOut();
     navigation.navigate('user');
   };
+
   return (
     <WrapBgBox>
       <Header
@@ -57,7 +61,7 @@ const SettingScreen = ({navigation}: any) => {
             <Text style={styles.textSize16}>{i18n.t('name')}</Text>
             <TouchableOpacity
               style={styles.RowAlignItems}
-              onPress={() => navigation.goBack()}>
+              onPress={handleSetting}>
               <Text style={styles.textSize16}>{DATA.name}</Text>
               <MIcon name="chevron-right" size={28} color={'#fff'} />
             </TouchableOpacity>
@@ -66,7 +70,7 @@ const SettingScreen = ({navigation}: any) => {
             <Text style={styles.textSize16}>{i18n.t('birth')}</Text>
             <TouchableOpacity
               style={styles.RowAlignItems}
-              onPress={() => navigation.goBack()}>
+              onPress={handleSetting}>
               <Text style={styles.textSize16}>{DATA.dateOfBirth}</Text>
               <MIcon name="chevron-right" size={28} color={'#fff'} />
             </TouchableOpacity>
@@ -75,7 +79,7 @@ const SettingScreen = ({navigation}: any) => {
             <Text style={styles.textSize16}>{i18n.t('describe')}</Text>
             <TouchableOpacity
               style={styles.RowAlignItems}
-              onPress={() => navigation.goBack()}>
+              onPress={handleSetting}>
               <Text style={styles.textSize16}>{DATA.describe}</Text>
               <MIcon name="chevron-right" size={28} color={'#fff'} />
             </TouchableOpacity>
