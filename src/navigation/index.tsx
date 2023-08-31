@@ -21,6 +21,8 @@ import {
 
 import {styles} from '../assets/styles';
 import {Text} from 'react-native-elements';
+import {LanguageSwitcher} from '../conponents/LanguageSwitcher';
+import {useSelector} from 'react-redux';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -121,14 +123,16 @@ const StackScreenOptionsHeaderTransparent = ({navigation}: any) => ({
 });
 
 const Navigation = () => {
-  // check first user
-  const isCheck = false;
-
+  // check login
+  const token = useSelector((state: any) => state.account.token);
   return (
     <>
       <WrapBgBox>
+        <View style={styles.hidden}>
+          <LanguageSwitcher />
+        </View>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName={isCheck ? 'MainNav' : 'launch'}>
+          <Stack.Navigator initialRouteName={token ? 'MainNav' : 'launch'}>
             <Stack.Group screenOptions={StackScreenOptions}>
               <Stack.Screen name="choose" component={Choose} />
               <Stack.Screen name="detail" component={Detail} />
