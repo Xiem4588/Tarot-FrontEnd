@@ -2,7 +2,6 @@ import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../../assets/styles';
-import {stylesScreen} from '../user/styles';
 
 const SocialFirebase = () => {
   const signInWithFacebook = () => {};
@@ -15,7 +14,7 @@ const SocialFirebase = () => {
           onPress={signInWithFacebook}>
           <IconMateria name="facebook" size={26} color={'#007AD9'} />
         </TouchableOpacity>
-        <View style={stylesScreen.separator} />
+        <View style={styles.separator} />
         <TouchableOpacity style={styles.btnTmpAuto} onPress={() => {}}>
           <IconMateria name="google" size={24} color={'#EB4335'} />
         </TouchableOpacity>

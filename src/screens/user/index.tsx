@@ -9,8 +9,6 @@ const AccountScreen = ({navigation}: any) => {
   const [isInputUser, setInputUser] = useState(true);
   const [isToken, setToken] = useState(false);
   const token = useSelector((state: any) => state.account.token);
-  console.log('----->>>>> get token', token);
-  console.log('----->>>>> setToken', isToken);
 
   useEffect(() => {
     setToken(token ? true : false);
