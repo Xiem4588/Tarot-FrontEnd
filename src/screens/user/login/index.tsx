@@ -19,7 +19,7 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
 import i18n from '../../../languages/i18n';
 import LoginSocial from '../social';
-import {apiUser} from '../../../config';
+import {apiUser} from '../../../services';
 import GoogleAdsRewardedAd from '../../../googleAds/_rewardedAd';
 
 interface LoginProps {

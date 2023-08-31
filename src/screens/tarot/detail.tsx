@@ -11,10 +11,8 @@ import {
 import Header from '../../conponents/header';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../../assets/styles';
-import {shareAction} from '../../redux/actions';
-import {store} from '../../redux/store';
-import {apiRoutesMain} from '../../config';
-import {uri} from '../../config/env';
+import {apiRoutesMain} from '../../services';
+import {uri} from '../../services/env';
 import GoogleAdsBannerAd from '../../googleAds/_bannerAd';
 
 type detailProps = {
@@ -107,18 +105,6 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
 
   // click heart
   const handleShare = () => {
-    // Dispatch the action after fetching data successfully
-    if (isDetail) {
-      const share: shareAction = {
-        type: 'SHARE',
-        payload: {
-          userID: 'tao la 1',
-          cardId: isDetail.cardId,
-          typeCard: isTypeCard,
-        },
-      };
-      store.dispatch(share);
-    }
     return 'Share';
   };
 
