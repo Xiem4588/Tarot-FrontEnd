@@ -421,9 +421,9 @@ PODS:
     - React-Core
   - RNCPicker (2.5.0):
     - React-Core
-  - RNDateTimePicker (7.4.1):
+  - RNDateTimePicker (7.5.0):
     - React-Core
-  - RNGoogleMobileAds (12.0.0):
+  - RNGoogleMobileAds (12.1.0):
     - Google-Mobile-Ads-SDK (= 10.9.0)
     - GoogleUserMessagingPlatform (= 2.1.0)
     - RCT-Folly (= 2021.07.22.00)
@@ -679,8 +679,8 @@ SPEC CHECKSUMS:
   ReactNativeLocalization: fb171138cdc80d5d0d4f20243d2fc82c2b3cc48f
   RNCAsyncStorage: c913ede1fa163a71cea118ed4670bbaaa4b511bb
   RNCPicker: 32ca102146bc7d34a8b93a998d9938d9f9ec7898
-  RNDateTimePicker: 9b4091348e53f540180abdc54984d839a556f593
-  RNGoogleMobileAds: 9e5ac34915ad8b316a103293239074af51abb275
+  RNDateTimePicker: b722c23030b744763cf51d80fc22f354653f65e0
+  RNGoogleMobileAds: 7af6198dfce6f18f66254f3e8adeb6b06ecccc23
   RNGoogleSignin: 6baed9bb19c9c54614bef63bdc55c381b4e33c44
   RNLocalize: d4b8af4e442d4bcca54e68fc687a2129b4d71a81
   RNReanimated: 49cdb63e767bb7e743ff4c12f7d85722c0d008f2
