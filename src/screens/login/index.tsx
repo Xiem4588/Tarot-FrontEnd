@@ -18,7 +18,7 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
 import i18n from '../../languages/i18n';
 import LoginSocial from '../conponents/social';
-import {apiUser} from '../../services';
+import {apiAccount} from '../../services';
 import GoogleAdsRewardedAd from '../../googleAds/_rewardedAd';
 
 interface LoginProps {
@@ -64,7 +64,7 @@ const Login = ({handleInputUser, navigation}: LoginProps) => {
 
   const requesUserLogin = async (dataUser: userType) => {
     try {
-      const res = await apiUser('login', dataUser);
+      const res = await apiAccount('login', dataUser);
       return res.data;
     } catch (error) {
       throw error;
