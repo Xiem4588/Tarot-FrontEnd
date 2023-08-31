@@ -21,7 +21,6 @@ interface LoginRequest {
   payload: {
     email: string;
     password: string;
-    type_user: string;
   };
 }
 

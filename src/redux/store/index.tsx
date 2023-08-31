@@ -1,7 +1,7 @@
 // index store
 import thunkMiddleware from 'redux-thunk';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
-import accountReducer from './account/reducer';
+import accountReducer from './user/account/reducer';
 import {persistReducer, persistStore} from 'redux-persist'; //lưu trữ và khôi phục dữ liệu từ AsyncStorage khi mo lai app
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
