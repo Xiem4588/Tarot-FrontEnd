@@ -15,7 +15,7 @@ const Header = ({navigation, title, name}: HeaderProps) => {
     <>
       <View style={styles.paddingTop50Ios15Adroid}>
         <View style={[styles.RowBetween, styles.paddingHorizontal18]}>
-          <TouchableOpacity onPress={() => navigation.navigate('tarot')}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <View style={styles.RowCenterBetween}>
               <IconMateria
                 name="keyboard-backspace"
