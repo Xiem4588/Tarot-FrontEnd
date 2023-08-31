@@ -19,8 +19,8 @@ export const apiRoutesMain = async (routes: string) => {
   }
 };
 
-// ************ Post API apiUser: login, register
-export const apiUser = async (routes: string, data: object) => {
+// ************ Post API apiAccount: login, register
+export const apiAccount = async (routes: string, data: object) => {
   try {
     const url = `/users/${routes}`;
     const res = await axiosClient.post(url, data);
