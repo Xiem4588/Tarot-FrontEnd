@@ -9,23 +9,15 @@ import {LanguageSwitcher} from '../../../conponents/LanguageSwitcher';
 import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useTranslation} from 'react-i18next';
 import i18n from '../../../languages/i18n';
-import {useDispatch} from 'react-redux';
-
-type DataProps = {
-  name: string;
-  dateOfBirth: string;
-  describe: string;
-  language: string;
-};
-const DATA: DataProps = {
-  name: 'Mogwrr Ohnf',
-  dateOfBirth: '23/06/1996',
-  describe: 'Là một người...',
-  language: 'Vietnamese',
-};
+import {useDispatch, useSelector} from 'react-redux';
 
 const SettingScreen = ({navigation}: any) => {
+  // Language
   useTranslation();
+
+  // get data from store
+  const user = useSelector((state: any) => state.account?.user);
+
   // Xóa token khỏi AsyncStorage khi người dùng đăng xuất
   const dispatch = useDispatch();
   const signOut = async () => {
@@ -58,44 +50,107 @@ const SettingScreen = ({navigation}: any) => {
         <View style={styles.paddingHorizontal18}>
           <Text style={styles.titleBox}>{i18n.t('account')}</Text>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
-            <Text style={styles.textSize16}>{i18n.t('name')}</Text>
+            <Text style={[styles.textSize16White, styles.marginRight10]}>
+              {i18n.t('name')}
+            </Text>
             <TouchableOpacity
               style={styles.RowAlignItems}
               onPress={handleSetting}>
-              <Text style={styles.textSize16}>{DATA.name}</Text>
-              <MIcon name="chevron-right" size={28} color={'#fff'} />
+              <Text style={[styles.textSize16White, styles.marginRight10]}>
+                {user?.name ? user.name : '---------'}
+              </Text>
+              <MIcon name="file-edit-outline" size={16} color={'#fff'} />
             </TouchableOpacity>
           </View>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
-            <Text style={styles.textSize16}>{i18n.t('birth')}</Text>
+            <Text style={[styles.textSize16White, styles.marginRight10]}>
+              {i18n.t('birth')}
+            </Text>
             <TouchableOpacity
               style={styles.RowAlignItems}
               onPress={handleSetting}>
-              <Text style={styles.textSize16}>{DATA.dateOfBirth}</Text>
-              <MIcon name="chevron-right" size={28} color={'#fff'} />
+              <Text style={[styles.textSize16White, styles.marginRight10]}>
+                {user?.date_of_birth ? user.date_of_birth : 'dd/mm/yyyy'}
+              </Text>
+              <MIcon name="file-edit-outline" size={16} color={'#fff'} />
             </TouchableOpacity>
           </View>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
-            <Text style={styles.textSize16}>{i18n.t('describe')}</Text>
+            <Text style={[styles.textSize16White, styles.marginRight10]}>
+              {i18n.t('describe')}
+            </Text>
             <TouchableOpacity
               style={styles.RowAlignItems}
               onPress={handleSetting}>
-              <Text style={styles.textSize16}>{DATA.describe}</Text>
-              <MIcon name="chevron-right" size={28} color={'#fff'} />
+              <Text style={[styles.textSize16White, styles.marginRight10]}>
+                {user?.desc ? user.desc : '---------'}
+              </Text>
+              <MIcon name="file-edit-outline" size={16} color={'#fff'} />
             </TouchableOpacity>
           </View>
           <Text style={[styles.titleBox, styles.paddingTop30]}>
             {i18n.t('other')}
           </Text>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
-            <Text style={styles.textSize16}>{i18n.t('language')}</Text>
+            <Text style={[styles.textSize16White, styles.marginRight10]}>
+              {i18n.t('language')}
+            </Text>
             <View style={styles.RowAlignItems}>
               <LanguageSwitcher />
-              <MIcon name="chevron-right" size={28} color={'#fff'} />
+              <MIcon
+                style={styles.marginLeft10}
+                name="file-edit-outline"
+                size={16}
+                color={'#fff'}
+              />
             </View>
           </View>
+          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+            <Text style={[styles.textSize16White, styles.marginRight10]}>
+              {i18n.t('Email')}
+            </Text>
+            <View style={[styles.RowAlignItems]}>
+              <Text style={[styles.textSize16, styles.colorGrrayBold]}>
+                {user?.email}
+              </Text>
+            </View>
+          </View>
+          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+            <Text style={[styles.textSize16White, styles.marginRight10]}>
+              {i18n.t('Số điện thoại')}
+            </Text>
+            <TouchableOpacity
+              style={styles.RowAlignItems}
+              onPress={handleSetting}>
+              <Text
+                style={[
+                  styles.colorGrray,
+                  [styles.textSize16White, styles.marginRight10],
+                ]}>
+                {user?.tel ? user.tel : '---------'}
+              </Text>
+              <MIcon name="file-edit-outline" size={16} color={'#fff'} />
+            </TouchableOpacity>
+          </View>
+          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+            <Text style={[styles.textSize16White, styles.marginRight10]}>
+              {i18n.t('Đặt lại mật khẩu')}
+            </Text>
+            <TouchableOpacity
+              style={styles.RowAlignItems}
+              onPress={handleSetting}>
+              <Text style={styles.colorGrray}>**********</Text>
+              <MIcon
+                style={styles.marginLeft10}
+                name="file-edit-outline"
+                size={16}
+                color={'#fff'}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={[styles.alignItems, styles.flexBox]}>
+        <View
+          style={[styles.alignItems, styles.flexBox, styles.marginBottom50]}>
           <Avatar
             source={images.imgSettingDecorate}
             size={150}

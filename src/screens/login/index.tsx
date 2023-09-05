@@ -85,12 +85,12 @@ const Login = ({handleInputUser, navigation}: LoginProps) => {
         };
         if (isValidEmail && isPasswordValid) {
           const data = await requesUserLogin(dataUser);
-          console.log('----> data login', data);
+          console.log('---> data: ', data);
           if (data.status === true) {
             // add to store
             dispatch({
               type: 'LOGIN_SUCCESS',
-              payload: data.token,
+              payload: data,
             });
           } else {
             Alert.alert(data.notify);

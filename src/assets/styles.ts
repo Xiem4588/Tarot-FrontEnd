@@ -727,6 +727,10 @@ export const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
   },
   textSize16: {
+    fontSize: 16,
+    fontFamily: 'Montserrat',
+  },
+  textSize16White: {
     color: '#ffffff',
     fontSize: 16,
     fontFamily: 'Montserrat',
@@ -844,6 +848,10 @@ export const styles = StyleSheet.create({
   },
   colorGrray: {
     color: '#9E9E9E',
+    fontFamily: 'Montserrat',
+  },
+  colorGrrayBold: {
+    color: '#555555',
     fontFamily: 'Montserrat',
   },
   colorBlack: {

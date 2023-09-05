@@ -4,6 +4,7 @@ import {Avatar, LinearProgress} from 'react-native-elements';
 import {images, icon} from '../../../../assets/constants';
 import {styles} from '../../../../assets/styles';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useSelector} from 'react-redux';
 
 interface Props {
   navigation: any;
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const InforProfile = ({navigation, expert}: Props) => {
+  const user = useSelector((state: any) => state.account?.user);
   const isAvatar = true;
   return (
     <View style={[styles.avatarProfile]}>
@@ -58,10 +60,11 @@ const InforProfile = ({navigation, expert}: Props) => {
           </View>
         </View>
         <View style={styles.alignCenter}>
-          <Text style={styles.nameProfile}>Mogwrr Ohnf</Text>
+          <Text style={styles.nameProfile}>
+            {user?.name ? user.name : user?.email}
+          </Text>
           <Text style={styles.status}>
-            Là một người luôn luôn lo xa và mang nhiều tâm tư suy nghĩ. Mông
-            lung về tương lai sẽ xảy đến Chính sửa
+            {user?.desc ? user.desc : 'Chua co mo ta nao'}
           </Text>
           <View style={styles.Row}>
             <View style={styles.Row}>
@@ -69,14 +72,18 @@ const InforProfile = ({navigation, expert}: Props) => {
                 source={icon.iconCalendar}
                 containerStyle={styles.iconSize16Mgr5}
               />
-              <Text style={[styles.Row, styles.actionItem]}>23/06/1996</Text>
+              <Text style={[styles.Row, styles.actionItem]}>
+                {user?.date_of_birth ? user.date_of_birth : 'dd/mm/yyyy'}
+              </Text>
             </View>
             <View style={styles.Row}>
               <Avatar
                 source={icon.iconZodiac}
                 containerStyle={styles.iconSize16Mgr5}
               />
-              <Text style={styles.actionItem}>Cung Sư tử</Text>
+              <Text style={styles.actionItem}>
+                {user?.zodiac ? user.zodiac : 'Cung hoàng đạo...'}
+              </Text>
             </View>
           </View>
         </View>

@@ -15,7 +15,6 @@ const initialState: AccountState = {
 };
 
 const accountReducer = (state = initialState, action: AccountActionTypes) => {
-  console.log('----> action account: ', action.type);
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
@@ -26,7 +25,9 @@ const accountReducer = (state = initialState, action: AccountActionTypes) => {
       return {
         ...state,
         loading: false,
-        token: action.payload,
+        token: action.payload.token, // Lưu token vào trạng thái
+        user: action.payload.user, // Lưu thông tin người dùng vào trạng thái
+        error: null,
       };
     case LOGIN_FAILURE:
       return {

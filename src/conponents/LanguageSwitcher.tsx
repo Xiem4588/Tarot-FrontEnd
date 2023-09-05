@@ -78,7 +78,7 @@ export const LanguageSwitcher = () => {
   return (
     <View style={styles.RowCenterBetween}>
       {/* <TouchableHighlight style={styles.RowAlignItems} onPress={clearLanguage}>
-        <Text style={styles.textSize16}>clearLanguage</Text>
+        <Text style={styles.textSize16White}>clearLanguage</Text>
       </TouchableHighlight> */}
       <View>
         {isLanguage ? (
@@ -86,7 +86,7 @@ export const LanguageSwitcher = () => {
             style={styles.RowAlignItems}
             onPress={() => changeLanguage('en')}>
             <View>
-              <Text style={styles.textSize16}>English</Text>
+              <Text style={styles.textSize16White}>English</Text>
             </View>
           </TouchableHighlight>
         ) : (
@@ -94,7 +94,7 @@ export const LanguageSwitcher = () => {
             style={styles.RowAlignItems}
             onPress={() => changeLanguage('vi')}>
             <View>
-              <Text style={styles.textSize16}>Vietnamese</Text>
+              <Text style={styles.textSize16White}>Vietnamese</Text>
             </View>
           </TouchableHighlight>
         )}

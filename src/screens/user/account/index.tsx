@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react'; // Import useEffect
-import {useSelector} from 'react-redux';
 import MyProfileUser from './account_regular';
 import MyProfileExpert from './account_expert';
-import {AccountActionTypes} from '../../../redux/store/user/account/types';
+import {useSelector} from 'react-redux';
 
 interface Props {
   navigation: any;
@@ -10,17 +9,15 @@ interface Props {
 
 const UserProfile = ({navigation}: Props) => {
   const [isCheckUser, setCheckUser] = useState(false);
-  const getStore = useSelector((state: AccountActionTypes) => state);
-
+  const getDataStore = useSelector((state: any) => state);
+  const typeUser = getDataStore.account?.user?.typeUser;
   useEffect(() => {
-    if (getStore) {
+    if (getDataStore && typeUser === 'Guest') {
       setCheckUser(true);
-      console.log('-- 1 data typeUser --------->', getStore);
     } else {
       setCheckUser(false);
-      console.log('-- 2 data typeUser --------->', getStore);
     }
-  }, [getStore]);
+  }, [getDataStore, typeUser]);
 
   return (
     <>

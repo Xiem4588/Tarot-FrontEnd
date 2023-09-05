@@ -28,6 +28,7 @@ interface LoginSuccess {
   type: typeof LOGIN_SUCCESS;
   payload: {
     token: string;
+    user: AuthenticatedUser;
   };
 }
 

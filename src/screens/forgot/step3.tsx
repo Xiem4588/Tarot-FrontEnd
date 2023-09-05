@@ -56,7 +56,7 @@ const ForgotStepThree = ({navigation}: ForgotProps) => {
   const [seconds, setSeconds] = useState(7);
   useEffect(() => {
     const interval = setInterval(() => {
-      setSeconds(seconds => seconds - 1);
+      setSeconds(() => seconds - 1);
     }, 1000);
     // Hủy interval khi seconds = 0
     if (seconds === 0) {
