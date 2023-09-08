@@ -249,7 +249,9 @@ export const styles = StyleSheet.create({
   },
   inputTransparent: {
     backgroundColor: colors.transparent,
-    width: 130,
+  },
+  maxWidth130: {
+    maxWidth: 130,
   },
   label: {
     fontSize: 14,
@@ -862,6 +864,12 @@ export const styles = StyleSheet.create({
   },
   textAlign: {
     textAlign: 'justify',
+  },
+  textRight: {
+    textAlign: 'right',
+  },
+  textLeft: {
+    textAlign: 'left',
   },
   colorGrray: {
     color: '#9E9E9E',

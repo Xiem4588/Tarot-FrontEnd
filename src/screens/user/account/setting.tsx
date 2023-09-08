@@ -19,6 +19,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {apiUpdateAccount} from '../../../services';
 import {updateUserSuccess} from '../../../redux/store/user/account/types';
 import LoadingFullScreen from '../../conponents/loading';
+import DatePicker from 'react-native-datepicker';
 
 const SettingScreen = ({navigation}: any) => {
   // Language
@@ -45,7 +46,7 @@ const SettingScreen = ({navigation}: any) => {
   const [isName, setName] = useState('');
   const [isDateOfBirth, setDateOfBirth] = useState('');
   const [isDesc, setDesc] = useState('');
-  const [isTel, setTel] = useState('');
+  const [isTelValue, setTelValue] = useState('');
   const [isPassword, setPassword] = useState('');
   const handleChange = (key: string) => (value: string) => {
     switch (key) {
@@ -59,9 +60,7 @@ const SettingScreen = ({navigation}: any) => {
         setDesc(value);
         break;
       case 'tel':
-        setTel(String(value));
-        if (!isNaN(Number(value))) {
-        }
+        setTelValue(String(value));
         break;
       case 'password':
         setPassword(value);
@@ -84,41 +83,6 @@ const SettingScreen = ({navigation}: any) => {
       return () => clearTimeout(timer);
     }
   }, [notification]);
-
-  //
-  const handleUpdateUser = async () => {
-    // Hiển loading
-    setNotification('Loading...');
-    try {
-      // Tạo object mới chứa các giá trị cập nhật
-      const updatedData = {
-        fullName: isName ? isName : user.fullName,
-        dateOfBirth: isDateOfBirth ? isDateOfBirth : user.dateOfBirth,
-        desc: isDesc ? isDesc : user.desc,
-        tel: isTel ? isTel : user.tel,
-        password: isPassword ? isPassword : user.password,
-        email: user?.email,
-      };
-
-      // Gọi API để cập nhật thông tin người dùng
-      const res = await apiUpdateAccount('profile', updatedData, token);
-
-      // Sau khi cập nhật thành công, gọi action để cập nhật Redux store
-      dispatch(updateUserSuccess(res.user));
-
-      // Hiển thị thông báo cập nhật thành công
-      setNotification('Cập nhật thành công!');
-
-      // Set toggle
-      setTogglePass(false);
-      setToggleDesc(false);
-      console.log('Cập nhật thành công!');
-    } catch (error) {
-      // Xử lý lỗi từ API ở đây
-      console.error('Lỗi cập nhật', error);
-      setNotification('Không thể cập nhật vui lòng thử lại!');
-    }
-  };
 
   // Toggle
   const [isTogglePass, setTogglePass] = useState(false);
@@ -149,6 +113,112 @@ const SettingScreen = ({navigation}: any) => {
     inputRefs[index]?.current?.focus();
   };
 
+  // date of birth
+  const handleDateChange = (date: string) => {
+    setDateOfBirth(date);
+  };
+  // Lấy ngày hiện tại
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth() + 1; // Tháng bắt đầu từ 0
+  const currentDay = today.getDate();
+  // Định dạng ngày hiện tại thành "DD/MM/YYYY"
+  const formattedCurrentDate = `${currentDay}/${currentMonth}/${currentYear}`;
+  // click icon open DatePicker
+  const datePickerRef = useRef<DatePicker | null>(null);
+  const handleIconPress = () => {
+    if (datePickerRef.current) {
+      datePickerRef.current.onPressDate();
+    }
+  };
+
+  // check tel
+  const [telError, setTelError] = useState('');
+  const handleFocus = () => {
+    if (isTelValue.length >= 10 && isTelValue.length <= 11) {
+      setTelError('');
+    } else {
+      setTelError('Tel từ 10 or 11 số');
+    }
+  };
+  useEffect(() => {
+    handleFocus();
+  });
+
+  // submit save setting
+  const handleUpdateUser = async () => {
+    // Hiển loading
+    setNotification('Loading...');
+    if (isTelValue) {
+      if (isTelValue.length >= 10 && isTelValue.length <= 11) {
+        try {
+          // Tạo object mới chứa các giá trị cập nhật
+          const updatedData = {
+            fullName: isName ? isName : user.fullName,
+            dateOfBirth: isDateOfBirth ? isDateOfBirth : user.dateOfBirth,
+            desc: isDesc ? isDesc : user.desc,
+            tel: isTelValue ? isTelValue : user.tel,
+            password: isPassword ? isPassword : user.password,
+            email: user?.email,
+          };
+
+          // Gọi API để cập nhật thông tin người dùng
+          const res = await apiUpdateAccount('profile', updatedData, token);
+
+          // Sau khi cập nhật thành công, gọi action để cập nhật Redux store
+          dispatch(updateUserSuccess(res.user));
+
+          // Hiển thị thông báo cập nhật thành công
+          setNotification('Cập nhật thành công!');
+
+          // Set toggle
+          setTogglePass(false);
+          setToggleDesc(false);
+          setTelError('');
+          console.log('Cập nhật thành công!');
+        } catch (error) {
+          // Xử lý lỗi từ API ở đây
+          console.error('Lỗi cập nhật', error);
+          setNotification('Không thể cập nhật vui lòng thử lại!');
+        }
+      } else {
+        setNotification('Có trường bị lỗi!');
+        setTelError('Tel từ 10 or 11 số');
+      }
+    } else {
+      try {
+        // Tạo object mới chứa các giá trị cập nhật
+        const updatedData = {
+          fullName: isName ? isName : user.fullName,
+          dateOfBirth: isDateOfBirth ? isDateOfBirth : user.dateOfBirth,
+          desc: isDesc ? isDesc : user.desc,
+          tel: isTelValue ? isTelValue : '',
+          password: isPassword ? isPassword : user.password,
+          email: user?.email,
+        };
+
+        // Gọi API để cập nhật thông tin người dùng
+        const res = await apiUpdateAccount('profile', updatedData, token);
+
+        // Sau khi cập nhật thành công, gọi action để cập nhật Redux store
+        dispatch(updateUserSuccess(res.user));
+
+        // Hiển thị thông báo cập nhật thành công
+        setNotification('Cập nhật thành công!');
+
+        // Set toggle
+        setTogglePass(false);
+        setToggleDesc(false);
+        setTelError('');
+        console.log('Cập nhật thành công!');
+      } catch (error) {
+        // Xử lý lỗi từ API ở đây
+        console.error('Lỗi cập nhật', error);
+        setNotification('Không thể cập nhật vui lòng thử lại!');
+      }
+    }
+  };
+
   return (
     <WrapBgBox>
       <Header
@@ -176,7 +246,8 @@ const SettingScreen = ({navigation}: any) => {
                 style={[
                   styles.inputTransparent,
                   styles.marginRight10,
-                  styles.colorWhite,
+                  styles.fonsize16White,
+                  styles.maxWidth130,
                 ]}
                 defaultValue={user?.fullName ? user?.fullName : isName}
                 onChangeText={handleChange('name')}
@@ -184,7 +255,7 @@ const SettingScreen = ({navigation}: any) => {
                 editable={true}
               />
               <TouchableOpacity onPress={() => focusInput(0)}>
-                <MIcon name="pencil-outline" size={16} color={'#666'} />
+                <MIcon name="playlist-edit" size={20} color={'#ccc'} />
               </TouchableOpacity>
             </View>
           </View>
@@ -198,23 +269,40 @@ const SettingScreen = ({navigation}: any) => {
               {i18n.t('birth')}
             </Text>
             <View style={styles.RowAlignItems}>
-              <TextInput
-                ref={inputRefs[1]}
-                style={[
-                  styles.inputTransparent,
-                  styles.marginRight10,
-                  styles.colorWhite,
-                ]}
-                defaultValue={
-                  user?.dateOfBirth ? user.dateOfBirth : isDateOfBirth
+              <DatePicker
+                ref={datePickerRef}
+                date={
+                  isDateOfBirth
+                    ? isDateOfBirth
+                    : user?.dateOfBirth
+                    ? user.dateOfBirth
+                    : null
                 }
-                onChangeText={handleChange('date')}
-                placeholder={
-                  user?.dateOfBirth ? user.dateOfBirth : 'dd/mm/yyyy'
-                }
+                mode="date"
+                placeholder="DD/MM/YYYY"
+                format="DD/MM/YYYY"
+                minDate="01/01/1900"
+                maxDate={formattedCurrentDate}
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                showIcon={false}
+                customStyles={{
+                  dateInput: {
+                    borderWidth: 0,
+                    padding: 0,
+                    margin: 0,
+                  },
+                  dateText: {
+                    fontSize: 16,
+                    color: '#fff',
+                    fontFamily: 'Montserrat',
+                    textAlign: 'right',
+                  },
+                }}
+                onDateChange={handleDateChange}
               />
-              <TouchableOpacity onPress={() => focusInput(1)}>
-                <MIcon name="pencil-outline" size={16} color={'#666'} />
+              <TouchableOpacity onPress={handleIconPress}>
+                <MIcon name="playlist-edit" size={20} color={'#ccc'} />
               </TouchableOpacity>
             </View>
           </View>
@@ -234,14 +322,15 @@ const SettingScreen = ({navigation}: any) => {
                     style={[
                       styles.inputTransparent,
                       styles.marginRight10,
-                      styles.colorWhite,
+                      styles.fonsize16White,
+                      styles.maxWidth130,
                     ]}
-                    value={user?.desc ? user.desc : isDesc}
-                    placeholder={user?.desc ? user.desc : 'Description...'}
+                    value={user?.desc ? user.desc : null}
+                    placeholder={user?.desc ? user.desc : 'Content...'}
                     editable={false}
                   />
                   <View style={styles.boxOverlay} />
-                  <MIcon name="pencil-outline" size={16} color={'#666'} />
+                  <MIcon name="playlist-edit" size={20} color={'#ccc'} />
                 </View>
               </TouchableOpacity>
             </View>
@@ -253,9 +342,9 @@ const SettingScreen = ({navigation}: any) => {
                     style={[
                       styles.inputTransparent,
                       styles.width100p,
-                      styles.colorWhite,
                       styles.borderBottomGray,
                       styles.paddingBottom10,
+                      styles.fonsize16White,
                     ]}
                     placeholder={String(i18n.t('Enter new status'))}
                     onChangeText={handleChange('desc')}
@@ -273,12 +362,7 @@ const SettingScreen = ({navigation}: any) => {
             </Text>
             <View style={styles.RowAlignItems}>
               <LanguageSwitcher />
-              <MIcon
-                style={styles.marginLeft10}
-                name="file-edit-outline"
-                size={16}
-                color={'#fff'}
-              />
+              <MIcon name="menu-right" size={24} color={'#fff'} />
             </View>
           </View>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
@@ -286,9 +370,20 @@ const SettingScreen = ({navigation}: any) => {
               {i18n.t('Email')}
             </Text>
             <View style={[styles.RowAlignItems]}>
-              <Text style={[styles.textSize16, styles.colorGrrayBold]}>
+              <Text
+                style={[
+                  styles.textSize16,
+                  styles.colorGrrayBold,
+                  styles.marginRight5,
+                ]}>
                 {user?.email}
               </Text>
+              <MIcon
+                style={styles.marginRight5}
+                name="lock-off-outline"
+                size={18}
+                color={'#666'}
+              />
             </View>
           </View>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
@@ -301,17 +396,33 @@ const SettingScreen = ({navigation}: any) => {
                 style={[
                   styles.inputTransparent,
                   styles.marginRight10,
-                  styles.colorWhite,
+                  styles.fonsize16White,
+                  styles.maxWidth130,
                 ]}
-                defaultValue={user?.tel ? user?.tel : isTel}
+                defaultValue={user?.tel ? user?.tel : isTelValue}
+                keyboardType="numeric" // Chỉ cho phép nhập số
                 onChangeText={handleChange('tel')}
+                onFocus={handleFocus}
                 placeholder={user?.tel ? user.tel : 'Tel...'}
               />
               <TouchableOpacity onPress={() => focusInput(3)}>
-                <MIcon name="pencil-outline" size={16} color={'#666'} />
+                <MIcon name="playlist-edit" size={20} color={'#ccc'} />
               </TouchableOpacity>
             </View>
           </View>
+          {isTelValue && telError !== '' && (
+            <View>
+              <Text
+                style={[
+                  styles.colorRed,
+                  styles.marginBottom15,
+                  styles.textRight,
+                  styles.marginRight10,
+                ]}>
+                {telError}
+              </Text>
+            </View>
+          )}
           <View>
             <View style={[styles.RowBetween, styles.paddingVertical10]}>
               <Text style={[styles.textSize16White, styles.marginRight10]}>
@@ -323,13 +434,13 @@ const SettingScreen = ({navigation}: any) => {
                     style={[
                       styles.inputTransparent,
                       styles.marginRight10,
-                      styles.colorWhite,
+                      styles.fonsize16White,
                     ]}
                     value={'***************'}
                     editable={false}
                   />
                   <View style={styles.boxOverlay} />
-                  <MIcon name="pencil-outline" size={16} color={'#666'} />
+                  <MIcon name="playlist-edit" size={20} color={'#ccc'} />
                 </View>
               </TouchableOpacity>
             </View>
@@ -340,7 +451,7 @@ const SettingScreen = ({navigation}: any) => {
                     style={[
                       styles.inputTransparent,
                       styles.width100p,
-                      styles.colorWhite,
+                      styles.fonsize16White,
                       styles.borderBottomGray,
                       styles.paddingBottom10,
                     ]}
