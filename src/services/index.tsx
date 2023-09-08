@@ -4,7 +4,9 @@ import {uri} from './env';
 const apiUrlMainnet = uri;
 const axiosClient = axios.create({
   baseURL: apiUrlMainnet,
-  headers: {'Content-Type': 'application/json'},
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 // ************ Get API apiRoutesMain
@@ -44,6 +46,28 @@ export const apiAccount = async (routes: string, data: object) => {
     } else {
       console.log('Non-Axios Error:', (error as Error).message);
     }
+    throw error; // Re-throw the error
+  }
+};
+
+// ************ Post API apiAccount: login, register
+export const apiUpdateAccount = async (
+  routes: string,
+  data: object,
+  token: string,
+) => {
+  try {
+    const url = `/users/${routes}`;
+    const tempAxiosClient = axios.create({
+      baseURL: apiUrlMainnet,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const res = await tempAxiosClient.put(url, data);
+    return res.data;
+  } catch (error) {
     throw error; // Re-throw the error
   }
 };

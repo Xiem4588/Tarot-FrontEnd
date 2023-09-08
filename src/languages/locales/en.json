@@ -11,7 +11,7 @@
   "stepThreeDec": "stepThreeDec",
   "language": "Language",
   "other": "Other",
-  "describe": "Describe",
+  "description": "Description",
   "birth": "Date of birth",
   "name": "Name",
   "account": "Account",
@@ -30,5 +30,7 @@
   "errorPass": "Password must be more than 8 characters",
   "or": "or",
   "donotaccount": "Do not have an account?",
-  "errorLogin": "Error! One or more fields have an error, please try again!"
+  "errorLogin": "Error! One or more fields have an error, please try again!",
+  "tel": "Phone number",
+  "changepassword": "Change password"
 }

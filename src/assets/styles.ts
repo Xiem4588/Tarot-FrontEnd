@@ -247,6 +247,10 @@ export const styles = StyleSheet.create({
     marginBottom: 24,
     width: '100%',
   },
+  inputTransparent: {
+    backgroundColor: colors.transparent,
+    width: 130,
+  },
   label: {
     fontSize: 14,
     fontWeight: 'normal',
@@ -391,6 +395,16 @@ export const styles = StyleSheet.create({
   positionAbsolute: {
     position: 'absolute',
     bottom: -50,
+  },
+  loadingFullScreen: {
+    backgroundColor: 'rgba(0, 0, 0, 0.9)',
+    position: 'absolute',
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    top: 0,
+    left: 0,
+    zIndex: 99,
   },
   positionAbsoluteLoadingLeft: {
     position: 'absolute',
@@ -824,6 +838,9 @@ export const styles = StyleSheet.create({
     paddingLeft: 10,
     fontFamily: 'Montserrat',
   },
+  width100p: {
+    width: '100%',
+  },
   width80p: {
     width: '80%',
   },
@@ -902,6 +919,11 @@ export const styles = StyleSheet.create({
   },
   fonsize16White: {
     fontSize: 16,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat',
+  },
+  fonsize18White: {
+    fontSize: 18,
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
   },
@@ -1054,7 +1076,7 @@ export const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
   },
   TabView: {
-    backgroundColor: 'transparent',
+    backgroundColor: colors.transparent,
     width: '100%',
     height: '100%',
     flex: 1,
@@ -1062,7 +1084,7 @@ export const styles = StyleSheet.create({
     top: 0,
   },
   tabMenu: {
-    backgroundColor: 'transparent',
+    backgroundColor: colors.transparent,
     fontFamily: 'Montserrat',
     fontWeight: '600',
   },
@@ -1088,7 +1110,7 @@ export const styles = StyleSheet.create({
     marginTop: 10,
   },
   BgTransparent: {
-    backgroundColor: 'transparent',
+    backgroundColor: colors.transparent,
     position: 'absolute',
     top:
       height >= 700
@@ -1219,6 +1241,10 @@ export const styles = StyleSheet.create({
     borderBottomColor: '#FFF',
     borderBottomWidth: 4,
   },
+  borderBottomGray: {
+    borderBottomColor: '#666',
+    borderBottomWidth: 1,
+  },
 
   //
   LaunchStyle: {
@@ -1273,7 +1299,7 @@ export const styles = StyleSheet.create({
   modalTransparent: {
     flex: 1,
     maxHeight: '34%',
-    backgroundColor: 'transparent',
+    backgroundColor: colors.transparent,
   },
   closeModal: {
     width: 54,
@@ -1356,7 +1382,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     borderRadius: 14,
     fontWeight: 'bold',
-    backgroundColor: 'transparent',
+    backgroundColor: colors.transparent,
   },
   selectedDayTextStyle: {
     color: '#FFF',
@@ -1469,5 +1495,16 @@ export const styles = StyleSheet.create({
     borderBottomColor: '#ccc',
     borderBottomWidth: 1,
     zIndex: -1,
+  },
+  boxOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0)', // Màu nền mờ che
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 99,
   },
 });

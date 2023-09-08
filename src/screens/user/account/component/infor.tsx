@@ -61,7 +61,7 @@ const InforProfile = ({navigation, expert}: Props) => {
         </View>
         <View style={styles.alignCenter}>
           <Text style={styles.nameProfile}>
-            {user?.name ? user.name : user?.email}
+            {user?.fullName ? user.fullName : user?.email}
           </Text>
           <Text style={styles.status}>
             {user?.desc ? user.desc : 'Chua co mo ta nao'}
@@ -73,7 +73,7 @@ const InforProfile = ({navigation, expert}: Props) => {
                 containerStyle={styles.iconSize16Mgr5}
               />
               <Text style={[styles.Row, styles.actionItem]}>
-                {user?.date_of_birth ? user.date_of_birth : 'dd/mm/yyyy'}
+                {user?.dateOfBirth ? user.dateOfBirth : 'dd/mm/yyyy'}
               </Text>
             </View>
             <View style={styles.Row}>

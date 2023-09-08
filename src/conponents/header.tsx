@@ -8,8 +8,9 @@ interface HeaderProps {
   navigation?: any;
   title: string;
   name?: string;
+  settingUser?: () => void;
 }
-const Header = ({navigation, title, name}: HeaderProps) => {
+const Header = ({navigation, title, name, settingUser}: HeaderProps) => {
   useTranslation();
   return (
     <>
@@ -41,7 +42,7 @@ const Header = ({navigation, title, name}: HeaderProps) => {
                 </Text>
               </TouchableOpacity>
             ) : name === 'setting' ? (
-              <TouchableOpacity onPress={() => {}}>
+              <TouchableOpacity onPress={settingUser}>
                 <Text
                   style={[
                     styles.textOrange,

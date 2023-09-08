@@ -11,7 +11,7 @@
   "stepThreeDec": "Mô tả nội dung bước 3",
   "language": "Ngôn ngữ",
   "other": "Cài đặt khác",
-  "describe": "Mô tả",
+  "description": "Mô tả",
   "birth": "Ngày sinh",
   "name": "Tên",
   "account": "Tài khoản",
@@ -30,5 +30,7 @@
   "errorPass": "Password phải lớn hơn 8 ký tự",
   "or": "hoặc",
   "donotaccount": "Bạn chưa có tài khoản?",
-  "errorLogin": "Error! Một hoặc nhiều trường có lỗi vui lòng thử lại!"
+  "errorLogin": "Error! Một hoặc nhiều trường có lỗi vui lòng thử lại!",
+  "tel": "Số điện thoại",
+  "changepassword": "Đặt lại mật khẩu"
 }
