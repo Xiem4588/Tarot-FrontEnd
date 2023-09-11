@@ -259,7 +259,7 @@ const SettingScreen = ({navigation}: any) => {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+          <View style={[styles.RowCenterBetween, styles.paddingVertical10]}>
             <Text
               style={[
                 styles.textSize16White,
@@ -289,8 +289,6 @@ const SettingScreen = ({navigation}: any) => {
                 customStyles={{
                   dateInput: {
                     borderWidth: 0,
-                    padding: 0,
-                    margin: 0,
                   },
                   dateText: {
                     fontSize: 16,
