@@ -50,7 +50,7 @@ const ScreenToday = ({navigation}: any) => {
               <Avatar
                 size={48}
                 rounded
-                source={isAvatar ? images.AvatarDemo2 : images.avataDefault}
+                source={isAvatar ? images.AvatarDemo2 : images.icon_camera}
               />
               <Text
                 style={[

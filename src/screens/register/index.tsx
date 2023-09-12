@@ -66,6 +66,10 @@ const Register = ({handleInputUser}: RegisterProps) => {
     email: string;
     password: string;
     typeUser: string;
+    fullName?: string;
+    dateOfBirth?: Date;
+    desc?: string;
+    tel?: string;
   }
 
   const RegisterAccount = async (dataUser: userType) => {

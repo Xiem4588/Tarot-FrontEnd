@@ -379,7 +379,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: -50,
   },
-  avataProfileEllipse: {
+  avatarProfileEllipse: {
     width: 80,
     height: 80,
     borderRadius: 50,
@@ -421,6 +421,12 @@ export const styles = StyleSheet.create({
   positionAbsoluteTop: {
     position: 'absolute',
     zIndex: 2,
+  },
+  positionAbsoluteBottom: {
+    position: 'absolute',
+    zIndex: 9,
+    right: 0,
+    bottom: 0,
   },
   zindexRelative9: {
     position: 'relative',
@@ -961,6 +967,10 @@ export const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 10,
+  },
+  imageSize24: {
+    width: 24,
+    height: 24,
   },
   IconStyle2: {
     resizeMode: 'contain',

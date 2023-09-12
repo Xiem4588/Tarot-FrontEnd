@@ -43,7 +43,7 @@ const InforProfile = ({navigation, expert}: Props) => {
             <Avatar
               size={66}
               rounded
-              source={isAvatar ? images.AvatarDemo2 : images.avataDefault}
+              source={isAvatar ? images.AvatarDemo2 : images.icon_camera}
               onPress={() => console.log('Works!')}
               activeOpacity={0.8}
             />

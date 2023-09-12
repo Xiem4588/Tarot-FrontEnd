@@ -2,7 +2,7 @@ export default {
   ImageBackground: require('../images/bg-main-image.png'),
   bgTarotDeck: require('../images/bgTarotDeck.png'),
   ImgTarotDeck: require('../images/ImgTarotDeck.png'),
-  avataDefault: require('../images/avataDefault.png'),
+  icon_camera: require('../images/icon_camera.png'),
   bgHeaderLogin: require('../images/bg-header-login.png'),
   bgHeaderProfile: require('../images/bg-header-profile.png'),
   imgHeaderRegister: require('../images/img-header-register.png'),

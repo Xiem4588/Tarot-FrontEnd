@@ -20,6 +20,7 @@ import {apiUpdateAccount} from '../../../services';
 import {updateUserSuccess} from '../../../redux/store/user/account/types';
 import LoadingFullScreen from '../../conponents/loading';
 import DatePicker from 'react-native-datepicker';
+import AvatarUpload from './component/avatar';
 
 const SettingScreen = ({navigation}: any) => {
   // Language
@@ -163,7 +164,7 @@ const SettingScreen = ({navigation}: any) => {
           };
 
           // Gọi API để cập nhật thông tin người dùng
-          const res = await apiUpdateAccount('profile', updatedData, token);
+          const res = await apiUpdateAccount('setting', updatedData, token);
 
           // Sau khi cập nhật thành công, gọi action để cập nhật Redux store
           dispatch(updateUserSuccess(res.user));
@@ -198,7 +199,7 @@ const SettingScreen = ({navigation}: any) => {
         };
 
         // Gọi API để cập nhật thông tin người dùng
-        const res = await apiUpdateAccount('profile', updatedData, token);
+        const res = await apiUpdateAccount('setting', updatedData, token);
 
         // Sau khi cập nhật thành công, gọi action để cập nhật Redux store
         dispatch(updateUserSuccess(res.user));
@@ -230,9 +231,7 @@ const SettingScreen = ({navigation}: any) => {
       {notification && <LoadingFullScreen notification={notification} />}
       <ScrollView>
         <View style={[styles.alignItems, styles.paddingVertical10]}>
-          <View style={[styles.avataProfileEllipse]}>
-            <Avatar size={80} source={images.AvatarDemo1} />
-          </View>
+          <AvatarUpload />
         </View>
         <View style={styles.paddingHorizontal18}>
           <Text style={styles.titleBox}>{i18n.t('account')}</Text>
@@ -255,7 +254,7 @@ const SettingScreen = ({navigation}: any) => {
                 editable={true}
               />
               <TouchableOpacity onPress={() => focusInput(0)}>
-                <MIcon name="playlist-edit" size={20} color={'#ccc'} />
+                <MIcon name="pencil-outline" size={16} color={'#ccc'} />
               </TouchableOpacity>
             </View>
           </View>
@@ -300,7 +299,7 @@ const SettingScreen = ({navigation}: any) => {
                 onDateChange={handleDateChange}
               />
               <TouchableOpacity onPress={handleIconPress}>
-                <MIcon name="playlist-edit" size={20} color={'#ccc'} />
+                <MIcon name="pencil-outline" size={16} color={'#ccc'} />
               </TouchableOpacity>
             </View>
           </View>
@@ -328,7 +327,7 @@ const SettingScreen = ({navigation}: any) => {
                     editable={false}
                   />
                   <View style={styles.boxOverlay} />
-                  <MIcon name="playlist-edit" size={20} color={'#ccc'} />
+                  <MIcon name="pencil-outline" size={16} color={'#ccc'} />
                 </View>
               </TouchableOpacity>
             </View>
@@ -360,7 +359,7 @@ const SettingScreen = ({navigation}: any) => {
             </Text>
             <View style={styles.RowAlignItems}>
               <LanguageSwitcher />
-              <MIcon name="menu-right" size={24} color={'#fff'} />
+              <MIcon name="menu-right" size={20} color={'#fff'} />
             </View>
           </View>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
@@ -376,12 +375,7 @@ const SettingScreen = ({navigation}: any) => {
                 ]}>
                 {user?.email}
               </Text>
-              <MIcon
-                style={styles.marginRight5}
-                name="lock-off-outline"
-                size={18}
-                color={'#666'}
-              />
+              <MIcon name="pencil-off-outline" size={18} color={'#666'} />
             </View>
           </View>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
@@ -404,7 +398,7 @@ const SettingScreen = ({navigation}: any) => {
                 placeholder={user?.tel ? user.tel : 'Tel...'}
               />
               <TouchableOpacity onPress={() => focusInput(3)}>
-                <MIcon name="playlist-edit" size={20} color={'#ccc'} />
+                <MIcon name="pencil-outline" size={16} color={'#ccc'} />
               </TouchableOpacity>
             </View>
           </View>
@@ -438,7 +432,7 @@ const SettingScreen = ({navigation}: any) => {
                     editable={false}
                   />
                   <View style={styles.boxOverlay} />
-                  <MIcon name="playlist-edit" size={20} color={'#ccc'} />
+                  <MIcon name="pencil-outline" size={16} color={'#ccc'} />
                 </View>
               </TouchableOpacity>
             </View>
