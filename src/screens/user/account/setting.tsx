@@ -148,13 +148,11 @@ const SettingScreen = ({navigation}: any) => {
 
   // submit save setting
   const handleUpdateUser = async () => {
-    // Hiển loading
-    setNotification('Loading...');
+    setNotification('Loading...'); // Hiển loading
     if (isTelValue) {
       if (isTelValue.length >= 10 && isTelValue.length <= 11) {
         try {
-          // Tạo object mới chứa các giá trị cập nhật
-          const updatedData = {
+          const userUpdate = {
             fullName: isName ? isName : user.fullName,
             dateOfBirth: isDateOfBirth ? isDateOfBirth : user.dateOfBirth,
             desc: isDesc ? isDesc : user.desc,
@@ -162,25 +160,14 @@ const SettingScreen = ({navigation}: any) => {
             password: isPassword ? isPassword : user.password,
             email: user?.email,
           };
-
-          // Gọi API để cập nhật thông tin người dùng
-          const res = await apiUpdateAccount('setting', updatedData, token);
-
-          // Sau khi cập nhật thành công, gọi action để cập nhật Redux store
-          dispatch(updateUserSuccess(res.user));
-
-          // Hiển thị thông báo cập nhật thành công
-          setNotification('Cập nhật thành công!');
-
-          // Set toggle
+          const res = await apiUpdateAccount('setting', userUpdate, token); // Gọi API update người dùng
+          dispatch(updateUserSuccess(res.user)); // gọi action cập nhật store
+          setNotification('Cập nhật thành công!'); // Hiển thị thông báo cập nhật thành công
           setTogglePass(false);
           setToggleDesc(false);
           setTelError('');
-          console.log('Cập nhật thành công!');
         } catch (error) {
-          // Xử lý lỗi từ API ở đây
-          console.error('Lỗi cập nhật', error);
-          setNotification('Không thể cập nhật vui lòng thử lại!');
+          setNotification('Không thể cập nhật vui lòng thử lại! (1)');
         }
       } else {
         setNotification('Có trường bị lỗi!');
@@ -188,34 +175,23 @@ const SettingScreen = ({navigation}: any) => {
       }
     } else {
       try {
-        // Tạo object mới chứa các giá trị cập nhật
-        const updatedData = {
+        console.log('---> 2-1: not tel');
+        const userUpdate = {
           fullName: isName ? isName : user.fullName,
           dateOfBirth: isDateOfBirth ? isDateOfBirth : user.dateOfBirth,
           desc: isDesc ? isDesc : user.desc,
-          tel: isTelValue ? isTelValue : '',
+          tel: isTelValue ? isTelValue : user.tel,
           password: isPassword ? isPassword : user.password,
           email: user?.email,
         };
-
-        // Gọi API để cập nhật thông tin người dùng
-        const res = await apiUpdateAccount('setting', updatedData, token);
-
-        // Sau khi cập nhật thành công, gọi action để cập nhật Redux store
+        const res = await apiUpdateAccount('setting', userUpdate, token);
         dispatch(updateUserSuccess(res.user));
-
-        // Hiển thị thông báo cập nhật thành công
         setNotification('Cập nhật thành công!');
-
-        // Set toggle
         setTogglePass(false);
         setToggleDesc(false);
         setTelError('');
-        console.log('Cập nhật thành công!');
       } catch (error) {
-        // Xử lý lỗi từ API ở đây
-        console.error('Lỗi cập nhật', error);
-        setNotification('Không thể cập nhật vui lòng thử lại!');
+        setNotification('Không thể cập nhật vui lòng thử lại! (0)');
       }
     }
   };
@@ -343,6 +319,7 @@ const SettingScreen = ({navigation}: any) => {
                       styles.paddingBottom10,
                       styles.fonsize16White,
                     ]}
+                    defaultValue={user?.desc ? user.desc : null}
                     placeholder={String(i18n.t('Enter new status'))}
                     onChangeText={handleChange('desc')}
                   />

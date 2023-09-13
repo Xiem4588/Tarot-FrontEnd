@@ -16,7 +16,7 @@ const AccountScreen = ({navigation}: any) => {
 
   const handleInputUser = () => {
     setInputUser(!isInputUser);
-    console.log('isInputUser: ', isInputUser);
+    console.log('----> kiem tra gia tri isInputUser: ', isInputUser);
   };
 
   return (
