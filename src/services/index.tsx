@@ -1,7 +1,8 @@
-// config file common Api
 import axios, {AxiosError} from 'axios';
 import {uri} from './env';
 const apiUrlMainnet = uri;
+
+// MAIN CREATE Axios
 const axiosClient = axios.create({
   baseURL: apiUrlMainnet,
   headers: {
@@ -9,7 +10,7 @@ const axiosClient = axios.create({
   },
 });
 
-// ************ Get API apiRoutesMain
+// ************ GET routes
 export const apiRoutesMain = async (routes: string) => {
   try {
     const url = `/${routes}`;
@@ -21,7 +22,7 @@ export const apiRoutesMain = async (routes: string) => {
   }
 };
 
-// ************ Post API apiAccount: login, register
+// ************ POST users routes(login, register,...)
 export const apiAccount = async (routes: string, data: object) => {
   try {
     const url = `/users/${routes}`;
@@ -50,7 +51,7 @@ export const apiAccount = async (routes: string, data: object) => {
   }
 };
 
-// ************ Post API apiAccount: login, register
+// ************ PUT update user
 export const apiUpdateAccount = async (
   routes: string,
   data: object,
