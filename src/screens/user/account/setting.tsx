@@ -202,7 +202,7 @@ const SettingScreen = ({navigation}: any) => {
         navigation={navigation}
         title={String(i18n.t('setting'))}
         name="setting"
-        settingUser={handleUpdateUser}
+        settingAccount={handleUpdateUser}
       />
       {notification && <LoadingFullScreen notification={notification} />}
       <ScrollView>
