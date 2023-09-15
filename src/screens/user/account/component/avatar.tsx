@@ -3,75 +3,73 @@ import {View, Image, TouchableOpacity} from 'react-native';
 import {images} from '../../../../assets/constants';
 import {styles} from '../../../../assets/styles';
 import * as ImagePicker from 'react-native-image-picker';
-import {MediaType} from 'react-native-image-picker';
-import axios from 'axios';
+import {saveImageServer} from '../../../../services';
+import {hot} from '../../../../services/env';
 
 const AvatarUpload = () => {
   const [avatarUri, setAvatarUri] = useState<string | null>(null);
 
   // Hàm để gửi ảnh lên server
-  const uploadImage = async (imageUri: string | undefined) => {
+  const saveImage = async (imageUri: string) => {
     try {
-      const formData = new FormData();
-      formData.append('avatar', imageUri || ''); // Use the imageUri directly
+      const blob = await fetch(imageUri).then(response => response.blob());
+      console.log('-------> (1)', blob);
 
-      const response = await axios.post(
-        'http://172.16.100.47/upload-avatar',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        },
-      );
-      // Xử lý phản hồi từ máy chủ (nếu cần)
-      console.log('Upload success:', response.data);
-      return response.data;
+      const formData = new FormData();
+      formData.append('avatar', blob, 'avatar.jpg');
+
+      const res = await saveImageServer('upload-avatar', formData);
+      console.log('-------> (2)', res.data);
+      if (res.data) {
+        setAvatarUri(`${hot}/upload/${res.data.avatarPath}/avatar.jpg`);
+        return 'ok';
+      } else {
+        console.error('Không nhận được đường dẫn ảnh từ phản hồi');
+      }
     } catch (error) {
-      console.error('Upload failed:', error);
-      throw error;
+      console.error('Lỗi khi tải ảnh lên server:', error);
     }
   };
 
   // Hàm để mở thư viện ảnh và chọn ảnh
-  const selectAvatar = () => {
-    // Cấu hình các tùy chọn cho việc mở thư viện ảnh
+  const selectImageAvatar = () => {
     const options = {
       title: 'Chọn ảnh đại diện',
       type: 'library',
+      mediaType: 'photo' as ImagePicker.MediaType,
       storageOptions: {
-        skipBackup: true,
         path: 'images',
+        skipBackup: true,
       },
-      mediaType: 'photo' as MediaType, // Thêm tùy chọn mediaType
     };
 
     // Mở thư viện ảnh
     ImagePicker.launchImageLibrary(options, async response => {
       if (response.didCancel) {
-        console.log('Người dùng hủy bỏ việc chọn ảnh');
+        return 'Chọn ảnh bị hủy';
       } else if (response.errorCode) {
-        console.log('----> errorCode: ', response.errorCode);
-      } else if (response.errorMessage) {
-        console.log('----> errorMessage: ', response.errorMessage);
-      } else if (response.assets) {
-        console.log('----> assets:', response.assets);
-        setAvatarUri(String(response.assets[0].uri));
-        try {
-          const uploadedImageUrl = await uploadImage(response.assets[0].uri);
-          console.log('----> Uploaded image URL:', uploadedImageUrl);
-          setAvatarUri(uploadedImageUrl);
-        } catch (error) {
-          console.error('Error uploading image:', error);
-        }
+        return 'Lỗi khi chọn ảnh';
       } else {
-        console.log('----> Gia tri khac');
+        try {
+          if (response.assets && response.assets.length > 0) {
+            const selectedImageUri = response.assets[0].uri;
+            setAvatarUri(selectedImageUri!);
+            const uploadedImageUrl = await saveImage(String(selectedImageUri));
+            return uploadedImageUrl;
+          } else {
+            console.error('Không có ảnh được chọn');
+          }
+        } catch (error) {
+          console.error('Lỗi khi tải ảnh lên server:', error);
+        }
       }
     });
   };
 
   return (
-    <TouchableOpacity style={styles.zindexRelative9} onPress={selectAvatar}>
+    <TouchableOpacity
+      style={styles.zindexRelative9}
+      onPress={selectImageAvatar}>
       <View style={[styles.avatarProfileEllipse]}>
         <Image
           source={avatarUri ? {uri: avatarUri} : images.AvatarDemo1}
