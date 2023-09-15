@@ -1,10 +1,9 @@
 import axios, {AxiosError} from 'axios';
-import {uri} from './env';
-const apiUrlMainnet = uri;
+import {hot} from './env';
 
 // MAIN CREATE Axios
 const axiosClient = axios.create({
-  baseURL: apiUrlMainnet,
+  baseURL: hot,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -17,7 +16,7 @@ export const apiRoutesMain = async (routes: string) => {
     const res = await axiosClient.get(url);
     return res;
   } catch (error) {
-    console.error('Error!', error);
+    console.error('Có lỗi nghiêm trọng!', error);
     throw error;
   }
 };
@@ -59,18 +58,35 @@ export const apiUpdateAccount = async (
 ) => {
   try {
     const url = `/users/${routes}`;
-    const tempAxiosClient = axios.create({
-      baseURL: apiUrlMainnet,
+    const settingUserAccount = axios.create({
+      baseURL: hot,
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     });
-    const res = await tempAxiosClient.put(url, data);
+    const res = await settingUserAccount.put(url, data);
     return res.data;
   } catch (error) {
     throw error; // Re-throw the error
   }
 };
 
+// ************ POST save Image to server
+export const saveImageServer = async (routes: string, data: any) => {
+  try {
+    const url = `/upload/${routes}`;
+    const imageServer = axios.create({
+      baseURL: hot,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    const res = await imageServer.post(url, data);
+    return res;
+  } catch (error) {
+    console.error('Lỗi không thể lưu ảnh!', error);
+    throw error;
+  }
+};
 // ************ khac

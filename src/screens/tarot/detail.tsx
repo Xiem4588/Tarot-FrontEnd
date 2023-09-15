@@ -12,7 +12,7 @@ import Header from '../../conponents/header';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../../assets/styles';
 import {apiRoutesMain} from '../../services';
-import {uri} from '../../services/env';
+import {hot} from '../../services/env';
 import GoogleAdsBannerAd from '../../googleAds/_bannerAd';
 
 type detailProps = {
@@ -113,7 +113,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
   return (
     <View style={[styles.flexBox]}>
       <ImageBackground
-        source={{uri: `${uri}/cards/${isDetail?.cardImage}`}}
+        source={{uri: `${hot}/cards/${isDetail?.cardImage}`}}
         resizeMode="cover"
         style={styles.ImageBackgroundCommunity}
       />
@@ -140,7 +140,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
               <View style={[styles.paddingVertical30]}>
                 <Avatar
                   source={{
-                    uri: `${uri}/cards/${isDetail?.cardImage}`,
+                    uri: `${hot}/cards/${isDetail?.cardImage}`,
                   }}
                   containerStyle={[
                     styles.ImgPostCommunity,

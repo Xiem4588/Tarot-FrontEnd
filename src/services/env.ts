@@ -1,1 +1,1 @@
-export const uri = 'http://172.16.100.47:3002';
+export const hot = 'http://172.16.100.47:3002';
