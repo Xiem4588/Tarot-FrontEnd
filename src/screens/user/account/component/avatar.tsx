@@ -10,29 +10,34 @@ const AvatarUpload = () => {
   const [avatarUri, setAvatarUri] = useState<string | null>(null);
 
   // Hàm để gửi ảnh lên server
-  const saveImage = async (imageUri: string) => {
+  const uploadAvatar = async (avatar: string) => {
     try {
-      const blob = await fetch(imageUri).then(response => response.blob());
-      console.log('-------> (1)', blob);
-
-      const formData = new FormData();
-      formData.append('avatar', blob, 'avatar.jpg');
-
-      const res = await saveImageServer('upload-avatar', formData);
-      console.log('-------> (2)', res.data);
-      if (res.data) {
-        setAvatarUri(`${hot}/upload/${res.data.avatarPath}/avatar.jpg`);
-        return 'ok';
+      if (!avatar) {
+        return null;
       } else {
-        console.error('Không nhận được đường dẫn ảnh từ phản hồi');
+        const formData = new FormData();
+        const response = await fetch(avatar);
+        const blob = await response.blob();
+        formData.append('avatar', blob, 'avatar.jpg');
+        console.log('-------> (0) formData', formData);
+        const serverResponse = await saveImageServer('upload-avatar', formData);
+        // console.log('-------> (1) serverResponse', serverResponse);
+        if (serverResponse) {
+          setAvatarUri(
+            `${hot}/upload/${serverResponse.data.avatarPath}/avatar.jpg`,
+          );
+          return 'ok';
+        } else {
+          console.error('Không nhận được đường dẫn ảnh từ phản hồi');
+        }
       }
     } catch (error) {
-      console.error('Lỗi khi tải ảnh lên server:', error);
+      console.error('Lỗi khi tải ảnh lên server: (1)', error);
     }
   };
 
   // Hàm để mở thư viện ảnh và chọn ảnh
-  const selectImageAvatar = () => {
+  const handleSelectAvatar = () => {
     const options = {
       title: 'Chọn ảnh đại diện',
       type: 'library',
@@ -51,16 +56,20 @@ const AvatarUpload = () => {
         return 'Lỗi khi chọn ảnh';
       } else {
         try {
-          if (response.assets && response.assets.length > 0) {
-            const selectedImageUri = response.assets[0].uri;
-            setAvatarUri(selectedImageUri!);
-            const uploadedImageUrl = await saveImage(String(selectedImageUri));
-            return uploadedImageUrl;
+          if (
+            response.assets &&
+            response.assets[0].uri &&
+            response.assets.length > 0
+          ) {
+            const avatar = response.assets[0].uri;
+            const uploadedAvatar = await uploadAvatar(String(avatar));
+            setAvatarUri(avatar);
+            return uploadedAvatar;
           } else {
             console.error('Không có ảnh được chọn');
           }
         } catch (error) {
-          console.error('Lỗi khi tải ảnh lên server:', error);
+          console.error('Lỗi khi tải ảnh lên server: (2)', error);
         }
       }
     });
@@ -69,7 +78,7 @@ const AvatarUpload = () => {
   return (
     <TouchableOpacity
       style={styles.zindexRelative9}
-      onPress={selectImageAvatar}>
+      onPress={handleSelectAvatar}>
       <View style={[styles.avatarProfileEllipse]}>
         <Image
           source={avatarUri ? {uri: avatarUri} : images.AvatarDemo1}
