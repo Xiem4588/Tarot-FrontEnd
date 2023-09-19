@@ -4,7 +4,7 @@ import {images} from '../../../../assets/constants';
 import {styles} from '../../../../assets/styles';
 import * as ImagePicker from 'react-native-image-picker';
 import {saveImageServer} from '../../../../services';
-import {hot} from '../../../../services/env';
+// import {hot} from '../../../../services/env';
 
 const AvatarUpload = () => {
   const [avatarUri, setAvatarUri] = useState<string | null>(null);
@@ -19,33 +19,21 @@ const AvatarUpload = () => {
         const response = await fetch(avatar);
         const blob = await response.blob();
         formData.append('avatar', blob, 'avatar.jpg');
-        console.log('-------> (0) formData', formData);
+
         const serverResponse = await saveImageServer('upload-avatar', formData);
-        // console.log('-------> (1) serverResponse', serverResponse);
-        if (serverResponse) {
-          setAvatarUri(
-            `${hot}/upload/${serverResponse.data.avatarPath}/avatar.jpg`,
-          );
-          return 'ok';
-        } else {
-          console.error('Không nhận được đường dẫn ảnh từ phản hồi');
-        }
+
+        return serverResponse;
       }
     } catch (error) {
-      console.error('Lỗi khi tải ảnh lên server: (1)', error);
+      console.error('Lỗi! (001)', error);
+      return 'Lỗi! (001)';
     }
   };
 
   // Hàm để mở thư viện ảnh và chọn ảnh
   const handleSelectAvatar = () => {
     const options = {
-      title: 'Chọn ảnh đại diện',
-      type: 'library',
       mediaType: 'photo' as ImagePicker.MediaType,
-      storageOptions: {
-        path: 'images',
-        skipBackup: true,
-      },
     };
 
     // Mở thư viện ảnh
@@ -62,7 +50,7 @@ const AvatarUpload = () => {
             response.assets.length > 0
           ) {
             const avatar = response.assets[0].uri;
-            const uploadedAvatar = await uploadAvatar(String(avatar));
+            const uploadedAvatar = await uploadAvatar(avatar);
             setAvatarUri(avatar);
             return uploadedAvatar;
           } else {
