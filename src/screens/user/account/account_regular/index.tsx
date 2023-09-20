@@ -76,9 +76,7 @@ const MyProfileUser = ({navigation}: Props) => {
           ))}
         </ScrollView>
       </View>
-      <TouchableOpacity
-        style={[styles.btnTheme2]}
-        onPress={() => navigation.navigate('choose')}>
+      <TouchableOpacity style={[styles.btnTheme2]} onPress={() => {}}>
         <Image source={icon.iconUniverse} style={styles.IconStyle2} />
         <Text style={(styles.fontSize14, styles.fontBold600)}>
           Nâng cấp lên{'\n'}gói cao cấp

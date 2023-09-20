@@ -3,6 +3,7 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
+export const DETAIL_USER = 'DETAIL_USER';
 export const LOG_OUT = 'LOG_OUT';
 
 // khai bao mot bang cua store de check moi noi trong ung dung
@@ -67,10 +68,23 @@ export const updateUserSuccess = (
   payload: {user},
 });
 
+// Save userID
+interface UserIdAction {
+  type: typeof DETAIL_USER;
+  payload: {
+    user: AuthenticatedUser; // Thông tin người dùng sau khi cập nhật
+  };
+}
+export const detailUserSuccess = (user: AuthenticatedUser): UserIdAction => ({
+  type: DETAIL_USER,
+  payload: {user},
+});
+
 // export cac interface
 export type AccountActionTypes =
   | LoginRequest
   | LoginSuccess
   | LoginFailure
   | UpdateUserSuccessAction
+  | UserIdAction
   | Logout;

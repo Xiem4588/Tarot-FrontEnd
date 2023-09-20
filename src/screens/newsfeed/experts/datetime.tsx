@@ -11,13 +11,13 @@ const {width} = Dimensions.get('window');
 // Props
 type BookingScreenProps = {
   navigation: any;
-  route: any;
+  route?: any;
 }; //
 
-const DateTime = ({navigation, route}: BookingScreenProps) => {
+const DateTime = ({}: /*navigation, route*/ BookingScreenProps) => {
   // lay id truyen vao tu url
-  const {id} = route.params;
-  console.log('Id duoc lay tu url', id);
+  // const {id} = route.params;
+  // console.log('Id duoc lay tu url', id);
 
   //calendar
   const [selectedStartDate, setSelectedStartDate] = useState<Date>(new Date());
@@ -114,8 +114,8 @@ const DateTime = ({navigation, route}: BookingScreenProps) => {
           </Text>
         </View>
         <TouchableOpacity
-          style={[styles.buttonTmp, styles.marginBottom50]}
-          onPress={() => navigation.navigate('payment', {id: id})}>
+          // onPress={() => navigation.navigate('payment', {id: id})}
+          style={[styles.buttonTmp, styles.marginBottom50]}>
           <Text style={[styles.buttonText]}>Đặt lịch</Text>
         </TouchableOpacity>
       </View>

@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  ImageBackground,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import {Avatar, LinearProgress} from 'react-native-elements';
 import {images, icon} from '../../../../assets/constants';
 import {styles} from '../../../../assets/styles';
@@ -13,7 +19,6 @@ interface Props {
 
 const InforProfile = ({navigation, expert}: Props) => {
   const user = useSelector((state: any) => state.account?.user);
-  const isAvatar = true;
   return (
     <View style={[styles.avatarProfile]}>
       {!expert ? (
@@ -40,12 +45,9 @@ const InforProfile = ({navigation, expert}: Props) => {
             <IconMateria name="cog-outline" size={18} color="#ffffff" />
           </TouchableOpacity>
           <View>
-            <Avatar
-              size={66}
-              rounded
-              source={isAvatar ? images.AvatarDemo2 : images.icon_camera}
-              onPress={() => console.log('Works!')}
-              activeOpacity={0.8}
+            <Image
+              source={images.avatarDefault}
+              style={[styles.avatarProfileEllipse66]}
             />
           </View>
           <View>

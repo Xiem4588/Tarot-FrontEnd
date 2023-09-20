@@ -387,6 +387,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
   },
+  avatarProfileEllipse66: {
+    width: 66,
+    height: 66,
+    borderRadius: 50,
+    alignContent: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
   nameProfile: {
     fontWeight: '600',
     fontSize: 18,
@@ -705,6 +713,8 @@ export const styles = StyleSheet.create({
     marginBottom: -24,
   },
   avatarImage: {
+    backgroundColor: 'rgba(0, 0, 0, 1)',
+    borderRadius: 10,
     width: 84,
     height: 106,
   },
@@ -797,6 +807,10 @@ export const styles = StyleSheet.create({
   RowAlignItems: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  RowAlignItemsRight: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
   },
   RowCenterBetween: {
     flexDirection: 'row',

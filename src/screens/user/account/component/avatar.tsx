@@ -69,7 +69,7 @@ const AvatarUpload = () => {
       onPress={handleSelectAvatar}>
       <View style={[styles.avatarProfileEllipse]}>
         <Image
-          source={avatarUri ? {uri: avatarUri} : images.AvatarDemo1}
+          source={avatarUri ? {uri: avatarUri} : images.avatarDefault}
           style={[styles.avatarProfileEllipse]}
         />
       </View>

@@ -13,18 +13,18 @@ import {styles} from '../../../assets/styles';
 import {images} from '../../../assets/constants';
 import IconsMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
-interface ModalCommentProps {
-  handleScroll: () => void;
+interface modalProps {
+  // handleScroll: () => void;
   IdAuthor: (id: string) => void;
 }
 
-const Post = ({handleScroll, IdAuthor}: ModalCommentProps) => {
+const Post = ({/*handleScroll,*/ IdAuthor}: modalProps) => {
   const {width, height} = Dimensions.get('window');
   return (
     <ScrollView
       style={styles.flex1}
-      pagingEnabled={true}
-      onScroll={handleScroll}>
+      // onScroll={handleScroll}
+      pagingEnabled={true}>
       {DATA.map(item => (
         <View key={item.id} style={{minHeight: height, minWidth: width}}>
           <ImageBackground

@@ -1,11 +1,40 @@
-import React from 'react';
-import {Avatar, Text} from 'react-native-elements';
-import {TouchableOpacity, View, ScrollView} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Text} from 'react-native-elements';
+import {TouchableOpacity, View, ScrollView, Image} from 'react-native';
 import {styles} from '../../../assets/styles';
-import {images} from '../../../assets/constants';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
+import {apiRoutesMain} from '../../../services';
+import {images} from '../../../assets/constants';
 
-const ScreenExperts = ({navigation}: any) => {
+type navProps = {
+  navigation: any;
+};
+interface typeUser {
+  _id: string;
+  fullName: string;
+  email: string;
+  dateOfBirth: string;
+  desc: string;
+  typeUser: string;
+  avatar: any;
+  like: string;
+  view: string;
+}
+
+const ScreenExperts = ({navigation}: navProps) => {
+  const [isUsers, setUsers] = useState<typeUser[]>([]);
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const res = await apiRoutesMain('users');
+        const users = res.data.Users;
+        setUsers(users);
+      } catch (error) {
+        return error;
+      }
+    };
+    getUsers();
+  }, []);
   return (
     <View style={[styles.flexBox, styles.paddingTop90]}>
       <ScrollView>
@@ -26,132 +55,79 @@ const ScreenExperts = ({navigation}: any) => {
             styles.paddingHorizontal9,
             styles.paddingTop50,
           ]}>
-          {DATA.map((item, index) => (
-            <TouchableOpacity
-              key={item.id}
-              onPress={() => navigation.navigate('booking', {id: item.id})}
-              style={[
-                styles.width50,
-                styles.paddingHorizontal9,
-                index % 2 === 0 && styles.marginTopA50,
-              ]}>
-              <View key={item.id} style={styles.itemTimeline}>
-                <View style={styles.flexBox}>
-                  <Text style={[styles.nameItemBlack16]}>{item.name}</Text>
-                  <Text
-                    numberOfLines={3}
-                    style={[
-                      styles.fontSize10,
-                      styles.marginBottom10,
-                      styles.colorBlack,
-                    ]}>
-                    {item.content}
-                  </Text>
-                </View>
-                <View style={styles.RowBetween}>
-                  <View style={[styles.marginLeftBottomA18]}>
-                    <Avatar
-                      source={item.avatar}
-                      containerStyle={styles.avatarImage}
-                    />
+          {isUsers &&
+            isUsers.map((user, index) => (
+              <TouchableOpacity
+                key={user._id}
+                onPress={() => navigation.navigate('booking', {id: user._id})}
+                style={[
+                  styles.width50,
+                  styles.paddingHorizontal9,
+                  index % 2 === 0 && styles.marginTopA50,
+                ]}>
+                <View key={user._id} style={styles.itemTimeline}>
+                  <View style={styles.flexBox}>
+                    <Text style={[styles.nameItemBlack16]}>
+                      {user.fullName}
+                    </Text>
+                    <Text
+                      numberOfLines={3}
+                      style={[
+                        styles.fontSize10,
+                        styles.marginBottom10,
+                        styles.colorBlack,
+                      ]}>
+                      {user.desc ? user.desc : 'Update...'}
+                    </Text>
                   </View>
-                  <View style={[styles.marginTopAuto]}>
-                    <View style={styles.RowAlignItems}>
-                      <IconMateria name="heart" size={16} color={'red'} />
-                      <Text
-                        style={[
-                          styles.fontSize12,
-                          styles.marginLeft5,
-                          styles.colorBlack,
-                        ]}>
-                        {item.like}
-                      </Text>
-                    </View>
-                    <View style={[styles.RowAlignItems, styles.paddingTop5]}>
-                      <IconMateria
-                        name="eye-outline"
-                        size={14}
-                        color={'#000'}
+                  <View style={styles.RowBetween}>
+                    <View style={[styles.marginLeftBottomA18]}>
+                      <Image
+                        source={
+                          user.avatar
+                            ? {uri: user.avatar}
+                            : images.avatarDefault
+                        }
+                        style={[styles.avatarImage]}
                       />
-                      <Text
-                        style={[
-                          styles.fontSize12,
-                          styles.marginLeft5,
-                          styles.colorBlack,
-                        ]}>
-                        {item.view}
-                      </Text>
+                    </View>
+                    <View style={[styles.marginTopAuto]}>
+                      <View style={styles.RowAlignItemsRight}>
+                        <IconMateria name="heart" size={16} color={'red'} />
+                        <Text
+                          style={[
+                            styles.fontSize12,
+                            styles.marginLeft5,
+                            styles.colorBlack,
+                          ]}>
+                          {user.like ? user.like : '0'}
+                        </Text>
+                      </View>
+                      <View
+                        style={[styles.RowAlignItemsRight, styles.paddingTop5]}>
+                        <IconMateria
+                          name="eye-outline"
+                          size={16}
+                          color={'#000'}
+                        />
+                        <Text
+                          style={[
+                            styles.fontSize12,
+                            styles.marginLeft5,
+                            styles.colorBlack,
+                          ]}>
+                          {user.view ? user.view : '0'}
+                        </Text>
+                      </View>
                     </View>
                   </View>
                 </View>
-              </View>
-            </TouchableOpacity>
-          ))}
+              </TouchableOpacity>
+            ))}
         </View>
       </ScrollView>
     </View>
   );
 };
-
-interface DataProps {
-  id: string;
-  name: string;
-  content: string;
-  like: string;
-  view: string;
-  avatar: object;
-}
-const DATA: DataProps[] = [
-  {
-    id: '1',
-    name: 'Lee Jae‑wook',
-    content:
-      'Có hơn 8 năm kinh nghiệm Có xem khuya & lịch gấp trog ngày (có tính thêm ...',
-    like: '14,087',
-    view: '25,635',
-    avatar: images.AvatarDemo1,
-  },
-  {
-    id: '2',
-    name: 'Seo Yul',
-    content: '6 years of experient - RMIT university student',
-    like: '14,087',
-    view: '25,635',
-    avatar: images.AvatarDemo2,
-  },
-  {
-    id: '3',
-    name: 'Lee Jae‑wook',
-    content: '6 years of experient - RMIT university student',
-    like: '14,087',
-    view: '25,635',
-    avatar: images.AvatarDemo1,
-  },
-  {
-    id: '4',
-    name: 'Lee Jae‑wook',
-    content:
-      'Có hơn 8 năm kinh nghiệm Có xem khuya & lịch gấp trog ngày (có tính thêm ...',
-    like: '14,087',
-    view: '25,635',
-    avatar: images.AvatarDemo1,
-  },
-  {
-    id: '5',
-    name: 'Seo Yul',
-    content: '6 years of experient - RMIT university student',
-    like: '14,087',
-    view: '25,635',
-    avatar: images.AvatarDemo2,
-  },
-  {
-    id: '6',
-    name: 'Lee Jae‑wook',
-    content: '6 years of experient - RMIT university student',
-    like: '14,087',
-    view: '25,635',
-    avatar: images.AvatarDemo1,
-  },
-];
 
 export default ScreenExperts;

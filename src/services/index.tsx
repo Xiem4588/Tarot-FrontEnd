@@ -21,6 +21,18 @@ export const apiRoutesMain = async (routes: string) => {
   }
 };
 
+// ************ GET routes
+export const getUserDetail = async (routes: string) => {
+  try {
+    const url = `/users/${routes}`;
+    const res = await axiosClient.get(url);
+    return res;
+  } catch (error) {
+    console.error('Không lấy được user!', error);
+    throw error;
+  }
+};
+
 // ************ POST users routes(login, register,...)
 export const apiAccount = async (routes: string, data: object) => {
   try {

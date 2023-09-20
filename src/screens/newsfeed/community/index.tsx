@@ -13,11 +13,11 @@ const ScreenCommunity = () => {
     setIsID(id);
     console.log(isModalVisible);
   };
-  const handleScroll = () => {
-    if (isModalVisible) {
-      setModalVisible(false);
-    }
-  };
+  // const handleScroll = () => {
+  //   if (isModalVisible) {
+  //     setModalVisible(false);
+  //   }
+  // };
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -26,7 +26,7 @@ const ScreenCommunity = () => {
     <View style={[styles.flexBox, {minHeight: height, minWidth: width}]}>
       <Post
         IdAuthor={(id: string) => IdAuthor(id)}
-        handleScroll={handleScroll}
+        // handleScroll={handleScroll}
       />
       <ModalComment
         isID={isID}
