@@ -7,7 +7,7 @@ import Infor from './infor';
 import Pack from './pack';
 import DateTime from './datetime';
 import {getUserDetail} from '../../../services';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {detailUserSuccess} from '../../../redux/store/user/account/types';
 // Props
 type bookingProps = {
@@ -16,7 +16,6 @@ type bookingProps = {
 };
 
 const BookingScreen = ({navigation, route}: bookingProps) => {
-  const user = useSelector((state: any) => state.account?.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,15 +24,15 @@ const BookingScreen = ({navigation, route}: bookingProps) => {
       try {
         const res = await getUserDetail(userId);
         const userData = res.data;
+        console.log('5432534234', userData);
         dispatch(detailUserSuccess(userData)); // gọi action cập nhật store
-        // return userData;
+        return userData;
       } catch (error) {
         console.error('Lỗi khi lấy thông tin người dùng', error);
       }
     };
     userDetail();
   }, [dispatch, route.params]);
-  console.log('0000   ======> user', user);
 
   return (
     <WrapBgBox>

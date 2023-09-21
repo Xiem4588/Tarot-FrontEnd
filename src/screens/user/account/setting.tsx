@@ -27,8 +27,8 @@ const SettingScreen = ({navigation}: any) => {
   useTranslation();
 
   // get data from store
-  const user = useSelector((state: any) => state.account?.user);
-  const token = useSelector((state: any) => state.account?.token);
+  const user = useSelector((state: any) => state.userAccount.user);
+  const token = useSelector((state: any) => state.userAccount.token);
 
   // Xóa token khỏi AsyncStorage khi người dùng đăng xuất
   const dispatch = useDispatch();
@@ -175,7 +175,6 @@ const SettingScreen = ({navigation}: any) => {
       }
     } else {
       try {
-        console.log('---> 2-1: not tel');
         const userUpdate = {
           fullName: isName ? isName : user.fullName,
           dateOfBirth: isDateOfBirth ? isDateOfBirth : user.dateOfBirth,

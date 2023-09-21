@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Dimensions} from 'react-native';
+import Carousel from 'react-native-snap-carousel'; // Import CarouselProps
 import {styles} from '../../../assets/styles';
-import Carousel from 'react-native-snap-carousel';
 
 const {width} = Dimensions.get('window');
 
@@ -71,18 +71,18 @@ const Item = ({id, title, describe, price}: ItemProps) => (
       {price}
     </Text>
   </View>
-); //
+);
 
 const Pack = () => {
-  //Shop
-  const renderItem = ({item}: any) => (
+  // Shop
+  const renderItem = ({item}: {item: ItemProps}) => (
     <Item
       id={item.id}
       title={item.title}
       describe={item.describe}
       price={item.price}
     />
-  ); //
+  );
 
   return (
     <>

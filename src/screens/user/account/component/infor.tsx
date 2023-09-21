@@ -18,7 +18,7 @@ interface Props {
 }
 
 const InforProfile = ({navigation, expert}: Props) => {
-  const user = useSelector((state: any) => state.account?.user);
+  const user = useSelector((state: any) => state.userAccount?.user);
   return (
     <View style={[styles.avatarProfile]}>
       {!expert ? (

@@ -6,8 +6,8 @@ import {persistReducer, persistStore} from 'redux-persist'; //lưu trữ và kh�
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const rootReducer = combineReducers({
-  account: userAccount,
-  detail: userDetail,
+  userAccount: userAccount,
+  userDetail: userDetail,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
@@ -16,7 +16,7 @@ export type AppState = ReturnType<typeof rootReducer>;
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['account', 'detail'], // Đặt các reducer bạn muốn lưu vào đây
+  whitelist: ['userAccount', 'userDetail'], // Đặt các reducer bạn muốn lưu vào đây
 };
 
 // Áp dụng Redux Persist cho rootReducer
