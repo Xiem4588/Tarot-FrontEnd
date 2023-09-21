@@ -298,7 +298,7 @@ const SettingScreen = ({navigation}: any) => {
                       styles.maxWidth130,
                     ]}
                     value={user?.desc ? user.desc : null}
-                    placeholder={user?.desc ? user.desc : 'Content...'}
+                    placeholder={user?.desc ? user.desc : 'Update...'}
                     editable={false}
                   />
                   <View style={styles.boxOverlay} />

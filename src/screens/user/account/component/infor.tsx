@@ -66,7 +66,7 @@ const InforProfile = ({navigation, expert}: Props) => {
             {user?.fullName ? user.fullName : user?.email}
           </Text>
           <Text style={styles.status}>
-            {user?.desc ? user.desc : 'Chua co mo ta nao'}
+            {user?.desc ? user.desc : 'Update now...'}
           </Text>
           <View style={styles.Row}>
             <View style={styles.Row}>
