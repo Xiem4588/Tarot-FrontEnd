@@ -1,4 +1,4 @@
-import axios, {AxiosError} from 'axios';
+import axios from 'axios';
 import {hot} from './env';
 
 // MAIN CREATE Axios
@@ -17,6 +17,18 @@ export const apiRoutesMain = async (routes: string) => {
     return res;
   } catch (error) {
     console.error('Có lỗi nghiêm trọng!', error);
+    throw error;
+  }
+};
+
+// ************ GET Type User
+export const getTypeUser = async (routes: string) => {
+  try {
+    const url = `/users/${routes}`;
+    const res = await axiosClient.get(url);
+    return res;
+  } catch (error) {
+    console.error('Không lấy được user!', error);
     throw error;
   }
 };
@@ -40,25 +52,7 @@ export const apiAccount = async (routes: string, data: object) => {
     const res = await axiosClient.post(url, data);
     return res;
   } catch (error) {
-    // Xử lý phản hồi từ máy chủ khi có lỗi
-    if (axios.isAxiosError(error)) {
-      if (error.response) {
-        // Handle response error
-        const axiosError = error as AxiosError;
-        console.log('Response Data:', axiosError.response?.data);
-        console.log('Response Status:', axiosError.response?.status);
-        console.log('Response Headers:', axiosError.response?.headers);
-      } else if (error.request) {
-        // Handle request error
-        console.log('Request:', (error as AxiosError).request);
-      } else {
-        // Handle other errors
-        console.log('Error:', (error as Error).message);
-      }
-    } else {
-      console.log('Non-Axios Error:', (error as Error).message);
-    }
-    throw error; // Re-throw the error
+    throw error;
   }
 };
 

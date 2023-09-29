@@ -3,7 +3,7 @@ import {Text} from 'react-native-elements';
 import {TouchableOpacity, View, ScrollView, Image} from 'react-native';
 import {styles} from '../../../assets/styles';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
-import {apiRoutesMain} from '../../../services';
+import {getTypeUser} from '../../../services';
 import {images} from '../../../assets/constants';
 
 type navProps = {
@@ -26,8 +26,8 @@ const ScreenExperts = ({navigation}: navProps) => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await apiRoutesMain('users');
-        const users = res.data.Users;
+        const res = await getTypeUser('expert');
+        const users = res.data;
         setUsers(users);
       } catch (error) {
         return error;
