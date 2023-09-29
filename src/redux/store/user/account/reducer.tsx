@@ -58,7 +58,7 @@ const userAccount = (state = accState, action: AccountActionTypes) => {
   }
 };
 
-//
+// detail
 const detailState: AccountState = {
   error: null,
   loading: false,

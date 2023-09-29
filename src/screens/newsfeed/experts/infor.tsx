@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {icon, images} from '../../../assets/constants';
 import {styles} from '../../../assets/styles';
@@ -19,9 +19,9 @@ const Infor = () => {
             styles.marginBottom20,
           ]}>
           <View style={styles.avatarBoxImageTopA}>
-            <Avatar
-              source={images.AvatarDemo1}
-              containerStyle={styles.avatarImage114}
+            <Image
+              source={user.avatar ? {uri: user.avatar} : images.avatarDefault}
+              style={styles.avatarImage114}
             />
           </View>
           <View style={styles.boxInfo}>

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'; // Import useEffect
-import MyProfileUser from './account_regular';
+import MyProfileGuest from './account_guest';
 import MyProfileExpert from './account_expert';
 import {useSelector} from 'react-redux';
 
@@ -22,7 +22,7 @@ const UserProfile = ({navigation}: Props) => {
   return (
     <>
       {isCheckUser ? (
-        <MyProfileUser navigation={navigation} />
+        <MyProfileGuest navigation={navigation} />
       ) : (
         <MyProfileExpert navigation={navigation} />
       )}

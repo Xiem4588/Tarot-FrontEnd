@@ -611,6 +611,9 @@ export const styles = StyleSheet.create({
   marginTopAuto: {
     marginTop: 'auto',
   },
+  marginRightA5: {
+    marginRight: -5,
+  },
   marginLeftBottomA18: {
     marginBottom: -18,
     marginLeft: -18,
@@ -906,7 +909,6 @@ export const styles = StyleSheet.create({
   },
   textBlack: {
     color: '#000000',
-    fontWeight: '500',
     fontFamily: 'Montserrat',
   },
   colorBlue: {

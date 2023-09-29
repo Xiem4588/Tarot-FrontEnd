@@ -23,6 +23,7 @@ export interface AuthenticatedUser {
   dateOfBirth?: string;
   desc?: string;
   avatar?: string;
+  priceList?: string[];
 }
 
 // action gồm 2 thứ là type và payload: type là một const còn payload là một object chứ dữ liệu

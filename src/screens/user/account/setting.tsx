@@ -21,6 +21,7 @@ import {updateUserSuccess} from '../../../redux/store/user/account/types';
 import LoadingFullScreen from '../../conponents/loading';
 import DatePicker from 'react-native-datepicker';
 import AvatarUpload from './component/avatar';
+import ModalPriceList from './component/modalPriceList';
 
 const SettingScreen = ({navigation}: any) => {
   // Language
@@ -195,6 +196,12 @@ const SettingScreen = ({navigation}: any) => {
     }
   };
 
+  // ModalPriceList
+  const [isModalVisible, setModalVisible] = useState(false);
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   return (
     <WrapBgBox>
       <Header
@@ -326,6 +333,30 @@ const SettingScreen = ({navigation}: any) => {
               </View>
             ) : null}
           </View>
+          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+            <Text style={[styles.textSize16White, styles.marginRight10]}>
+              {i18n.t('price_list')}
+            </Text>
+            <TouchableOpacity onPress={toggleModal}>
+              <View style={styles.RowAlignItems}>
+                <Text style={styles.fonsize16White}>
+                  {user?.price_list
+                    ? user?.price_list
+                    : `0 ${i18n.t('parcel')}`}
+                </Text>
+                <MIcon
+                  style={styles.marginRightA5}
+                  name="menu-right"
+                  size={28}
+                  color={'#fff'}
+                />
+              </View>
+            </TouchableOpacity>
+            <ModalPriceList
+              isModalVisible={isModalVisible}
+              onClick={toggleModal}
+            />
+          </View>
           <Text style={[styles.titleBox, styles.paddingTop30]}>
             {i18n.t('other')}
           </Text>
@@ -335,7 +366,12 @@ const SettingScreen = ({navigation}: any) => {
             </Text>
             <View style={styles.RowAlignItems}>
               <LanguageSwitcher />
-              <MIcon name="menu-right" size={20} color={'#fff'} />
+              <MIcon
+                style={styles.marginRightA5}
+                name="menu-right"
+                size={28}
+                color={'#fff'}
+              />
             </View>
           </View>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>
@@ -351,7 +387,6 @@ const SettingScreen = ({navigation}: any) => {
                 ]}>
                 {user?.email}
               </Text>
-              <MIcon name="pencil-off-outline" size={18} color={'#666'} />
             </View>
           </View>
           <View style={[styles.RowBetween, styles.paddingVertical10]}>

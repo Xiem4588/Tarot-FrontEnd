@@ -32,5 +32,8 @@
   "donotaccount": "Bạn chưa có tài khoản?",
   "errorLogin": "Error! Một hoặc nhiều trường có lỗi vui lòng thử lại!",
   "tel": "Số điện thoại",
-  "changepassword": "Đặt lại mật khẩu"
+  "changepassword": "Đặt lại mật khẩu",
+  "price_list": "Bảng giá",
+  "parcel": "gói",
+  "cancel": "Hủy"
 }

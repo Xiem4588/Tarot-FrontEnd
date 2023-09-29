@@ -32,5 +32,8 @@
   "donotaccount": "Do not have an account?",
   "errorLogin": "Error! One or more fields have an error, please try again!",
   "tel": "Phone number",
-  "changepassword": "Change password"
+  "changepassword": "Change password",
+  "price_list": "Price list",
+  "parcel": "parcel",
+  "cancel": "Cancel"
 }
