@@ -21,7 +21,7 @@ import {updateUserSuccess} from '../../../redux/store/user/actions';
 import LoadingFullScreen from '../../conponents/loading';
 import DatePicker from 'react-native-datepicker';
 import AvatarUpload from './component/avatar';
-import ModalPriceList from './component/modalPriceList';
+import ModalPriceList from './component/priceModal';
 
 const SettingScreen = ({navigation}: any) => {
   // Language
