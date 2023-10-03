@@ -217,7 +217,7 @@ const SettingScreen = ({navigation}: any) => {
         </View>
         <View style={styles.paddingHorizontal18}>
           <Text style={styles.titleBox}>{i18n.t('account')}</Text>
-          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+          <View style={[styles.RowCenterBetween, styles.paddingVertical10]}>
             <Text style={[styles.textSize16White, styles.marginRight10]}>
               {i18n.t('name')}
             </Text>
@@ -286,7 +286,7 @@ const SettingScreen = ({navigation}: any) => {
             </View>
           </View>
           <View>
-            <View style={[styles.RowBetween, styles.paddingVertical10]}>
+            <View style={[styles.RowCenterBetween, styles.paddingVertical10]}>
               <Text
                 style={[
                   styles.textSize16White,
@@ -333,7 +333,7 @@ const SettingScreen = ({navigation}: any) => {
               </View>
             ) : null}
           </View>
-          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+          <View style={[styles.RowCenterBetween, styles.paddingVertical10]}>
             <Text style={[styles.textSize16White, styles.marginRight10]}>
               {i18n.t('price_list')}
             </Text>
@@ -360,7 +360,7 @@ const SettingScreen = ({navigation}: any) => {
           <Text style={[styles.titleBox, styles.paddingTop30]}>
             {i18n.t('other')}
           </Text>
-          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+          <View style={[styles.RowCenterBetween, styles.paddingVertical10]}>
             <Text style={[styles.textSize16White, styles.marginRight10]}>
               {i18n.t('language')}
             </Text>
@@ -374,7 +374,7 @@ const SettingScreen = ({navigation}: any) => {
               />
             </View>
           </View>
-          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+          <View style={[styles.RowCenterBetween, styles.paddingVertical10]}>
             <Text style={[styles.textSize16White, styles.marginRight10]}>
               {i18n.t('Email')}
             </Text>
@@ -389,7 +389,7 @@ const SettingScreen = ({navigation}: any) => {
               </Text>
             </View>
           </View>
-          <View style={[styles.RowBetween, styles.paddingVertical10]}>
+          <View style={[styles.RowCenterBetween, styles.paddingVertical10]}>
             <Text style={[styles.textSize16White, styles.marginRight10]}>
               {i18n.t('tel')}
             </Text>
@@ -427,7 +427,7 @@ const SettingScreen = ({navigation}: any) => {
             </View>
           )}
           <View>
-            <View style={[styles.RowBetween, styles.paddingVertical10]}>
+            <View style={[styles.RowCenterBetween, styles.paddingVertical10]}>
               <Text style={[styles.textSize16White, styles.marginRight10]}>
                 {i18n.t('changepassword')}
               </Text>
