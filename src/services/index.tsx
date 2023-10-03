@@ -34,7 +34,7 @@ export const getTypeUser = async (routes: string) => {
 };
 
 // ************ GET routes
-export const getUserDetail = async (routes: string) => {
+export const getUSERDETAIL = async (routes: string) => {
   try {
     const url = `/users/${routes}`;
     const res = await axiosClient.get(url);
@@ -56,7 +56,7 @@ export const apiAccount = async (routes: string, data: object) => {
   }
 };
 
-// ************ PUT update user
+// ************ PUT update user & Express add price pack
 export const apiUpdateAccount = async (
   routes: string,
   data: object,
@@ -64,14 +64,14 @@ export const apiUpdateAccount = async (
 ) => {
   try {
     const url = `/users/${routes}`;
-    const settingUserAccount = axios.create({
+    const settingACCOUNTDATA = axios.create({
       baseURL: hot,
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     });
-    const res = await settingUserAccount.put(url, data);
+    const res = await settingACCOUNTDATA.put(url, data);
     return res.data;
   } catch (error) {
     throw error; // Re-throw the error

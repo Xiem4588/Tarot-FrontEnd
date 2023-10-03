@@ -4,11 +4,11 @@ import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
 import Header from '../../../conponents/header';
 import Infor from './infor';
-import Pack from './pack';
+import PricePack from './pricePack';
 import DateTime from './datetime';
-import {getUserDetail} from '../../../services';
+import {getUSERDETAIL} from '../../../services';
 import {useDispatch} from 'react-redux';
-import {detailUserSuccess} from '../../../redux/store/user/account/types';
+import {detailUserSuccess} from '../../../redux/store/user/actions';
 // Props
 type bookingProps = {
   navigation: any;
@@ -20,9 +20,9 @@ const BookingScreen = ({navigation, route}: bookingProps) => {
 
   useEffect(() => {
     const userId = route.params.id;
-    const userDetail = async () => {
+    const USERDETAIL = async () => {
       try {
-        const res = await getUserDetail(userId);
+        const res = await getUSERDETAIL(userId);
         const userData = res.data;
         console.log('5432534234', userData);
         dispatch(detailUserSuccess(userData)); // gọi action cập nhật store
@@ -31,7 +31,7 @@ const BookingScreen = ({navigation, route}: bookingProps) => {
         console.error('Lỗi khi lấy thông tin người dùng', error);
       }
     };
-    userDetail();
+    USERDETAIL();
   }, [dispatch, route.params]);
 
   return (
@@ -40,7 +40,7 @@ const BookingScreen = ({navigation, route}: bookingProps) => {
       <View style={[styles.detailUserBooking]}>
         <Infor />
         <ScrollView>
-          <Pack />
+          <PricePack />
           <DateTime navigation={navigation} />
         </ScrollView>
       </View>

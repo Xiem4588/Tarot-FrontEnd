@@ -73,7 +73,7 @@ const Item = ({id, title, describe, price}: ItemProps) => (
   </View>
 );
 
-const Pack = () => {
+const PricePack = () => {
   // Shop
   const renderItem = ({item}: {item: ItemProps}) => (
     <Item
@@ -106,4 +106,4 @@ const Pack = () => {
   );
 };
 
-export default Pack;
+export default PricePack;

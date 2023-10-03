@@ -80,7 +80,7 @@ const ScreenToday = ({navigation}: any) => {
                   Hãy đón nhận những thông điệp theo một cách tích cực.
                 </Text>
               </View>
-              <View style={[styles.width120, styles.alignCenter]}>
+              <View style={[styles.boxIconwidth120, styles.alignCenter]}>
                 <Image source={images.hand} style={styles.IconHand} />
               </View>
             </View>

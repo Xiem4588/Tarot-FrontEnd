@@ -84,7 +84,7 @@ const TarotCardSelector = ({navigation, route}: chooseProps) => {
           ]}>
           <View>
             <View style={[styles.alignCenter]}>
-              <Text style={[styles.fonsize14White, styles.alignCenter]}>
+              <Text style={[styles.fontsize14White, styles.alignCenter]}>
                 Chọn lá bài
               </Text>
             </View>

@@ -1,22 +1,24 @@
 import {
-  AccountState,
-  AccountActionTypes,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   UPDATE_USER_SUCCESS,
+  ADD_PRICEPACK_SUCCESS,
   LOG_OUT,
-  DETAIL_USER,
+  AccountState,
 } from './types';
 
-const accState: AccountState = {
+import {AccountActionTypes} from './actions';
+
+const userState: AccountState = {
   error: null,
   loading: false,
   token: null,
   user: null,
+  pricePack: null,
 };
 
-const userAccount = (state = accState, action: AccountActionTypes) => {
+const ACCOUNTDATA = (state = userState, action: AccountActionTypes) => {
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
@@ -35,7 +37,14 @@ const userAccount = (state = accState, action: AccountActionTypes) => {
       return {
         ...state,
         loading: false,
-        user: action.payload.user, // Cập nhật thông tin người dùng mới
+        user: action.payload.user, // aupdate user
+        error: null,
+      };
+    case ADD_PRICEPACK_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        pack: action.payload.pricePack, // add pack
         error: null,
       };
     case LOGIN_FAILURE:
@@ -58,25 +67,4 @@ const userAccount = (state = accState, action: AccountActionTypes) => {
   }
 };
 
-// detail
-const detailState: AccountState = {
-  error: null,
-  loading: false,
-  token: null,
-  user: null,
-};
-const userDetail = (state = detailState, action: AccountActionTypes) => {
-  switch (action.type) {
-    case DETAIL_USER:
-      return {
-        ...state,
-        loading: false,
-        user: action.payload.user, // Cập nhật thông tin người dùng mới
-        error: null,
-      };
-    default:
-      return state;
-  }
-};
-
-export {userAccount, userDetail};
+export default ACCOUNTDATA;

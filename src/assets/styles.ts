@@ -824,6 +824,9 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  flexDirection: {
+    flexDirection: 'row',
+  },
   RowBetweendEnd: {
     flexDirection: 'row',
     alignContent: 'space-around',
@@ -858,7 +861,7 @@ export const styles = StyleSheet.create({
     width: 40,
     paddingLeft: 20,
   },
-  width120: {
+  boxIconwidth120: {
     width: 120,
     paddingLeft: 10,
     fontFamily: 'Montserrat',
@@ -931,45 +934,45 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
     fontFamily: 'Montserrat',
   },
-  fonsize10White: {
+  fontsize10White: {
     fontSize: 10,
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
   },
-  fonsize12White: {
+  fontsize12White: {
     fontSize: 12,
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
   },
-  fonsize14White: {
+  fontsize14White: {
     fontSize: 14,
     lineHeight: 18,
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
   },
-  fonsize16White: {
+  fontsize16White: {
     fontSize: 16,
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
   },
-  fonsize18White: {
+  fontsize18White: {
     fontSize: 18,
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
   },
-  fonsize24White: {
+  fontsize24White: {
     fontSize: 24,
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
     fontWeight: '600',
   },
-  fonsize20White: {
+  fontsize20White: {
     fontSize: 20,
     color: '#FFFFFF',
     fontFamily: 'Montserrat',
     fontWeight: '600',
   },
-  fonsize32White: {
+  fontsize32White: {
     fontSize: 32,
     color: '#FFFFFF',
   },
@@ -1540,5 +1543,24 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 99,
+  },
+  boxPriceList: {
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 10,
+    flex: 1,
+    marginBottom: 18,
+  },
+  lineItem: {
+    color: '#000',
+    fontFamily: 'Montserrat',
+    fontSize: 14,
+    marginVertical: 5,
+    paddingVertical: 5,
+  },
+  borderImgDashed: {
+    height: 1,
+    width: '100%',
   },
 });

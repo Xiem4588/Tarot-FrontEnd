@@ -39,10 +39,10 @@ const ScreenExperts = ({navigation}: navProps) => {
     <View style={[styles.flexBox, styles.paddingTop90]}>
       <ScrollView>
         <View style={[styles.paddingHorizontal18]}>
-          <Text style={[styles.fonsize20White]}>Chuyên gia xem bài Tarot</Text>
+          <Text style={[styles.fontsize20White]}>Chuyên gia xem bài Tarot</Text>
           <Text
             style={[
-              styles.fonsize14White,
+              styles.fontsize14White,
               styles.paddingVertical10,
               styles.marginBottom10,
             ]}>

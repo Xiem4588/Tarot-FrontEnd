@@ -49,7 +49,7 @@ const ModalComment = ({isID, isModalVisible, onClick}: ModalCommentProps) => {
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={[styles.flexBox]}>
-          <TouchableOpacity onPress={onClick} style={styles.flex1} />
+          <TouchableOpacity onPress={onClick} style={[styles.height30p]} />
           <View style={[styles.modalComment]}>
             <TouchableOpacity
               onPress={onClick}

@@ -28,7 +28,7 @@ const NotifyScreen = ({navigation}: any) => {
                 )}
                 <View style={styles.boxInfo}>
                   <Text style={styles.nameItem}>{item.title}</Text>
-                  <Text style={[styles.fonsize12White, styles.paddingTop5]}>
+                  <Text style={[styles.fontsize12White, styles.paddingTop5]}>
                     {item.content}
                   </Text>
                 </View>

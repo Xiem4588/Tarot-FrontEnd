@@ -1,32 +1,18 @@
-// Khai bao kieu du lieu: https://www.youtube.com/watch?v=PE5swrHeXow&list=PLRhlTlpDUWszyvcZatbnMIAVDBmLr_7kc&index=9
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAILURE = 'LOGIN_FAILURE';
-export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
-export const DETAIL_USER = 'DETAIL_USER';
-export const LOG_OUT = 'LOG_OUT';
+// action gồm 2 thứ là type và payload:
+//+ type là một const
+//+ payload là một object chứ dữ liệu
 
-// khai bao mot bang cua store de check moi noi trong ung dung
-export interface AccountState {
-  user: AuthenticatedUser | null;
-  loading: boolean; // check xem login xong chua
-  error: string | null;
-  token: string | null;
-}
-
-// khai bao
-export interface AuthenticatedUser {
-  _id?: string;
-  email: string;
-  tel?: string;
-  fullName?: string;
-  dateOfBirth?: string;
-  desc?: string;
-  avatar?: string;
-  priceList?: string[];
-}
-
-// action gồm 2 thứ là type và payload: type là một const còn payload là một object chứ dữ liệu
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  UPDATE_USER_SUCCESS,
+  ADD_PRICEPACK_SUCCESS,
+  LOG_OUT,
+  DETAIL_USER,
+  PricePackData,
+  AuthenticatedUser,
+} from './types';
 
 interface LoginRequest {
   type: typeof LOGIN_REQUEST;
@@ -76,9 +62,24 @@ interface UserIdAction {
     user: AuthenticatedUser; // Thông tin người dùng sau khi cập nhật
   };
 }
+
 export const detailUserSuccess = (user: AuthenticatedUser): UserIdAction => ({
   type: DETAIL_USER,
   payload: {user},
+});
+
+// khai bao price pack
+interface addPricePack {
+  type: typeof ADD_PRICEPACK_SUCCESS;
+  payload: {
+    pricePack: PricePackData; // Thông tin người dùng sau khi cập nhật
+  };
+}
+export const addPricePackSuccess = (
+  pricePack: PricePackData,
+): addPricePack => ({
+  type: ADD_PRICEPACK_SUCCESS,
+  payload: {pricePack},
 });
 
 // export cac interface
@@ -88,4 +89,5 @@ export type AccountActionTypes =
   | LoginFailure
   | UpdateUserSuccessAction
   | UserIdAction
+  | addPricePack
   | Logout;

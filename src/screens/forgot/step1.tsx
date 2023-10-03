@@ -58,7 +58,7 @@ const ForgotPassword = ({
         />
       </View>
       <View style={styles.marginBottom20}>
-        <Text style={styles.fonsize16White}>
+        <Text style={styles.fontsize16White}>
           Chọn thông tin liên lạc để đặt lại mật khẩu
         </Text>
       </View>

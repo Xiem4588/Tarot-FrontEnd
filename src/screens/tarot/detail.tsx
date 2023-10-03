@@ -130,7 +130,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                 styles.paddingTop50,
               ]}>
               <View style={[styles.alignCenter, styles.paddingVertical10]}>
-                <Text style={[styles.fonsize32White, styles.fontAbhayaLibre]}>
+                <Text style={[styles.fontsize32White, styles.fontAbhayaLibre]}>
                   {isDetail?.cardName}
                 </Text>
                 {/* <Text style={styles.textOrange}>

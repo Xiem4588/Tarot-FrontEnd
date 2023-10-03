@@ -70,7 +70,7 @@ const ForgotStepThree = ({navigation}: ForgotProps) => {
     <View style={[styles.marginTop50, styles.flexBox]}>
       <View>
         <View style={styles.marginBottom20}>
-          <Text style={[styles.fonsize16White]}>Tạo mật khẩu mới</Text>
+          <Text style={[styles.fontsize16White]}>Tạo mật khẩu mới</Text>
         </View>
         <View style={styles.inputContainer}>
           <IconMateria

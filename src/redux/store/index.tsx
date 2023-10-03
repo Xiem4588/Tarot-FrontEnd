@@ -1,13 +1,13 @@
 // index store
 import thunkMiddleware from 'redux-thunk';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
-import {userAccount, userDetail} from './user/account/reducer';
+import {USERDETAIL, ACCOUNTDATA} from './user/reducer';
 import {persistReducer, persistStore} from 'redux-persist'; //lưu trữ và khôi phục dữ liệu từ AsyncStorage khi mo lai app
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const rootReducer = combineReducers({
-  userAccount: userAccount,
-  userDetail: userDetail,
+  ACCOUNTDATA: ACCOUNTDATA,
+  USERDETAIL: USERDETAIL,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
@@ -16,7 +16,7 @@ export type AppState = ReturnType<typeof rootReducer>;
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['userAccount', 'userDetail'], // Đặt các reducer bạn muốn lưu vào đây
+  whitelist: ['ACCOUNTDATA', 'USERDETAIL'], // Đặt các reducer bạn muốn lưu vào đây
 };
 
 // Áp dụng Redux Persist cho rootReducer

@@ -17,7 +17,7 @@ import {useTranslation} from 'react-i18next';
 import i18n from '../../../languages/i18n';
 import {useDispatch, useSelector} from 'react-redux';
 import {apiUpdateAccount} from '../../../services';
-import {updateUserSuccess} from '../../../redux/store/user/account/types';
+import {updateUserSuccess} from '../../../redux/store/user/actions';
 import LoadingFullScreen from '../../conponents/loading';
 import DatePicker from 'react-native-datepicker';
 import AvatarUpload from './component/avatar';
@@ -28,8 +28,8 @@ const SettingScreen = ({navigation}: any) => {
   useTranslation();
 
   // get data from store
-  const user = useSelector((state: any) => state.userAccount.user);
-  const token = useSelector((state: any) => state.userAccount.token);
+  const user = useSelector((state: any) => state.ACCOUNTDATA.user);
+  const token = useSelector((state: any) => state.ACCOUNTDATA.token);
 
   // Xóa token khỏi AsyncStorage khi người dùng đăng xuất
   const dispatch = useDispatch();
@@ -227,7 +227,7 @@ const SettingScreen = ({navigation}: any) => {
                 style={[
                   styles.inputTransparent,
                   styles.marginRight10,
-                  styles.fonsize16White,
+                  styles.fontsize16White,
                   styles.maxWidth130,
                 ]}
                 defaultValue={user?.fullName ? user?.fullName : isName}
@@ -301,7 +301,7 @@ const SettingScreen = ({navigation}: any) => {
                     style={[
                       styles.inputTransparent,
                       styles.marginRight10,
-                      styles.fonsize16White,
+                      styles.fontsize16White,
                       styles.maxWidth130,
                     ]}
                     value={user?.desc ? user.desc : null}
@@ -323,7 +323,7 @@ const SettingScreen = ({navigation}: any) => {
                       styles.width100p,
                       styles.borderBottomGray,
                       styles.paddingBottom10,
-                      styles.fonsize16White,
+                      styles.fontsize16White,
                     ]}
                     defaultValue={user?.desc ? user.desc : null}
                     placeholder={String(i18n.t('Enter new status'))}
@@ -339,7 +339,7 @@ const SettingScreen = ({navigation}: any) => {
             </Text>
             <TouchableOpacity onPress={toggleModal}>
               <View style={styles.RowAlignItems}>
-                <Text style={styles.fonsize16White}>
+                <Text style={styles.fontsize16White}>
                   {user?.price_list
                     ? user?.price_list
                     : `0 ${i18n.t('parcel')}`}
@@ -399,7 +399,7 @@ const SettingScreen = ({navigation}: any) => {
                 style={[
                   styles.inputTransparent,
                   styles.marginRight10,
-                  styles.fonsize16White,
+                  styles.fontsize16White,
                   styles.maxWidth130,
                 ]}
                 defaultValue={user?.tel ? user?.tel : isTelValue}
@@ -437,7 +437,7 @@ const SettingScreen = ({navigation}: any) => {
                     style={[
                       styles.inputTransparent,
                       styles.marginRight10,
-                      styles.fonsize16White,
+                      styles.fontsize16White,
                     ]}
                     value={'***************'}
                     editable={false}
@@ -454,7 +454,7 @@ const SettingScreen = ({navigation}: any) => {
                     style={[
                       styles.inputTransparent,
                       styles.width100p,
-                      styles.fonsize16White,
+                      styles.fontsize16White,
                       styles.borderBottomGray,
                       styles.paddingBottom10,
                     ]}

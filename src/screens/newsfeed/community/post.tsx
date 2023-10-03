@@ -39,8 +39,8 @@ const Post = ({/*handleScroll,*/ IdAuthor}: modalProps) => {
               styles.paddingTop90,
             ]}>
             <View style={[styles.alignCenter, styles.paddingVertical10]}>
-              <Text style={styles.fonsize24White}>{item.card}</Text>
-              <Text style={[styles.fonsize20White]}>{item.title}</Text>
+              <Text style={styles.fontsize24White}>{item.card}</Text>
+              <Text style={[styles.fontsize20White]}>{item.title}</Text>
             </View>
             <View style={[styles.paddingVertical10]}>
               <Image source={images.ImgTarotDeck} style={stylesScreen.image} />
@@ -106,7 +106,7 @@ const Post = ({/*handleScroll,*/ IdAuthor}: modalProps) => {
                   <IconsMateria name="heart-outline" size={24} color={'#fff'} />
                   <Text
                     numberOfLines={1}
-                    style={[styles.fonsize10White, styles.paddingTop5]}>
+                    style={[styles.fontsize10White, styles.paddingTop5]}>
                     {parseInt(item.like, 10).toLocaleString('de-DE', {
                       minimumFractionDigits: 0,
                     })}
@@ -121,7 +121,7 @@ const Post = ({/*handleScroll,*/ IdAuthor}: modalProps) => {
                     />
                     <Text
                       numberOfLines={1}
-                      style={[styles.fonsize10White, styles.paddingTop2]}>
+                      style={[styles.fontsize10White, styles.paddingTop2]}>
                       {parseInt(item.comment, 10).toLocaleString('de-DE', {
                         minimumFractionDigits: 0,
                       })}

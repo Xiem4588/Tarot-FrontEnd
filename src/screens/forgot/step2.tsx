@@ -54,7 +54,7 @@ const ForgotStepTwo = ({selectedButton, handleConfirm}: ForgotProps) => {
   return (
     <View style={[styles.marginTop50]}>
       <View>
-        <Text style={[styles.fonsize16White]}>
+        <Text style={[styles.fontsize16White]}>
           OTP đã được gửi tới{' '}
           <Text style={styles.fontBold}>
             {selectedButton === 'sms' ? hiddenPhone : hiddenEmail}
@@ -85,7 +85,7 @@ const ForgotStepTwo = ({selectedButton, handleConfirm}: ForgotProps) => {
         ))}
       </View>
       <View style={[styles.Row, styles.alignItems, styles.marginBottom30]}>
-        <Text style={styles.fonsize16White}>
+        <Text style={styles.fontsize16White}>
           Thời gian còn lại: <Text style={styles.colorRed}>{seconds}</Text>{' '}
           giây.
         </Text>
@@ -95,7 +95,7 @@ const ForgotStepTwo = ({selectedButton, handleConfirm}: ForgotProps) => {
             onPress={() => setSeconds(60)}>
             <Text
               style={[
-                styles.fonsize16White,
+                styles.fontsize16White,
                 styles.fontBold700,
                 styles.colorOrange,
               ]}>

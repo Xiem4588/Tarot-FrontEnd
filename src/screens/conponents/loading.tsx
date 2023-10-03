@@ -9,7 +9,7 @@ interface Props {
 const LoadingFullScreen = ({notification}: Props) => {
   return (
     <View style={[styles.loadingFullScreen, styles.alignItems]}>
-      <Text style={[styles.fonsize18White]}>{notification}</Text>
+      <Text style={[styles.fontsize18White]}>{notification}</Text>
     </View>
   );
 };
