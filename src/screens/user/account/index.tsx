@@ -13,9 +13,9 @@ const UserProfile = ({navigation}: Props) => {
   const typeUser = getDataStore?.typeUser;
   useEffect(() => {
     if (getDataStore && typeUser === 'Guest') {
-      setCheckUser(true);
-    } else {
       setCheckUser(false);
+    } else {
+      setCheckUser(true);
     }
   }, [getDataStore, typeUser]);
 

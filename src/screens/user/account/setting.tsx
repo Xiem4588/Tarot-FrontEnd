@@ -343,7 +343,7 @@ const SettingScreen = ({navigation}: any) => {
               </View>
             ) : null}
           </View>
-          {user?.typeUser === 'Express' ? (
+          {user?.typeUser === 'Expert' ? (
             <View style={[styles.RowCenterBetween, styles.paddingVertical10]}>
               <Text style={[styles.textSize16White, styles.marginRight10]}>
                 {i18n.t('price_list')}
@@ -477,7 +477,7 @@ const SettingScreen = ({navigation}: any) => {
               </View>
             ) : null}
           </View>
-          {user?.typeUser === 'Express' ? (
+          {user?.typeUser === 'Expert' ? (
             <>
               <Text style={[styles.titleBox, styles.paddingTop30]}>
                 {i18n.t('socialnetwork')}

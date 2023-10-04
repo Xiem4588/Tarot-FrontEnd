@@ -8,16 +8,16 @@ import {
   ActivityIndicator,
   ScrollView,
 } from 'react-native';
-import {Avatar} from 'react-native-elements';
 import {images, icon} from '../../assets/constants';
 import {styles} from '../../assets/styles';
 import WrapBgBox from '../../conponents/wrapBgBox';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import GoogleAdsBannerAd from '../../googleAds/_bannerAd';
+import {useSelector} from 'react-redux';
 const ScreenToday = ({navigation}: any) => {
+  const user = useSelector((state: any) => state.ACCOUNTDATA?.user);
   const [isLoading, setIsLoading] = useState(false);
   const [isCategory, setCategory] = useState(String);
-  const isAvatar = true;
   const handlePress = (value: string) => {
     if (value === 'all') {
       setIsLoading(true); // Bắt đầu hiển thị trạng thái loading
@@ -47,19 +47,23 @@ const ScreenToday = ({navigation}: any) => {
           <Image source={icon.iconStar} style={styles.IconStarBg} />
           <View style={[styles.paddingBox]}>
             <View style={styles.RowAlignItems}>
-              <Avatar
-                size={48}
-                rounded
-                source={isAvatar ? images.AvatarDemo2 : images.icon_camera}
+              <Image
+                source={images.avatarDefault}
+                style={[styles.avatarProfileEllipse48]}
               />
-              <Text
-                style={[
-                  styles.marginLeft10,
-                  styles.fontBold700,
-                  styles.colorBlack,
-                ]}>
-                Hi, Mogwrr Ohnf!
-              </Text>
+              {user?.fullName ? (
+                <Text style={[styles.marginLeft10, styles.nameProfile]}>
+                  {user.fullName}
+                </Text>
+              ) : user?.email ? (
+                user?.email
+              ) : (
+                <TouchableOpacity onPress={() => navigation.navigate('user')}>
+                  <Text style={[styles.marginLeft10, styles.nameProfile]}>
+                    Login
+                  </Text>
+                </TouchableOpacity>
+              )}
             </View>
             <View style={styles.RowBetween}>
               <View style={[styles.marginTop20, styles.flex1]}>

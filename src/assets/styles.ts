@@ -395,6 +395,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
   },
+  avatarProfileEllipse48: {
+    width: 48,
+    height: 48,
+    borderRadius: 50,
+    alignContent: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
   nameProfile: {
     fontWeight: '600',
     fontSize: 18,

@@ -91,7 +91,7 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
       if (!isTitle && !isDesc && !isPrice && !isTime) {
         setNotification('Các trường là bắt buộc nhập!');
       } else {
-        const userExpressAddPricePack = {
+        const userExpertAddPricePack = {
           title: isTitle,
           desc: isDesc,
           price: isPrice,
@@ -99,7 +99,7 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
         };
         const res = await apiUpdateAccount(
           'setting',
-          userExpressAddPricePack,
+          userExpertAddPricePack,
           token,
         ); // Gọi API update người dùng
         dispatch(addPricePackSuccess(res.pricePack)); // action update store

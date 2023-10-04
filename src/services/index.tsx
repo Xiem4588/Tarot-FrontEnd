@@ -56,7 +56,7 @@ export const apiAccount = async (routes: string, data: object) => {
   }
 };
 
-// ************ PUT update user & Express add price pack
+// ************ PUT update user & Expert add price pack
 export const apiUpdateAccount = async (
   routes: string,
   data: object,
