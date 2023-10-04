@@ -64,14 +64,14 @@ export const apiUpdateAccount = async (
 ) => {
   try {
     const url = `/users/${routes}`;
-    const settingACCOUNTDATA = axios.create({
+    const updateAccount = axios.create({
       baseURL: hot,
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     });
-    const res = await settingACCOUNTDATA.put(url, data);
+    const res = await updateAccount.put(url, data);
     return res.data;
   } catch (error) {
     throw error; // Re-throw the error

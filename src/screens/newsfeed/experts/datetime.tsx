@@ -14,7 +14,8 @@ type BookingScreenProps = {
   route?: any;
 }; //
 
-const DateTime = ({}: /*navigation, route*/ BookingScreenProps) => {
+const DateTime = ({navigation}: BookingScreenProps) => {
+  //route
   // lay id truyen vao tu url
   // const {id} = route.params;
   // console.log('Id duoc lay tu url', id);
@@ -114,7 +115,7 @@ const DateTime = ({}: /*navigation, route*/ BookingScreenProps) => {
           </Text>
         </View>
         <TouchableOpacity
-          // onPress={() => navigation.navigate('payment', {id: id})}
+          onPress={() => navigation.navigate('payment')} //{id: id}
           style={[styles.buttonTmp, styles.marginBottom50]}>
           <Text style={[styles.buttonText]}>Đặt lịch</Text>
         </TouchableOpacity>

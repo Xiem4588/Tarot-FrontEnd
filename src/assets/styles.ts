@@ -901,8 +901,12 @@ export const styles = StyleSheet.create({
     color: '#9E9E9E',
     fontFamily: 'Montserrat',
   },
-  colorGrrayBold: {
-    color: '#555555',
+  colorGrray6: {
+    color: '#666',
+    fontFamily: 'Montserrat',
+  },
+  colorGrray5: {
+    color: '#555',
     fontFamily: 'Montserrat',
   },
   colorBlack: {

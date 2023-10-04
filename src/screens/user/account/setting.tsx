@@ -29,6 +29,7 @@ const SettingScreen = ({navigation}: any) => {
 
   // get data from store
   const user = useSelector((state: any) => state.ACCOUNTDATA.user);
+  // console.log('----> user', user);
   const token = useSelector((state: any) => state.ACCOUNTDATA.token);
 
   // Xóa token khỏi AsyncStorage khi người dùng đăng xuất
@@ -50,6 +51,8 @@ const SettingScreen = ({navigation}: any) => {
   const [isDesc, setDesc] = useState('');
   const [isTelValue, setTelValue] = useState('');
   const [isPassword, setPassword] = useState('');
+  const [isIntargram, setIntargram] = useState('');
+  const [isFacebook, setFacebook] = useState('');
   const handleChange = (key: string) => (value: string) => {
     switch (key) {
       case 'name':
@@ -66,6 +69,12 @@ const SettingScreen = ({navigation}: any) => {
         break;
       case 'password':
         setPassword(value);
+        break;
+      case 'intargram':
+        setIntargram(value);
+        break;
+      case 'face':
+        setFacebook(value);
         break;
       default:
         break;
@@ -89,6 +98,8 @@ const SettingScreen = ({navigation}: any) => {
   // Toggle
   const [isTogglePass, setTogglePass] = useState(false);
   const [isToggleDesc, setToggleDesc] = useState(false);
+  const [isToggleIntargram, setToggleIntargram] = useState(false);
+  const [isToggleFacebook, setToggleFacebook] = useState(false);
   const handleToggle = (value: string) => {
     switch (value) {
       case 'newPass':
@@ -96,6 +107,12 @@ const SettingScreen = ({navigation}: any) => {
         break;
       case 'desc':
         setToggleDesc(!isToggleDesc);
+        break;
+      case 'intargram':
+        setToggleIntargram(!isToggleIntargram);
+        break;
+      case 'facebook':
+        setToggleFacebook(!isToggleFacebook);
         break;
       default:
         break;
@@ -141,7 +158,10 @@ const SettingScreen = ({navigation}: any) => {
             tel: isTelValue ? isTelValue : user.tel,
             password: isPassword ? isPassword : user.password,
             email: user?.email,
+            intargram: isIntargram ? isIntargram : user.intargram,
+            facebook: isFacebook ? isFacebook : user.facebook,
           };
+          console.log('----> userUpdate 1', userUpdate);
           const res = await apiUpdateAccount('setting', userUpdate, token); // Gọi API update người dùng
           dispatch(updateUserSuccess(res.user)); // gọi action cập nhật store
           setNotification('Cập nhật thành công!'); // Hiển thị thông báo cập nhật thành công
@@ -164,7 +184,10 @@ const SettingScreen = ({navigation}: any) => {
           tel: isTelValue ? isTelValue : user.tel,
           password: isPassword ? isPassword : user.password,
           email: user?.email,
+          intargram: isIntargram ? isIntargram : user.intargram,
+          facebook: isFacebook ? isFacebook : user.facebook,
         };
+        console.log('----> userUpdate 2', userUpdate);
         const res = await apiUpdateAccount('setting', userUpdate, token);
         dispatch(updateUserSuccess(res.user));
         setNotification('Cập nhật thành công!');
@@ -320,30 +343,32 @@ const SettingScreen = ({navigation}: any) => {
               </View>
             ) : null}
           </View>
-          <View style={[styles.RowCenterBetween, styles.paddingVertical10]}>
-            <Text style={[styles.textSize16White, styles.marginRight10]}>
-              {i18n.t('price_list')}
-            </Text>
-            <TouchableOpacity onPress={toggleModal}>
-              <View style={styles.RowAlignItems}>
-                <Text style={styles.fontsize16White}>
-                  {user?.price_list
-                    ? user?.price_list
-                    : `0 ${i18n.t('parcel')}`}
-                </Text>
-                <MIcon
-                  style={styles.marginRightA5}
-                  name="menu-right"
-                  size={28}
-                  color={'#fff'}
-                />
-              </View>
-            </TouchableOpacity>
-            <ModalPriceList
-              isModalVisible={isModalVisible}
-              onClick={toggleModal}
-            />
-          </View>
+          {user?.typeUser === 'Express' ? (
+            <View style={[styles.RowCenterBetween, styles.paddingVertical10]}>
+              <Text style={[styles.textSize16White, styles.marginRight10]}>
+                {i18n.t('price_list')}
+              </Text>
+              <TouchableOpacity onPress={toggleModal}>
+                <View style={styles.RowAlignItems}>
+                  <Text style={styles.fontsize16White}>
+                    {user?.price_list
+                      ? user?.price_list
+                      : `0 ${i18n.t('parcel')}`}
+                  </Text>
+                  <MIcon
+                    style={styles.marginRightA5}
+                    name="menu-right"
+                    size={28}
+                    color={'#fff'}
+                  />
+                </View>
+              </TouchableOpacity>
+              <ModalPriceList
+                isModalVisible={isModalVisible}
+                onClick={toggleModal}
+              />
+            </View>
+          ) : null}
           <Text style={[styles.titleBox, styles.paddingTop30]}>
             {i18n.t('other')}
           </Text>
@@ -369,7 +394,7 @@ const SettingScreen = ({navigation}: any) => {
               <Text
                 style={[
                   styles.textSize16,
-                  styles.colorGrrayBold,
+                  styles.colorGrray5,
                   styles.marginRight5,
                 ]}>
                 {user?.email}
@@ -452,6 +477,115 @@ const SettingScreen = ({navigation}: any) => {
               </View>
             ) : null}
           </View>
+          {user?.typeUser === 'Express' ? (
+            <>
+              <Text style={[styles.titleBox, styles.paddingTop30]}>
+                {i18n.t('socialnetwork')}
+              </Text>
+              <View>
+                <View
+                  style={[styles.RowCenterBetween, styles.paddingVertical10]}>
+                  <Text
+                    style={[
+                      styles.textSize16White,
+                      styles.marginRight10,
+                      styles.width50,
+                    ]}>
+                    {i18n.t('Instagram')}
+                  </Text>
+                  <TouchableOpacity onPress={() => handleToggle('intargram')}>
+                    <View style={[styles.RowAlignItems]}>
+                      <TextInput
+                        style={[
+                          styles.inputTransparent,
+                          styles.marginRight10,
+                          styles.fontsize16White,
+                          styles.maxWidth130,
+                        ]}
+                        value={user?.intargram ? user.intargram : null}
+                        placeholder={
+                          user?.intargram ? user.intargram : 'Update...'
+                        }
+                        editable={false}
+                      />
+                      <View style={styles.boxOverlay} />
+                      <MIcon name="pencil-outline" size={16} color={'#ccc'} />
+                    </View>
+                  </TouchableOpacity>
+                </View>
+                {isToggleIntargram ? (
+                  <View style={[styles.paddingVertical10]}>
+                    <View style={styles.RowAlignItems}>
+                      <TextInput
+                        ref={inputRefs[2]}
+                        style={[
+                          styles.inputTransparent,
+                          styles.width100p,
+                          styles.borderBottomGray,
+                          styles.paddingBottom10,
+                          styles.fontsize16White,
+                        ]}
+                        defaultValue={user?.intargram ? user.intargram : null}
+                        placeholder={String(i18n.t('Add intargram...'))}
+                        onChangeText={handleChange('intargram')}
+                      />
+                    </View>
+                  </View>
+                ) : null}
+              </View>
+              <View>
+                <View
+                  style={[styles.RowCenterBetween, styles.paddingVertical10]}>
+                  <Text
+                    style={[
+                      styles.textSize16White,
+                      styles.marginRight10,
+                      styles.width50,
+                    ]}>
+                    {i18n.t('Facebook')}
+                  </Text>
+                  <TouchableOpacity onPress={() => handleToggle('facebook')}>
+                    <View style={[styles.RowAlignItems]}>
+                      <TextInput
+                        style={[
+                          styles.inputTransparent,
+                          styles.marginRight10,
+                          styles.fontsize16White,
+                          styles.maxWidth130,
+                        ]}
+                        value={user?.facebook ? user.facebook : null}
+                        placeholder={
+                          user?.facebook ? user.facebook : 'Update...'
+                        }
+                        editable={false}
+                      />
+                      <View style={styles.boxOverlay} />
+                      <MIcon name="pencil-outline" size={16} color={'#ccc'} />
+                    </View>
+                  </TouchableOpacity>
+                </View>
+                {isToggleFacebook ? (
+                  <View style={[styles.paddingVertical10]}>
+                    <View style={styles.RowAlignItems}>
+                      <TextInput
+                        ref={inputRefs[2]}
+                        style={[
+                          styles.inputTransparent,
+                          styles.width100p,
+                          styles.borderBottomGray,
+                          styles.paddingBottom10,
+                          styles.fontsize16White,
+                        ]}
+                        defaultValue={user?.facebook ? user.facebook : null}
+                        placeholder={String(i18n.t('Add facebook...'))}
+                        onChangeText={handleChange('facebook')}
+                      />
+                    </View>
+                  </View>
+                ) : null}
+              </View>
+            </>
+          ) : null}
         </View>
         <View
           style={[styles.alignItems, styles.flexBox, styles.marginBottom50]}>

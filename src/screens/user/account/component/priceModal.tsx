@@ -103,10 +103,10 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
           token,
         ); // Gọi API update người dùng
         dispatch(addPricePackSuccess(res.pricePack)); // action update store
-        setNotification('Cập nhật thành công!');
+        setNotification('Thêm mới bảng giá thành công!');
       }
     } catch (error) {
-      setNotification('Không thể cập nhật vui lòng thử lại! (1)');
+      setNotification('Không thể thêm bảng giá giá. Vui lòng kiểm tra lại!');
     }
   };
 
