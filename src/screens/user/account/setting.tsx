@@ -19,7 +19,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {apiUpdateAccount} from '../../../services';
 import {updateUserSuccess} from '../../../redux/store/user/actions';
 import LoadingFullScreen from '../../conponents/loading';
-import DatePicker from 'react-native-datepicker';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import AvatarUpload from './component/avatar';
 import ModalPriceList from './component/priceModal';
 
@@ -115,25 +115,6 @@ const SettingScreen = ({navigation}: any) => {
     inputRefs[index]?.current?.focus();
   };
 
-  // date of birth
-  const handleDateChange = (date: string) => {
-    setDateOfBirth(date);
-  };
-  // Lấy ngày hiện tại
-  const today = new Date();
-  const currentYear = today.getFullYear();
-  const currentMonth = today.getMonth() + 1; // Tháng bắt đầu từ 0
-  const currentDay = today.getDate();
-  // Định dạng ngày hiện tại thành "DD/MM/YYYY"
-  const formattedCurrentDate = `${currentDay}/${currentMonth}/${currentYear}`;
-  // click icon open DatePicker
-  const datePickerRef = useRef<DatePicker | null>(null);
-  const handleIconPress = () => {
-    if (datePickerRef.current) {
-      datePickerRef.current.onPressDate();
-    }
-  };
-
   // check tel
   const [telError, setTelError] = useState('');
   const handleFocus = () => {
@@ -202,6 +183,27 @@ const SettingScreen = ({navigation}: any) => {
     setModalVisible(!isModalVisible);
   };
 
+  //time date of birth
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+  const handleConfirm = (date: any) => {
+    // 1. Lấy ngày, tháng, năm từ đối tượng date
+    const selectedDay = date.getDate(); // Ngay
+    const selectedMonth = date.getMonth() + 1; // Lưu ý: Tháng bắt đầu từ 0
+    const selectedYear = date.getFullYear(); // Nam
+    // 2. Tạo một định dạng mới cho ngày/tháng/năm
+    const formattedDate = `${selectedDay}/${selectedMonth}/${selectedYear}`;
+    // 3. Lưu trữ ngày đã được chọn
+    setDateOfBirth(formattedDate);
+    // 4. Đóng DatePickerModal
+    hideDatePicker();
+  };
+
   return (
     <WrapBgBox>
       <Header
@@ -250,38 +252,23 @@ const SettingScreen = ({navigation}: any) => {
               {i18n.t('birth')}
             </Text>
             <View style={styles.RowAlignItems}>
-              <DatePicker
-                ref={datePickerRef}
-                date={
-                  isDateOfBirth
-                    ? isDateOfBirth
-                    : user?.dateOfBirth
-                    ? user.dateOfBirth
-                    : null
-                }
+              <DateTimePickerModal
+                isVisible={isDatePickerVisible}
                 mode="date"
-                placeholder="DD/MM/YYYY"
-                format="DD/MM/YYYY"
-                minDate="01/01/1900"
-                maxDate={formattedCurrentDate}
-                confirmBtnText="Confirm"
-                cancelBtnText="Cancel"
-                showIcon={false}
-                customStyles={{
-                  dateInput: {
-                    borderWidth: 0,
-                  },
-                  dateText: {
-                    fontSize: 16,
-                    color: '#fff',
-                    fontFamily: 'Montserrat',
-                    textAlign: 'right',
-                  },
-                }}
-                onDateChange={handleDateChange}
+                onConfirm={handleConfirm}
+                onCancel={hideDatePicker}
               />
-              <TouchableOpacity onPress={handleIconPress}>
-                <MIcon name="pencil-outline" size={16} color={'#ccc'} />
+              <TouchableOpacity onPress={showDatePicker}>
+                <View style={styles.RowAlignItems}>
+                  <Text style={[styles.marginRight10, styles.fontsize16White]}>
+                    {isDateOfBirth
+                      ? isDateOfBirth
+                      : user?.dateOfBirth
+                      ? user.dateOfBirth
+                      : null}
+                  </Text>
+                  <MIcon name="pencil-outline" size={16} color={'#ccc'} />
+                </View>
               </TouchableOpacity>
             </View>
           </View>
