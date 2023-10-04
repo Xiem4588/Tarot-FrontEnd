@@ -107,6 +107,11 @@ Map project
       Trong menu, chọn "Build" > "Build Bundles(s)/APK(s)" > "Build APK(s)".
       Android Studio sẽ tạo ra tệp APK tại android/app/build/outputs/apk/debug/app-debug.apk.
 
+// Một số trường hợp khi khởi chạy trên android bị lỗi khi build ko gọi đc jvascrpt thì chạy lệnh sau:
+
+      mở Command Prompt hoặc Terminal trên máy tính của mình và chạy lệnh
+      `npx react-native start` từ thư mục gốc của dự án React Native của bạn.
+
 // để build apk cho android chạy lệnh sau: (lưu ý với typescript phải sửa index.js -> index.tsx)
 
       npx react-native bundle --platform android --dev false --entry-file index.tsx --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
