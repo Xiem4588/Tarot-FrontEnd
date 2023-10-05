@@ -4,7 +4,7 @@ import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
 import Header from '../../../conponents/header';
 import Infor from './infor';
-import PricePack from './pricePack';
+import PricePack from './price';
 import DateTime from './datetime';
 import {getUSERDETAIL} from '../../../services';
 import {useDispatch} from 'react-redux';
