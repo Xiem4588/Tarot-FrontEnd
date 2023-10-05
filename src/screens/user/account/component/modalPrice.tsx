@@ -42,6 +42,7 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
   // Get data box price list
   const dispatch = useDispatch();
   interface PackData {
+    id: string;
     title: string;
     desc: string;
     price: string;
@@ -84,26 +85,51 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
       return () => clearTimeout(timer);
     }
   }, [notification]);
-  //
+
+  // add price pack
+  const [isNewItemPrice, setNewItemPrice] = useState<PackData[]>([]);
+  const [isNotify, setNotify] = useState(String || null);
+
+  const currentTime = new Date();
+  const year = currentTime.getFullYear(); // Lấy năm hiện tại
+  const month = currentTime.getMonth() + 1; // Lấy tháng hiện tại (0-11), cộng thêm 1 để chuyển sang (1-12)
+  const date = currentTime.getDate(); // Lấy ngày hiện tại (1-31)
+  const hours = currentTime.getHours(); // Lấy giờ hiện tại (0-23)
+  const minutes = currentTime.getMinutes(); // Lấy phút hiện tại (0-59)
+  const milliseconds = currentTime.getMilliseconds(); // Lấy mili giây hiện tại (0-999)
+
+  const userExpertAddPricePack = {
+    id: `${year}${month}${date}${hours}${minutes}${milliseconds}`,
+    title: isTitle ? isTitle : '',
+    desc: isDesc ? isDesc : '',
+    price: isPrice ? isPrice : '',
+    time: isTime ? isTime : '',
+  };
+
+  const handAddItemPrice = () => {
+    if (isTitle !== '' && isDesc !== '' && isPrice !== '' && isTime !== '') {
+      setNewItemPrice(prevItems => [...prevItems, userExpertAddPricePack]);
+      setTitle('');
+      setDesc('');
+      setPrice('');
+      setTime('');
+      setNotify('');
+      return 'Done!';
+    } else {
+      setNotify('Các trường là bắt buộc nhập');
+      return 'Error!';
+    }
+  };
   const handleSubmitPack = async () => {
     setNotification('Loading...'); // Hiển loading
     try {
-      if (!isTitle && !isDesc && !isPrice && !isTime) {
-        setNotification('Các trường là bắt buộc nhập!');
-      } else {
-        const userExpertAddPricePack = {
-          title: isTitle,
-          desc: isDesc,
-          price: isPrice,
-          time: isTime,
-        };
-        const res = await apiUpdateAccount(
-          'setting',
-          userExpertAddPricePack,
-          token,
-        ); // Gọi API update người dùng
+      if (isNewItemPrice.length > 0) {
+        const res = await apiUpdateAccount('setting', isNewItemPrice, token); // Gọi API update người dùng
         dispatch(addPricePackSuccess(res.pricePack)); // action update store
-        setNotification('Thêm mới bảng giá thành công!');
+        onClick();
+      } else {
+        setNotify('Không có gói mới nào được tạo?');
+        setNotification('Không có gói mới nào được tạo?');
       }
     } catch (error) {
       setNotification('Không thể thêm bảng giá giá. Vui lòng kiểm tra lại!');
@@ -163,32 +189,93 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
               <View style={[styles.paddingHorizontal18, styles.marginBottom30]}>
                 <ScrollView>
                   {setPackData
-                    ? setPackData.map((item: PackData, key: string) => (
-                        <View key={key} style={styles.boxPriceList}>
-                          <Text style={[styles.lineItem, styles.fontBold]}>
-                            {item.title}
-                          </Text>
+                    ? setPackData.map((item: PackData, index: string) => (
+                        <View key={index} style={styles.boxPriceList}>
+                          <TextInput
+                            style={[styles.lineItem]}
+                            value={item.title}
+                            onChangeText={handleAddPack('title')}
+                            placeholder={String(i18n.t('Tiêu đề'))}
+                          />
                           <ImageBackground
                             source={images.borderLineDashed}
                             style={styles.borderImgDashed}
                           />
-                          <Text style={[styles.lineItem]}>{item.desc}</Text>
+                          <TextInput
+                            style={[styles.lineItem]}
+                            value={item.desc}
+                            onChangeText={handleAddPack('desc')}
+                            placeholder={String(i18n.t('Mô tả'))}
+                          />
                           <ImageBackground
                             source={images.borderLineDashed}
                             style={styles.borderImgDashed}
                           />
-                          <Text style={[styles.lineItem]}>{item.price}</Text>
+                          <TextInput
+                            style={[styles.lineItem]}
+                            value={item.price}
+                            onChangeText={handleAddPack('price')}
+                            placeholder={String(i18n.t('Giá'))}
+                          />
                           <ImageBackground
                             source={images.borderLineDashed}
                             style={styles.borderImgDashed}
                           />
-                          <Text style={[styles.lineItem]}>{item.time}</Text>
+                          <TextInput
+                            style={[styles.lineItem]}
+                            value={item.time}
+                            onChangeText={handleAddPack('time')}
+                            placeholder={String(i18n.t('Thời lượng'))}
+                          />
+                        </View>
+                      ))
+                    : null}
+                  {isNewItemPrice
+                    ? isNewItemPrice.map((item: PackData, index: number) => (
+                        <View key={index} style={styles.boxPriceList}>
+                          <TextInput
+                            style={[styles.lineItem]}
+                            value={item.title}
+                            onChangeText={handleAddPack('title')}
+                            placeholder={String(i18n.t('Tiêu đề'))}
+                          />
+                          <ImageBackground
+                            source={images.borderLineDashed}
+                            style={styles.borderImgDashed}
+                          />
+                          <TextInput
+                            style={[styles.lineItem]}
+                            value={item.desc}
+                            onChangeText={handleAddPack('desc')}
+                            placeholder={String(i18n.t('Mô tả'))}
+                          />
+                          <ImageBackground
+                            source={images.borderLineDashed}
+                            style={styles.borderImgDashed}
+                          />
+                          <TextInput
+                            style={[styles.lineItem]}
+                            value={item.price}
+                            onChangeText={handleAddPack('price')}
+                            placeholder={String(i18n.t('Giá'))}
+                          />
+                          <ImageBackground
+                            source={images.borderLineDashed}
+                            style={styles.borderImgDashed}
+                          />
+                          <TextInput
+                            style={[styles.lineItem]}
+                            value={item.time}
+                            onChangeText={handleAddPack('time')}
+                            placeholder={String(i18n.t('Thời lượng'))}
+                          />
                         </View>
                       ))
                     : ''}
                   <View style={styles.boxPriceList}>
                     <TextInput
                       style={[styles.lineItem]}
+                      value={isTitle}
                       onChangeText={handleAddPack('title')}
                       placeholder={String(i18n.t('Tiêu đề'))}
                     />
@@ -198,6 +285,7 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
                     />
                     <TextInput
                       style={[styles.lineItem]}
+                      value={isDesc}
                       onChangeText={handleAddPack('desc')}
                       placeholder={String(i18n.t('Mô tả'))}
                     />
@@ -207,6 +295,7 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
                     />
                     <TextInput
                       style={[styles.lineItem]}
+                      value={isPrice}
                       onChangeText={handleAddPack('price')}
                       placeholder={String(i18n.t('Giá'))}
                     />
@@ -216,13 +305,27 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
                     />
                     <TextInput
                       style={[styles.lineItem]}
+                      value={isTime}
                       onChangeText={handleAddPack('time')}
                       placeholder={String(i18n.t('Thời lượng'))}
                     />
                   </View>
+                  <Text
+                    style={[
+                      styles.fontSize14,
+                      styles.marginBottom15,
+                      styles.textCenter,
+                      isNotify !== null ? styles.colorRed : styles.colorGreen,
+                    ]}>
+                    {isNotify}
+                  </Text>
                   <TouchableOpacity
-                    style={[styles.flex1, styles.alignCenter]}
-                    onPress={onClick}>
+                    style={[
+                      styles.flex1,
+                      styles.alignCenter,
+                      styles.marginBottom80,
+                    ]}
+                    onPress={handAddItemPrice}>
                     <MIcon name="plus-circle" size={46} color={'#A9B0F5'} />
                   </TouchableOpacity>
                 </ScrollView>
