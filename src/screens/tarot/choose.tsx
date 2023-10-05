@@ -11,8 +11,8 @@ import Carousel from 'react-native-snap-carousel';
 import GoogleAdsInterstitialAd from '../../googleAds/_interstitialAd';
 // get width window
 const screenWidth = Dimensions.get('window').width;
-const itemWidth = screenWidth / 10;
-const totalWidth = itemWidth * 10; // Tổng kích thước của 12 mục
+const itemWidth = screenWidth / 5;
+// const totalWidth = itemWidth * 4; // Tổng kích thước của 12 mục
 
 // props
 type chooseProps = {
@@ -27,9 +27,11 @@ type Item = {
 
 // lấy ra 76 lá bài với đường dẫn image
 const TarotCardSelector = ({navigation, route}: chooseProps) => {
+  const [isCardActive, setCardActive] = useState(6);
+  console.log('-----> isCardActive', isCardActive);
   const [isCategory, setCategory] = useState(String);
   const data = Array.from({length: 76}, (_, i) => ({
-    id: String(i + 1),
+    id: String(i),
     image: `${images.imgTarotCardDefault1}`,
   }));
 
@@ -50,16 +52,21 @@ const TarotCardSelector = ({navigation, route}: chooseProps) => {
       <TouchableOpacity
         activeOpacity={1}
         onPress={() => handlePress()}
-        style={styles.TouchabItem}>
-        <Image key={item.id} source={item.image} style={styles.ImageItem} />
+        style={[styles.TouchabItem]}>
+        <Image
+          key={item.id}
+          source={images.imgTarotCardDefault2}
+          style={[styles.ImageItem]}
+        />
+        <Text>{item.id}</Text>
       </TouchableOpacity>
     );
   };
 
   const carouselRef = useRef(null);
-  const layoutCardOffset = (screenWidth - totalWidth) / 2;
+  // const layoutCardOffset = (screenWidth - totalWidth) / 2;
 
-  console.log('screen choose: title >>>>>>', isCategory);
+  console.log('Kiểu xem lá bài: title >>>>>>', isCategory);
 
   return (
     <WrapBgBox>
@@ -100,17 +107,18 @@ const TarotCardSelector = ({navigation, route}: chooseProps) => {
               renderItem={renderItem}
               sliderWidth={screenWidth}
               itemWidth={itemWidth}
-              loop={true}
+              loop={false}
               autoplay={false}
               useScrollView={true}
-              layoutCardOffset={layoutCardOffset}
+              // layoutCardOffset={layoutCardOffset}
               enableMomentum={true}
               decelerationRate={0}
               layout={'default'}
               hasParallaxImages={true}
-              firstItem={76 / 2}
+              firstItem={12 / 2}
               onSnapToItem={(index: number) => {
-                console.log('Item được nhấn:', data[index]);
+                console.log('Item đang active:', data[index]);
+                setCardActive(index);
               }}
             />
           </View>

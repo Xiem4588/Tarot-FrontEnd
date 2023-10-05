@@ -23,6 +23,7 @@ export default {
 
   imgTarotCardDefault: require('../images/imgTarotCard.png'),
   imgTarotCardDefault1: require('../images/imgTarotCard1.png'),
+  imgTarotCardDefault2: require('../images/imgTarotCard2.png'),
   avatarDefault: require('../images/avatar-default.png'),
   borderLineDashed: require('../images/border-line-dashed.png'),
 };

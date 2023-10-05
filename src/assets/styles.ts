@@ -1479,6 +1479,12 @@ export const styles = StyleSheet.create({
     height: 300,
     resizeMode: 'contain',
   },
+  ImageItem1: {
+    width: '100%',
+    height: 300,
+    marginHorizontal: 10,
+    resizeMode: 'contain',
+  },
   TouchabItem: {
     paddingBottom: 100,
     marginHorizontal: -15,
