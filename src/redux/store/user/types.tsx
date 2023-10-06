@@ -21,7 +21,7 @@ export interface AuthenticatedUser {
 }
 
 // khai bao price pack
-export interface PricePackData {
+export interface PriceListData {
   title: string;
   desc: string;
   price: string;
@@ -34,5 +34,5 @@ export interface AccountState {
   error?: string | null;
   token?: string | null;
   user?: AuthenticatedUser | null;
-  pricePack?: PricePackData | null;
+  priceList?: PriceListData | null;
 }

@@ -10,7 +10,7 @@ import {
   ADD_PRICEPACK_SUCCESS,
   LOG_OUT,
   DETAIL_USER,
-  PricePackData,
+  PriceListData,
   AuthenticatedUser,
 } from './types';
 
@@ -69,17 +69,17 @@ export const detailUserSuccess = (user: AuthenticatedUser): UserIdAction => ({
 });
 
 // khai bao price pack
-interface addPricePack {
+interface addPriceList {
   type: typeof ADD_PRICEPACK_SUCCESS;
   payload: {
-    pricePack: PricePackData; // Thông tin người dùng sau khi cập nhật
+    priceList: PriceListData; // Thông tin người dùng sau khi cập nhật
   };
 }
-export const addPricePackSuccess = (
-  pricePack: PricePackData,
-): addPricePack => ({
+export const addPriceListSuccess = (
+  priceList: PriceListData,
+): addPriceList => ({
   type: ADD_PRICEPACK_SUCCESS,
-  payload: {pricePack},
+  payload: {priceList},
 });
 
 // export cac interface
@@ -89,5 +89,5 @@ export type AccountActionTypes =
   | LoginFailure
   | UpdateUserSuccessAction
   | UserIdAction
-  | addPricePack
+  | addPriceList
   | Logout;

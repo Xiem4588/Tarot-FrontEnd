@@ -53,6 +53,7 @@ const SettingScreen = ({navigation}: any) => {
   const [isPassword, setPassword] = useState('');
   const [isIntargram, setIntargram] = useState('');
   const [isFacebook, setFacebook] = useState('');
+  const [isPriceList, setPriceList] = useState([]);
   const handleChange = (key: string) => (value: string) => {
     switch (key) {
       case 'name':
@@ -160,8 +161,9 @@ const SettingScreen = ({navigation}: any) => {
             email: user?.email,
             intargram: isIntargram ? isIntargram : user.intargram,
             facebook: isFacebook ? isFacebook : user.facebook,
+            priceList: isPriceList ? isPriceList : user.priceList,
           };
-          console.log('----> userUpdate 1', userUpdate);
+          console.log('----> 1', userUpdate);
           const res = await apiUpdateAccount('setting', userUpdate, token); // Gọi API update người dùng
           dispatch(updateUserSuccess(res.user)); // gọi action cập nhật store
           setNotification('Cập nhật thành công!'); // Hiển thị thông báo cập nhật thành công
@@ -186,8 +188,9 @@ const SettingScreen = ({navigation}: any) => {
           email: user?.email,
           intargram: isIntargram ? isIntargram : user.intargram,
           facebook: isFacebook ? isFacebook : user.facebook,
+          priceList: isPriceList ? isPriceList : user.priceList,
         };
-        console.log('----> userUpdate 2', userUpdate);
+        console.log('----> 2', userUpdate);
         const res = await apiUpdateAccount('setting', userUpdate, token);
         dispatch(updateUserSuccess(res.user));
         setNotification('Cập nhật thành công!');
@@ -195,7 +198,7 @@ const SettingScreen = ({navigation}: any) => {
         setToggleDesc(false);
         setTelError('');
       } catch (error) {
-        setNotification('Không thể cập nhật vui lòng thử lại! (0)');
+        setNotification('Lỗi(0)');
       }
     }
   };
@@ -204,6 +207,10 @@ const SettingScreen = ({navigation}: any) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
+  };
+
+  const pricePackList = (data: any) => {
+    setPriceList(data);
   };
 
   //time date of birth
@@ -365,7 +372,8 @@ const SettingScreen = ({navigation}: any) => {
               </TouchableOpacity>
               <ModalPriceList
                 isModalVisible={isModalVisible}
-                onClick={toggleModal}
+                toggleModal={toggleModal}
+                pricePackList={pricePackList}
               />
             </View>
           ) : null}

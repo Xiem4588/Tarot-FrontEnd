@@ -15,7 +15,7 @@ const userState: AccountState = {
   loading: false,
   token: null,
   user: null,
-  pricePack: null,
+  priceList: null,
 };
 
 const ACCOUNTDATA = (state = userState, action: AccountActionTypes) => {
@@ -44,7 +44,7 @@ const ACCOUNTDATA = (state = userState, action: AccountActionTypes) => {
       return {
         ...state,
         loading: false,
-        pack: action.payload.pricePack, // add pack
+        pack: action.payload.priceList, // add pack
         error: null,
       };
     case LOGIN_FAILURE:

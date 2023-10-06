@@ -7,7 +7,7 @@ const detailState: AccountState = {
   loading: false,
   token: null,
   user: null,
-  pricePack: null,
+  priceList: null,
 };
 
 const USERDETAIL = (state = detailState, action: AccountActionTypes) => {

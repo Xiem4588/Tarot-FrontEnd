@@ -15,19 +15,22 @@ import GestureRecognizer from 'react-native-swipe-gestures';
 import i18n from '../../../../languages/i18n';
 import {images} from '../../../../assets/constants';
 import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useDispatch, useSelector} from 'react-redux';
 import LoadingFullScreen from '../../../conponents/loading';
-import {addPricePackSuccess} from '../../../../redux/store/user/actions';
-import {apiUpdateAccount} from '../../../../services';
+import {useSelector} from 'react-redux';
 interface ModalPriceListProps {
   isModalVisible: boolean;
-  onClick: () => void;
+  toggleModal: () => void;
+  pricePackList: (data: any) => void;
 }
 
-const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
+const ModalPriceList = ({
+  isModalVisible,
+  toggleModal,
+  pricePackList,
+}: ModalPriceListProps) => {
   // get data from store
-  const setPackData = useSelector((state: any) => state.PackData);
-  const token = useSelector((state: any) => state.ACCOUNTDATA.token);
+  const user = useSelector((state: any) => state.ACCOUNTDATA.user);
+  const priceList = user.priceList;
   //
   const [isModal, setModal] = useState(isModalVisible);
   useEffect(() => {
@@ -40,9 +43,8 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
   };
 
   // Get data box price list
-  const dispatch = useDispatch();
   interface PackData {
-    id: string;
+    created_date: string;
     title: string;
     desc: string;
     price: string;
@@ -76,7 +78,6 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
   const [notification, setNotification] = useState('');
   useEffect(() => {
     if (notification) {
-      // Nếu có thông báo, thiết lập một timeout để tự động ẩn nó sau 3 giây
       const timer = setTimeout(() => {
         setNotification('');
       }, 1000);
@@ -94,12 +95,9 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
   const year = currentTime.getFullYear(); // Lấy năm hiện tại
   const month = currentTime.getMonth() + 1; // Lấy tháng hiện tại (0-11), cộng thêm 1 để chuyển sang (1-12)
   const date = currentTime.getDate(); // Lấy ngày hiện tại (1-31)
-  const hours = currentTime.getHours(); // Lấy giờ hiện tại (0-23)
-  const minutes = currentTime.getMinutes(); // Lấy phút hiện tại (0-59)
-  const milliseconds = currentTime.getMilliseconds(); // Lấy mili giây hiện tại (0-999)
 
   const userExpertAddPricePack = {
-    id: `${year}${month}${date}${hours}${minutes}${milliseconds}`,
+    created_date: `${year}/${month}/${date}`,
     title: isTitle ? isTitle : '',
     desc: isDesc ? isDesc : '',
     price: isPrice ? isPrice : '',
@@ -108,7 +106,7 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
 
   const handAddItemPrice = () => {
     if (isTitle !== '' && isDesc !== '' && isPrice !== '' && isTime !== '') {
-      setNewItemPrice(prevItems => [...prevItems, userExpertAddPricePack]);
+      setNewItemPrice(() => [...priceList, userExpertAddPricePack]);
       setTitle('');
       setDesc('');
       setPrice('');
@@ -120,19 +118,19 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
       return 'Error!';
     }
   };
-  const handleSubmitPack = async () => {
+  const handleSavePrice = async () => {
     setNotification('Loading...'); // Hiển loading
     try {
       if (isNewItemPrice.length > 0) {
-        const res = await apiUpdateAccount('setting', isNewItemPrice, token); // Gọi API update người dùng
-        dispatch(addPricePackSuccess(res.pricePack)); // action update store
-        onClick();
+        pricePackList(isNewItemPrice);
+        toggleModal();
+        setNewItemPrice([]);
       } else {
-        setNotify('Không có gói mới nào được tạo?');
-        setNotification('Không có gói mới nào được tạo?');
+        setNotify('Không có gói nào được tạo!');
+        setNotification('Không có gói nào được tạo!');
       }
     } catch (error) {
-      setNotification('Không thể thêm bảng giá giá. Vui lòng kiểm tra lại!');
+      setNotification('Error! Vui lòng kiểm tra lại!');
     }
   };
 
@@ -140,21 +138,21 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
     <Modal visible={isModal} transparent={true} animationType={'slide'}>
       {notification && <LoadingFullScreen notification={notification} />}
       <GestureRecognizer
-        onSwipeDown={onClick}
+        onSwipeDown={toggleModal}
         config={config}
         style={[styles.flexBox]}>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={[styles.flexBox]}>
-          <TouchableOpacity onPress={onClick} style={[styles.height30p]} />
+          <TouchableOpacity onPress={toggleModal} style={[styles.height30p]} />
           <View style={[styles.modalComment]}>
             <TouchableOpacity
-              onPress={onClick}
+              onPress={toggleModal}
               style={[styles.alignCenter, styles.paddingVertical10]}>
               <View style={styles.closeModal} />
             </TouchableOpacity>
             <View style={[styles.flexDirection, styles.paddingHorizontal18]}>
-              <TouchableOpacity style={styles.flex1} onPress={onClick}>
+              <TouchableOpacity style={styles.flex1} onPress={toggleModal}>
                 <Text
                   style={[
                     styles.textOrange,
@@ -173,7 +171,7 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
                 ]}>
                 {i18n.t('price_list')}
               </Text>
-              <TouchableOpacity style={styles.flex1} onPress={handleSubmitPack}>
+              <TouchableOpacity style={styles.flex1} onPress={handleSavePrice}>
                 <Text
                   style={[
                     styles.textOrange,
@@ -188,8 +186,8 @@ const ModalPriceList = ({isModalVisible, onClick}: ModalPriceListProps) => {
             <View style={styles.marginTop20}>
               <View style={[styles.paddingHorizontal18, styles.marginBottom30]}>
                 <ScrollView>
-                  {setPackData
-                    ? setPackData.map((item: PackData, index: string) => (
+                  {priceList
+                    ? priceList.map((item: PackData, index: string) => (
                         <View key={index} style={styles.boxPriceList}>
                           <TextInput
                             style={[styles.lineItem]}
