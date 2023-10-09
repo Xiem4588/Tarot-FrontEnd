@@ -56,7 +56,9 @@ const ScreenToday = ({navigation}: any) => {
                   {user.fullName}
                 </Text>
               ) : user?.email ? (
-                user?.email
+                <Text style={[styles.marginLeft10, styles.nameProfile]}>
+                  {user?.email}
+                </Text>
               ) : (
                 <TouchableOpacity onPress={() => navigation.navigate('user')}>
                   <Text style={[styles.marginLeft10, styles.nameProfile]}>

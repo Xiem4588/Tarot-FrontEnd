@@ -268,7 +268,8 @@ const SettingScreen = ({navigation}: any) => {
                 ]}
                 defaultValue={user?.fullName ? user?.fullName : isName}
                 onChangeText={handleChange('name')}
-                placeholder={user?.fullName ? user.fullName : 'Full name...'}
+                placeholder={user?.fullName ? user.fullName : 'Tên đầy đủ...'}
+                placeholderTextColor="#555555"
                 editable={true}
               />
               <TouchableOpacity onPress={() => focusInput(0)}>
@@ -301,7 +302,7 @@ const SettingScreen = ({navigation}: any) => {
                       user.dateOfBirth
                     ) : (
                       <Text style={styles.colorGrray5}>
-                        {i18n.t('yyyy/mm/dd')}
+                        {i18n.t('YYYY/ MM/DD')}
                       </Text>
                     )}
                   </Text>
@@ -330,7 +331,8 @@ const SettingScreen = ({navigation}: any) => {
                       styles.maxWidth130,
                     ]}
                     value={user?.desc ? user.desc : null}
-                    placeholder={user?.desc ? user.desc : 'Update...'}
+                    placeholder={user?.desc ? user.desc : 'Nội dung...'}
+                    placeholderTextColor="#555555"
                     editable={false}
                   />
                   <View style={styles.boxOverlay} />
@@ -351,7 +353,8 @@ const SettingScreen = ({navigation}: any) => {
                       styles.fontsize16White,
                     ]}
                     defaultValue={user?.desc ? user.desc : null}
-                    placeholder={String(i18n.t('Enter new status'))}
+                    placeholder={String(i18n.t('Nhập nội dung tại đây...'))}
+                    placeholderTextColor="#555555"
                     onChangeText={handleChange('desc')}
                   />
                 </View>
@@ -435,6 +438,7 @@ const SettingScreen = ({navigation}: any) => {
                 onChangeText={handleChange('tel')}
                 onFocus={handleFocus}
                 placeholder={user?.tel ? user.tel : 'Tel...'}
+                placeholderTextColor="#555555"
               />
               <TouchableOpacity onPress={() => focusInput(3)}>
                 <MIcon name="pencil-outline" size={16} color={'#ccc'} />
@@ -467,7 +471,8 @@ const SettingScreen = ({navigation}: any) => {
                       styles.marginRight10,
                       styles.fontsize16White,
                     ]}
-                    value={'***************'}
+                    placeholder={'Mật khẩu mới...'}
+                    placeholderTextColor="#555555"
                     editable={false}
                   />
                   <View style={styles.boxOverlay} />
@@ -486,7 +491,8 @@ const SettingScreen = ({navigation}: any) => {
                       styles.borderBottomGray,
                       styles.paddingBottom10,
                     ]}
-                    placeholder={String(i18n.t('Enter new password'))}
+                    placeholder={String(i18n.t('Nhập mật khẩu mới tại đây...'))}
+                    placeholderTextColor="#555555"
                     onChangeText={handleChange('password')}
                   />
                 </View>
@@ -522,6 +528,7 @@ const SettingScreen = ({navigation}: any) => {
                         placeholder={
                           user?.intargram ? user.intargram : 'Update...'
                         }
+                        placeholderTextColor="#555555"
                         editable={false}
                       />
                       <View style={styles.boxOverlay} />
@@ -543,6 +550,7 @@ const SettingScreen = ({navigation}: any) => {
                         ]}
                         defaultValue={user?.intargram ? user.intargram : null}
                         placeholder={String(i18n.t('Add intargram...'))}
+                        placeholderTextColor="#555555"
                         onChangeText={handleChange('intargram')}
                       />
                     </View>
@@ -573,6 +581,7 @@ const SettingScreen = ({navigation}: any) => {
                         placeholder={
                           user?.facebook ? user.facebook : 'Update...'
                         }
+                        placeholderTextColor="#555555"
                         editable={false}
                       />
                       <View style={styles.boxOverlay} />
@@ -594,6 +603,7 @@ const SettingScreen = ({navigation}: any) => {
                         ]}
                         defaultValue={user?.facebook ? user.facebook : null}
                         placeholder={String(i18n.t('Add facebook...'))}
+                        placeholderTextColor="#555555"
                         onChangeText={handleChange('facebook')}
                       />
                     </View>
