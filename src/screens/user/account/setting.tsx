@@ -29,6 +29,9 @@ const SettingScreen = ({navigation}: any) => {
 
   // get data from store
   const user = useSelector((state: any) => state.ACCOUNTDATA.user);
+  const priceList = useSelector(
+    (state: any) => state.ACCOUNTDATA.user.priceList,
+  );
   // console.log('----> user', user);
   const token = useSelector((state: any) => state.ACCOUNTDATA.token);
 
@@ -53,7 +56,7 @@ const SettingScreen = ({navigation}: any) => {
   const [isPassword, setPassword] = useState('');
   const [isIntargram, setIntargram] = useState('');
   const [isFacebook, setFacebook] = useState('');
-  const [isPriceList, setPriceList] = useState([]);
+  const [isPriceList, setPriceList] = useState(priceList);
   const handleChange = (key: string) => (value: string) => {
     switch (key) {
       case 'name':
@@ -163,7 +166,7 @@ const SettingScreen = ({navigation}: any) => {
             facebook: isFacebook ? isFacebook : user.facebook,
             priceList: isPriceList ? isPriceList : user.priceList,
           };
-          console.log('----> 1', userUpdate);
+          // console.log('----> 1', userUpdate);
           const res = await apiUpdateAccount('setting', userUpdate, token); // Gọi API update người dùng
           dispatch(updateUserSuccess(res.user)); // gọi action cập nhật store
           setNotification('Cập nhật thành công!'); // Hiển thị thông báo cập nhật thành công
@@ -190,7 +193,7 @@ const SettingScreen = ({navigation}: any) => {
           facebook: isFacebook ? isFacebook : user.facebook,
           priceList: isPriceList ? isPriceList : user.priceList,
         };
-        console.log('----> 2', userUpdate);
+        // console.log('----> 2', userUpdate);
         const res = await apiUpdateAccount('setting', userUpdate, token);
         dispatch(updateUserSuccess(res.user));
         setNotification('Cập nhật thành công!');
@@ -209,8 +212,9 @@ const SettingScreen = ({navigation}: any) => {
     setModalVisible(!isModalVisible);
   };
 
-  const pricePackList = (data: any) => {
-    setPriceList(data);
+  const pricePackList = (data: []) => {
+    const newTotalItem = [...priceList, ...data]; //nối 2 mảng lại với nhau
+    setPriceList(newTotalItem);
   };
 
   //time date of birth
@@ -291,11 +295,15 @@ const SettingScreen = ({navigation}: any) => {
               <TouchableOpacity onPress={showDatePicker}>
                 <View style={styles.RowAlignItems}>
                   <Text style={[styles.marginRight10, styles.fontsize16White]}>
-                    {isDateOfBirth
-                      ? isDateOfBirth
-                      : user?.dateOfBirth
-                      ? user.dateOfBirth
-                      : null}
+                    {isDateOfBirth ? (
+                      isDateOfBirth
+                    ) : user?.dateOfBirth ? (
+                      user.dateOfBirth
+                    ) : (
+                      <Text style={styles.colorGrray5}>
+                        {i18n.t('yyyy/mm/dd')}
+                      </Text>
+                    )}
                   </Text>
                   <MIcon name="pencil-outline" size={16} color={'#ccc'} />
                 </View>
@@ -358,8 +366,8 @@ const SettingScreen = ({navigation}: any) => {
               <TouchableOpacity onPress={toggleModal}>
                 <View style={styles.RowAlignItems}>
                   <Text style={styles.fontsize16White}>
-                    {user?.price_list
-                      ? user?.price_list
+                    {priceList.length > 0
+                      ? `${priceList.length} ${i18n.t('parcel')}`
                       : `0 ${i18n.t('parcel')}`}
                   </Text>
                   <MIcon

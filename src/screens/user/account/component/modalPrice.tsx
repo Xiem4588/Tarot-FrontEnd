@@ -28,9 +28,6 @@ const ModalPriceList = ({
   toggleModal,
   pricePackList,
 }: ModalPriceListProps) => {
-  // get data from store
-  const user = useSelector((state: any) => state.ACCOUNTDATA.user);
-  const priceList = user.priceList;
   //
   const [isModal, setModal] = useState(isModalVisible);
   useEffect(() => {
@@ -43,7 +40,7 @@ const ModalPriceList = ({
   };
 
   // Get data box price list
-  interface PackData {
+  interface itemProps {
     created_date: string;
     title: string;
     desc: string;
@@ -87,16 +84,22 @@ const ModalPriceList = ({
     }
   }, [notification]);
 
+  // get data from store
+  const priceList = useSelector(
+    (state: any) => state.ACCOUNTDATA.user.priceList,
+  );
+
   // add price pack
-  const [isNewItemPrice, setNewItemPrice] = useState<PackData[]>([]);
+  const [isNewItemPrice, setNewItemPrice] = useState<itemProps[]>([]);
   const [isNotify, setNotify] = useState(String || null);
 
+  // date, month, year
   const currentTime = new Date();
-  const year = currentTime.getFullYear(); // Lấy năm hiện tại
-  const month = currentTime.getMonth() + 1; // Lấy tháng hiện tại (0-11), cộng thêm 1 để chuyển sang (1-12)
-  const date = currentTime.getDate(); // Lấy ngày hiện tại (1-31)
+  const year = currentTime.getFullYear();
+  const month = currentTime.getMonth() + 1;
+  const date = currentTime.getDate();
 
-  const userExpertAddPricePack = {
+  const newItem = {
     created_date: `${year}/${month}/${date}`,
     title: isTitle ? isTitle : '',
     desc: isDesc ? isDesc : '',
@@ -106,7 +109,7 @@ const ModalPriceList = ({
 
   const handAddItemPrice = () => {
     if (isTitle !== '' && isDesc !== '' && isPrice !== '' && isTime !== '') {
-      setNewItemPrice(() => [...priceList, userExpertAddPricePack]);
+      setNewItemPrice(prevItems => [...prevItems, newItem]);
       setTitle('');
       setDesc('');
       setPrice('');
@@ -126,8 +129,8 @@ const ModalPriceList = ({
         toggleModal();
         setNewItemPrice([]);
       } else {
-        setNotify('Không có gói nào được tạo!');
-        setNotification('Không có gói nào được tạo!');
+        setNotify('Bạn chưa tạo gói mới?');
+        setNotification('Bạn chưa tạo gói mới?');
       }
     } catch (error) {
       setNotification('Error! Vui lòng kiểm tra lại!');
@@ -179,7 +182,7 @@ const ModalPriceList = ({
                     styles.fontBold600,
                     styles.textRight,
                   ]}>
-                  {i18n.t('save')}
+                  {i18n.t('Done')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -187,7 +190,7 @@ const ModalPriceList = ({
               <View style={[styles.paddingHorizontal18, styles.marginBottom30]}>
                 <ScrollView>
                   {priceList
-                    ? priceList.map((item: PackData, index: string) => (
+                    ? priceList.map((item: itemProps, index: string) => (
                         <View key={index} style={styles.boxPriceList}>
                           <TextInput
                             style={[styles.lineItem]}
@@ -229,7 +232,7 @@ const ModalPriceList = ({
                       ))
                     : null}
                   {isNewItemPrice
-                    ? isNewItemPrice.map((item: PackData, index: number) => (
+                    ? isNewItemPrice.map((item: itemProps, index: number) => (
                         <View key={index} style={styles.boxPriceList}>
                           <TextInput
                             style={[styles.lineItem]}
