@@ -8,7 +8,7 @@ import WrapBgBox from '../../conponents/wrapBgBox';
 import Header from '../../conponents/header';
 import moment from 'moment';
 import Carousel from 'react-native-snap-carousel';
-import GoogleAdsInterstitialAd from '../../googleAds/_interstitialAd';
+// import GoogleAdsInterstitialAd from '../../googleAds/_interstitialAd';
 // get width window
 const screenWidth = Dimensions.get('window').width;
 const itemWidth = screenWidth / 5;
@@ -28,7 +28,7 @@ type Item = {
 // lấy ra 76 lá bài với đường dẫn image
 const TarotCardSelector = ({navigation, route}: chooseProps) => {
   const [isCardActive, setCardActive] = useState(6);
-  console.log('-----> isCardActive', isCardActive);
+  console.log('-----> lá bài đang được active', isCardActive);
   const [isCategory, setCategory] = useState(String);
   const data = Array.from({length: 76}, (_, i) => ({
     id: String(i),
@@ -130,7 +130,7 @@ const TarotCardSelector = ({navigation, route}: chooseProps) => {
           </View>
         </View>
       </View>
-      <GoogleAdsInterstitialAd />
+      {/* <GoogleAdsInterstitialAd /> */}
     </WrapBgBox>
   );
 };

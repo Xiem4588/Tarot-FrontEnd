@@ -8,7 +8,6 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import Header from '../../conponents/header';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../../assets/styles';
 import {apiRoutesMain} from '../../services';
@@ -118,7 +117,19 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
         style={styles.ImageBackgroundCommunity}
       />
       <View style={styles.positionAbsoluteTop}>
-        <Header navigation={navigation} title={''} />
+        <View style={styles.paddingTop50Ios15Adroid}>
+          <View style={[styles.RowBetween, styles.paddingHorizontal18]}>
+            <TouchableOpacity onPress={() => navigation.navigate('tarot')}>
+              <View style={styles.RowCenterBetween}>
+                <IconMateria
+                  name="keyboard-backspace"
+                  size={28}
+                  color="#ffffff"
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
       <View style={styles.backgBlackOpacity08}>
         <ScrollView>
