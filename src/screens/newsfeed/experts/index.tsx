@@ -68,7 +68,9 @@ const ScreenExperts = ({navigation}: navProps) => {
                 <View key={user._id} style={styles.itemTimeline}>
                   <View style={styles.flexBox}>
                     <Text style={[styles.nameItemBlack16]}>
-                      {user.fullName}
+                      {user.fullName
+                        ? user.fullName
+                        : user.email.slice(0, user.email.indexOf('@'))}
                     </Text>
                     <Text
                       numberOfLines={3}
