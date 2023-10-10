@@ -1,4 +1,4 @@
-import USERDETAIL from './userDetail';
-import ACCOUNTDATA from './userData';
+import STORE_USER_DETAIL from './userDetail';
+import STORE_ACCOUNT_DATA from './userData';
 
-export {USERDETAIL, ACCOUNTDATA};
+export {STORE_USER_DETAIL, STORE_ACCOUNT_DATA};

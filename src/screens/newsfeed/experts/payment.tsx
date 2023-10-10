@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -14,17 +14,9 @@ import WrapBgBox from '../../../conponents/wrapBgBox';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import Header from '../../../conponents/header';
-// Props
-type BookingScreenProps = {
-  navigation: any;
-  route: any;
-  customHeader?: React.ReactNode;
-}; //
+import {navProps} from './types';
 
-const ScreenPayment: FC<BookingScreenProps> = ({
-  navigation,
-  route,
-}: BookingScreenProps) => {
+const ScreenPayment = ({navigation, route}: navProps) => {
   // ID item
   const {id} = route.params;
   console.log('>>> nhan id truyen vao', id);

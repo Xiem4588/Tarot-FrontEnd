@@ -11,7 +11,6 @@ const ScreenCommunity = () => {
   const IdAuthor = (id: string) => {
     setModalVisible(!isModalVisible);
     setIsID(id);
-    console.log(isModalVisible);
   };
   // const handleScroll = () => {
   //   if (isModalVisible) {

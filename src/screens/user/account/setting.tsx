@@ -17,7 +17,7 @@ import {useTranslation} from 'react-i18next';
 import i18n from '../../../languages/i18n';
 import {useDispatch, useSelector} from 'react-redux';
 import {apiUpdateAccount} from '../../../services';
-import {updateUserSuccess} from '../../../redux/store/user/actions';
+import {ActionUpdateUser} from '../../../redux/store/user/actions';
 import LoadingFullScreen from '../../conponents/loading';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import AvatarUpload from './component/avatar';
@@ -28,12 +28,12 @@ const SettingScreen = ({navigation}: any) => {
   useTranslation();
 
   // get data from store
-  const user = useSelector((state: any) => state.ACCOUNTDATA.user);
+  const user = useSelector((state: any) => state.STORE_ACCOUNT_DATA.user);
   const priceList = useSelector(
-    (state: any) => state.ACCOUNTDATA.user.priceList,
+    (state: any) => state.STORE_ACCOUNT_DATA.user.priceList,
   );
   // console.log('----> user', user);
-  const token = useSelector((state: any) => state.ACCOUNTDATA.token);
+  const token = useSelector((state: any) => state.STORE_ACCOUNT_DATA.token);
 
   // Xóa token khỏi AsyncStorage khi người dùng đăng xuất
   const dispatch = useDispatch();
@@ -168,7 +168,7 @@ const SettingScreen = ({navigation}: any) => {
           };
           // console.log('----> 1', userUpdate);
           const res = await apiUpdateAccount('setting', userUpdate, token); // Gọi API update người dùng
-          dispatch(updateUserSuccess(res.user)); // gọi action cập nhật store
+          dispatch(ActionUpdateUser(res.user)); // gọi action cập nhật store
           setNotification('Cập nhật thành công!'); // Hiển thị thông báo cập nhật thành công
           setTogglePass(false);
           setToggleDesc(false);
@@ -195,7 +195,7 @@ const SettingScreen = ({navigation}: any) => {
         };
         // console.log('----> 2', userUpdate);
         const res = await apiUpdateAccount('setting', userUpdate, token);
-        dispatch(updateUserSuccess(res.user));
+        dispatch(ActionUpdateUser(res.user));
         setNotification('Cập nhật thành công!');
         setTogglePass(false);
         setToggleDesc(false);

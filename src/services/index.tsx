@@ -33,8 +33,8 @@ export const getTypeUser = async (routes: string) => {
   }
 };
 
-// ************ GET routes
-export const getUSERDETAIL = async (routes: string) => {
+// ************ GET user detail
+export const getUserDetail = async (routes: string) => {
   try {
     const url = `/users/${routes}`;
     const res = await axiosClient.get(url);

@@ -5,16 +5,10 @@ import CalendarPicker from 'react-native-calendar-picker';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import moment from 'moment';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-
+import {navProps} from './types';
 const {width} = Dimensions.get('window');
 
-// Props
-type BookingScreenProps = {
-  navigation: any;
-  route?: any;
-}; //
-
-const DateTime = ({navigation}: BookingScreenProps) => {
+const DateTime = ({navigation}: navProps) => {
   //route
   // lay id truyen vao tu url
   // const {id} = route.params;

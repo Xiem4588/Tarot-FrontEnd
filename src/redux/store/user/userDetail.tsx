@@ -1,8 +1,8 @@
 // user detail
 import {AccountState, DETAIL_USER} from './types';
-import {AccountActionTypes} from './actions';
+import {ACTIONS_REDUCER} from './actions';
 
-const detailState: AccountState = {
+const DetailState: AccountState = {
   error: null,
   loading: false,
   token: null,
@@ -10,7 +10,8 @@ const detailState: AccountState = {
   priceList: null,
 };
 
-const USERDETAIL = (state = detailState, action: AccountActionTypes) => {
+const STORE_USER_DETAIL = (state = DetailState, action: ACTIONS_REDUCER) => {
+  console.log('----> action', action);
   switch (action.type) {
     case DETAIL_USER:
       return {
@@ -24,4 +25,4 @@ const USERDETAIL = (state = detailState, action: AccountActionTypes) => {
   }
 };
 
-export default USERDETAIL;
+export default STORE_USER_DETAIL;

@@ -5,21 +5,7 @@ import {styles} from '../../../assets/styles';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {getTypeUser} from '../../../services';
 import {images} from '../../../assets/constants';
-
-type navProps = {
-  navigation: any;
-};
-interface typeUser {
-  _id: string;
-  fullName: string;
-  email: string;
-  dateOfBirth: string;
-  desc: string;
-  typeUser: string;
-  avatar: any;
-  like: string;
-  view: string;
-}
+import {navProps, typeUser} from './types';
 
 const ScreenExperts = ({navigation}: navProps) => {
   const [isUsers, setUsers] = useState<typeUser[]>([]);
@@ -59,7 +45,9 @@ const ScreenExperts = ({navigation}: navProps) => {
             isUsers.map((user, index) => (
               <TouchableOpacity
                 key={user._id}
-                onPress={() => navigation.navigate('booking', {id: user._id})}
+                onPress={() =>
+                  navigation.navigate('booking', {userID: user._id})
+                }
                 style={[
                   styles.width50,
                   styles.paddingHorizontal9,
@@ -75,11 +63,17 @@ const ScreenExperts = ({navigation}: navProps) => {
                     <Text
                       numberOfLines={3}
                       style={[
-                        styles.fontSize10,
+                        styles.fontSize12,
                         styles.marginBottom10,
                         styles.colorBlack,
                       ]}>
-                      {user.desc ? user.desc : 'Update...'}
+                      {user.desc ? (
+                        user.desc
+                      ) : (
+                        <Text style={[styles.colorGrray5, styles.fontSize10]}>
+                          Không có mô tả nào!
+                        </Text>
+                      )}
                     </Text>
                   </View>
                   <View style={styles.RowBetween}>

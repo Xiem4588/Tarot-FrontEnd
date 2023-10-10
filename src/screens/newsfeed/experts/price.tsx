@@ -1,64 +1,18 @@
 import React from 'react';
 import {View, Text, Dimensions} from 'react-native';
 import Carousel from 'react-native-snap-carousel'; // Import CarouselProps
+import {useSelector} from 'react-redux';
 import {styles} from '../../../assets/styles';
-
+import {ItemProps} from './types';
 const {width} = Dimensions.get('window');
 
-const data = [
-  {
-    id: '1',
-    title: '1 vấn đề',
-    describe: '3 câu hỏi + 1 câu yes/no',
-    price: '150k',
-  },
-  {
-    id: '2',
-    title: '30 phút',
-    describe: 'Không giới hạn câu hỏi, vấn đề + 1 lá thông điệp kết nối',
-    price: '200K',
-  },
-  {
-    id: '3',
-    title: '1 Tiếng',
-    describe: '3 câu hỏi + 1 câu yes/no',
-    price: '300K',
-  },
-  {
-    id: '4',
-    title: '2 Tiếng',
-    describe: '3 câu hỏi + 1 câu yes/no',
-    price: '500k',
-  },
-  {
-    id: '5',
-    title: '3 vấn đề',
-    describe: '3 câu hỏi + 1 câu yes/no',
-    price: '750k',
-  },
-  {
-    id: '6',
-    title: '5 vấn đề',
-    describe: '3 câu hỏi + 1 câu yes/no',
-    price: '1000k',
-  },
-];
-
-// Shop
-type ItemProps = {
-  id: string;
-  title: string;
-  describe: string;
-  price: string;
-};
-
-const Item = ({id, title, describe, price}: ItemProps) => (
-  <View key={id} style={styles.itemCarousel}>
+const Item = ({title, desc, price, time}: ItemProps) => (
+  <View style={styles.itemCarousel}>
     <View>
       <Text style={styles.nameItemBlack16}>{title}</Text>
       <Text
         style={[styles.fontSize12, styles.marginBottom10, styles.colorBlack]}>
-        {describe}
+        {desc}
       </Text>
     </View>
     <Text
@@ -70,17 +24,23 @@ const Item = ({id, title, describe, price}: ItemProps) => (
       ]}>
       {price}
     </Text>
+    <Text>{time}</Text>
   </View>
 );
 
 const PricePack = () => {
+  const user = useSelector((state: any) => state.STORE_USER_DETAIL.user);
+  const priceList = user.priceList;
+  console.log('----> priceList', priceList);
   // Shop
   const renderItem = ({item}: {item: ItemProps}) => (
     <Item
-      id={item.id}
+      _id={item._id}
       title={item.title}
-      describe={item.describe}
+      desc={item.desc}
       price={item.price}
+      time={item.time}
+      created_date={item.created_date}
     />
   );
 
@@ -90,17 +50,24 @@ const PricePack = () => {
         Bảng giá
       </Text>
       <View>
-        <Carousel
-          data={data}
-          renderItem={renderItem}
-          sliderWidth={width}
-          itemWidth={width / 2.4}
-          inactiveSlideScale={1}
-          inactiveSlideOpacity={1}
-          enableMomentum={false}
-          activeSlideAlignment={'start'}
-          containerCustomStyle={styles.carousel}
-        />
+        {priceList.length > 0 ? (
+          <Carousel
+            data={priceList}
+            renderItem={renderItem}
+            sliderWidth={width}
+            itemWidth={width / 2.4}
+            inactiveSlideScale={1}
+            inactiveSlideOpacity={1}
+            enableMomentum={false}
+            activeSlideAlignment={'start'}
+            containerCustomStyle={styles.carousel}
+            scrollEnabled={priceList.length > 2}
+          />
+        ) : (
+          <Text style={[styles.padding18, styles.colorGrray]}>
+            Chưa có bảng giá nào được tạo!
+          </Text>
+        )}
       </View>
     </>
   );

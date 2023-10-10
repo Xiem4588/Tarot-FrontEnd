@@ -3,14 +3,12 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   UPDATE_USER_SUCCESS,
-  ADD_PRICEPACK_SUCCESS,
   LOG_OUT,
   AccountState,
 } from './types';
+import {ACTIONS_REDUCER} from './actions';
 
-import {AccountActionTypes} from './actions';
-
-const userState: AccountState = {
+const UserDataState: AccountState = {
   error: null,
   loading: false,
   token: null,
@@ -18,7 +16,8 @@ const userState: AccountState = {
   priceList: null,
 };
 
-const ACCOUNTDATA = (state = userState, action: AccountActionTypes) => {
+const STORE_ACCOUNT_DATA = (state = UserDataState, action: ACTIONS_REDUCER) => {
+  console.log('----> action', action);
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
@@ -38,13 +37,6 @@ const ACCOUNTDATA = (state = userState, action: AccountActionTypes) => {
         ...state,
         loading: false,
         user: action.payload.user, // aupdate user
-        error: null,
-      };
-    case ADD_PRICEPACK_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        pack: action.payload.priceList, // add pack
         error: null,
       };
     case LOGIN_FAILURE:
@@ -67,4 +59,4 @@ const ACCOUNTDATA = (state = userState, action: AccountActionTypes) => {
   }
 };
 
-export default ACCOUNTDATA;
+export default STORE_ACCOUNT_DATA;

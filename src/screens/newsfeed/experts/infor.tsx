@@ -7,8 +7,7 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useSelector} from 'react-redux';
 
 const Infor = () => {
-  const user = useSelector((state: any) => state.USERDETAIL.user);
-  console.log('0000   ======> user', user);
+  const user = useSelector((state: any) => state.STORE_USER_DETAIL.user);
   return (
     <>
       {user ? (
@@ -25,14 +24,22 @@ const Infor = () => {
             />
           </View>
           <View style={styles.boxInfo}>
-            <Text style={styles.nameItemBlack16}>{user.fullName}</Text>
+            <Text style={styles.nameItemBlack16}>
+              {user.fullName ? user.fullName : user.email}
+            </Text>
             <Text
               style={[
                 styles.fontSize12,
                 styles.marginBottom10,
                 styles.colorBlack,
               ]}>
-              {user.desc}
+              {user.desc ? (
+                user.desc
+              ) : (
+                <Text style={[styles.colorGrray5, styles.fontSize10]}>
+                  Không có mô tả nào!
+                </Text>
+              )}
             </Text>
             <View style={styles.RowAlignItems}>
               <View style={styles.RowAlignItems}>

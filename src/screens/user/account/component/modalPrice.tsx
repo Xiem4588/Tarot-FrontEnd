@@ -86,7 +86,7 @@ const ModalPriceList = ({
 
   // get data from store
   const priceList = useSelector(
-    (state: any) => state.ACCOUNTDATA.user.priceList,
+    (state: any) => state.STORE_ACCOUNT_DATA.user.priceList,
   );
 
   // add price pack

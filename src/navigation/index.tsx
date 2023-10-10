@@ -124,7 +124,7 @@ const StackScreenOptionsHeaderTransparent = ({navigation}: any) => ({
 
 const Navigation = () => {
   // check login
-  const token = useSelector((state: any) => state.ACCOUNTDATA.token);
+  const token = useSelector((state: any) => state.STORE_ACCOUNT_DATA.token);
   return (
     <>
       <WrapBgBox>

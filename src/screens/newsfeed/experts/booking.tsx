@@ -6,32 +6,26 @@ import Header from '../../../conponents/header';
 import Infor from './infor';
 import PricePack from './price';
 import DateTime from './datetime';
-import {getUSERDETAIL} from '../../../services';
+import {getUserDetail} from '../../../services';
 import {useDispatch} from 'react-redux';
-import {detailUserSuccess} from '../../../redux/store/user/actions';
-// Props
-type bookingProps = {
-  navigation: any;
-  route: any;
-};
+import {ActionDetailUser} from '../../../redux/store/user/actions';
+import {navProps} from './types';
 
-const BookingScreen = ({navigation, route}: bookingProps) => {
+const BookingScreen = ({navigation, route}: navProps) => {
   const dispatch = useDispatch();
-
   useEffect(() => {
-    const userId = route.params.id;
-    const USERDETAIL = async () => {
+    const userID = route.params.userID;
+    const userDetail = async () => {
       try {
-        const res = await getUSERDETAIL(userId);
+        const res = await getUserDetail(userID);
         const userData = res.data;
-        console.log('5432534234', userData);
-        dispatch(detailUserSuccess(userData)); // gọi action cập nhật store
+        dispatch(ActionDetailUser(userData)); // gọi action cập nhật store
         return userData;
       } catch (error) {
         console.error('Lỗi khi lấy thông tin người dùng', error);
       }
     };
-    USERDETAIL();
+    userDetail();
   }, [dispatch, route.params]);
 
   return (

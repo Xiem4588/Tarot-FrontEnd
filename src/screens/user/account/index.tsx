@@ -9,7 +9,9 @@ interface Props {
 
 const UserProfile = ({navigation}: Props) => {
   const [isCheckUser, setCheckUser] = useState(false);
-  const getDataStore = useSelector((state: any) => state?.ACCOUNTDATA?.user);
+  const getDataStore = useSelector(
+    (state: any) => state?.STORE_ACCOUNT_DATA?.user,
+  );
   const typeUser = getDataStore?.typeUser;
   useEffect(() => {
     if (getDataStore && typeUser === 'Guest') {
