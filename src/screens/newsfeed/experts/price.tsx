@@ -29,9 +29,9 @@ const Item = ({title, desc, price, time}: ItemProps) => (
 );
 
 const PricePack = () => {
-  const user = useSelector((state: any) => state.STORE_USER_DETAIL.user);
-  const priceList = user.priceList;
-  console.log('----> priceList', priceList);
+  const user = useSelector(
+    (state: any) => state.STORE_USER_DETAIL.user.priceList,
+  );
   // Shop
   const renderItem = ({item}: {item: ItemProps}) => (
     <Item
@@ -50,9 +50,9 @@ const PricePack = () => {
         Bảng giá
       </Text>
       <View>
-        {priceList.length > 0 ? (
+        {user && user!.length > 0 ? (
           <Carousel
-            data={priceList}
+            data={user}
             renderItem={renderItem}
             sliderWidth={width}
             itemWidth={width / 2.4}
@@ -61,7 +61,7 @@ const PricePack = () => {
             enableMomentum={false}
             activeSlideAlignment={'start'}
             containerCustomStyle={styles.carousel}
-            scrollEnabled={priceList.length > 2}
+            scrollEnabled={user.length > 2}
           />
         ) : (
           <Text style={[styles.padding18, styles.colorGrray]}>
