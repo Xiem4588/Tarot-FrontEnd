@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Text} from 'react-native-elements';
 import {TouchableOpacity, View, ScrollView, Image} from 'react-native';
 import {styles} from '../../../assets/styles';
@@ -9,18 +9,16 @@ import {navProps, typeUser} from './types';
 
 const ScreenExperts = ({navigation}: navProps) => {
   const [isUsers, setUsers] = useState<typeUser[]>([]);
-  useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const res = await getTypeUser('expert');
-        const users = res.data;
-        setUsers(users);
-      } catch (error) {
-        return error;
-      }
-    };
-    getUsers();
-  }, []);
+  const getUsers = async () => {
+    try {
+      const res = await getTypeUser('expert');
+      const users = res.data;
+      setUsers(users);
+    } catch (error) {
+      return error;
+    }
+  };
+  getUsers();
   return (
     <View style={[styles.flexBox, styles.paddingTop90]}>
       <ScrollView>
