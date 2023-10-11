@@ -9,11 +9,6 @@ import {navProps} from './types';
 const {width} = Dimensions.get('window');
 
 const DateTime = ({navigation}: navProps) => {
-  //route
-  // lay id truyen vao tu url
-  // const {id} = route.params;
-  // console.log('Id duoc lay tu url', id);
-
   //calendar
   const [selectedStartDate, setSelectedStartDate] = useState<Date>(new Date());
   const onDateChange = (date: any) => {

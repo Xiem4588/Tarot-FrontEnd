@@ -317,6 +317,15 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 'auto',
   },
+  buttonFullDisableWhite: {
+    width: '100%',
+    height: 50,
+    backgroundColor: '#ccc',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    marginTop: 'auto',
+  },
   btnTmpAuto: {
     minWidth: 88,
     padding: 12,
@@ -643,9 +652,11 @@ export const styles = StyleSheet.create({
   },
   fontBold700: {
     fontFamily: 'Montserrat-ExtraBold',
+    fontWeight: 'bold',
   },
   fontBold: {
     fontFamily: 'Montserrat-Bold',
+    fontWeight: 'bold',
   },
   fontMontserrat: {
     fontFamily: 'Montserrat',
@@ -819,6 +830,11 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  RowAlignItemsCenter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   RowAlignItemsRight: {
     flexDirection: 'row',
     alignItems: 'flex-end',
@@ -868,6 +884,11 @@ export const styles = StyleSheet.create({
   width40: {
     width: 40,
     paddingLeft: 20,
+  },
+  scale07: {
+    transform: [{scale: 0.8}],
+    marginRight: 5,
+    marginLeft: -3,
   },
   boxIconwidth120: {
     width: 120,

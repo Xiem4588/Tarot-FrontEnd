@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import {
+  Switch,
   View,
   Text,
   TouchableOpacity,
   Clipboard,
   Modal,
   ScrollView,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {icon, images} from '../../../assets/constants';
@@ -15,11 +17,20 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import Header from '../../../conponents/header';
 import {navProps} from './types';
+import {useSelector} from 'react-redux';
+import Infor from './infor';
 
-const ScreenPayment = ({navigation, route}: navProps) => {
-  // ID item
-  const {id} = route.params;
-  console.log('>>> nhan id truyen vao', id);
+const ScreenPayment = ({navigation}: navProps) => {
+  const user = useSelector((state: any) => state.STORE_USER_DETAIL.user);
+  console.log('----- payment user', user);
+  //
+  const [isChecked, setChecked] = useState(false);
+  const [isCheckPayment, setCheckPayment] = useState(false);
+
+  //
+  const confirmPayment = () => {
+    setCheckPayment(true);
+  };
 
   // Copy click icon
   const copyToClipboard = (text: string) => {
@@ -34,52 +45,7 @@ const ScreenPayment = ({navigation, route}: navProps) => {
       <Header navigation={navigation} name="payment" title={''} />
 
       <View style={[styles.detailUserBooking]}>
-        <View
-          style={[
-            styles.RowAlignItems,
-            styles.paddingHorizontal18,
-            styles.marginBottom20,
-          ]}>
-          <View style={styles.avatarBoxImageTopA}>
-            <Avatar
-              source={images.AvatarDemo1}
-              containerStyle={styles.avatarImage114}
-            />
-          </View>
-          <View style={styles.boxInfo}>
-            <Text style={styles.nameItemBlack16}>Lee Jae‑wook</Text>
-            <Text style={[styles.fontSize12, styles.marginBottom10]}>
-              Có hơn 8 năm kinh nghiệm {'\n'} Có xem khuya & lịch gấp trog ngày
-              (có tính thêm phụ phí)
-            </Text>
-            <View style={styles.RowAlignItems}>
-              <View style={styles.RowAlignItems}>
-                <IconMateria name="heart" size={16} color={'red'} />
-                <Text style={[styles.fontSize12, styles.marginLeft5]}>
-                  14,087
-                </Text>
-              </View>
-              <View style={[styles.RowAlignItems, styles.marginLeft12]}>
-                <IconMateria name="eye-outline" size={16} color={'#000'} />
-                <Text style={[styles.fontSize12, styles.marginLeft5]}>
-                  25,635
-                </Text>
-              </View>
-              <View style={[styles.RowAlignItems, styles.marginLeft12]}>
-                <Avatar
-                  source={icon.iconInstagram}
-                  containerStyle={styles.iconSize12Mgr5}
-                />
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('Instagram')}>
-                  <Text style={[styles.fontSize12, styles.colorBlue]}>
-                    Instagram
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-        </View>
+        <Infor />
         <ScrollView>
           <View style={styles.paddingHorizontal18}>
             <Text>Bạn sẽ liên kết với chuyên gia tại:</Text>
@@ -188,26 +154,59 @@ const ScreenPayment = ({navigation, route}: navProps) => {
                 </Modal>
               </View>
             </View>
-            <View style={[styles.RowAlignItems, styles.marginTop10]}>
-              <IconMateria name="timer-sand" size={14} color="#F78B73" />
-              <Text
+            {isCheckPayment === true ? (
+              <View
                 style={[
-                  styles.fontBold600,
-                  styles.colorOrange,
-                  styles.marginRight10,
+                  styles.RowAlignItemsCenter,
+                  styles.marginTop20,
+                  styles.marginBottom50,
                 ]}>
-                Thanh toán đang chờ xác nhận!
-              </Text>
-            </View>
-            <TouchableOpacity
-              style={[
-                styles.buttonTmp,
-                styles.marginTop20,
-                styles.marginBottom50,
-              ]}
-              onPress={() => navigation.goBack()}>
-              <Text style={styles.buttonText}>Quay lại</Text>
-            </TouchableOpacity>
+                <IconMateria name="timer-sand" size={18} color="#F78B73" />
+                <Text
+                  style={[
+                    styles.fontBold600,
+                    styles.colorOrange,
+                    styles.marginRight10,
+                    styles.fontBold,
+                    styles.fontSize16,
+                  ]}>
+                  Thanh toán đang chờ xác nhận!
+                </Text>
+              </View>
+            ) : (
+              <>
+                <TouchableWithoutFeedback
+                  onPress={() => setChecked(!isChecked)}>
+                  <View
+                    style={[styles.RowAlignItemsCenter, styles.marginTop10]}>
+                    <Switch value={isChecked} style={styles.scale07} />
+                    <Text
+                      style={[
+                        isChecked === false
+                          ? styles.colorOrange
+                          : styles.colorGreen,
+                        styles.fontSize16,
+                        styles.fontBold,
+                      ]}>
+                      Xác nhận đã thanh toán!
+                    </Text>
+                  </View>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback
+                  onPress={isChecked === true ? confirmPayment : () => {}}>
+                  <View
+                    style={[
+                      isChecked === false
+                        ? styles.buttonFullDisableWhite
+                        : styles.buttonTmp,
+                      styles.marginTop20,
+                      styles.marginBottom50,
+                    ]}>
+                    <Text style={styles.buttonText}>Confirm!</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+              </>
+            )}
           </View>
         </ScrollView>
       </View>
