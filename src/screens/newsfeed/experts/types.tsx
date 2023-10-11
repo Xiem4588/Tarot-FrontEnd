@@ -1,13 +1,16 @@
 export interface typeUser {
-  _id: string;
-  fullName: string;
+  _id?: string;
   email: string;
-  dateOfBirth: string;
-  desc: string;
-  typeUser: string;
-  avatar: any;
-  like: string;
-  view: string;
+  password?: string;
+  typeUser?: string;
+  desc?: string | undefined;
+  fullName?: string | undefined;
+  dateOfBirth?: string | undefined;
+  tel?: string | undefined;
+  intargram?: string | undefined;
+  facebook?: string | undefined;
+  avatar?: string | undefined;
+  priceList?: string[] | undefined;
 }
 
 export interface navProps {

@@ -11,7 +11,6 @@ const DetailState: AccountState = {
 };
 
 const STORE_USER_DETAIL = (state = DetailState, action: ACTIONS_REDUCER) => {
-  console.log('----> action', action);
   switch (action.type) {
     case DETAIL_USER:
       return {

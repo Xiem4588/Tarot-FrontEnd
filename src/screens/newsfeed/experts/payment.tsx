@@ -21,13 +21,14 @@ import {useSelector} from 'react-redux';
 import Infor from './infor';
 
 const ScreenPayment = ({navigation}: navProps) => {
-  const user = useSelector((state: any) => state.STORE_USER_DETAIL.user);
-  console.log('----- payment user', user);
-  //
   const [isChecked, setChecked] = useState(false);
   const [isCheckPayment, setCheckPayment] = useState(false);
 
-  //
+  // get store data
+  const user = useSelector((state: any) => state.STORE_USER_DETAIL.user);
+  console.log('----- payment user', user);
+
+  // set
   const confirmPayment = () => {
     setCheckPayment(true);
   };

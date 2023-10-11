@@ -17,7 +17,6 @@ const UserDataState: AccountState = {
 };
 
 const STORE_ACCOUNT_DATA = (state = UserDataState, action: ACTIONS_REDUCER) => {
-  console.log('----> action', action);
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
