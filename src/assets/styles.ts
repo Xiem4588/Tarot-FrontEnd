@@ -1230,6 +1230,8 @@ export const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 10,
     flex: 1,
+    borderBottomColor: '#ddd',
+    borderBottomWidth: 6,
   },
   boxWhiteRadius: {
     backgroundColor: '#FFFFFF',
@@ -1303,9 +1305,13 @@ export const styles = StyleSheet.create({
     borderBottomColor: 'rgba(0, 0, 0, 0.4)',
   },
 
-  borderBottomOrange: {
+  borderBottomOrange4: {
     borderBottomColor: '#F78B73',
     borderBottomWidth: 4,
+  },
+  borderBottomOrange6: {
+    borderBottomColor: '#F78B73',
+    borderBottomWidth: 6,
   },
   borderBottomWhite: {
     borderBottomColor: '#FFF',
@@ -1606,5 +1612,10 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     right: 10,
     top: 25,
+  },
+  checkCircleTop10: {
+    position: 'absolute',
+    right: 10,
+    top: 10,
   },
 });

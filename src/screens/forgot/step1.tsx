@@ -68,7 +68,7 @@ const ForgotPassword = ({
           styles.RowAlignItems,
           styles.btnTmpAutoLeft,
           styles.borderBottomWhite,
-          selectedButton === 'sms' ? styles.borderBottomOrange : null,
+          selectedButton === 'sms' ? styles.borderBottomOrange4 : null,
         ]}>
         <View style={[stylesScreen.ellipseIcon]}>
           <IconMateria name="chat-outline" size={16} color="#000" />
@@ -101,7 +101,7 @@ const ForgotPassword = ({
           styles.btnTmpAutoLeft,
           styles.borderBottomWhite,
           styles.marginVertical18,
-          selectedButton === 'email' ? styles.borderBottomOrange : null,
+          selectedButton === 'email' ? styles.borderBottomOrange4 : null,
         ]}>
         <View style={[stylesScreen.ellipseIcon]}>
           <IconMateria name="email-outline" size={16} color="#000" />

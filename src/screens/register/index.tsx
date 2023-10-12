@@ -199,7 +199,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
                 style={[
                   styles.btnTmpAuto,
                   styles.borderBottomWhite,
-                  isTypeUser === 'Guest' ? styles.borderBottomOrange : null,
+                  isTypeUser === 'Guest' ? styles.borderBottomOrange4 : null,
                 ]}>
                 <Image
                   source={icon.iconGuest}
@@ -223,7 +223,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
                 style={[
                   styles.btnTmpAuto,
                   styles.borderBottomWhite,
-                  isTypeUser === 'Expert' ? styles.borderBottomOrange : null,
+                  isTypeUser === 'Expert' ? styles.borderBottomOrange4 : null,
                 ]}>
                 <Image
                   source={icon.iconExpert}

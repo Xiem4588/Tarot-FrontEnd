@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, ScrollView} from 'react-native';
 import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
@@ -28,14 +28,28 @@ const BookingScreen = ({navigation, route}: navProps) => {
     userDetail();
   }, [dispatch, route.params]);
 
+  // get Data of component PricePack
+  const [isDataPricePack, setDataPricePack] = useState([]);
+  const getDataPricePack = (price: any) => {
+    setDataPricePack(price);
+  };
+  console.log('------------> 1', isDataPricePack);
+
+  // get Data of component DateTime
+  const [isDataDateTime, setDataDateTime] = useState([]);
+  const getDataDateTime = (date: any) => {
+    setDataDateTime(date);
+  };
+  console.log('------------> 2', isDataDateTime);
+
   return (
     <WrapBgBox>
       <Header navigation={navigation} name="booking" title={''} />
       <View style={[styles.detailUserBooking]}>
         <Infor />
         <ScrollView>
-          <PricePack />
-          <DateTime navigation={navigation} />
+          <PricePack getDataPricePack={getDataPricePack} />
+          <DateTime navigation={navigation} getDataDateTime={getDataDateTime} />
         </ScrollView>
       </View>
     </WrapBgBox>

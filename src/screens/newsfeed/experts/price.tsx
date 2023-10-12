@@ -3,11 +3,11 @@ import {View, Text, Dimensions, TouchableWithoutFeedback} from 'react-native';
 import Carousel from 'react-native-snap-carousel'; // Import CarouselProps
 import {useSelector} from 'react-redux';
 import {styles} from '../../../assets/styles';
-import {ItemProps} from './types';
+import {ItemProps, priceProps} from './types';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 const {width} = Dimensions.get('window');
 
-const PricePack = () => {
+const PricePack = ({getDataPricePack}: priceProps) => {
   const [isPriceList, setPriceList] = useState([]);
 
   // get priceList store
@@ -27,31 +27,28 @@ const PricePack = () => {
   }, [user]);
 
   // Selection item
-  const [selectedItems, setSelectedItems] = useState([]);
-  console.log('-------------> ', selectedItems);
+  const [isSelectedItems, setSelectedItems] = useState([]);
+  const [isItemID, setItemID] = useState('');
   const toggleItemSelection = (id: string) => {
-    // Kiểm tra xem phần tử có ID đã được chọn chưa
-    const isItemSelected = selectedItems.find((item: any) => item._id === id);
-
-    if (isItemSelected) {
-      // Nếu đã chọn, loại bỏ khỏi mảng selectedItems
-      const updatedItems = selectedItems.filter((item: any) => item._id !== id);
-      setSelectedItems(updatedItems);
-    } else {
-      // Nếu chưa chọn, thêm vào mảng selectedItems
-      const pack = isPriceList.find((item: any) => item._id === id);
-      if (pack) {
-        const updatedItems = [...selectedItems, pack];
-        setSelectedItems(updatedItems);
-      }
-    }
+    setItemID(id);
+    const isItemSelected = isPriceList.find((item: any) => item._id === id);
+    setSelectedItems(isItemSelected!);
   };
+  useEffect(() => {
+    getDataPricePack(isSelectedItems);
+  });
 
   const renderItem = ({item}: {item: ItemProps}) => (
     <>
       <TouchableWithoutFeedback
         onPress={() => toggleItemSelection(`${item._id}`)}>
-        <View style={styles.itemCarousel}>
+        <View
+          style={[
+            styles.itemCarousel,
+            isItemID && isItemID === item._id
+              ? styles.borderBottomOrange6
+              : null,
+          ]}>
           <View>
             <Text style={styles.nameItemBlack16}>{item.title}</Text>
             <Text
@@ -73,9 +70,11 @@ const PricePack = () => {
             {item.price}
           </Text>
           <Text>{item.time}</Text>
-          <View style={styles.checkCircle}>
-            <IconMateria name="check-circle" size={16} color="#4BAE4F" />
-          </View>
+          {isItemID && isItemID === item._id ? (
+            <View style={styles.checkCircleTop10}>
+              <IconMateria name="check-circle" size={16} color="#4BAE4F" />
+            </View>
+          ) : null}
         </View>
       </TouchableWithoutFeedback>
     </>
