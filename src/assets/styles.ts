@@ -1602,4 +1602,9 @@ export const styles = StyleSheet.create({
     height: 1,
     width: '100%',
   },
+  checkCircle: {
+    position: 'absolute',
+    right: 10,
+    top: 25,
+  },
 });

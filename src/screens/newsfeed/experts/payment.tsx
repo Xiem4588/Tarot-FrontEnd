@@ -21,7 +21,7 @@ import {useSelector} from 'react-redux';
 import Infor from './infor';
 
 const ScreenPayment = ({navigation}: navProps) => {
-  const [isChecked, setChecked] = useState(false);
+  const [isConfirm, setConfirm] = useState(false);
   const [isCheckPayment, setCheckPayment] = useState(false);
 
   // get store data
@@ -177,13 +177,13 @@ const ScreenPayment = ({navigation}: navProps) => {
             ) : (
               <>
                 <TouchableWithoutFeedback
-                  onPress={() => setChecked(!isChecked)}>
+                  onPress={() => setConfirm(!isConfirm)}>
                   <View
                     style={[styles.RowAlignItemsCenter, styles.marginTop10]}>
-                    <Switch value={isChecked} style={styles.scale07} />
+                    <Switch value={isConfirm} style={styles.scale07} />
                     <Text
                       style={[
-                        isChecked === false
+                        isConfirm === false
                           ? styles.colorOrange
                           : styles.colorGreen,
                         styles.fontSize16,
@@ -194,10 +194,10 @@ const ScreenPayment = ({navigation}: navProps) => {
                   </View>
                 </TouchableWithoutFeedback>
                 <TouchableWithoutFeedback
-                  onPress={isChecked === true ? confirmPayment : () => {}}>
+                  onPress={isConfirm === true ? confirmPayment : () => {}}>
                   <View
                     style={[
-                      isChecked === false
+                      isConfirm === false
                         ? styles.buttonFullDisableWhite
                         : styles.buttonTmp,
                       styles.marginTop20,
