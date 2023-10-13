@@ -74,7 +74,7 @@ export const putUpdateAccount = async (
     const res = await updateAccount.put(url, data);
     return res.data;
   } catch (error) {
-    throw error; // Re-throw the error
+    throw error;
   }
 };
 
@@ -95,4 +95,27 @@ export const postImageServer = async (routes: string, data: any) => {
     throw error;
   }
 };
+
+// ************ POST(Tạo mới) User booking Expert
+export const postUserBooking = async (
+  routes: string,
+  data: object,
+  token: string,
+) => {
+  try {
+    const url = `/booking/${routes}`;
+    const updateAccount = axios.create({
+      baseURL: hot,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const res = await updateAccount.post(url, data);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 // ************ khac

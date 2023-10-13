@@ -19,7 +19,13 @@ import Header from '../../../conponents/header';
 import {navProps} from './types';
 import {useSelector} from 'react-redux';
 import Infor from './infor';
+import {postUserBooking} from '../../../services';
+
 const ScreenPayment = ({navigation, route}: navProps) => {
+  // get store data
+  const user = useSelector((state: any) => state.STORE_USER_DETAIL.user);
+  const token = useSelector((state: any) => state.STORE_ACCOUNT_DATA.token);
+  //
   const [isConfirm, setConfirm] = useState(false);
   const [isCheckPayment, setCheckPayment] = useState(false);
   const [isTimeBooking, setTimeBooking] = useState('');
@@ -49,12 +55,10 @@ const ScreenPayment = ({navigation, route}: navProps) => {
     fetchData();
   }, [dataBooking]);
 
-  // get store data
-  const user = useSelector((state: any) => state.STORE_USER_DETAIL.user);
-
   // set
   const confirmPayment = async () => {
-    // const res = await putDataPayment(route);
+    const res = await postUserBooking('booking', dataBooking, token);
+    console.log('---- res postUserBooking', res);
     setCheckPayment(true);
   };
 
