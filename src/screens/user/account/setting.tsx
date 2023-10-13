@@ -16,7 +16,7 @@ import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useTranslation} from 'react-i18next';
 import i18n from '../../../languages/i18n';
 import {useDispatch, useSelector} from 'react-redux';
-import {apiUpdateAccount} from '../../../services';
+import {putUpdateAccount} from '../../../services';
 import {ActionUpdateUser} from '../../../redux/store/user/actions';
 import LoadingFullScreen from '../../conponents/loading';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -167,7 +167,7 @@ const SettingScreen = ({navigation}: any) => {
             priceList: isPriceList ? isPriceList : user.priceList,
           };
           // console.log('----> 1', userUpdate);
-          const res = await apiUpdateAccount('setting', userUpdate, token); // Gọi API update người dùng
+          const res = await putUpdateAccount('setting', userUpdate, token); // Gọi API update người dùng
           dispatch(ActionUpdateUser(res.user)); // gọi action cập nhật store
           setNotification('Cập nhật thành công!'); // Hiển thị thông báo cập nhật thành công
           setTogglePass(false);
@@ -194,7 +194,7 @@ const SettingScreen = ({navigation}: any) => {
           priceList: isPriceList ? isPriceList : user.priceList,
         };
         // console.log('----> 2', userUpdate);
-        const res = await apiUpdateAccount('setting', userUpdate, token);
+        const res = await putUpdateAccount('setting', userUpdate, token);
         dispatch(ActionUpdateUser(res.user));
         setNotification('Cập nhật thành công!');
         setTogglePass(false);

@@ -17,7 +17,7 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import validator from 'email-validator';
 import i18n from '../../languages/i18n';
 import LoginSocial from '../conponents/social';
-import {apiAccount} from '../../services';
+import {postUserAccount} from '../../services';
 interface RegisterProps {
   navigation?: any;
   handleInputUser?: () => void;
@@ -73,7 +73,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
   }
 
   const RegisterAccount = async (dataUser: userType) => {
-    const response = await apiAccount('register', dataUser);
+    const response = await postUserAccount('register', dataUser);
     return response;
   };
 

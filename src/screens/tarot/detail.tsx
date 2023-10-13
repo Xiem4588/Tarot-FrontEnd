@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../../assets/styles';
-import {apiRoutesMain} from '../../services';
+import {getRoutesMain} from '../../services';
 import {hot} from '../../services/env';
 import GoogleAdsBannerAd from '../../googleAds/_bannerAd';
 
@@ -47,7 +47,7 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
     const fetchData = async () => {
       try {
         // call api all card
-        const res = await apiRoutesMain('tarot');
+        const res = await getRoutesMain('tarot');
         const lengthCard = res.data.length;
 
         if (lengthCard === 0) {

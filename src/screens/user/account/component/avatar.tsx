@@ -3,7 +3,7 @@ import {View, Image, TouchableOpacity} from 'react-native';
 import {images} from '../../../../assets/constants';
 import {styles} from '../../../../assets/styles';
 import * as ImagePicker from 'react-native-image-picker';
-import {saveImageServer} from '../../../../services';
+import {postImageServer} from '../../../../services';
 // import {hot} from '../../../../services/env';
 
 const AvatarUpload = () => {
@@ -20,7 +20,7 @@ const AvatarUpload = () => {
         const blob = await response.blob();
         formData.append('avatar', blob, 'avatar.jpg');
 
-        const serverResponse = await saveImageServer('upload-avatar', formData);
+        const serverResponse = await postImageServer('upload-avatar', formData);
 
         return serverResponse;
       }

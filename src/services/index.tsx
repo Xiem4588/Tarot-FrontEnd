@@ -10,7 +10,7 @@ const axiosClient = axios.create({
 });
 
 // ************ GET routes
-export const apiRoutesMain = async (routes: string) => {
+export const getRoutesMain = async (routes: string) => {
   try {
     const url = `/${routes}`;
     const res = await axiosClient.get(url);
@@ -45,8 +45,8 @@ export const getUserDetail = async (routes: string) => {
   }
 };
 
-// ************ POST users routes(login, register,...)
-export const apiAccount = async (routes: string, data: object) => {
+// ************ POST(Tạo mới) users routes(login, register,...)
+export const postUserAccount = async (routes: string, data: object) => {
   try {
     const url = `/users/${routes}`;
     const res = await axiosClient.post(url, data);
@@ -56,8 +56,8 @@ export const apiAccount = async (routes: string, data: object) => {
   }
 };
 
-// ************ PUT update user & Expert add price pack
-export const apiUpdateAccount = async (
+// ************ PUT(Cập nhật hoặc thay thế) update user & Expert add price pack
+export const putUpdateAccount = async (
   routes: string,
   data: object,
   token: string,
@@ -78,8 +78,8 @@ export const apiUpdateAccount = async (
   }
 };
 
-// ************ POST save Image to server
-export const saveImageServer = async (routes: string, data: any) => {
+// ************ POST(Tạo mới) add Image to server
+export const postImageServer = async (routes: string, data: any) => {
   try {
     const url = `/upload/${routes}`;
     const imageServer = axios.create({
