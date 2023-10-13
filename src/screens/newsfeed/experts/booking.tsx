@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, TouchableOpacity, Text} from 'react-native';
 import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
 import Header from '../../../conponents/header';
@@ -14,7 +14,7 @@ import {navProps} from './types';
 const BookingScreen = ({navigation, route}: navProps) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    const userID = route.params.userID;
+    const userID = route.params.id;
     const userDetail = async () => {
       try {
         const res = await getUserDetail(userID);
@@ -29,19 +29,27 @@ const BookingScreen = ({navigation, route}: navProps) => {
   }, [dispatch, route.params]);
 
   // get Data of component PricePack
-  const [isDataPricePack, setDataPricePack] = useState([]);
+  const [isPrice, setPrice] = useState([]);
   const getDataPricePack = (price: any) => {
-    setDataPricePack(price);
+    setPrice(price);
   };
-  console.log('------------> 1', isDataPricePack);
 
   // get Data of component DateTime
-  const [isDataDateTime, setDataDateTime] = useState([]);
-  const getDataDateTime = (date: any) => {
-    setDataDateTime(date);
+  const [isDate, setDate] = useState('');
+  const [isTime, setTime] = useState('');
+  const getDataDate = (date: any) => {
+    setDate(date);
   };
-  console.log('------------> 2', isDataDateTime);
+  const getDataTime = (time: any) => {
+    setTime(time);
+  };
+  const dataBooking = {
+    price: isPrice,
+    date: isDate,
+    time: isTime,
+  };
 
+  console.log('---> inforAppointment', dataBooking);
   return (
     <WrapBgBox>
       <Header navigation={navigation} name="booking" title={''} />
@@ -49,7 +57,18 @@ const BookingScreen = ({navigation, route}: navProps) => {
         <Infor />
         <ScrollView>
           <PricePack getDataPricePack={getDataPricePack} />
-          <DateTime navigation={navigation} getDataDateTime={getDataDateTime} />
+          <DateTime getDataDate={getDataDate} getDataTime={getDataTime} />
+          <View style={styles.paddingHorizontal18}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('payment', {dataBooking})}
+              style={[
+                styles.buttonTmp,
+                styles.marginBottom80,
+                styles.marginTop20,
+              ]}>
+              <Text style={[styles.buttonText]}>Đặt lịch</Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </View>
     </WrapBgBox>

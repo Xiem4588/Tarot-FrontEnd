@@ -11,13 +11,14 @@ export interface typeUser {
   facebook?: string | undefined;
   avatar?: string | undefined;
   priceList?: string[] | undefined;
+  like?: string | undefined;
+  view?: string | undefined;
 }
 
 export interface navProps {
   navigation?: any;
   route?: any;
   userID?: string;
-  getDataDateTime?: (date: any) => void;
 }
 
 export interface ItemProps {
@@ -27,8 +28,4 @@ export interface ItemProps {
   price: string;
   time: string;
   created_date: string;
-}
-
-export interface priceProps {
-  getDataPricePack: (price: any) => void;
 }

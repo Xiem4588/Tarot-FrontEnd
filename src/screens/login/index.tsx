@@ -19,7 +19,7 @@ import validator from 'email-validator';
 import i18n from '../../languages/i18n';
 import LoginSocial from '../conponents/social';
 import {apiAccount} from '../../services';
-import GoogleAdsRewardedAd from '../../googleAds/_rewardedAd';
+// import GoogleAdsRewardedAd from '../../googleAds/_rewardedAd';
 
 interface LoginProps {
   handleInputUser: () => void;
@@ -250,7 +250,7 @@ const Login = ({handleInputUser, navigation}: LoginProps) => {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
-      <GoogleAdsRewardedAd />
+      {/* <GoogleAdsRewardedAd /> */}
     </>
   );
 };

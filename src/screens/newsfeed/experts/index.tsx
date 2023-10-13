@@ -43,9 +43,7 @@ const ScreenExperts = ({navigation}: navProps) => {
             isUsers.map((user, index) => (
               <TouchableOpacity
                 key={user._id}
-                onPress={() =>
-                  navigation.navigate('booking', {userID: user._id})
-                }
+                onPress={() => navigation.navigate('booking', {id: user._id})}
                 style={[
                   styles.width50,
                   styles.paddingHorizontal9,

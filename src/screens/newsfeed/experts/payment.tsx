@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Switch,
   View,
@@ -19,17 +19,42 @@ import Header from '../../../conponents/header';
 import {navProps} from './types';
 import {useSelector} from 'react-redux';
 import Infor from './infor';
-
-const ScreenPayment = ({navigation}: navProps) => {
+const ScreenPayment = ({navigation, route}: navProps) => {
   const [isConfirm, setConfirm] = useState(false);
   const [isCheckPayment, setCheckPayment] = useState(false);
+  const [isTimeBooking, setTimeBooking] = useState('');
+  const [isDateBooking, setDateBooking] = useState('');
+  const [isPrice, setPrice] = useState('');
+  const [isDesc, setDesc] = useState('');
+  const [isTitle, setTitle] = useState('');
+
+  const dataBooking = route.params.dataBooking;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (dataBooking) {
+          const time = await dataBooking.time;
+          setTimeBooking(time);
+          const date = await dataBooking.date;
+          setDateBooking(date);
+          const price = await dataBooking.price;
+          setPrice(price.price);
+          setDesc(price.desc);
+          setTitle(price.title);
+        }
+      } catch (error) {
+        return error;
+      }
+    };
+    fetchData();
+  }, [dataBooking]);
 
   // get store data
   const user = useSelector((state: any) => state.STORE_USER_DETAIL.user);
-  console.log('----- payment user', user);
 
   // set
-  const confirmPayment = () => {
+  const confirmPayment = async () => {
+    // const res = await putDataPayment(route);
     setCheckPayment(true);
   };
 
@@ -60,7 +85,7 @@ const ScreenPayment = ({navigation}: navProps) => {
                 <Text
                   numberOfLines={1}
                   style={[styles.fontSize12, styles.colorBlue]}>
-                  instagram.com/tarotbymacduong/?__coig_restricted=1
+                  instagram.com/{user.intargram}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -71,14 +96,16 @@ const ScreenPayment = ({navigation}: navProps) => {
                 styles.overflow,
               ]}>
               <View>
-                <Text style={styles.nameItemBlack16}>30 phút</Text>
+                <Text style={styles.nameItemBlack16}>
+                  {isTitle ? isTitle : '...'}
+                </Text>
                 <Text style={[styles.fontSize12, styles.marginBottom10]}>
-                  Không giới hạn câu hỏi, vấn đề + 1 lá thông điệp kết nối
+                  {isDesc ? isDesc : '...'}
                 </Text>
               </View>
               <View style={[styles.RowCenterBetween, styles.borderTopDashed]}>
-                <Text style={styles.nameItemBlack14}>16 Tháng 2 2023</Text>
-                <Text style={styles.nameItemBlack14}>09:55 AM</Text>
+                <Text style={styles.nameItemBlack14}>{isDateBooking}</Text>
+                <Text style={styles.nameItemBlack14}>{isTimeBooking}</Text>
               </View>
             </View>
             <Text style={[styles.textTitle18Black, styles.marginTop20]}>
@@ -93,7 +120,7 @@ const ScreenPayment = ({navigation}: navProps) => {
               <View style={[styles.RowCenterBetween, styles.marginBottom10]}>
                 <Text>Tổng thanh toán</Text>
                 <Text style={[styles.fontBold600, styles.colorOrange]}>
-                  300,000 VND
+                  {isPrice ? isPrice : ''} VND
                 </Text>
               </View>
               <View style={[styles.borderTopDashed]}>
@@ -176,23 +203,23 @@ const ScreenPayment = ({navigation}: navProps) => {
               </View>
             ) : (
               <>
-                <TouchableWithoutFeedback
-                  onPress={() => setConfirm(!isConfirm)}>
-                  <View
-                    style={[styles.RowAlignItemsCenter, styles.marginTop10]}>
-                    <Switch value={isConfirm} style={styles.scale07} />
-                    <Text
-                      style={[
-                        isConfirm === false
-                          ? styles.colorOrange
-                          : styles.colorGreen,
-                        styles.fontSize16,
-                        styles.fontBold,
-                      ]}>
-                      Xác nhận đã thanh toán!
-                    </Text>
-                  </View>
-                </TouchableWithoutFeedback>
+                <View style={[styles.RowAlignItemsCenter, styles.marginTop10]}>
+                  <Switch
+                    onValueChange={setConfirm}
+                    value={isConfirm}
+                    style={styles.scale07}
+                  />
+                  <Text
+                    style={[
+                      isConfirm === false
+                        ? styles.colorOrange
+                        : styles.colorGreen,
+                      styles.fontSize16,
+                      styles.fontBold,
+                    ]}>
+                    Xác nhận đã thanh toán!
+                  </Text>
+                </View>
                 <TouchableWithoutFeedback
                   onPress={isConfirm === true ? confirmPayment : () => {}}>
                   <View

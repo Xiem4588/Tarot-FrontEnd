@@ -1613,9 +1613,9 @@ export const styles = StyleSheet.create({
     right: 10,
     top: 25,
   },
-  checkCircleTop10: {
+  checkCircleTop15: {
     position: 'absolute',
     right: 10,
-    top: 10,
+    top: 15,
   },
 });

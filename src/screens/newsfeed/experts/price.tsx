@@ -3,9 +3,13 @@ import {View, Text, Dimensions, TouchableWithoutFeedback} from 'react-native';
 import Carousel from 'react-native-snap-carousel'; // Import CarouselProps
 import {useSelector} from 'react-redux';
 import {styles} from '../../../assets/styles';
-import {ItemProps, priceProps} from './types';
+import {ItemProps} from './types';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 const {width} = Dimensions.get('window');
+
+interface priceProps {
+  getDataPricePack: (price: any) => void;
+}
 
 const PricePack = ({getDataPricePack}: priceProps) => {
   const [isPriceList, setPriceList] = useState([]);
@@ -27,16 +31,12 @@ const PricePack = ({getDataPricePack}: priceProps) => {
   }, [user]);
 
   // Selection item
-  const [isSelectedItems, setSelectedItems] = useState([]);
   const [isItemID, setItemID] = useState('');
   const toggleItemSelection = (id: string) => {
     setItemID(id);
     const isItemSelected = isPriceList.find((item: any) => item._id === id);
-    setSelectedItems(isItemSelected!);
+    getDataPricePack(isItemSelected);
   };
-  useEffect(() => {
-    getDataPricePack(isSelectedItems);
-  });
 
   const renderItem = ({item}: {item: ItemProps}) => (
     <>
@@ -71,10 +71,14 @@ const PricePack = ({getDataPricePack}: priceProps) => {
           </Text>
           <Text>{item.time}</Text>
           {isItemID && isItemID === item._id ? (
-            <View style={styles.checkCircleTop10}>
-              <IconMateria name="check-circle" size={16} color="#4BAE4F" />
+            <View style={styles.checkCircleTop15}>
+              <IconMateria name="check-circle" size={16} color="#F78B73" />
             </View>
-          ) : null}
+          ) : (
+            <View style={styles.checkCircleTop15}>
+              <IconMateria name="check-circle" size={16} color="#DDD" />
+            </View>
+          )}
         </View>
       </TouchableWithoutFeedback>
     </>
