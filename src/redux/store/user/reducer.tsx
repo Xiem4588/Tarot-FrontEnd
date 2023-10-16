@@ -1,4 +1,4 @@
-import STORE_USER_DETAIL from './userDetail';
-import STORE_ACCOUNT_DATA from './userData';
+import PUBLIC_STORE_USER_DETAIL from './userDetail';
+import PRIVATE_STORE_ACCOUNT_DATA from './userData';
 
-export {STORE_USER_DETAIL, STORE_ACCOUNT_DATA};
+export {PUBLIC_STORE_USER_DETAIL, PRIVATE_STORE_ACCOUNT_DATA};

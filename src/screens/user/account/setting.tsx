@@ -28,12 +28,16 @@ const SettingScreen = ({navigation}: any) => {
   useTranslation();
 
   // get data from store
-  const user = useSelector((state: any) => state.STORE_ACCOUNT_DATA.user);
+  const user = useSelector(
+    (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.user,
+  );
   const priceList = useSelector(
-    (state: any) => state.STORE_ACCOUNT_DATA.user.priceList,
+    (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.user.priceList,
   );
   // console.log('----> user', user);
-  const token = useSelector((state: any) => state.STORE_ACCOUNT_DATA.token);
+  const token = useSelector(
+    (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.token,
+  );
 
   // Xóa token khỏi AsyncStorage khi người dùng đăng xuất
   const dispatch = useDispatch();

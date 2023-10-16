@@ -15,7 +15,7 @@ const PricePack = ({getDataPricePack}: priceProps) => {
   const [isPriceList, setPriceList] = useState([]);
 
   // get priceList store
-  const user = useSelector((state: any) => state.STORE_USER_DETAIL.user);
+  const user = useSelector((state: any) => state.PUBLIC_STORE_USER_DETAIL.user);
   useEffect(() => {
     const fetchData = async () => {
       try {

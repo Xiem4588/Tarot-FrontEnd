@@ -16,7 +16,7 @@ const UserDataState: AccountState = {
   priceList: null,
 };
 
-const STORE_ACCOUNT_DATA = (state = UserDataState, action: ACTIONS_REDUCER) => {
+const PRIVATE_STORE_ACCOUNT_DATA = (state = UserDataState, action: ACTIONS_REDUCER) => {
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
@@ -58,4 +58,4 @@ const STORE_ACCOUNT_DATA = (state = UserDataState, action: ACTIONS_REDUCER) => {
   }
 };
 
-export default STORE_ACCOUNT_DATA;
+export default PRIVATE_STORE_ACCOUNT_DATA;

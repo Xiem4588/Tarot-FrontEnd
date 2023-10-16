@@ -23,30 +23,38 @@ import {postUserBooking} from '../../../services';
 
 const ScreenPayment = ({navigation, route}: navProps) => {
   // get store data
-  const user = useSelector((state: any) => state.STORE_USER_DETAIL.user);
-  const token = useSelector((state: any) => state.STORE_ACCOUNT_DATA.token);
+  const user_Public = useSelector(
+    (state: any) => state.PUBLIC_STORE_USER_DETAIL.user,
+  );
+  const token = useSelector(
+    (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.token,
+  );
+  const user_Private = useSelector(
+    (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.user,
+  );
   //
   const [isConfirm, setConfirm] = useState(false);
   const [isCheckPayment, setCheckPayment] = useState(false);
-  const [isTimeBooking, setTimeBooking] = useState('');
-  const [isDateBooking, setDateBooking] = useState('');
+  const [isDateViewing, setDateViewing] = useState('');
+  const [isTimeViewing, setTimeViewing] = useState('');
   const [isPrice, setPrice] = useState('');
   const [isDesc, setDesc] = useState('');
   const [isTitle, setTitle] = useState('');
 
   const dataBooking = route.params.dataBooking;
+  console.log('----> dataBooking', dataBooking);
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (dataBooking) {
-          const time = await dataBooking.time;
-          setTimeBooking(time);
-          const date = await dataBooking.date;
-          setDateBooking(date);
-          const price = await dataBooking.price;
-          setPrice(price.price);
-          setDesc(price.desc);
-          setTitle(price.title);
+          const timeViewing = await dataBooking.timeViewing;
+          setTimeViewing(timeViewing);
+          const dateViewing = await dataBooking.dateViewing;
+          setDateViewing(dateViewing);
+          const pricePack = await dataBooking.pricePack;
+          setPrice(pricePack.price);
+          setDesc(pricePack.desc);
+          setTitle(pricePack.title);
         }
       } catch (error) {
         return error;
@@ -56,9 +64,15 @@ const ScreenPayment = ({navigation, route}: navProps) => {
   }, [dataBooking]);
 
   // set
+  const currentTime = new Date();
   const confirmPayment = async () => {
-    const res = await postUserBooking('booking', dataBooking, token);
-    console.log('---- res postUserBooking', res);
+    const putItemBooking = {
+      email: user_Private.email,
+      dateBooking: currentTime,
+      dataBooking: dataBooking,
+    };
+    const res = await postUserBooking('userBooking', putItemBooking, token);
+    console.log('----> res', res);
     setCheckPayment(true);
   };
 
@@ -89,7 +103,7 @@ const ScreenPayment = ({navigation, route}: navProps) => {
                 <Text
                   numberOfLines={1}
                   style={[styles.fontSize12, styles.colorBlue]}>
-                  instagram.com/{user.intargram}
+                  instagram.com/{user_Public.intargram}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -108,8 +122,8 @@ const ScreenPayment = ({navigation, route}: navProps) => {
                 </Text>
               </View>
               <View style={[styles.RowCenterBetween, styles.borderTopDashed]}>
-                <Text style={styles.nameItemBlack14}>{isDateBooking}</Text>
-                <Text style={styles.nameItemBlack14}>{isTimeBooking}</Text>
+                <Text style={styles.nameItemBlack14}>{isDateViewing}</Text>
+                <Text style={styles.nameItemBlack14}>{isTimeViewing}</Text>
               </View>
             </View>
             <Text style={[styles.textTitle18Black, styles.marginTop20]}>

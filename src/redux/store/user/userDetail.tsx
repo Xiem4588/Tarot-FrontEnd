@@ -10,7 +10,7 @@ const DetailState: AccountState = {
   priceList: null,
 };
 
-const STORE_USER_DETAIL = (state = DetailState, action: ACTIONS_REDUCER) => {
+const PUBLIC_STORE_USER_DETAIL = (state = DetailState, action: ACTIONS_REDUCER) => {
   switch (action.type) {
     case DETAIL_USER:
       return {
@@ -24,4 +24,4 @@ const STORE_USER_DETAIL = (state = DetailState, action: ACTIONS_REDUCER) => {
   }
 };
 
-export default STORE_USER_DETAIL;
+export default PUBLIC_STORE_USER_DETAIL;

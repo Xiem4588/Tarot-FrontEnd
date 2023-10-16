@@ -13,7 +13,9 @@ import {navProps} from './types';
 
 const BookingScreen = ({navigation, route}: navProps) => {
   // get store data
-  const token = useSelector((state: any) => state.STORE_ACCOUNT_DATA.token);
+  const token = useSelector(
+    (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.token,
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     const userID = route.params.id;
@@ -46,15 +48,15 @@ const BookingScreen = ({navigation, route}: navProps) => {
     setTime(time);
   };
   const dataBooking = {
-    price: isPrice,
-    date: isDate,
-    time: isTime,
+    pricePack: isPrice,
+    dateViewing: isDate,
+    timeViewing: isTime,
   };
 
   // Submit Payment
   const [isCheckLogin, setCheckLogin] = useState(false);
   const handlePayment = () => {
-    console.log('----', isCheckLogin);
+    console.log('---- isCheckLogin', isCheckLogin);
     if (token) {
       navigation.navigate('payment', {dataBooking});
     } else {

@@ -7,7 +7,7 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useSelector} from 'react-redux';
 
 const Infor = () => {
-  const user = useSelector((state: any) => state.STORE_USER_DETAIL.user);
+  const user = useSelector((state: any) => state.PUBLIC_STORE_USER_DETAIL.user);
   return (
     <>
       {user ? (

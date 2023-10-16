@@ -41,7 +41,7 @@ const ModalPriceList = ({
 
   // Get data box price list
   interface itemProps {
-    created_date: string;
+    created_date: Date;
     title: string;
     desc: string;
     price: string;
@@ -86,7 +86,7 @@ const ModalPriceList = ({
 
   // get data from store
   const priceList = useSelector(
-    (state: any) => state.STORE_ACCOUNT_DATA.user.priceList,
+    (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.user.priceList,
   );
 
   // add price pack
@@ -95,12 +95,8 @@ const ModalPriceList = ({
 
   // date, month, year
   const currentTime = new Date();
-  const year = currentTime.getFullYear();
-  const month = currentTime.getMonth() + 1;
-  const date = currentTime.getDate();
-
   const newItem = {
-    created_date: `${year}/${month}/${date}`,
+    created_date: currentTime,
     title: isTitle ? isTitle : '',
     desc: isDesc ? isDesc : '',
     price: isPrice ? isPrice : '',
