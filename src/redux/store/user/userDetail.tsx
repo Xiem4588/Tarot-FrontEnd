@@ -1,10 +1,10 @@
 // user detail
-import {AccountState, DETAIL_USER} from './types';
+import {DETAIL_USER, AccountState} from './types';
 import {ACTIONS_REDUCER} from './actions';
 
 const DetailState: AccountState = {
-  error: null,
   loading: false,
+  error: null,
   token: null,
   user: null,
   priceList: null,
@@ -19,7 +19,7 @@ const PUBLIC_STORE_USER_DETAIL = (
       return {
         ...state,
         loading: false,
-        user: action.payload.user, // Cập nhật thông tin người dùng mới
+        user: action.payload.user,
         error: null,
       };
     default:

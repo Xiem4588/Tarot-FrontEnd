@@ -6,7 +6,7 @@ export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
 export const DETAIL_USER = 'DETAIL_USER';
 export const LOG_OUT = 'LOG_OUT';
 
-// khai bao user
+// Type user
 export interface AuthenticatedUser {
   _id?: string;
   email?: string;
@@ -19,15 +19,13 @@ export interface AuthenticatedUser {
   priceList?: string[];
 }
 
-// khai bao price pack
-export interface PriceListData {
+// Type price pack
+interface PriceListData {
   title: string;
   desc: string;
   price: string;
   time: string;
 }
-
-//
 export interface AccountState {
   loading?: boolean; //check xem login xong chua
   error?: string | null;

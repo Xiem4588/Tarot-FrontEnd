@@ -9,8 +9,8 @@ import {
 import {ACTIONS_REDUCER} from './actions';
 
 const UserDataState: AccountState = {
-  error: null,
   loading: false,
+  error: null,
   token: null,
   user: null,
   priceList: null,
@@ -30,15 +30,15 @@ const PRIVATE_STORE_ACCOUNT_DATA = (
       return {
         ...state,
         loading: false,
-        token: action.payload.token, // Lưu token vào trạng thái
-        user: action.payload.user, // Lưu thông tin người dùng vào trạng thái
+        token: action.payload.token,
+        user: action.payload.user,
         error: null,
       };
     case UPDATE_USER_SUCCESS:
       return {
         ...state,
         loading: false,
-        user: action.payload.user, // aupdate user
+        user: action.payload.user,
         error: null,
       };
     case LOGIN_FAILURE:
