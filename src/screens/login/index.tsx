@@ -85,7 +85,6 @@ const Login = ({handleInputUser, navigation}: LoginProps) => {
         };
         if (isValidEmail && isPasswordValid) {
           const data = await requesUserLogin(dataUser);
-          console.log('---> data: ', data);
           if (data.status === true) {
             // add to store
             dispatch({

@@ -69,13 +69,11 @@ const TabScreenOptions = ({route}: any) => ({
 // Navigator
 export const MainNav = () => {
   return (
-    <>
-      <Tab.Navigator initialRouteName="user" screenOptions={TabScreenOptions}>
-        <Tab.Screen name="newsfeed" component={NewsFeed} />
-        <Tab.Screen name="tarot" component={Tarot} />
-        <Stack.Screen name="user" component={User} />
-      </Tab.Navigator>
-    </>
+    <Tab.Navigator initialRouteName="user" screenOptions={TabScreenOptions}>
+      <Tab.Screen name="newsfeed" component={NewsFeed} />
+      <Tab.Screen name="tarot" component={Tarot} />
+      <Stack.Screen name="user" component={User} />
+    </Tab.Navigator>
   );
 };
 //End
@@ -124,7 +122,9 @@ const StackScreenOptionsHeaderTransparent = ({navigation}: any) => ({
 
 const Navigation = () => {
   // check login
-  const token = useSelector((state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.token);
+  const token = useSelector(
+    (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.token,
+  );
   return (
     <>
       <WrapBgBox>
@@ -133,6 +133,11 @@ const Navigation = () => {
         </View>
         <NavigationContainer>
           <Stack.Navigator initialRouteName={token ? 'MainNav' : 'launch'}>
+            <Stack.Screen
+              options={{headerShown: false}}
+              name="MainNav"
+              component={MainNav}
+            />
             <Stack.Group screenOptions={StackScreenOptions}>
               <Stack.Screen name="choose" component={Choose} />
               <Stack.Screen name="detail" component={Detail} />
@@ -145,13 +150,6 @@ const Navigation = () => {
               <Stack.Screen name="notify" component={Notify} />
               <Stack.Screen name="forgotPassword" component={ForgotPassword} />
             </Stack.Group>
-            <Stack.Screen
-              options={{
-                headerShown: false,
-              }}
-              name="MainNav"
-              component={MainNav}
-            />
           </Stack.Navigator>
         </NavigationContainer>
       </WrapBgBox>
