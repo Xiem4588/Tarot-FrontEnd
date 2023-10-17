@@ -15,7 +15,9 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useSelector} from 'react-redux';
 import LoadingFullScreen from '../conponents/loading';
 const ScreenToday = ({navigation}: any) => {
-  const user = useSelector((state: any) => state.PRIVATE_STORE_ACCOUNT_DATA?.user);
+  const user = useSelector(
+    (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA?.user,
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [isCategory, setCategory] = useState(String);
 

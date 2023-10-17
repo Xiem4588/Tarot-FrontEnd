@@ -8,7 +8,9 @@ import {useSelector} from 'react-redux';
 const AccountScreen = ({navigation}: any) => {
   const [isInputUser, setInputUser] = useState(true);
   const [isToken, setToken] = useState(false);
-  const token = useSelector((state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.token);
+  const token = useSelector(
+    (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.token,
+  );
 
   useEffect(() => {
     setToken(token ? true : false);
