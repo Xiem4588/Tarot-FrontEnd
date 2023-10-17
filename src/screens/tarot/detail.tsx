@@ -144,9 +144,6 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                 <Text style={[styles.fontsize32White, styles.fontAbhayaLibre]}>
                   {isDetail?.cardName}
                 </Text>
-                {/* <Text style={styles.textOrange}>
-                  {isTypeCard === 'xuoi' ? '(Lá bài Xuôi)' : '(Lá bài Ngược)'}
-                </Text> */}
               </View>
               <View style={[styles.paddingVertical30]}>
                 <Avatar
@@ -155,15 +152,9 @@ const ScreenDetail = ({navigation, route}: detailProps) => {
                   }}
                   containerStyle={[
                     styles.ImgPostCommunity,
-                    {
-                      transform: [
-                        {
-                          rotate: `${
-                            isTypeCard === 'xuoi' ? '0deg' : '180deg'
-                          }`,
-                        },
-                      ],
-                    },
+                    isTypeCard === 'xuoi'
+                      ? {transform: [{rotate: '0deg'}]}
+                      : {transform: [{rotate: '180deg'}]},
                   ]}
                 />
               </View>

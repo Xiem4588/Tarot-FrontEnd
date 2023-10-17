@@ -27,5 +27,5 @@ export interface ItemProps {
   desc: string;
   price: string;
   time: string;
-  created_date: Date;
+  created_date: string;
 }

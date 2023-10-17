@@ -10,7 +10,10 @@ const DetailState: AccountState = {
   priceList: null,
 };
 
-const PUBLIC_STORE_USER_DETAIL = (state = DetailState, action: ACTIONS_REDUCER) => {
+const PUBLIC_STORE_USER_DETAIL = (
+  state = DetailState,
+  action: ACTIONS_REDUCER,
+) => {
   switch (action.type) {
     case DETAIL_USER:
       return {

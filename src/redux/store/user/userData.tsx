@@ -16,7 +16,10 @@ const UserDataState: AccountState = {
   priceList: null,
 };
 
-const PRIVATE_STORE_ACCOUNT_DATA = (state = UserDataState, action: ACTIONS_REDUCER) => {
+const PRIVATE_STORE_ACCOUNT_DATA = (
+  state = UserDataState,
+  action: ACTIONS_REDUCER,
+) => {
   switch (action.type) {
     case LOGIN_REQUEST:
       return {

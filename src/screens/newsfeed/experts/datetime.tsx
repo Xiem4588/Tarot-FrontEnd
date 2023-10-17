@@ -7,8 +7,8 @@ import moment from 'moment';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 const {width} = Dimensions.get('window');
 interface dateTimeProps {
-  getDataTime: (time: any) => void;
-  getDataDate: (date: any) => void;
+  getDataTime: (time: string) => void;
+  getDataDate: (date: string) => void;
 }
 
 const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
@@ -18,7 +18,7 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
   // get date
   const onDateChange = (date: any) => {
     const formatDate = moment(date).format('DD-MM-YYYY');
-    getDataDate(formatDate);
+    getDataDate(String(formatDate));
   };
 
   //get time
@@ -33,8 +33,8 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
       hour: '2-digit',
       minute: '2-digit',
     });
-    setSelectTime(formatTime);
-    getDataTime(formatTime);
+    setSelectTime(String(formatTime));
+    getDataTime(String(formatTime));
     hideTimePicker();
   };
 

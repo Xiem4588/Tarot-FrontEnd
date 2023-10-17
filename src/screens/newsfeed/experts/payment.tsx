@@ -22,6 +22,7 @@ import Infor from './infor';
 import {postUserBooking} from '../../../services';
 
 const ScreenPayment = ({navigation, route}: navProps) => {
+  const currentTime = new Date();
   // get store data
   const user_Public = useSelector(
     (state: any) => state.PUBLIC_STORE_USER_DETAIL.user,
@@ -42,7 +43,7 @@ const ScreenPayment = ({navigation, route}: navProps) => {
   const [isTitle, setTitle] = useState('');
 
   const dataBooking = route.params.dataBooking;
-  console.log('----> dataBooking', dataBooking);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -63,17 +64,20 @@ const ScreenPayment = ({navigation, route}: navProps) => {
     fetchData();
   }, [dataBooking]);
 
-  // set
-  const currentTime = new Date();
+  // Confirm Payment
   const confirmPayment = async () => {
-    const putItemBooking = {
+    const newBooking = {
       email: user_Private.email,
-      dateBooking: currentTime,
-      dataBooking: dataBooking,
+      dateBooking: String(currentTime),
+      dataBooking,
     };
-    const res = await postUserBooking('userBooking', putItemBooking, token);
-    console.log('----> res', res);
-    setCheckPayment(true);
+    if (newBooking.email && newBooking.dateBooking && newBooking.dataBooking) {
+      const res = await postUserBooking('userBooking', newBooking, token);
+      console.log('----> res', res);
+      setCheckPayment(true);
+    } else {
+      return console.error('Loi!');
+    }
   };
 
   // Copy click icon

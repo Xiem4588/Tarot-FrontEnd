@@ -41,7 +41,7 @@ const ModalPriceList = ({
 
   // Get data box price list
   interface itemProps {
-    created_date: Date;
+    created_date: string;
     title: string;
     desc: string;
     price: string;
@@ -96,7 +96,7 @@ const ModalPriceList = ({
   // date, month, year
   const currentTime = new Date();
   const newItem = {
-    created_date: currentTime,
+    created_date: String(currentTime),
     title: isTitle ? isTitle : '',
     desc: isDesc ? isDesc : '',
     price: isPrice ? isPrice : '',

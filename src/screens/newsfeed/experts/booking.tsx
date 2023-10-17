@@ -47,16 +47,16 @@ const BookingScreen = ({navigation, route}: navProps) => {
   const getDataTime = (time: any) => {
     setTime(time);
   };
+
   const dataBooking = {
-    pricePack: isPrice,
     dateViewing: isDate,
     timeViewing: isTime,
+    pricePack: isPrice,
   };
 
   // Submit Payment
   const [isCheckLogin, setCheckLogin] = useState(false);
   const handlePayment = () => {
-    console.log('---- isCheckLogin', isCheckLogin);
     if (token) {
       navigation.navigate('payment', {dataBooking});
     } else {
