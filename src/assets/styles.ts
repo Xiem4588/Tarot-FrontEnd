@@ -675,6 +675,9 @@ export const styles = StyleSheet.create({
     backgroundColor: '#FF5C5C',
     zIndex: 1,
   },
+  fontStyleItalic: {
+    fontStyle: 'italic',
+  },
   //
   itemContainer: {
     flex: 1,

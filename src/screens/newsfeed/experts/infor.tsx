@@ -1,7 +1,6 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
-import {Avatar} from 'react-native-elements';
-import {icon, images} from '../../../assets/constants';
+import {View, Text, Image} from 'react-native';
+import {images} from '../../../assets/constants';
 import {styles} from '../../../assets/styles';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useSelector} from 'react-redux';
@@ -43,7 +42,13 @@ const Infor = () => {
             </Text>
             <View style={styles.RowAlignItems}>
               <View style={styles.RowAlignItems}>
-                <IconMateria name="heart" size={16} color={'red'} />
+                <IconMateria name="instagram" size={14} color={'#000'} />
+              </View>
+              <View style={[styles.RowAlignItems, styles.marginLeft12]}>
+                <IconMateria name="facebook" size={14} color={'#000'} />
+              </View>
+              <View style={[styles.RowAlignItems, styles.marginLeft12]}>
+                <IconMateria name="heart" size={14} color={'red'} />
                 <Text
                   style={[
                     styles.fontSize12,
@@ -54,7 +59,7 @@ const Infor = () => {
                 </Text>
               </View>
               <View style={[styles.RowAlignItems, styles.marginLeft12]}>
-                <IconMateria name="eye-outline" size={16} color={'#000'} />
+                <IconMateria name="eye-outline" size={14} color={'#000'} />
                 <Text
                   style={[
                     styles.fontSize12,
@@ -63,17 +68,6 @@ const Infor = () => {
                   ]}>
                   {user.view ? user.view : '0'}
                 </Text>
-              </View>
-              <View style={[styles.RowAlignItems, styles.marginLeft12]}>
-                <Avatar
-                  source={icon.iconInstagram}
-                  containerStyle={styles.iconSize12Mgr5}
-                />
-                <TouchableOpacity onPress={() => {}}>
-                  <Text style={[styles.fontSize12, styles.colorBlue]}>
-                    Instagram
-                  </Text>
-                </TouchableOpacity>
               </View>
             </View>
           </View>

@@ -10,7 +10,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import {Avatar} from 'react-native-elements';
-import {icon, images} from '../../../assets/constants';
+import {images} from '../../../assets/constants';
 import {styles} from '../../../assets/styles';
 import WrapBgBox from '../../../conponents/wrapBgBox';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -99,21 +99,7 @@ const ScreenPayment = ({navigation, route}: navProps) => {
         <Infor />
         <ScrollView>
           <View style={styles.paddingHorizontal18}>
-            <Text>Bạn sẽ liên kết với chuyên gia tại:</Text>
-            <View style={[styles.RowAlignItems, styles.marginTop5]}>
-              <Avatar
-                source={icon.iconInstagram}
-                containerStyle={styles.iconSize12Mgr5}
-              />
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Instagram')}>
-                <Text
-                  numberOfLines={1}
-                  style={[styles.fontSize12, styles.colorBlue]}>
-                  instagram.com/{user_Public.intargram}
-                </Text>
-              </TouchableOpacity>
-            </View>
+            <Text style={[styles.textTitle18Black]}>Thời gian</Text>
             <View
               style={[
                 styles.marginTop15,
@@ -207,24 +193,46 @@ const ScreenPayment = ({navigation, route}: navProps) => {
                 </Modal>
               </View>
             </View>
+            <Text
+              style={[
+                styles.fontSize10,
+                styles.colorBlack,
+                styles.marginVertical18,
+                styles.fontStyleItalic,
+              ]}>
+              <Text style={styles.fontBold}>Lưu ý</Text>(*): Copy và dán nội
+              dung chuyển tiền khi thực hiện thanh toán
+            </Text>
             {isCheckPayment === true ? (
-              <View
-                style={[
-                  styles.RowAlignItemsCenter,
-                  styles.marginTop20,
-                  styles.marginBottom50,
-                ]}>
-                <IconMateria name="timer-sand" size={18} color="#F78B73" />
-                <Text
-                  style={[
-                    styles.fontBold600,
-                    styles.colorOrange,
-                    styles.marginRight10,
-                    styles.fontBold,
-                    styles.fontSize16,
-                  ]}>
-                  Thanh toán đang chờ xác nhận!
-                </Text>
+              <View style={[styles.marginBottom50]}>
+                <View style={[styles.buttonTmp, styles.RowAlignItemsCenter]}>
+                  <IconMateria name="timer-sand" size={18} color="#000" />
+                  <Text
+                    style={[
+                      styles.fontBold600,
+                      styles.colorBlack,
+                      styles.marginRight10,
+                      styles.fontBold,
+                      styles.fontSize16,
+                    ]}>
+                    Thanh toán đang chờ xác nhận!
+                  </Text>
+                </View>
+                <View style={[styles.RowAlignItemsCenter, styles.marginTop10]}>
+                  <TouchableWithoutFeedback
+                    onPress={() => navigation.navigate('newsfeed')}>
+                    <Text
+                      style={[
+                        styles.fontBold600,
+                        styles.colorOrange,
+                        styles.marginRight10,
+                        styles.fontBold,
+                        styles.fontSize16,
+                      ]}>
+                      Về trang chủ
+                    </Text>
+                  </TouchableWithoutFeedback>
+                </View>
               </View>
             ) : (
               <>
