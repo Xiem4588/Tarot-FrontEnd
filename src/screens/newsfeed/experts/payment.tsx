@@ -67,16 +67,19 @@ const ScreenPayment = ({navigation, route}: navProps) => {
   // Confirm Payment
   const confirmPayment = async () => {
     const newBooking = {
-      email: user_Private.email,
+      email_guest: user_Private.email,
+      email_expert: user_Public.email,
+      id_guest: user_Private._id,
+      id_expert: user_Public._id,
       dateBooking: String(currentTime),
       dataBooking,
     };
-    if (newBooking.email && newBooking.dateBooking && newBooking.dataBooking) {
+    if (newBooking.email_guest) {
       const res = await postUserBooking('userBooking', newBooking, token);
       console.log('----> res', res);
       setCheckPayment(true);
     } else {
-      return console.error('Loi!');
+      return console.error('Lỗi (!)');
     }
   };
 
