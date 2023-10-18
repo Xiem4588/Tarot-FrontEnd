@@ -66,8 +66,9 @@ const Register = ({handleInputUser}: RegisterProps) => {
     email: string;
     password: string;
     typeUser: string;
+    createDate?: string;
     fullName?: string;
-    dateOfBirth?: Date;
+    dateOfBirth?: string;
     desc?: string;
     tel?: string;
   }
@@ -88,6 +89,7 @@ const Register = ({handleInputUser}: RegisterProps) => {
             email: isEmail,
             password: isPassword,
             typeUser: isTypeUser,
+            createDate: String(new Date().toLocaleString()),
           };
 
           // Reques api

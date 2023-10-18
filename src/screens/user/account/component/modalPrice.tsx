@@ -94,7 +94,7 @@ const ModalPriceList = ({
   const [isNotify, setNotify] = useState(String || null);
 
   // date, month, year
-  const currentTime = new Date();
+  const currentTime = new Date().toLocaleString();
   const newItem = {
     created_date: String(currentTime),
     title: isTitle ? isTitle : '',

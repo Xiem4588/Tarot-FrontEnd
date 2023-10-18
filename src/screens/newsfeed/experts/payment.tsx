@@ -22,7 +22,7 @@ import Infor from './infor';
 import {postUserBooking} from '../../../services';
 
 const ScreenPayment = ({navigation, route}: navProps) => {
-  const currentTime = new Date();
+  const currentTime = new Date().toLocaleString();
   // get store data
   const user_Public = useSelector(
     (state: any) => state.PUBLIC_STORE_USER_DETAIL.user,
