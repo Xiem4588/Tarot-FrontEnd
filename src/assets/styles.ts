@@ -356,6 +356,23 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
     fontFamily: 'Montserrat',
   },
+  bgGraySelect: {
+    width: '100%',
+    backgroundColor: '#f2f2f2',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 30,
+    borderWidth: 3,
+    borderStyle: 'solid',
+    borderColor: '#f2f2f2',
+  },
+  tabTime: {
+    flex: 1,
+    textAlign: 'center',
+    borderRadius: 12,
+    overflow: 'hidden',
+    padding: 5,
+  },
   avatarLogin: {
     paddingTop: height >= 700 ? (Platform.OS === 'ios' ? 50 : 25) : 15,
     backgroundColor: '#A9B0F5',
@@ -654,6 +671,9 @@ export const styles = StyleSheet.create({
     fontFamily: 'Montserrat-ExtraBold',
     fontWeight: 'bold',
   },
+  fontBoldNormal: {
+    fontWeight: 'normal',
+  },
   fontBold: {
     fontFamily: 'Montserrat-Bold',
     fontWeight: 'bold',
@@ -827,7 +847,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
-    alignItems: 'stretch', // thêm thuộc tính này
+    alignItems: 'stretch',
   },
   RowAlignItems: {
     flexDirection: 'row',
@@ -1620,5 +1640,22 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     right: 10,
     top: 15,
+  },
+  timeBox: {
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    borderColor: 'rgba(0, 0, 0, 0.2)',
+    padding: 7,
+    fontSize: 12,
+    borderRadius: 16,
+    margin: 5,
+    width: '22%',
+    textAlign: 'center',
+  },
+  RowCenterLlexWrap: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
   },
 });
