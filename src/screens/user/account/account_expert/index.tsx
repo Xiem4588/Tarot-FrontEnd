@@ -196,6 +196,7 @@ const AgendaScreen = ({navigation}: isProps, isItems: isItems) => {
       </View>
       <Agenda
         // renderKnob={renderKnob}
+        minDate={String(new Date())}
         items={items}
         renderItem={renderItem}
         showClosingKnob={true}

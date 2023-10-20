@@ -3,34 +3,41 @@ import {
   View,
   Text,
   TouchableWithoutFeedback,
-  Dimensions,
   ImageBackground,
 } from 'react-native';
-import {styles} from '../../../assets/styles';
-import CalendarPicker from 'react-native-calendar-picker';
+import {Agenda} from 'react-native-calendars';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
-import moment from 'moment';
+import {styles} from '../../../assets/styles';
 import {images} from '../../../assets/constants';
-const {width} = Dimensions.get('window');
 interface dateTimeProps {
   getDataTime: (time: string) => void;
   getDataDate: (date: string) => void;
 }
 
 const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
+  const [isDropdownDate, setDropdownDate] = useState(false);
   const [isDropdownTime, setDropdownTime] = useState(false);
   const [isSelectTime, setSelectTime] = useState<String | null>(null);
   const [isTypeTime, setTypeTime] = useState(false);
   // togg
-  const dropdownTime = () => {
-    setDropdownTime(!isDropdownTime);
+  const handleDropdown = (value: string) => {
+    switch (value) {
+      case 'date':
+        setDropdownDate(!isDropdownDate);
+        break;
+      case 'time':
+        setDropdownTime(!isDropdownTime);
+        break;
+      default:
+        break;
+    }
   };
 
   // get date
-  const onDateChange = (date: any) => {
-    const formatDate = moment(date).format('DD-MM-YYYY');
-    getDataDate(String(formatDate));
-  };
+  // const onDateChange = (date: any) => {
+  //   const formatDate = moment(date).format('DD-MM-YYYY');
+  //   getDataDate(String(formatDate));
+  // };
 
   // Tạo một mảng lưu trữ các giờ và phút
   const timeSlots = [];
@@ -56,9 +63,50 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
   const handleTimeConfirm = (selectedTime: string) => {
     setSelectTime(String(selectedTime));
     getDataTime(String(selectedTime));
-    dropdownTime();
+    // handleDropdown('time');
     console.log('Selected Time:', selectedTime);
   };
+
+  // sử lý để lấy ngày tháng năm của Agenda
+  const [selectedDate, setSelectedDate] = useState(String);
+
+  const handleDayPress = (dateSelect: any) => {
+    setSelectedDate(String(dateSelect.dateString));
+    getDataDate(String(dateSelect.dateString));
+    // handleDropdown('date');
+  };
+
+  // setting Agenda
+  // const [isStyleCalendar, setStyleCalendar] = useState(false);
+  const renderEmptyData = () => {
+    return (
+      <>
+        <Text style={[styles.backgWhite, styles.height1]} />
+        {/* {isStyleCalendar === false ? (
+          <Text style={[styles.backgWhite, styles.height1]} />
+        ) : (
+          <Text style={[styles.backgWhite, styles.height200px]} />
+        )} */}
+      </>
+    );
+  };
+
+  // Knob
+  // const handleStyle = () => {
+  //   setStyleCalendar(!isStyleCalendar);
+  //   console.log('----> isStyleCalendar', isStyleCalendar);
+  // };
+  // const renderKnob = () => {
+  //   return (
+  //     <>
+  //       <TouchableWithoutFeedback onPress={() => handleStyle()}>
+  //         <View style={[styles.alignItems]}>
+  //           <Text style={[styles.btnKnob]} />
+  //         </View>
+  //       </TouchableWithoutFeedback>
+  //     </>
+  //   );
+  // };
 
   return (
     <View style={styles.paddingHorizontal18}>
@@ -66,38 +114,77 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
         Đặt lịch
       </Text>
       <View style={[styles.marginTop15, styles.boxWhiteRadius]}>
-        <CalendarPicker
-          width={width - 40}
-          onDateChange={onDateChange}
-          todayBackgroundColor="transparent"
-          todayTextStyle={styles.todayTextStyle}
-          selectedDayColor="transparent"
-          selectedDayTextColor="#FFF"
-          selectedDayStyle={styles.selectedDayTextStyle}
-          headingLevel={1}
-          minDate={new Date()}
-          disabledDates={[new Date(2023, 3, 20), new Date(2023, 3, 21)]}
-          previousComponent={
-            <IconMateria name="chevron-left" size={34} color={'#F68B73'} />
-          }
-          nextComponent={
-            <IconMateria name="chevron-right" size={34} color={'#F68B73'} />
-          }
-        />
+        <TouchableWithoutFeedback onPress={() => handleDropdown('date')}>
+          <View style={[styles.RowCenterBetween]}>
+            <View style={styles.RowAlignItems}>
+              {isDropdownDate === false ? (
+                <IconMateria name="menu-up" size={24} color={'#000'} />
+              ) : (
+                <IconMateria name="menu-down" size={24} color={'#000'} />
+              )}
+              <Text style={[styles.fontMontserrat, styles.colorBlack]}>
+                Chọn ngày xem:
+              </Text>
+            </View>
+            <View style={styles.RowCenterBetween}>
+              <Text
+                style={[
+                  styles.colorBlack,
+                  styles.fontMontserrat,
+                  styles.fontBold,
+                  styles.marginRight5,
+                ]}>
+                {selectedDate ? (
+                  selectedDate
+                ) : (
+                  <Text style={[styles.colorGrray, styles.fontBoldNormal]}>
+                    YYYY/MM/DD
+                  </Text>
+                )}
+              </Text>
+              <IconMateria name="calendar-blank" size={16} color={'#000'} />
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+        {isDropdownDate === false ? (
+          <View style={[styles.marginTop10]}>
+            <ImageBackground
+              source={images.borderLineDashed}
+              style={[styles.borderImgDashed, styles.marginBottom10]}
+            />
+            <Agenda
+              // renderKnob={renderKnob}
+              minDate={String(new Date())}
+              showClosingKnob={true}
+              renderEmptyData={renderEmptyData}
+              onDayPress={handleDayPress}
+              theme={{
+                calendarBackground: '#FFF',
+                dotColor: '#F78B73',
+                selectedDayBackgroundColor: '#F78B73',
+              }}
+            />
+          </View>
+        ) : null}
       </View>
       <View style={[styles.marginTop15]}>
-        <View style={[styles.btnTimeBooking]}>
-          <TouchableWithoutFeedback onPress={dropdownTime}>
+        <View style={[styles.boxWhiteRadius]}>
+          <TouchableWithoutFeedback onPress={() => handleDropdown('time')}>
             <View style={[styles.RowCenterBetween]}>
-              <View>
+              <View style={styles.RowAlignItems}>
+                {isDropdownTime === false ? (
+                  <IconMateria name="menu-up" size={24} color={'#000'} />
+                ) : (
+                  <IconMateria name="menu-down" size={24} color={'#000'} />
+                )}
                 <Text style={[styles.fontMontserrat, styles.colorBlack]}>
-                  Chọn thời gian bắt đầu:
+                  Chọn giờ bắt đầu:
                 </Text>
               </View>
               <View style={styles.RowCenterBetween}>
                 <Text
                   style={[
-                    styles.colorOrange,
+                    styles.colorBlack,
                     styles.fontMontserrat,
                     styles.fontBold,
                     styles.marginRight5,
@@ -118,8 +205,8 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
               </View>
             </View>
           </TouchableWithoutFeedback>
-          {isDropdownTime === true ? (
-            <View style={[styles.marginTop20]}>
+          {isDropdownTime === false ? (
+            <View style={[styles.marginTop10]}>
               <ImageBackground
                 source={images.borderLineDashed}
                 style={styles.borderImgDashed}

@@ -10,6 +10,7 @@ import {getUserDetail} from '../../../services';
 import {useDispatch, useSelector} from 'react-redux';
 import {ActionDetailUser} from '../../../redux/store/user/actions';
 import {navProps} from './types';
+import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const BookingScreen = ({navigation, route}: navProps) => {
   // get store data
@@ -53,7 +54,6 @@ const BookingScreen = ({navigation, route}: navProps) => {
     timeViewing: isTime,
     pricePack: isPrice,
   };
-
   // Submit Payment
   const [isCheckLogin, setCheckLogin] = useState(false);
   const handlePayment = () => {
@@ -92,7 +92,64 @@ const BookingScreen = ({navigation, route}: navProps) => {
           ) : (
             ''
           )}
-          <View style={styles.paddingHorizontal18}>
+          <View
+            style={[
+              styles.boxWhiteRadius,
+              styles.marginTop20,
+              styles.paddingTop20,
+            ]}>
+            <View style={[styles.RowCenterBetween, styles.paddingHorizontal18]}>
+              <View style={[styles.width50]}>
+                <View style={[styles.RowAlignItems, styles.marginBottom5]}>
+                  <IconMateria name="calendar-blank" size={16} color={'#000'} />
+                  <Text style={[styles.marginLeft5, styles.fontSize12]}>
+                    Ngày
+                  </Text>
+                </View>
+                <Text
+                  style={[
+                    styles.colorBlack,
+                    styles.fontMontserrat,
+                    styles.fontBold,
+                    styles.marginRight5,
+                  ]}>
+                  {isDate ? (
+                    isDate
+                  ) : (
+                    <Text style={[styles.colorGrray, styles.fontBoldNormal]}>
+                      YYYY/MM/DD
+                    </Text>
+                  )}
+                </Text>
+              </View>
+              <View style={[styles.width50, styles.borderLeft]}>
+                <View style={[styles.RowAlignItems, styles.marginBottom5]}>
+                  <IconMateria
+                    name="clock-time-five-outline"
+                    size={16}
+                    color={'#000'}
+                  />
+                  <Text style={[styles.marginLeft5, styles.fontSize12]}>
+                    Giờ
+                  </Text>
+                </View>
+                <Text
+                  style={[
+                    styles.colorBlack,
+                    styles.fontMontserrat,
+                    styles.fontBold,
+                    styles.marginRight5,
+                  ]}>
+                  {isTime ? (
+                    isTime
+                  ) : (
+                    <Text style={[styles.colorGrray, styles.fontBoldNormal]}>
+                      00 : 00
+                    </Text>
+                  )}
+                </Text>
+              </View>
+            </View>
             <TouchableWithoutFeedback
               onPress={isPrice && isDate && isTime ? handlePayment : () => {}}>
               <View

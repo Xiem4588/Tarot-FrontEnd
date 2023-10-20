@@ -1,0 +1,69 @@
+Agenda component của thư viện react-native-calendars có một số thuộc tính (props) mà bạn có thể sử dụng để tùy chỉnh và kiểm soát hiển thị và hành vi của Agenda. Dưới đây là một số thuộc tính quan trọng trong Agenda:
+
+items (required): Một đối tượng hoặc mảng chứa danh sách các mục (items) cần hiển thị trong Agenda.
+
+renderItem (required): Hàm xử lý để render từng mục trong Agenda.
+
+renderEmptyData: Hàm xử lý để render khi không có dữ liệu (items) để hiển thị.
+
+renderEmptyDate: Hàm xử lý để render khi không có dữ liệu cho một ngày cụ thể.
+
+theme: Một đối tượng chứa các thiết lập màu sắc và giao diện của Agenda.
+
+selected: Ngày được chọn mặc định.
+
+minDate: Ngày tối thiểu có thể hiển thị.
+
+maxDate: Ngày tối đa có thể hiển thị.
+
+pastScrollRange: Số ngày trước ngày hiện tại mà bạn muốn hiển thị.
+
+futureScrollRange: Số ngày sau ngày hiện tại mà bạn muốn hiển thị.
+
+onDayPress: Hàm xử lý được gọi khi một ngày được chọn.
+
+onDayChange: Hàm xử lý được gọi khi trượt ngày.
+
+onRefresh: Hàm xử lý được gọi khi bạn kéo xuống để làm mới dữ liệu.
+
+refreshing: Trạng thái làm mới.
+
+knobProps: Đối tượng chứa các thuộc tính tùy chỉnh cho nút Knob.
+
+knobText: Chuỗi văn bản cho nút Knob.
+
+showKnob: Hiển thị hoặc ẩn nút Knob.
+
+showClosingKnob: Hiển thị hoặc ẩn nút ClosingKnob.
+
+renderKnob: Hàm xử lý để render nút Knob.
+
+showCalendars: Hiển thị hoặc ẩn lịch.
+
+calendarHeight: Độ cao của lịch.
+
+calendarStyle: Tùy chỉnh kiểu dáng của lịch.
+
+calendarWidth: Độ rộng của lịch.
+
+calendarBackground: Màu nền của lịch.
+
+hideKnob: Ẩn nút Knob.
+
+onKnobClick: Hàm xử lý được gọi khi nút Knob được click.
+
+disableMonthChange: Vô hiệu hóa thay đổi tháng.
+
+renderCalendarHeader: Hàm xử lý để render phần header của lịch.
+
+calendarHeaderStyle: Tùy chỉnh kiểu dáng của header lịch.
+
+agendaDayNumColor: Màu sắc của số ngày trong Agenda.
+
+agendaDayNumFontFamily: Font chữ của số ngày trong Agenda.
+
+agendaDayNumFontSize: Cỡ chữ của số ngày trong Agenda.
+
+agendaDayTextColor: Màu sắc của văn bản ngày trong Agenda.
+
+Đây chỉ là một số thuộc tính quan trọng trong Agenda của thư viện react-native-calendars. Bạn có thể tùy chỉnh và sử dụng chúng để đáp ứng yêu cầu cụ thể của ứng dụng của bạn.

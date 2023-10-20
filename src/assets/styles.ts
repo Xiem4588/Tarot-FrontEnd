@@ -137,6 +137,12 @@ export const styles = StyleSheet.create({
   height100px: {
     height: 100,
   },
+  height1: {
+    height: 1,
+  },
+  heightAuto: {
+    height: 'auto',
+  },
   height200px: {
     height: 200,
   },
@@ -1327,7 +1333,11 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0, 0, 0, 0.4)',
   },
-
+  borderLeft: {
+    paddingLeft: 25,
+    borderLeftWidth: 1,
+    borderLeftColor: 'rgba(0, 0, 0, 1)',
+  },
   borderBottomOrange4: {
     borderBottomColor: '#F78B73',
     borderBottomWidth: 4,
@@ -1657,5 +1667,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexWrap: 'wrap',
+  },
+  btnKnob: {
+    height: 6,
+    width: 50,
+    borderRadius: 3,
+    overflow: 'hidden',
+    backgroundColor: '#f2f2f2',
   },
 });

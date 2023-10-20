@@ -18,7 +18,6 @@ const ScreenExperts = ({navigation}: navProps) => {
           const res = await getTypeUser('expert');
           const users = res.data;
           setUsers(users);
-          console.log('----> list expert', users);
         } catch (error) {
           return error;
         }
