@@ -1651,17 +1651,6 @@ export const styles = StyleSheet.create({
     right: 10,
     top: 15,
   },
-  timeBox: {
-    borderWidth: 1,
-    borderStyle: 'dashed',
-    borderColor: 'rgba(0, 0, 0, 0.2)',
-    padding: 7,
-    fontSize: 12,
-    borderRadius: 16,
-    margin: 5,
-    width: '22%',
-    textAlign: 'center',
-  },
   RowCenterLlexWrap: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1674,5 +1663,32 @@ export const styles = StyleSheet.create({
     borderRadius: 3,
     overflow: 'hidden',
     backgroundColor: '#f2f2f2',
+  },
+  timeBox: {
+    color: '#000',
+    textAlign: 'center',
+    padding: 7,
+    fontSize: 12,
+  },
+  colorGray: {
+    color: '#686868',
+  },
+  defaultTime: {
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'rgba(0, 0, 0, 1)',
+    borderRadius: 16,
+    margin: 5,
+    width: '22%',
+    textAlign: 'center',
+    overflow: 'hidden',
+  },
+  disableTime: {
+    borderColor: '#F2F2F2',
+    backgroundColor: '#F2F2F2',
+  },
+  activeTime: {
+    borderColor: '#F68B73',
+    backgroundColor: '#F68B73',
   },
 });

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -9,6 +9,8 @@ import {Agenda} from 'react-native-calendars';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../../../assets/styles';
 import {images} from '../../../assets/constants';
+import {useSelector} from 'react-redux';
+import {getRoutesMain} from '../../../services';
 interface dateTimeProps {
   getDataTime: (time: string) => void;
   getDataDate: (date: string) => void;
@@ -18,6 +20,7 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
   const [isDropdownDate, setDropdownDate] = useState(false);
   const [isDropdownTime, setDropdownTime] = useState(false);
   const [isSelectTime, setSelectTime] = useState<String | null>(null);
+  const [isIndexTime, setIndexTime] = useState<Number | null>(null);
   const [isTypeTime, setTypeTime] = useState(false);
   // togg
   const handleDropdown = (value: string) => {
@@ -32,12 +35,6 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
         break;
     }
   };
-
-  // get date
-  // const onDateChange = (date: any) => {
-  //   const formatDate = moment(date).format('DD-MM-YYYY');
-  //   getDataDate(String(formatDate));
-  // };
 
   // Tạo một mảng lưu trữ các giờ và phút
   const timeSlots = [];
@@ -58,55 +55,93 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
   }
   const amTimeSlots = timeSlots.filter(time => time.endsWith('AM')); // Lọc ra các mục có giờ là AM
   const pmTimeSlots = timeSlots.filter(time => time.endsWith('PM')); // Lọc ra các mục có giờ là PM
-
   // get time
-  const handleTimeConfirm = (selectedTime: string) => {
+  const handleTimeConfirm = (selectedTime: string, index: number) => {
     setSelectTime(String(selectedTime));
     getDataTime(String(selectedTime));
+    setIndexTime(index);
     // handleDropdown('time');
-    console.log('Selected Time:', selectedTime);
   };
 
   // sử lý để lấy ngày tháng năm của Agenda
-  const [selectedDate, setSelectedDate] = useState(String);
-
+  const today = new Date();
+  const selectedDay = today.getDate(); // Ngay
+  const selectedMonth = today.getMonth() + 1; // Lưu ý: Tháng bắt đầu từ 0
+  const selectedYear = today.getFullYear(); // Nam
+  const formattedDateToday = `${selectedDay}-${selectedMonth}-${selectedYear}`;
+  const [isSelectedDate, setSelectedDate] = useState(formattedDateToday);
   const handleDayPress = (dateSelect: any) => {
-    setSelectedDate(String(dateSelect.dateString));
-    getDataDate(String(dateSelect.dateString));
-    // handleDropdown('date');
+    const parts = dateSelect.dateString.split('-');
+    if (parts.length === 3) {
+      const year = parts[0];
+      const month = parts[1];
+      const day = parts[2];
+      const formattedDate = `${day}-${month}-${year}`;
+      setSelectedDate(String(formattedDate));
+      getDataDate(String(formattedDate));
+      // handleDropdown('date');
+    } else {
+      console.log('Ngày không hợp lệ.');
+    }
   };
 
   // setting Agenda
-  // const [isStyleCalendar, setStyleCalendar] = useState(false);
   const renderEmptyData = () => {
     return (
       <>
         <Text style={[styles.backgWhite, styles.height1]} />
-        {/* {isStyleCalendar === false ? (
-          <Text style={[styles.backgWhite, styles.height1]} />
-        ) : (
-          <Text style={[styles.backgWhite, styles.height200px]} />
-        )} */}
       </>
     );
   };
 
-  // Knob
-  // const handleStyle = () => {
-  //   setStyleCalendar(!isStyleCalendar);
-  //   console.log('----> isStyleCalendar', isStyleCalendar);
-  // };
-  // const renderKnob = () => {
-  //   return (
-  //     <>
-  //       <TouchableWithoutFeedback onPress={() => handleStyle()}>
-  //         <View style={[styles.alignItems]}>
-  //           <Text style={[styles.btnKnob]} />
-  //         </View>
-  //       </TouchableWithoutFeedback>
-  //     </>
-  //   );
-  // };
+  // check dataBooking
+  const [isDisableTimeBooking, setDisableTimeBooking] = useState<string[]>();
+  const userExpert = useSelector(
+    (state: any) => state.PUBLIC_STORE_USER_DETAIL.user,
+  );
+  const emailToFind = userExpert.email;
+
+  useEffect(() => {
+    getDataDate(String(isSelectedDate));
+    const checkDataBooking = async () => {
+      try {
+        const res = await getRoutesMain('booking');
+        const data = await res.data;
+        const itemsWithExpertEmail = await data.filter(
+          (item: any) => item.email_expert === emailToFind,
+        );
+        const datesMatchingTarget = [];
+        if (itemsWithExpertEmail && isSelectedDate) {
+          for (const item of itemsWithExpertEmail) {
+            if (
+              isSelectedDate &&
+              item.dataBooking &&
+              item.dataBooking.dateViewing === isSelectedDate
+            ) {
+              datesMatchingTarget.push(item);
+            } else {
+              datesMatchingTarget.push();
+            }
+          }
+        }
+        if (datesMatchingTarget) {
+          const timeViewingArray = datesMatchingTarget.map(
+            (time: any) => time.dataBooking.timeViewing,
+          );
+          setDisableTimeBooking(timeViewingArray);
+        }
+      } catch (error) {
+        console.error('---> Null', error);
+      }
+    };
+    checkDataBooking();
+  }, [
+    emailToFind,
+    formattedDateToday,
+    getDataDate,
+    isSelectTime,
+    isSelectedDate,
+  ]);
 
   return (
     <View style={styles.paddingHorizontal18}>
@@ -134,8 +169,8 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
                   styles.fontBold,
                   styles.marginRight5,
                 ]}>
-                {selectedDate ? (
-                  selectedDate
+                {isSelectedDate ? (
+                  isSelectedDate
                 ) : (
                   <Text style={[styles.colorGrray, styles.fontBoldNormal]}>
                     YYYY/MM/DD
@@ -235,24 +270,68 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
                   styles.marginTop20,
                   styles.marginHorizontalA9,
                 ]}>
-                {isTypeTime === false
+                {isTypeTime === false && isDisableTimeBooking
                   ? amTimeSlots.map((time, index) => (
-                      <TouchableWithoutFeedback
+                      <View
                         key={index}
-                        onPress={() => handleTimeConfirm(time)}>
-                        <Text style={[styles.timeBox]}>
-                          {time.replace(/\sAM$|\sPM$/, '')}
-                        </Text>
-                      </TouchableWithoutFeedback>
+                        style={[
+                          styles.defaultTime,
+                          isDisableTimeBooking.includes(time) // Kiểm tra nếu giá trị có trong isDisableTimeBooking
+                            ? styles.disableTime
+                            : isIndexTime === index
+                            ? styles.activeTime
+                            : null,
+                        ]}>
+                        <TouchableWithoutFeedback
+                          onPress={() =>
+                            isDisableTimeBooking.includes(time)
+                              ? {}
+                              : handleTimeConfirm(time, index)
+                          }>
+                          <Text
+                            style={[
+                              styles.timeBox,
+                              isDisableTimeBooking.includes(time)
+                                ? styles.colorGray
+                                : null,
+                            ]}>
+                            {time.replace(/\sAM$|\sPM$/, '')}
+                          </Text>
+                        </TouchableWithoutFeedback>
+                      </View>
                     ))
-                  : pmTimeSlots.map((time, index) => (
-                      <TouchableWithoutFeedback
+                  : isDisableTimeBooking &&
+                    pmTimeSlots.map((time, index) => (
+                      <View
                         key={index}
-                        onPress={() => handleTimeConfirm(time)}>
-                        <Text style={[styles.timeBox]}>
-                          {time.replace(/\sAM$|\sPM$/, '')}
-                        </Text>
-                      </TouchableWithoutFeedback>
+                        style={[
+                          styles.defaultTime,
+                          isDisableTimeBooking.includes(time)
+                            ? styles.disableTime
+                            : isIndexTime === amTimeSlots.length + index
+                            ? styles.activeTime
+                            : null,
+                        ]}>
+                        <TouchableWithoutFeedback
+                          onPress={() =>
+                            isDisableTimeBooking.includes(time)
+                              ? {}
+                              : handleTimeConfirm(
+                                  time,
+                                  amTimeSlots.length + index,
+                                )
+                          }>
+                          <Text
+                            style={[
+                              styles.timeBox,
+                              isDisableTimeBooking.includes(time)
+                                ? styles.colorGray
+                                : null,
+                            ]}>
+                            {time.replace(/\sAM$|\sPM$/, '')}
+                          </Text>
+                        </TouchableWithoutFeedback>
+                      </View>
                     ))}
               </View>
               <View
