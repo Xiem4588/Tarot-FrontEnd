@@ -261,7 +261,7 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
                 </View>
                 <View style={[styles.RowAlignItemsCenter]}>
                   <IconMateria name="rectangle" size={12} color={'#CCC'} />
-                  <Text>Đã hết</Text>
+                  <Text>Đã đặt</Text>
                 </View>
               </View>
               <View

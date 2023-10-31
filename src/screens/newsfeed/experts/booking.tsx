@@ -77,7 +77,8 @@ const BookingScreen = ({navigation, route}: navProps) => {
               <Text style={[styles.colorOrange, styles.fontSize16]}>
                 Vui lòng login:
               </Text>
-              <TouchableWithoutFeedback>
+              <TouchableWithoutFeedback
+                onPress={() => navigation.navigate('user')}>
                 <Text
                   style={[
                     styles.colorGreen,
