@@ -6,7 +6,7 @@ import Header from '../../../conponents/header';
 import Infor from './infor';
 import PricePack from './price';
 import DateTime from './datetime';
-import {getUserDetail} from '../../../services';
+import {getTypeUser} from '../../../services';
 import {useDispatch, useSelector} from 'react-redux';
 import {ActionDetailUser} from '../../../redux/store/user/actions';
 import {navProps} from './types';
@@ -22,7 +22,7 @@ const BookingScreen = ({navigation, route}: navProps) => {
     const userID = route.params.id;
     const userDetail = async () => {
       try {
-        const res = await getUserDetail(userID);
+        const res = await getTypeUser(userID);
         const userData = res.data;
         dispatch(ActionDetailUser(userData)); // gọi action cập nhật store
         return userData;

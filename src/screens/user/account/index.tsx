@@ -24,9 +24,9 @@ const UserProfile = ({navigation}: Props) => {
   return (
     <>
       {isCheckUser ? (
-        <MyProfileGuest navigation={navigation} />
-      ) : (
         <MyProfileExpert navigation={navigation} />
+      ) : (
+        <MyProfileGuest navigation={navigation} />
       )}
     </>
   );

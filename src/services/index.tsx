@@ -33,18 +33,6 @@ export const getTypeUser = async (routes: string) => {
   }
 };
 
-// ************ GET user detail
-export const getUserDetail = async (routes: string) => {
-  try {
-    const url = `/users/${routes}`;
-    const res = await axiosClient.get(url);
-    return res;
-  } catch (error) {
-    console.error('Không lấy được user!', error);
-    throw error;
-  }
-};
-
 // ************ POST(Tạo mới) users routes(login, register,...)
 export const postUserAccount = async (routes: string, data: object) => {
   try {
@@ -113,6 +101,17 @@ export const postUserBooking = async (
     });
     const res = await updateAccount.post(url, data);
     return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// ************ GET user booking
+export const getTypeBooking = async (routes: string, data: object) => {
+  try {
+    const url = `/booking/${routes}`;
+    const res = await axiosClient.post(url, data);
+    return res;
   } catch (error) {
     throw error;
   }

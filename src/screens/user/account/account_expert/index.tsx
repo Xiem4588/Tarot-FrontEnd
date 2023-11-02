@@ -1,79 +1,49 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import {Agenda} from 'react-native-calendars';
 import InforProfile from '../component/infor';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../../../../assets/styles';
 import ModalDataDate from './modal';
+import {getTypeBooking} from '../../../../services';
+import {useSelector} from 'react-redux';
+import {useFocusEffect} from '@react-navigation/native';
 
 interface isProps {
   navigation: any;
 }
-interface isItems {
-  index: string;
-  day: string;
-  start: string;
-  end: string;
-  name: string;
-  summary: string;
-  confirm: boolean;
-}
 
-const AgendaScreen = ({navigation}: isProps, isItems: isItems) => {
-  const [items, setItems] = useState<{}>(isItems);
-  useEffect(() => {
-    setItems({
-      '2023-05-31': [
-        {
-          index: '10',
-          day: '2023-05-29',
-          start: '09:00:00',
-          end: '10:00:00',
-          name: 'Dr. Khach 01',
-          summary: 'Goi 30k',
-          confirm: false,
-        },
-        {
-          index: '15',
-          day: '2023-05-29',
-          start: '19:00:00',
-          end: '19:30:00',
-          name: 'Dr. Khach 02',
-          summary: 'Goi 130k',
-          confirm: true,
-        },
-      ],
-      '2023-06-01': [
-        {
-          index: '1',
-          day: '2023-05-30',
-          start: '09:00:00',
-          end: '10:00:00',
-          name: 'Dr. 100',
-          summary: 'Goi 30k',
-          confirm: true,
-        },
-        {
-          index: '2',
-          day: '2023-05-30',
-          start: '12:00:00',
-          end: '13:00:00',
-          name: 'Khach 120',
-          summary: 'Goi 50k',
-          confirm: false,
-        },
-        {
-          index: '21',
-          day: '2023-05-30',
-          start: '14:00:00',
-          end: '15:00:00',
-          name: 'Khach 130',
-          summary: 'Goi 50k',
-          confirm: null,
-        },
-      ],
-    });
-  }, []);
+const AgendaScreen = ({navigation}: isProps) => {
+  const [items, setItems] = useState({});
+  const userData = useSelector(
+    (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.user,
+  );
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const checkDataBooking = async () => {
+        try {
+          if (userData) {
+            const myEmail = await userData.email;
+            const emailData = {
+              email: myEmail,
+            };
+            const res = await getTypeBooking('typeBooking', emailData);
+            const data = await res.data;
+            // const orders = await data.filter(
+            //   (item: any) => item.email_expert === myEmail,
+            // );
+            setItems(data);
+          }
+        } catch (error) {
+          return error;
+        }
+      };
+      checkDataBooking();
+    }, [userData]),
+  );
+
+  console.log('---> items 1', items);
 
   //
   const [isDataItem, setDataItem] = useState('');
