@@ -22,7 +22,7 @@ const InforProfile = ({navigation, expert}: Props) => {
     (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA?.user,
   );
   return (
-    <View style={[styles.avatarProfile]}>
+    <View style={[styles.avatarProfile, expert ? styles.backgWhite : null]}>
       {!expert ? (
         <>
           <ImageBackground
@@ -37,7 +37,10 @@ const InforProfile = ({navigation, expert}: Props) => {
           />
         </>
       ) : (
-        ''
+        <ImageBackground
+          source={images.ImageBackground}
+          style={styles.ImgIconBagExp}
+        />
       )}
       <View style={[styles.paddingBox]}>
         <View style={styles.RowCenterBetween}>

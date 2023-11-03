@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity, ImageBackground} from 'react-native';
 import {Agenda} from 'react-native-calendars';
 import InforProfile from '../component/infor';
 import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -8,6 +8,8 @@ import ModalDataDate from './modal';
 import {getTypeBooking} from '../../../../services';
 import {useSelector} from 'react-redux';
 import {useFocusEffect} from '@react-navigation/native';
+import formattedDateToday from '../../../conponents/dateToday';
+import {images} from '../../../../assets/constants';
 
 interface isProps {
   navigation: any;
@@ -30,9 +32,6 @@ const AgendaScreen = ({navigation}: isProps) => {
             };
             const res = await getTypeBooking('typeBooking', emailData);
             const data = await res.data;
-            // const orders = await data.filter(
-            //   (item: any) => item.email_expert === myEmail,
-            // );
             setItems(data);
           }
         } catch (error) {
@@ -57,6 +56,7 @@ const AgendaScreen = ({navigation}: isProps) => {
   };
 
   const renderItem = (item: any) => {
+    console.log('---- item', item);
     const dataItem = item;
     return (
       <>
@@ -130,27 +130,18 @@ const AgendaScreen = ({navigation}: isProps) => {
   };
 
   // sử lý để lấy ngày tháng năm của Agenda
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const renderKnob = () => {
-    // Hàm để hiển thị phần tháng năm
-    // const currentDate = new Date();
-    const month = selectedDate.toLocaleString('default', {month: 'long'});
-    const year = selectedDate.getFullYear();
-    return (
-      <View style={[styles.alignItems]}>
-        <Text
-          style={[
-            styles.textCenter,
-            styles.fontBold600,
-            styles.colorGrray,
-          ]}>{`${month} ${year}`}</Text>
-      </View>
-    );
-  };
-
-  const handleDayPress = (day: any) => {
-    // Xử lý sự kiện khi ngày tháng được chọn
-    setSelectedDate(new Date(day.timestamp));
+  const [isSelectedDate, setSelectedDate] = useState(formattedDateToday);
+  const handleDayPress = (dateSelect: any) => {
+    const parts = dateSelect.dateString.split('-');
+    if (parts.length === 3) {
+      const year = parts[0];
+      const month = parts[1];
+      const day = parts[2];
+      const formattedDate = `${day}-${month}-${year}`;
+      setSelectedDate(String(formattedDate));
+    } else {
+      console.log('Ngày không hợp lệ.');
+    }
   };
 
   return (
@@ -159,24 +150,32 @@ const AgendaScreen = ({navigation}: isProps) => {
       <View
         style={[
           styles.backgWhite,
-          styles.paddingVertical10,
+          styles.paddingHorizontal18,
           styles.marginBottomA10,
         ]}>
-        {renderKnob()}
+        <ImageBackground
+          source={images.borderLineDashed}
+          style={[styles.borderImgDashed, styles.marginBottom10]}
+        />
+        <View style={[styles.RowAlignItems, styles.padding10]}>
+          <Text style={[styles.colorGray]}>Check order ngày: </Text>
+          <Text style={[styles.colorBlack, styles.fontBold600]}>
+            {isSelectedDate}
+          </Text>
+        </View>
       </View>
       <Agenda
-        // renderKnob={renderKnob}
         minDate={String(new Date())}
         items={items}
-        renderItem={renderItem}
         showClosingKnob={true}
+        renderItem={renderItem}
         renderEmptyData={renderEmptyData}
         theme={{
           calendarBackground: '#FFF',
           dotColor: '#F78B73',
           selectedDayBackgroundColor: '#F78B73',
         }}
-        onDayPress={handleDayPress} // Gọi hàm handleDayPress khi ngày được chọn
+        onDayPress={handleDayPress}
       />
     </>
   );

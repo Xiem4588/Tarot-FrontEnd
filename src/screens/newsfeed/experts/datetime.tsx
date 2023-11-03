@@ -11,6 +11,7 @@ import {styles} from '../../../assets/styles';
 import {images} from '../../../assets/constants';
 import {useSelector} from 'react-redux';
 import {getRoutesMain} from '../../../services';
+import formattedDateToday from '../../conponents/dateToday';
 interface dateTimeProps {
   getDataTime: (time: string) => void;
   getDataDate: (date: string) => void;
@@ -64,12 +65,6 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
   };
 
   // sử lý để lấy ngày tháng năm của Agenda
-  const today = new Date();
-  const selectedDay = String(today.getDate()).padStart(2, '0'); // Ngay
-  const selectedMonth = today.getMonth() + 1; // Lưu ý: Tháng bắt đầu từ 0
-  const selectedYear = today.getFullYear(); // Nam
-  const formattedDateToday = `${selectedDay}-${selectedMonth}-${selectedYear}`;
-  console.log('--- formattedDateToday', formattedDateToday);
   const [isSelectedDate, setSelectedDate] = useState(formattedDateToday);
   const handleDayPress = (dateSelect: any) => {
     const parts = dateSelect.dateString.split('-');
@@ -139,13 +134,7 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
       }
     };
     checkDataBooking();
-  }, [
-    formattedDateToday,
-    getDataDate,
-    isSelectTime,
-    isSelectedDate,
-    userExpert,
-  ]);
+  }, [getDataDate, isSelectTime, isSelectedDate, userExpert]);
 
   return (
     <View style={styles.paddingHorizontal18}>

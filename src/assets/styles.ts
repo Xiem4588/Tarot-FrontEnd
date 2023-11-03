@@ -93,6 +93,9 @@ export const styles = StyleSheet.create({
   backgWhite: {
     backgroundColor: '#fff',
   },
+  backgWhiteOpacity08: {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  },
   navigationContainer: {
     flex: 1,
     backgroundColor: colors.transparent,
@@ -212,6 +215,9 @@ export const styles = StyleSheet.create({
   },
   padding18: {
     padding: 18,
+  },
+  padding10: {
+    padding: 10,
   },
   padding24: {
     padding: 24,
@@ -397,6 +403,14 @@ export const styles = StyleSheet.create({
     bottom: -80,
     height: 200,
     width: '100%',
+  },
+  ImgIconBagExp: {
+    position: 'absolute',
+    height: 668,
+    width: '100%',
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   ImgBgBottom: {
     position: 'absolute',
@@ -969,7 +983,6 @@ export const styles = StyleSheet.create({
   },
   colorBlack: {
     color: 'rgba(0, 0, 0, 1)',
-    fontWeight: '500',
     fontFamily: 'Montserrat',
   },
   textBlack: {

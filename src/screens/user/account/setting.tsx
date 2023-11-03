@@ -34,7 +34,6 @@ const SettingScreen = ({navigation}: any) => {
   const priceList = useSelector(
     (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.user.priceList,
   );
-  // console.log('----> user', user);
   const token = useSelector(
     (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.token,
   );
@@ -155,7 +154,7 @@ const SettingScreen = ({navigation}: any) => {
 
   // submit save setting
   const handleUpdateUser = async () => {
-    setNotification('Loading...'); // Hiển loading
+    setNotification('Loading...'); // Hiển thị loading
     if (isTelValue) {
       if (isTelValue.length >= 10 && isTelValue.length <= 11) {
         try {
@@ -170,10 +169,9 @@ const SettingScreen = ({navigation}: any) => {
             facebook: isFacebook ? isFacebook : user.facebook,
             priceList: isPriceList ? isPriceList : user.priceList,
           };
-          // console.log('----> 1', userUpdate);
-          const res = await putUpdateAccount('setting', userUpdate, token); // Gọi API update người dùng
-          dispatch(ActionUpdateUser(res.user)); // gọi action cập nhật store
-          setNotification('Cập nhật thành công!'); // Hiển thị thông báo cập nhật thành công
+          const res = await putUpdateAccount('setting', userUpdate, token);
+          dispatch(ActionUpdateUser(res.user));
+          setNotification('Cập nhật thành công!');
           setTogglePass(false);
           setToggleDesc(false);
           setTelError('');
@@ -197,7 +195,6 @@ const SettingScreen = ({navigation}: any) => {
           facebook: isFacebook ? isFacebook : user.facebook,
           priceList: isPriceList ? isPriceList : user.priceList,
         };
-        // console.log('----> 2', userUpdate);
         const res = await putUpdateAccount('setting', userUpdate, token);
         dispatch(ActionUpdateUser(res.user));
         setNotification('Cập nhật thành công!');
@@ -230,13 +227,10 @@ const SettingScreen = ({navigation}: any) => {
     setDatePickerVisibility(false);
   };
   const handleConfirm = (date: any) => {
-    // 1. Lấy ngày, tháng, năm từ đối tượng date
-    const selectedDay = date.getDate(); // Ngay
-    const selectedMonth = date.getMonth() + 1; // Lưu ý: Tháng bắt đầu từ 0
-    const selectedYear = date.getFullYear(); // Nam
-    // 2. Tạo một định dạng mới cho ngày/tháng/năm
+    const selectedDay = date.getDate();
+    const selectedMonth = date.getMonth() + 1;
+    const selectedYear = date.getFullYear();
     const formattedDate = `${selectedDay}/${selectedMonth}/${selectedYear}`;
-    // 3. Lưu trữ ngày đã được chọn
     setDateOfBirth(formattedDate);
     // 4. Đóng DatePickerModal
     hideDatePicker();
