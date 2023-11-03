@@ -65,10 +65,11 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
 
   // sử lý để lấy ngày tháng năm của Agenda
   const today = new Date();
-  const selectedDay = today.getDate(); // Ngay
+  const selectedDay = String(today.getDate()).padStart(2, '0'); // Ngay
   const selectedMonth = today.getMonth() + 1; // Lưu ý: Tháng bắt đầu từ 0
   const selectedYear = today.getFullYear(); // Nam
   const formattedDateToday = `${selectedDay}-${selectedMonth}-${selectedYear}`;
+  console.log('--- formattedDateToday', formattedDateToday);
   const [isSelectedDate, setSelectedDate] = useState(formattedDateToday);
   const handleDayPress = (dateSelect: any) => {
     const parts = dateSelect.dateString.split('-');
@@ -99,36 +100,39 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
   const userExpert = useSelector(
     (state: any) => state.PUBLIC_STORE_USER_DETAIL.user,
   );
-  const emailToFind = userExpert.email;
-
   useEffect(() => {
     getDataDate(String(isSelectedDate));
     const checkDataBooking = async () => {
       try {
-        const res = await getRoutesMain('booking');
-        const data = await res.data;
-        const itemsWithExpertEmail = await data.filter(
-          (item: any) => item.email_expert === emailToFind,
-        );
-        const datesMatchingTarget = [];
-        if (itemsWithExpertEmail && isSelectedDate) {
-          for (const item of itemsWithExpertEmail) {
-            if (
-              isSelectedDate &&
-              item.dataBooking &&
-              item.dataBooking.dateViewing === isSelectedDate
-            ) {
-              datesMatchingTarget.push(item);
-            } else {
-              datesMatchingTarget.push();
+        if (userExpert) {
+          const emailToFind = userExpert.email;
+          const res = await getRoutesMain('booking');
+          const data = await res.data;
+          const itemsWithExpertEmail = await data.filter(
+            (item: any) => item.email_expert === emailToFind,
+          );
+          const datesMatchingTarget = [];
+          if (itemsWithExpertEmail && isSelectedDate) {
+            for (const item of itemsWithExpertEmail) {
+              if (
+                isSelectedDate &&
+                item.dataBooking &&
+                item.dataBooking.dateViewing === isSelectedDate
+              ) {
+                datesMatchingTarget.push(item);
+              } else {
+                datesMatchingTarget.push();
+              }
             }
           }
-        }
-        if (datesMatchingTarget) {
-          const timeViewingArray = datesMatchingTarget.map(
-            (time: any) => time.dataBooking.timeViewing,
-          );
-          setDisableTimeBooking(timeViewingArray);
+          if (datesMatchingTarget) {
+            const timeViewingArray = datesMatchingTarget.map(
+              (time: any) => time.dataBooking.timeViewing,
+            );
+            setDisableTimeBooking(timeViewingArray);
+          }
+        } else {
+          return null;
         }
       } catch (error) {
         console.error('---> Null', error);
@@ -136,11 +140,11 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
     };
     checkDataBooking();
   }, [
-    emailToFind,
     formattedDateToday,
     getDataDate,
     isSelectTime,
     isSelectedDate,
+    userExpert,
   ]);
 
   return (
