@@ -17,7 +17,7 @@ interface isProps {
 
 const AgendaScreen = ({navigation}: isProps) => {
   const [originalData, setOriginalData] = useState({});
-  const [rormatData, setFormatData] = useState({});
+  const [formatData, setFormatData] = useState({});
   const userData = useSelector(
     (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.user,
   );
@@ -43,13 +43,15 @@ const AgendaScreen = ({navigation}: isProps) => {
     }, [userData]),
   );
 
-  type AgendaItems = Record<string, Event[]>;
-  interface Event {
-    name: string;
-    start: string;
-    end?: string;
+  interface AgendaEntry {
+    name_guest: string;
+    name_expert: string;
+    dateViewing: string;
+    timeViewing: string;
     confirm: boolean;
   }
+  type AgendaItems = Record<string, AgendaEntry[]>;
+
   useEffect(() => {
     try {
       // Chuyển đổi dữ liệu vào định dạng cho Agenda
@@ -57,29 +59,36 @@ const AgendaScreen = ({navigation}: isProps) => {
       (originalData as AgendaItems[]).forEach((item: any) => {
         // Lấy ngày từ item
         const date = item.dataBooking.dateViewing;
+        // Định dạng lại ngày cho đúng kiểu của Agenda
+        let DateAgenda = null;
+        const oldDate = date.split('-');
+        if (oldDate.length === 3) {
+          const year = oldDate[2];
+          const month = oldDate[1];
+          const day = oldDate[0];
+          DateAgenda = `${year}-${month}-${day}`;
+        } else {
+          return null;
+        }
 
         // Tạo đối tượng sự kiện
-        const event: Event = {
-          name: item.name_guest || item.name_expert || 'No Name',
-          start: item.dataBooking.timeViewing,
-          end: '', // Bạn cần thêm giờ kết thúc nếu có
-          confirm: true, // Thay đổi tùy theo dữ liệu của bạn
+        const event: AgendaEntry = {
+          name_guest: item.name_guest,
+          name_expert: item.name_expert,
+          dateViewing: item.dataBooking.dateViewing,
+          timeViewing: item.dataBooking.timeViewing,
+          confirm: item.confirm,
         };
-
         // Thêm sự kiện vào mảng của ngày tương ứng hoặc tạo mảng mới nếu chưa có
-        if (!newData[date]) {
-          newData[date] = [event];
-          setFormatData(newData);
+        if (!newData[DateAgenda]) {
+          newData[DateAgenda] = [event];
         } else {
-          newData[date].push(event);
-          setFormatData(newData);
+          newData[DateAgenda].push(event);
         }
       });
+      setFormatData(newData);
     } catch (error) {}
   }, [originalData]);
-
-  console.log('---> originalData 1', originalData);
-  console.log('---> rormatData 2', rormatData);
 
   //
   const [isDataItem, setDataItem] = useState('');
@@ -93,7 +102,7 @@ const AgendaScreen = ({navigation}: isProps) => {
   };
 
   const renderItem = (item: any) => {
-    console.log('---- item', item);
+    console.log('----> data item', item);
     const dataItem = item;
     return (
       <>
@@ -138,13 +147,11 @@ const AgendaScreen = ({navigation}: isProps) => {
             <View style={styles.RowCenterBetween}>
               <View style={[styles.marginRight10]}>
                 <Text style={(styles.textBlack, styles.fontBold600)}>
-                  {dataItem.name}
+                  {dataItem.name_guest}
                 </Text>
               </View>
               <View style={[styles.boxGrayRadius10]}>
-                <Text style={[styles.textBlack]}>
-                  {dataItem.start} - {dataItem.end}
-                </Text>
+                <Text style={[styles.textBlack]}>{dataItem.timeViewing}</Text>
               </View>
             </View>
           </View>
@@ -203,7 +210,7 @@ const AgendaScreen = ({navigation}: isProps) => {
       </View>
       <Agenda
         minDate={String(new Date())}
-        items={rormatData}
+        items={formatData}
         showClosingKnob={true}
         renderItem={renderItem}
         renderEmptyData={renderEmptyData}
