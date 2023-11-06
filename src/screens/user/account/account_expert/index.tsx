@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, View, TouchableOpacity, ImageBackground} from 'react-native';
 import {Agenda} from 'react-native-calendars';
 import InforProfile from '../component/infor';
@@ -16,7 +16,8 @@ interface isProps {
 }
 
 const AgendaScreen = ({navigation}: isProps) => {
-  const [items, setItems] = useState({});
+  const [originalData, setOriginalData] = useState({});
+  const [rormatData, setFormatData] = useState({});
   const userData = useSelector(
     (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.user,
   );
@@ -32,7 +33,7 @@ const AgendaScreen = ({navigation}: isProps) => {
             };
             const res = await getTypeBooking('typeBooking', emailData);
             const data = await res.data;
-            setItems(data);
+            setOriginalData(data);
           }
         } catch (error) {
           return error;
@@ -42,7 +43,43 @@ const AgendaScreen = ({navigation}: isProps) => {
     }, [userData]),
   );
 
-  console.log('---> items 1', items);
+  type AgendaItems = Record<string, Event[]>;
+  interface Event {
+    name: string;
+    start: string;
+    end?: string;
+    confirm: boolean;
+  }
+  useEffect(() => {
+    try {
+      // Chuyển đổi dữ liệu vào định dạng cho Agenda
+      const newData: AgendaItems = {};
+      (originalData as AgendaItems[]).forEach((item: any) => {
+        // Lấy ngày từ item
+        const date = item.dataBooking.dateViewing;
+
+        // Tạo đối tượng sự kiện
+        const event: Event = {
+          name: item.name_guest || item.name_expert || 'No Name',
+          start: item.dataBooking.timeViewing,
+          end: '', // Bạn cần thêm giờ kết thúc nếu có
+          confirm: true, // Thay đổi tùy theo dữ liệu của bạn
+        };
+
+        // Thêm sự kiện vào mảng của ngày tương ứng hoặc tạo mảng mới nếu chưa có
+        if (!newData[date]) {
+          newData[date] = [event];
+          setFormatData(newData);
+        } else {
+          newData[date].push(event);
+          setFormatData(newData);
+        }
+      });
+    } catch (error) {}
+  }, [originalData]);
+
+  console.log('---> originalData 1', originalData);
+  console.log('---> rormatData 2', rormatData);
 
   //
   const [isDataItem, setDataItem] = useState('');
@@ -166,7 +203,7 @@ const AgendaScreen = ({navigation}: isProps) => {
       </View>
       <Agenda
         minDate={String(new Date())}
-        items={items}
+        items={rormatData}
         showClosingKnob={true}
         renderItem={renderItem}
         renderEmptyData={renderEmptyData}

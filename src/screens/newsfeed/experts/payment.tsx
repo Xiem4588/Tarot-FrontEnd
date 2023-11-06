@@ -17,7 +17,7 @@ import IconMateria from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import Header from '../../../conponents/header';
 import {navProps} from './types';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Infor from './infor';
 import {postUserBooking} from '../../../services';
 
@@ -41,6 +41,7 @@ const ScreenPayment = ({navigation, route}: navProps) => {
   const [isPrice, setPrice] = useState('');
   const [isDesc, setDesc] = useState('');
   const [isTitle, setTitle] = useState('');
+  const [isNotif, setNotif] = useState(false);
 
   const dataBooking = route.params.dataBooking;
 
@@ -69,6 +70,8 @@ const ScreenPayment = ({navigation, route}: navProps) => {
     const newBooking = {
       email_guest: user_Private.email,
       email_expert: user_Public.email,
+      name_guest: user_Private.fullName,
+      name_expert: user_Public.fullName,
       id_guest: user_Private._id,
       id_expert: user_Public._id,
       dateBooking: String(currentTime),
@@ -76,11 +79,27 @@ const ScreenPayment = ({navigation, route}: navProps) => {
     };
     if (newBooking.email_guest) {
       const res = await postUserBooking('userBooking', newBooking, token);
-      console.log('----> res', res);
-      setCheckPayment(true);
+      if (res.status === true) {
+        setCheckPayment(true);
+      } else {
+        setNotif(!isNotif);
+      }
     } else {
+      console.log('----> console', console.error);
       return console.error('Lỗi (!)');
     }
+  };
+
+  // Xóa token khỏi AsyncStorage khi người dùng đăng xuất
+  const dispatch = useDispatch();
+  const signOut = async () => {
+    dispatch({
+      type: 'LOG_OUT',
+    });
+  };
+  const handleLogout = () => {
+    signOut();
+    navigation.navigate('user');
   };
 
   // Copy click icon
@@ -233,6 +252,23 @@ const ScreenPayment = ({navigation, route}: navProps) => {
                     </Text>
                   </TouchableWithoutFeedback>
                 </View>
+              </View>
+            ) : isNotif && isNotif === true ? (
+              <View style={[styles.RowAlignItemsCenter, styles.marginTop10]}>
+                <Text style={[styles.textCenter]}>
+                  Phiên đặng nhập đã hết hạn vui lòng
+                </Text>
+                <TouchableWithoutFeedback onPress={handleLogout}>
+                  <Text
+                    style={[
+                      styles.colorGreen,
+                      styles.fontSize16,
+                      styles.fontBold,
+                      styles.marginLeft10,
+                    ]}>
+                    Login.
+                  </Text>
+                </TouchableWithoutFeedback>
               </View>
             ) : (
               <>
