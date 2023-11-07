@@ -102,7 +102,7 @@ export const postUserBooking = async (
     const res = await updateAccount.post(url, data);
     return res.data;
   } catch (error) {
-    throw error;
+    return error;
   }
 };
 

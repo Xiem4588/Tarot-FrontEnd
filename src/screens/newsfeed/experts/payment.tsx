@@ -46,7 +46,6 @@ const ScreenPayment = ({navigation, route}: navProps) => {
   const [inTokenStatus, setTokenStatus] = useState<Boolean>(true);
 
   const dataBooking = route.params.dataBooking;
-  console.log('---dataBooking', dataBooking);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -85,17 +84,18 @@ const ScreenPayment = ({navigation, route}: navProps) => {
     };
     if (newBooking.email_guest) {
       const res = await postUserBooking('userBooking', newBooking, token);
-      if (res.status === true) {
+      if (res && res.status === true) {
         setCheckPayment(true);
         setBackHome(true);
       } else if (res.status === false) {
         setNotif('Có lỗi vui lòng kiểm tra và thử lại!');
       } else if (res.tokenStatus === false) {
         setTokenStatus(false);
+      } else {
+        setNotif('Network Error!');
       }
     } else {
-      console.log('----> console', console.error);
-      return console.error('Lỗi (!)');
+      setNotif('Error!');
     }
   };
 
