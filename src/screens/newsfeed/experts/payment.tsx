@@ -262,7 +262,7 @@ const ScreenPayment = ({navigation, route}: navProps) => {
                         styles.fontBold,
                         styles.fontSize16,
                       ]}>
-                      Về trang chủ
+                      Về trang chính
                     </Text>
                   </TouchableWithoutFeedback>
                 </View>
