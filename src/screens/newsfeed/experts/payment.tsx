@@ -35,16 +35,18 @@ const ScreenPayment = ({navigation, route}: navProps) => {
   );
   //
   const [isConfirm, setConfirm] = useState(false);
+  const [isBackHome, setBackHome] = useState(false);
   const [isCheckPayment, setCheckPayment] = useState(false);
   const [isDateViewing, setDateViewing] = useState('');
   const [isTimeViewing, setTimeViewing] = useState('');
   const [isPrice, setPrice] = useState('');
   const [isDesc, setDesc] = useState('');
   const [isTitle, setTitle] = useState('');
-  const [isNotif, setNotif] = useState(false);
+  const [inNotif, setNotif] = useState('');
+  const [inTokenStatus, setTokenStatus] = useState<Boolean>(true);
 
   const dataBooking = route.params.dataBooking;
-
+  console.log('---dataBooking', dataBooking);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -70,8 +72,12 @@ const ScreenPayment = ({navigation, route}: navProps) => {
     const newBooking = {
       email_guest: user_Private.email,
       email_expert: user_Public.email,
-      name_guest: user_Private.fullName,
-      name_expert: user_Public.fullName,
+      name_guest: user_Private.fullName
+        ? user_Private.fullName
+        : user_Private.email,
+      name_expert: user_Public.fullName
+        ? user_Public.fullName
+        : user_Public.email,
       id_guest: user_Private._id,
       id_expert: user_Public._id,
       dateBooking: String(currentTime),
@@ -81,8 +87,11 @@ const ScreenPayment = ({navigation, route}: navProps) => {
       const res = await postUserBooking('userBooking', newBooking, token);
       if (res.status === true) {
         setCheckPayment(true);
-      } else {
-        setNotif(!isNotif);
+        setBackHome(true);
+      } else if (res.status === false) {
+        setNotif('Có lỗi vui lòng kiểm tra và thử lại!');
+      } else if (res.tokenStatus === false) {
+        setTokenStatus(false);
       }
     } else {
       console.log('----> console', console.error);
@@ -112,7 +121,12 @@ const ScreenPayment = ({navigation, route}: navProps) => {
 
   return (
     <WrapBgBox>
-      <Header navigation={navigation} name="payment" title={''} />
+      <Header
+        navigation={navigation}
+        backHome={isBackHome}
+        name="payment"
+        title={''}
+      />
 
       <View style={[styles.detailUserBooking]}>
         <Infor />
@@ -253,7 +267,7 @@ const ScreenPayment = ({navigation, route}: navProps) => {
                   </TouchableWithoutFeedback>
                 </View>
               </View>
-            ) : isNotif && isNotif === true ? (
+            ) : inTokenStatus && inTokenStatus === false ? (
               <View style={[styles.RowAlignItemsCenter, styles.marginTop10]}>
                 <Text style={[styles.textCenter]}>
                   Phiên đặng nhập đã hết hạn vui lòng
@@ -289,6 +303,16 @@ const ScreenPayment = ({navigation, route}: navProps) => {
                     Xác nhận đã thanh toán!
                   </Text>
                 </View>
+                {inNotif && (
+                  <Text
+                    style={[
+                      styles.marginTop10,
+                      styles.colorRed,
+                      styles.textCenter,
+                    ]}>
+                    {inNotif}
+                  </Text>
+                )}
                 <TouchableWithoutFeedback
                   onPress={isConfirm === true ? confirmPayment : () => {}}>
                   <View

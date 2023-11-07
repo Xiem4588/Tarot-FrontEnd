@@ -139,7 +139,7 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
   return (
     <View style={styles.paddingHorizontal18}>
       <Text style={[styles.textTitle18Black, styles.marginTop20]}>
-        Đặt lịch
+        Chọn thời gian:
       </Text>
       <View style={[styles.marginTop15, styles.boxWhiteRadius]}>
         <TouchableWithoutFeedback onPress={() => handleDropdown('date')}>

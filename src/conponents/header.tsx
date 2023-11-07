@@ -8,15 +8,28 @@ interface HeaderProps {
   navigation?: any;
   title: string;
   name?: string;
+  backHome?: boolean;
   settingAccount?: () => void;
 }
-const Header = ({navigation, title, name, settingAccount}: HeaderProps) => {
+const Header = ({
+  navigation,
+  title,
+  name,
+  backHome,
+  settingAccount,
+}: HeaderProps) => {
   useTranslation();
+  const handleBack = () => {
+    if (backHome && backHome === true) {
+      navigation.navigate('newsfeed');
+    }
+    navigation.goBack();
+  };
   return (
     <>
       <View style={styles.paddingTop50Ios15Adroid}>
         <View style={[styles.RowBetween, styles.paddingHorizontal18]}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+          <TouchableOpacity onPress={handleBack}>
             <View style={styles.RowCenterBetween}>
               <IconMateria
                 name="keyboard-backspace"

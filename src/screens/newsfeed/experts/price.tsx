@@ -87,7 +87,7 @@ const PricePack = ({getDataPricePack}: priceProps) => {
   return (
     <>
       <Text style={[styles.textTitle18Black, styles.paddingHorizontal18]}>
-        Bảng giá
+        Chọn gói dịch vụ:
       </Text>
       <View>
         {isPriceList && isPriceList.length > 0 ? (
