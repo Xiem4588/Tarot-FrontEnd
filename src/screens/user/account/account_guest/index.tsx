@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
 import moment from 'moment';
 import {Avatar} from 'react-native-elements';
@@ -6,12 +6,43 @@ import {images, icon} from '../../../../assets/constants';
 import {styles} from '../../../../assets/styles';
 import WrapBgBox from '../../../../conponents/wrapBgBox';
 import InforProfile from '../component/infor';
+import {useFocusEffect} from '@react-navigation/native';
+import {getTypeBooking} from '../../../../services';
+import {useSelector} from 'react-redux';
 
 interface Props {
   navigation: any;
 }
 
 const MyProfileUser = ({navigation}: Props) => {
+  const [isOrderData, setOrderData] = useState<String[]>([]);
+  const userData = useSelector(
+    (state: any) => state.PRIVATE_STORE_ACCOUNT_DATA.user,
+  );
+  useFocusEffect(
+    React.useCallback(() => {
+      const checkDataBooking = async () => {
+        try {
+          if (userData) {
+            const myEmail = await userData.email;
+            const emailData = {
+              email: myEmail,
+            };
+            const res = await getTypeBooking('ordersGuest', emailData);
+            const data = await res.data;
+            setOrderData(data);
+          }
+        } catch (error) {
+          return error;
+        }
+      };
+      checkDataBooking();
+    }, [userData]),
+  );
+  useEffect(() => {
+    console.log('--------> isOrderData', isOrderData);
+  }, [isOrderData]);
+
   return (
     <WrapBgBox>
       <InforProfile navigation={navigation} />
@@ -19,17 +50,17 @@ const MyProfileUser = ({navigation}: Props) => {
         style={[styles.itemContainer, styles.paddingBox, styles.marginTop20]}>
         <Text style={styles.titleBox}>Lịch đã đặt</Text>
         <ScrollView>
-          {DATA.map(item => (
-            <TouchableOpacity key={item.id} onPress={() => {}}>
+          {isOrderData.map((item: any) => (
+            <TouchableOpacity key={item._id} onPress={() => {}}>
               <View style={styles.item}>
                 <View style={styles.avatarItem}>
                   <Avatar
-                    source={item.avatar}
+                    source={images.AvatarDemo1}
                     containerStyle={styles.avatarImage}
                   />
                 </View>
                 <View style={styles.flexBox}>
-                  <Text style={styles.nameItem}>{item.name}</Text>
+                  <Text style={styles.nameItem}>{item.name_expert}</Text>
                   <View style={styles.RowAlignItems}>
                     <Avatar
                       source={
@@ -56,7 +87,7 @@ const MyProfileUser = ({navigation}: Props) => {
                           ? styles.dateTime
                           : styles.dateTimeFuture
                       }>
-                      {item.date}
+                      {item.dataBooking.dateViewing}
                     </Text>
                     <Text
                       style={
@@ -67,7 +98,7 @@ const MyProfileUser = ({navigation}: Props) => {
                           ? styles.dateTime
                           : styles.dateTimeFuture
                       }>
-                      {item.time}
+                      {item.dataBooking.timeViewing}
                     </Text>
                   </View>
                 </View>
@@ -85,44 +116,5 @@ const MyProfileUser = ({navigation}: Props) => {
     </WrapBgBox>
   );
 };
-
-interface DataProps {
-  id: string;
-  name: string;
-  date: string;
-  time: string;
-  like: string;
-  view: string;
-  avatar: object;
-}
-const DATA: DataProps[] = [
-  {
-    id: '1',
-    name: 'Lee Jae‑wook',
-    date: '21 tháng 9 2023',
-    time: '09:55 AM',
-    like: '14,087',
-    view: '25,635',
-    avatar: images.AvatarDemo1,
-  },
-  {
-    id: '2',
-    name: 'Seo Yul',
-    date: '23 tháng 3 2023',
-    time: '09:55 AM',
-    like: '14,087',
-    view: '25,635',
-    avatar: images.AvatarDemo2,
-  },
-  {
-    id: '3',
-    name: 'Lee Jae‑wook',
-    date: '10 tháng 1 2023',
-    time: '09:55 AM',
-    like: '14,087',
-    view: '25,635',
-    avatar: images.AvatarDemo1,
-  },
-];
 
 export default MyProfileUser;

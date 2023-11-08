@@ -31,7 +31,7 @@ const AgendaScreen = ({navigation}: isProps) => {
             const emailData = {
               email: myEmail,
             };
-            const res = await getTypeBooking('typeBooking', emailData);
+            const res = await getTypeBooking('ordersExpert', emailData);
             const data = await res.data;
             setOriginalData(data);
           }
@@ -102,7 +102,6 @@ const AgendaScreen = ({navigation}: isProps) => {
   };
 
   const renderItem = (item: any) => {
-    console.log('----> data item', item);
     const dataItem = item;
     return (
       <>
