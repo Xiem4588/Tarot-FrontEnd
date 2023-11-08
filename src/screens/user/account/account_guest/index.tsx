@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
 import moment from 'moment';
 import {Avatar} from 'react-native-elements';
@@ -39,9 +39,6 @@ const MyProfileUser = ({navigation}: Props) => {
       checkDataBooking();
     }, [userData]),
   );
-  useEffect(() => {
-    console.log('--------> isOrderData', isOrderData);
-  }, [isOrderData]);
 
   return (
     <WrapBgBox>
@@ -55,7 +52,7 @@ const MyProfileUser = ({navigation}: Props) => {
               <View style={styles.item}>
                 <View style={styles.avatarItem}>
                   <Avatar
-                    source={images.AvatarDemo1}
+                    source={images.avatarDefault}
                     containerStyle={styles.avatarImage}
                   />
                 </View>
