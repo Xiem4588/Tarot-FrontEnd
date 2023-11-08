@@ -267,7 +267,7 @@ const ScreenPayment = ({navigation, route}: navProps) => {
                   </TouchableWithoutFeedback>
                 </View>
               </View>
-            ) : inTokenStatus && inTokenStatus === false ? (
+            ) : inTokenStatus === false ? (
               <View style={[styles.RowAlignItemsCenter, styles.marginTop10]}>
                 <Text style={[styles.textCenter]}>
                   Phiên đặng nhập đã hết hạn vui lòng

@@ -39,10 +39,10 @@ const DateTime = ({getDataTime, getDataDate}: dateTimeProps) => {
 
   // Tạo một mảng lưu trữ các giờ và phút
   const timeSlots = [];
-  const totalSlots = (24 * 60) / 30; // Tổng số khoảng 30 phút trong một ngày
+  const totalSlots = (24 * 60) / 60; // Tổng số khoảng 30 phút trong một ngày
 
   for (let i = 0; i < totalSlots; i++) {
-    const totalMinutes = i * 30;
+    const totalMinutes = i * 60;
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
 
